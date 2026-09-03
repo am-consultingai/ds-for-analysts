@@ -1,0 +1,9 @@
+# Internal working documents — NEVER publish.
+# This repo is public and serves ds-for-analysts.amconsultingai.com.
+# These files contain material from a private discovery call: named client
+# staff, team size, internal churn heuristics, org structure and commercial
+# notes. Only index.html and CNAME belong in the published site.
+HANDOFF.md
+syllabus.md
+page-flow.md
+interaction-plan.md

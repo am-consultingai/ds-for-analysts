@@ -1,0 +1,1441 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Data Science with Claude — for Analysts</title>
+<meta name="description" content="Data Science with Claude, for analysts. Two half-days: your team builds a working churn and revenue model on your own product in Python, pandas and scikit-learn.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<!-- Brand assets and shared CSS from the public repo github.com/am-consultingai/am-assets -->
+<link rel="stylesheet" href="https://am-consultingai.github.io/am-assets/brand.css">
+<link rel="icon" href="https://am-consultingai.github.io/am-assets/logo/am-favicon.png">
+<style>
+/* brand.css carries the tokens, base type and shared components
+   (.nav .btn .sec .eyebrow .sub .bridge .bq .rule .acc .bio .creds .flinks footer).
+   Only page-specific layout lives here. */
+
+/* ── icons ──────────────────────────────────────────────────────────── */
+.icn{width:18px;height:18px;flex:none;stroke:currentColor;fill:none;stroke-width:1.6;
+  stroke-linecap:round;stroke-linejoin:round}
+.icn.lg{width:22px;height:22px} .icn.sm{width:14px;height:14px}
+
+/* ── reveal once ────────────────────────────────────────────────────── */
+[data-rv]{opacity:0;transform:translateY(12px);transition:opacity .38s ease,transform .38s cubic-bezier(.22,.61,.36,1)}
+[data-rv].in{opacity:1;transform:none}
+
+/* ── shared panel furniture ─────────────────────────────────────────── */
+.panel{margin-top:26px;border:1px solid var(--line);border-radius:18px;
+  background:linear-gradient(180deg,#0e1524,var(--card));overflow:hidden}
+.ptitle{display:flex;align-items:center;gap:11px;padding:17px 20px;border-bottom:1px solid var(--line-soft);
+  background:rgba(7,11,19,.45)}
+.ptitle .icn{color:var(--cyan)}
+.ptitle b{font-family:var(--display);font-size:16px;font-weight:500}
+@media(max-width:600px){.ptitle{flex-wrap:wrap;gap:8px}.ptitle .tag{margin-left:0}}
+.ptitle .tag{margin-left:auto;font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--s4);border:1px solid var(--line);border-radius:5px;padding:4px 8px;
+  display:inline-flex;align-items:center;gap:6px}
+.plot{border:1px solid var(--line-soft);border-radius:12px;background:var(--tile);padding:12px}
+.plot .cap{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--s4)}
+.plot svg{display:block;width:100%;height:auto;margin-top:6px;overflow:visible}
+.axl{font-family:var(--mono);font-size:11px;fill:var(--s4)}
+.grid-l{stroke:rgba(148,163,184,.13)}
+.axis{stroke:rgba(148,163,184,.3)}
+.note{font-size:13.5px;color:var(--s3);line-height:1.5;display:flex;align-items:flex-start;gap:9px}
+.note .icn{color:var(--cyan);margin-top:2px} .note b{color:var(--ink);font-weight:500}
+
+/* metric tiles */
+.mts{display:grid;gap:10px}
+.mt{background:var(--tile);border:1px solid var(--line);border-radius:11px;padding:13px 14px;transition:.2s}
+.mt .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--s4);display:block}
+.mt b{font-family:var(--display);font-size:25px;font-weight:600;display:block;margin-top:4px;
+  font-variant-numeric:tabular-nums;letter-spacing:-.02em;color:var(--s2)}
+.mt em{font-style:normal;font-size:11.5px;color:var(--s4);display:block;margin-top:4px;line-height:1.4}
+.mt.live{border-color:rgba(34,211,238,.45)} .mt.live b{color:var(--cyan)}
+.mt.frozen b{color:var(--s2)}
+
+/* ── hero ───────────────────────────────────────────────────────────── */
+.hero{border-bottom:1px solid var(--line-soft);position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:-30% -10% auto -10%;height:130%;pointer-events:none;
+  background:radial-gradient(48% 42% at 18% 6%,rgba(34,211,238,.14),transparent 70%),
+             radial-gradient(44% 42% at 86% 30%,rgba(129,140,248,.13),transparent 70%)}
+.hero-in{max-width:var(--maxw);margin:0 auto;padding:48px var(--pad) 42px;position:relative;z-index:2;
+  display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);gap:44px;align-items:center}
+@media(max-width:940px){.hero-in{grid-template-columns:1fr;gap:32px;padding-top:34px}}
+h1{font-size:clamp(31px,7vw,52px);font-weight:600;margin-top:18px;max-width:19ch;letter-spacing:-.03em}
+.lede{margin-top:17px;font-size:clamp(16.5px,4vw,19px);color:var(--s2);max-width:54ch;line-height:1.6}
+.lede b{color:var(--ink);font-weight:500}
+.cta-row{display:flex;gap:11px;margin-top:26px;flex-wrap:wrap}
+@media(max-width:520px){.cta-row .btn{flex:1 1 100%}}
+.stack{display:flex;gap:7px;margin-top:20px;flex-wrap:wrap;align-items:center}
+.stack .lb{font-family:var(--mono);font-size:10px;letter-spacing:var(--ls);text-transform:uppercase;color:var(--s4)}
+.tool{display:inline-flex;align-items:center;gap:6px;background:var(--tile);border:1px solid var(--line);
+  border-radius:7px;padding:5px 10px;font-family:var(--mono);font-size:11px;color:var(--s2)}
+.tool .icn{color:var(--cyan)}
+.facts{display:flex;margin-top:26px;border-top:1px solid var(--line-soft);flex-wrap:wrap}
+.facts div{padding:15px 22px 4px 0;margin-right:22px;border-right:1px solid var(--line-soft)}
+.facts div:last-child{border-right:0}
+.facts b{display:block;font-family:var(--display);font-size:22px;font-weight:600}
+.facts span{font-family:var(--mono);font-size:10.5px;letter-spacing:var(--ls);text-transform:uppercase;color:var(--s4)}
+@media(max-width:520px){.facts div{padding-right:14px;margin-right:14px}.facts b{font-size:19px}}
+
+.shot{border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 40px 80px -50px #000;background:#0a1120}
+.win{display:flex;align-items:center;gap:7px;padding:10px 14px;background:rgba(148,163,184,.06);
+  border-bottom:1px solid var(--line-soft)}
+.win i{width:8px;height:8px;border-radius:50%;background:rgba(148,163,184,.3);flex:none}
+.win i:nth-child(2){background:rgba(148,163,184,.2)} .win i:nth-child(3){background:rgba(148,163,184,.14)}
+.win span{font-family:var(--mono);font-size:10px;color:var(--s4);margin-left:6px}
+.win em{margin-left:auto;font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--s4);font-style:normal;border:1px solid var(--line);border-radius:5px;padding:2px 6px}
+.hbody{padding:15px 16px 13px}
+.hhead{display:grid;grid-template-columns:30px 1fr 42px;gap:8px;font-family:var(--mono);font-size:9px;
+  letter-spacing:.06em;color:var(--s4);padding-bottom:6px;border-bottom:1px solid var(--line-soft);white-space:nowrap}
+.hlist{position:relative;padding-top:6px}
+.hrow{display:grid;grid-template-columns:30px 1fr 42px;gap:8px;align-items:center;height:22px;
+  font-family:var(--mono);font-size:10.5px;will-change:transform}
+.hrow.gap{margin-top:16px}
+.hrow .r{color:var(--s4)}
+.hrow .a{color:var(--s2);display:flex;align-items:center;gap:9px;min-width:0}
+.hbar{flex:1;height:3px;border-radius:2px;background:rgba(148,163,184,.12);overflow:hidden;max-width:130px}
+.hbar i{display:block;height:100%;border-radius:2px;background:var(--grad)}
+.hrow .s{text-align:right;color:#f87171}
+.hrow.mid .s{color:#fbbf24} .hrow.low .s{color:var(--s4)}
+.hcut{position:absolute;left:-4px;right:-4px;height:1px;background:rgba(94,234,212,.55);
+  box-shadow:0 0 0 3px rgba(94,234,212,.05)}
+.hcut span{position:absolute;right:0;top:4px;font-family:var(--mono);font-size:9px;line-height:1;color:#5eead4}
+.hbracket{margin-top:10px;display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:9.5px;
+  color:var(--s3);border-top:1px solid var(--line-soft);padding-top:9px}
+.hbracket .icn{color:#5eead4} .hbracket b{color:#5eead4;font-weight:500}
+
+/* ── #why · pipeline ────────────────────────────────────────────────── */
+.ptog{display:flex;gap:8px;margin-top:26px;flex-wrap:wrap;align-items:center}
+.ptog button{background:var(--tile);border:1px solid var(--line);border-radius:999px;cursor:pointer;
+  padding:8px 15px;font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--s3);
+  transition:.18s;display:inline-flex;align-items:center;gap:7px}
+.ptog button:hover{color:var(--ink);border-color:var(--s4)}
+.ptog button[aria-pressed="true"]{color:var(--ink);border-color:var(--cyan);background:rgba(34,211,238,.09)}
+.ptog button[data-own="gen"][aria-pressed="true"]{border-color:var(--indigo);background:rgba(129,140,248,.1)}
+.ptog .hint{font-family:var(--mono);font-size:10.5px;color:var(--s4)}
+@media(max-width:640px){.ptog .hint{display:none}}
+.pipe{margin-top:16px;display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;gap:10px}
+@media(max-width:940px){.pipe{grid-template-columns:1fr;gap:5px}.parrow{transform:rotate(90deg);margin:1px auto}}
+.pnode{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 15px;
+  transition:opacity .25s,border-color .25s}
+.pnode .hd{display:flex;align-items:center;gap:9px;color:var(--cyan)}
+.pnode[data-own="human"] .hd{color:var(--s2)} .pnode[data-own="gen"] .hd{color:var(--indigo)}
+.pnode .hd b{font-family:var(--mono);font-size:10px;letter-spacing:var(--ls);text-transform:uppercase;font-weight:500}
+.pnode h4{font-size:15px;margin-top:10px;letter-spacing:-.01em}
+.pnode p{margin-top:5px;font-size:12.5px;color:var(--s3);line-height:1.45}
+.pipe.filtered .pnode{opacity:.24}
+.pipe.filtered .pnode.lit{opacity:1}
+.pipe.filtered .pnode.lit[data-own="gen"]{border-color:rgba(129,140,248,.5)}
+.pipe.filtered .pnode.lit[data-own="classic"]{border-color:rgba(34,211,238,.45)}
+.parrow{align-self:center;color:var(--s4);flex:none}
+
+/* ── #path · rail ───────────────────────────────────────────────────── */
+.rail{margin-top:26px;border:1px solid var(--line);border-radius:18px;
+  background:linear-gradient(180deg,#0e1524,var(--card));padding:22px 20px 20px}
+.steps{display:grid;grid-template-columns:repeat(8,1fr);gap:9px}
+@media(max-width:900px){.steps{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:560px){.steps{grid-template-columns:repeat(2,1fr)}}
+.st{background:var(--tile);border:1px solid var(--line-soft);border-radius:11px;padding:12px 11px;
+  border-top:2px solid var(--cyan);cursor:pointer;text-align:left;font:inherit;color:inherit;
+  transition:.18s;display:block;width:100%}
+.st:hover{border-color:var(--line);background:#111a2c}
+.st.ai{border-top-color:var(--indigo)}
+.st[aria-expanded="true"]{background:#131d31;box-shadow:0 0 0 1px rgba(34,211,238,.45)}
+.st.ai[aria-expanded="true"]{box-shadow:0 0 0 1px rgba(129,140,248,.5)}
+.st .top{display:flex;align-items:center;justify-content:space-between;color:var(--cyan)}
+.st.ai .top{color:var(--indigo)}
+.st .n{font-family:var(--mono);font-size:9.5px;color:var(--s4);letter-spacing:.1em}
+.st h4{font-size:14px;margin-top:8px;letter-spacing:-.01em}
+.st p{margin-top:5px;font-size:12px;color:var(--s3);line-height:1.42}
+.stdet{margin-top:15px;border-top:1px solid var(--line-soft);padding-top:16px;display:none}
+.stdet.on{display:block}
+.stdet .who{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:10px;
+  letter-spacing:var(--ls);text-transform:uppercase;color:var(--cyan);
+  border:1px solid rgba(34,211,238,.3);border-radius:999px;padding:4px 11px}
+.stdet.ai .who{color:var(--indigo);border-color:rgba(129,140,248,.35)}
+.stdet h5{font-family:var(--display);font-size:16.5px;font-weight:500;margin:12px 0 0;letter-spacing:-.01em}
+.stdet .eg{margin-top:12px;background:var(--tile);border:1px solid var(--line);border-left:2px solid var(--cyan);
+  border-radius:10px;padding:12px 14px;font-family:var(--mono);font-size:12px;color:var(--s2);line-height:1.55}
+.stdet.ai .eg{border-left-color:var(--indigo)}
+.stdet .eg b{color:var(--s4);font-weight:400;display:block;font-size:9.5px;letter-spacing:.1em;
+  text-transform:uppercase;margin-bottom:6px}
+.legend{display:flex;gap:20px;flex-wrap:wrap;align-items:center;margin-top:16px;padding-top:14px;
+  border-top:1px solid var(--line-soft);font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--s3)}
+.legend i{display:inline-block;width:16px;height:2px;border-radius:2px;margin-right:8px;vertical-align:middle}
+.legend .y i{background:var(--cyan)} .legend .a i{background:var(--indigo)}
+.legend .hint{margin-left:auto;color:var(--s4)}
+@media(max-width:760px){.legend .hint{margin-left:0}}
+.mrail{display:flex;align-items:center;gap:4px}
+.mrail i{width:10px;height:3px;border-radius:2px;background:rgba(148,163,184,.2);flex:none}
+.mrail i.on{background:var(--cyan)} .mrail i.on.ai{background:var(--indigo)}
+.mrail span{font-family:var(--mono);font-size:9.5px;color:var(--s4);letter-spacing:.05em;margin-left:8px}
+
+/* ── classification panel ───────────────────────────────────────────── */
+.clf{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:18px;padding:18px 20px}
+@media(max-width:860px){.clf{grid-template-columns:1fr}}
+
+.klist{border:1px solid var(--line-soft);border-radius:11px;overflow:hidden;background:var(--tile);align-self:start}
+.khead,.krow{display:grid;grid-template-columns:22px 1fr 38px 58px;gap:8px;align-items:center;
+  padding:0 11px;font-family:var(--mono);font-size:10.5px}
+.khead{height:26px;font-size:9px;letter-spacing:.08em;color:var(--s4);border-bottom:1px solid var(--line-soft)}
+.krow{height:19px;color:var(--s4);transition:background .16s,color .16s}
+.krow .a{color:var(--s4)} .krow .s{text-align:right}
+.krow .o{text-align:right;font-size:9.5px;color:#334155}
+.krow.pos .o{color:#7f1d1d}
+.krow.in{background:rgba(34,211,238,.07)} .krow.in .a{color:var(--s2)}
+.krow.in.pos .o{color:#fca5a5} .krow.in.neg .o{color:var(--s4)}
+.krow.edge{box-shadow:inset 0 -1px 0 rgba(34,211,238,.6)}
+
+/* confusion matrix */
+.cm{display:grid;grid-template-columns:auto 1fr 1fr;grid-template-rows:auto 1fr 1fr;gap:5px;margin-top:8px}
+.cm .lab{font-family:var(--mono);font-size:8.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--s4);
+  display:flex;align-items:center;justify-content:center;text-align:center;padding:2px}
+.cm .rl{writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap}
+.cell{border-radius:9px;border:1px solid var(--line);padding:9px 10px;min-height:62px;
+  display:flex;flex-direction:column;justify-content:center;transition:background .25s,border-color .25s}
+.cell .n{font-family:var(--display);font-size:22px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1}
+.cell .t{font-family:var(--mono);font-size:9px;letter-spacing:.06em;color:var(--s4);margin-top:5px}
+.cell.tp{background:rgba(16,185,129,.11);border-color:rgba(16,185,129,.38)} .cell.tp .n{color:#34d399}
+.cell.fp{background:rgba(239,68,68,.10);border-color:rgba(239,68,68,.34)} .cell.fp .n{color:#f87171}
+.cell.fn{background:rgba(251,191,36,.09);border-color:rgba(251,191,36,.3)} .cell.fn .n{color:#fbbf24}
+.cell.tn{background:var(--tile);border-color:var(--line)} .cell.tn .n{color:var(--s3)}
+
+/* K control */
+.kctl{display:flex;align-items:center;gap:13px;padding:0 20px 4px}
+.kctl label{font-family:var(--mono);font-size:11px;color:var(--s3);white-space:nowrap}
+.kctl output{font-family:var(--mono);font-size:12.5px;color:var(--cyan);min-width:20px;text-align:right}
+input[type=range]{-webkit-appearance:none;appearance:none;flex:1;height:20px;background:transparent;
+  cursor:pointer;min-width:0;accent-color:var(--cyan)}
+input[type=range]::-webkit-slider-runnable-track{height:3px;border-radius:2px;background:rgba(148,163,184,.22)}
+input[type=range]::-moz-range-track{height:3px;border-radius:2px;background:rgba(148,163,184,.22)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;
+  background:var(--cyan);margin-top:-6.5px;border:2px solid #06121a;box-shadow:0 0 0 3px rgba(34,211,238,.16)}
+input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:var(--cyan);
+  border:2px solid #06121a;box-shadow:0 0 0 3px rgba(34,211,238,.16)}
+.pfoot{padding:12px 20px 20px;display:grid;grid-template-columns:repeat(2,minmax(0,230px)) 1fr;gap:16px;align-items:start}
+@media(max-width:900px){.pfoot{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.pfoot{grid-template-columns:1fr}}
+
+/* ── regression panel ───────────────────────────────────────────────── */
+.reg{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,320px);gap:16px;padding:18px 20px 20px}
+@media(max-width:860px){.reg{grid-template-columns:1fr}}
+.awtog{align-self:flex-start;display:inline-flex;background:var(--tile);border:1px solid var(--line);
+  border-radius:9px;padding:3px;gap:3px}
+.awtog button{background:transparent;border:0;cursor:pointer;border-radius:7px;padding:7px 14px;
+  font-family:var(--mono);font-size:11px;color:var(--s4);transition:.18s}
+.awtog button:hover{color:var(--s2)}
+.awtog button[aria-pressed="true"]{background:rgba(34,211,238,.13);color:var(--cyan)}
+.dot{transition:cx .6s cubic-bezier(.22,.61,.36,1),cy .6s cubic-bezier(.22,.61,.36,1),fill .3s}
+.whisk{transition:opacity .3s}
+.regside{display:flex;flex-direction:column;gap:12px}
+
+/* ── feature importance ─────────────────────────────────────────────── */
+.imp{display:flex;flex-direction:column;gap:7px;margin-top:6px}
+.irow{display:grid;grid-template-columns:150px 1fr 42px;gap:10px;align-items:center;
+  font-family:var(--mono);font-size:11px;color:var(--s3)}
+@media(max-width:600px){.irow{grid-template-columns:118px 1fr 38px;font-size:10px}}
+.irow .track{height:13px;border-radius:3px;background:rgba(148,163,184,.1);overflow:hidden}
+.irow .track i{display:block;height:100%;border-radius:3px;background:var(--grad);
+  transition:width .6s cubic-bezier(.22,.61,.36,1),background .3s}
+.irow .v{text-align:right;font-variant-numeric:tabular-nums;color:var(--s4)}
+.irow.off{opacity:.28}
+.chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}
+.chip{background:var(--tile);border:1px solid var(--line);border-radius:10px;cursor:pointer;
+  padding:9px 12px;font-family:var(--mono);font-size:11.5px;color:var(--s2);transition:.2s;
+  display:inline-flex;align-items:center;gap:9px;text-align:left;font-weight:400}
+.chip:hover{border-color:var(--s4)}
+.chip .mk{width:18px;height:18px;border-radius:50%;flex:none;display:grid;place-items:center;
+  border:1px solid var(--line);color:var(--s4);font-size:10px}
+.chip .vd{display:none;font-size:11px;color:var(--s3);font-family:var(--sans);max-width:30ch;line-height:1.4}
+.chip.done{cursor:default} .chip.done .vd{display:block}
+.chip.done.ok{border-color:rgba(16,185,129,.4);background:rgba(16,185,129,.06)}
+.chip.done.ok .mk{border-color:rgba(16,185,129,.5);color:var(--good)}
+.chip.done.bad{border-color:rgba(239,68,68,.45);background:rgba(239,68,68,.07)}
+.chip.done.bad .mk{border-color:rgba(239,68,68,.55);color:#f87171}
+.chip.done.bad .vd{color:#fca5a5}
+.score{margin-top:13px;font-family:var(--mono);font-size:11px;color:var(--s4)}
+.score.all{color:#5eead4}
+
+/* ── #tools · toolchain beam + code ─────────────────────────────────── */
+.beam{position:relative;padding:22px 20px 8px}
+.beamsvg{position:absolute;inset:22px 20px auto;height:56px;width:calc(100% - 40px);pointer-events:none;z-index:0}
+.beamsvg path{fill:none;stroke-width:2.4;stroke-linecap:round}
+#beamFlow{filter:drop-shadow(0 0 4px rgba(34,211,238,.65))}
+.bnodes{position:relative;z-index:1;display:grid;grid-template-columns:repeat(4,1fr);gap:30px}
+@media(max-width:820px){.bnodes{grid-template-columns:repeat(2,1fr);gap:14px}.beamsvg{display:none}}
+@media(max-width:460px){.bnodes{grid-template-columns:1fr}}
+.bn{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:14px 14px 15px;text-align:center}
+.bn .ic{width:38px;height:38px;margin:0 auto;border-radius:11px;background:var(--tile);border:1px solid var(--line);
+  display:grid;place-items:center;color:var(--cyan)}
+.bn b{display:block;font-family:var(--mono);font-size:12.5px;margin-top:10px;color:var(--ink);font-weight:500}
+.bn span{display:block;margin-top:5px;font-size:12px;color:var(--s3);line-height:1.45}
+.bn em{display:block;margin-top:7px;font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--s4);font-style:normal}
+
+.code{margin-top:22px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#080d17}
+.ctabs{display:flex;border-bottom:1px solid var(--line-soft);background:rgba(7,11,19,.6);overflow-x:auto}
+.ctabs button{background:transparent;border:0;cursor:pointer;padding:12px 17px;white-space:nowrap;
+  font-family:var(--mono);font-size:11.5px;color:var(--s4);transition:.2s;border-bottom:2px solid transparent}
+.ctabs button:hover{color:var(--s2)}
+.ctabs button[aria-selected="true"]{color:var(--cyan);border-bottom-color:var(--cyan);background:rgba(34,211,238,.05)}
+.ctabs .rt{margin-left:auto;padding:12px 17px;font-family:var(--mono);font-size:10px;color:var(--s4);
+  display:flex;align-items:center;gap:7px;white-space:nowrap}
+.code pre{margin:0;padding:18px 20px;overflow-x:auto;font-family:var(--mono);font-size:12.5px;
+  line-height:1.65;color:#cbd5e1;tab-size:4}
+@media(max-width:560px){.code pre{font-size:11.5px;padding:14px}}
+.code pre b{font-weight:400}
+.k1{color:#c084fc} .k2{color:#22d3ee} .k3{color:#fbbf24} .k4{color:#5eead4} .k5{color:#64748b;font-style:italic}
+.cfoot{border-top:1px solid var(--line-soft);padding:13px 20px;font-size:13px;color:var(--s3);
+  display:flex;align-items:center;gap:9px;line-height:1.5;background:rgba(7,11,19,.35)}
+.cfoot .icn{color:var(--good)} .cfoot b{color:var(--ink);font-weight:500}
+
+/* ── #value · bento ─────────────────────────────────────────────────── */
+.bento{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:26px}
+@media(max-width:900px){.bento{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.bento{grid-template-columns:1fr}}
+.bt{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:19px 18px;
+  display:flex;flex-direction:column}
+.bt.w2{grid-column:span 2} .bt.w4{grid-column:span 4}
+@media(max-width:900px){.bt.w4{grid-column:span 2}}
+@media(max-width:520px){.bt.w2,.bt.w4{grid-column:span 1}}
+.bt .bk{font-family:var(--mono);font-size:10px;letter-spacing:var(--ls);text-transform:uppercase;color:var(--s4);
+  display:flex;align-items:center;gap:8px}
+.bt .bk .icn{color:var(--cyan)}
+.bt .bv{font-family:var(--display);font-size:clamp(28px,5vw,38px);font-weight:600;letter-spacing:-.025em;
+  margin-top:11px;font-variant-numeric:tabular-nums;line-height:1}
+.bt .bv small{font-size:.62em;font-weight:500;color:var(--s3);letter-spacing:0;margin-left:2px}
+.bt p{margin-top:9px;font-size:13.5px;color:var(--s3);line-height:1.5}
+.bt p b{color:var(--ink);font-weight:500}
+.calls{display:flex;flex-direction:column;gap:13px;margin-top:15px}
+.crow{display:grid;grid-template-columns:112px 1fr auto;gap:13px;align-items:center}
+@media(max-width:620px){.crow{grid-template-columns:1fr;gap:6px}}
+.crow .cl{font-family:var(--mono);font-size:10.5px;color:var(--s4);letter-spacing:.04em}
+.pips{display:flex;gap:5px;flex-wrap:wrap}
+.pip{width:20px;height:20px;border-radius:6px;background:var(--tile);border:1px solid var(--line);flex:none;
+  display:grid;place-items:center}
+.pip.hit{background:rgba(16,185,129,.16);border-color:rgba(16,185,129,.5)}
+.pip.hit .icn{color:#34d399;width:11px;height:11px}
+.pip.half{background:rgba(16,185,129,.07);border-color:rgba(16,185,129,.26);border-style:dashed}
+.crow .cn{font-family:var(--display);font-size:15px;font-weight:600;color:var(--ink);white-space:nowrap}
+.crow.base .cn{color:var(--s3)}
+
+/* ── #days ──────────────────────────────────────────────────────────── */
+.wf{margin-top:26px;border:1px solid var(--line);border-radius:18px;
+  background:linear-gradient(180deg,#0e1524,var(--card));overflow:hidden}
+.wf-tabs{display:flex;border-bottom:1px solid var(--line-soft);background:rgba(7,11,19,.5)}
+.wf-tabs button{flex:1 0 auto;background:transparent;border:0;cursor:pointer;padding:15px 20px;min-height:54px;
+  font-family:var(--display);font-size:14.5px;font-weight:500;color:var(--s4);transition:.22s;
+  border-bottom:2px solid transparent;display:inline-flex;align-items:center;justify-content:center;gap:9px}
+.wf-tabs button:hover{color:var(--s2)}
+.wf-tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--cyan)}
+.stage{padding:6px 22px 18px}
+@media(max-width:640px){.stage{padding:4px 14px 14px}}
+.part{display:grid;grid-template-columns:34px 1fr auto;gap:15px;padding:14px 0;
+  border-bottom:1px solid var(--line-soft);align-items:start}
+.part:last-child{border-bottom:0}
+.part .pic{width:34px;height:34px;border-radius:10px;background:var(--tile);border:1px solid var(--line);
+  display:grid;place-items:center;color:var(--cyan);margin-top:2px}
+.part h4{font-size:15px}
+.part p{margin-top:4px;font-size:13px;color:var(--s3);line-height:1.45;max-width:54ch}
+.part .meta{display:flex;flex-direction:column;align-items:flex-end;gap:8px;padding-top:3px}
+.pdur{font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--s4);
+  border:1px solid var(--line);border-radius:999px;padding:3px 9px;white-space:nowrap}
+@media(max-width:720px){.part{grid-template-columns:28px 1fr}
+  .part .meta{grid-column:2;flex-direction:row;align-items:center;gap:12px;padding-top:4px}
+  .part .pic{width:28px;height:28px;border-radius:8px}}
+.between{display:flex;align-items:center;gap:13px;margin:4px 22px 20px;padding:14px 16px;
+  background:rgba(34,211,238,.06);border:1px dashed rgba(34,211,238,.35);border-radius:12px}
+@media(max-width:640px){.between{margin:4px 14px 16px}}
+.between .icn{color:var(--cyan)}
+.between p{font-size:13px;color:var(--s2);line-height:1.5} .between b{color:var(--ink);font-weight:500}
+.dnote{margin-top:18px;display:flex;gap:14px;align-items:flex-start;background:var(--tile);
+  border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.dnote .icn{color:var(--cyan);margin-top:2px;flex:none}
+.dnote p{font-size:14px;color:var(--s2);line-height:1.55} .dnote b{color:var(--ink);font-weight:500}
+.levels{margin-top:18px;border:1px solid var(--line);border-radius:16px;background:var(--card);padding:21px 20px}
+.levels .lh{font-family:var(--mono);font-size:10.5px;letter-spacing:var(--ls);text-transform:uppercase;
+  color:var(--cyan);display:flex;align-items:center;gap:9px}
+.lbar{margin-top:20px;height:3px;border-radius:2px;background:var(--grad);opacity:.5}
+.lmarks{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:780px){.lmarks{grid-template-columns:1fr;gap:14px;margin-top:16px}}
+.lm{padding-top:16px;position:relative}
+.lm::before{content:"";position:absolute;top:-4px;left:0;width:9px;height:9px;border-radius:50%;
+  background:var(--card);border:2px solid var(--cyan)}
+@media(max-width:780px){.lm{padding-top:0;padding-left:22px}.lm::before{top:5px}}
+.lm b{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:var(--ls);
+  text-transform:uppercase;color:var(--s4)}
+.lm span{display:block;margin-top:7px;font-size:13.5px;color:var(--s2);line-height:1.5}
+.lfoot{margin-top:18px;padding-top:15px;border-top:1px solid var(--line-soft);font-size:13.5px;
+  color:var(--s3);line-height:1.55} .lfoot b{color:var(--ink);font-weight:500}
+
+/* ── #next ──────────────────────────────────────────────────────────── */
+.ask{margin-top:26px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:760px){.ask{grid-template-columns:1fr}}
+.ac{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+.ac .num{font-family:var(--display);font-size:15px;font-weight:600;color:#06121a;background:var(--grad);
+  width:26px;height:26px;border-radius:7px;display:grid;place-items:center}
+.ac h4{font-size:16.5px;margin-top:13px;display:flex;align-items:center;gap:9px}
+.ac h4 .icn{color:var(--cyan)}
+.ac p{margin-top:7px;font-size:14px;color:var(--s3);line-height:1.5}
+
+/* ── cta ────────────────────────────────────────────────────────────── */
+.cta{margin-top:70px;border-top:1px solid var(--line-soft);background:var(--deep)}
+.cta-in{max-width:var(--maxw);margin:0 auto;padding:56px var(--pad)}
+.rule{margin-top:22px} .bio{margin-top:26px} .biotext{margin-top:18px}
+.flinks{margin-bottom:10px} .creds{margin-top:22px}
+
+/* ── hero · the classifier ──────────────────────────────────────────── */
+.hstage{padding:14px 14px 10px}
+.hstage svg{display:block;width:100%;height:auto}
+.hdot{fill:#64748b;transition:fill .5s ease,opacity .4s ease}
+.hdot.left{fill:#f87171}
+.hring{fill:none;stroke:#5eead4;stroke-width:1.6;opacity:.9}
+.hcap{display:flex;align-items:center;gap:7px;flex-wrap:wrap;padding:9px 4px 2px;
+  font-family:var(--mono);font-size:10px;color:var(--s4);border-top:1px solid var(--line-soft);margin-top:8px}
+.dotk{width:8px;height:8px;border-radius:50%;display:inline-block;flex:none}
+.dotk.left{background:#f87171}
+.dotk.stay{background:#64748b;margin-left:12px}
+.hnow{margin-left:auto;color:#5eead4;text-align:right}
+@media(max-width:520px){.hnow{margin-left:0;width:100%;text-align:left;margin-top:4px}}
+
+/* ── #path · the walkthrough ────────────────────────────────────────── */
+.st{transition:.25s}
+.st.done{border-top-color:var(--cyan);background:#101828}
+.st.done.ai{border-top-color:var(--indigo)}
+.st:not(.done):not(.now){opacity:.5}
+.st.now{background:#16213a;box-shadow:0 0 0 1px rgba(34,211,238,.5);opacity:1}
+.st.now.ai{box-shadow:0 0 0 1px rgba(129,140,248,.55)}
+.wprog{height:2px;border-radius:2px;background:rgba(148,163,184,.14);margin-top:16px;overflow:hidden}
+.wprog i{display:block;height:100%;width:12.5%;border-radius:2px;background:var(--grad);
+  transition:width .55s cubic-bezier(.22,.61,.36,1)}
+.wstage{position:relative;margin-top:18px;min-height:252px}
+@media(max-width:640px){.wstage{min-height:330px}}
+.wsl{position:absolute;inset:0;opacity:0;transform:translateY(8px);pointer-events:none;
+  transition:opacity .35s ease,transform .35s cubic-bezier(.22,.61,.36,1)}
+.wsl.on{opacity:1;transform:none;pointer-events:auto;position:relative}
+.wsl .who{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:10px;
+  letter-spacing:var(--ls);text-transform:uppercase;color:var(--cyan);
+  border:1px solid rgba(34,211,238,.3);border-radius:999px;padding:4px 11px}
+.wsl[data-s="5"] .who,.wsl[data-s="6"] .who{color:var(--indigo);border-color:rgba(129,140,248,.35)}
+.wsl h5{font-family:var(--display);font-size:18px;font-weight:500;margin:12px 0 0;letter-spacing:-.015em}
+.wsl > p{margin-top:7px;font-size:14.5px;color:var(--s3);line-height:1.5;max-width:60ch}
+.wviz{margin-top:14px;overflow-x:auto;padding-bottom:2px}
+@media(max-width:560px){.wtab{font-size:10.5px}.wtab th,.wtab td{padding:7px 9px}}
+.wnote{margin-top:10px;font-family:var(--mono);font-size:10.5px;color:var(--s4)}
+.wnote b{color:var(--s2);font-weight:400}
+.wcode{font-family:var(--mono);font-size:12.5px;color:#5eead4;background:var(--tile);
+  border:1px solid var(--line);border-left:2px solid var(--cyan);border-radius:9px;
+  padding:11px 14px;overflow-x:auto;white-space:nowrap}
+.wsl[data-s="5"] .wcode{border-left-color:var(--indigo);color:#c7d2fe}
+.qcard{background:var(--tile);border:1px solid var(--line);border-radius:11px;padding:15px 17px;max-width:620px}
+.qcard > span{font-family:var(--display);font-size:17px;color:var(--ink);line-height:1.4}
+.qarrow{margin-top:11px;display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10.5px;color:var(--cyan)}
+.wtab{border-collapse:collapse;font-family:var(--mono);font-size:11.5px;margin-top:11px;
+  background:var(--tile);border:1px solid var(--line);border-radius:9px;overflow:hidden}
+.wtab.wide{width:100%;max-width:560px}
+.wtab th,.wtab td{padding:7px 13px;text-align:left;white-space:nowrap}
+.wtab th{font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--s4);
+  border-bottom:1px solid var(--line-soft)}
+.wtab td{color:var(--s2)} .wtab td.one{color:#f87171} .wtab td.zero{color:var(--s4)}
+.tl{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;max-width:520px}
+.tlseg{border-radius:8px;padding:15px 0;text-align:center;font-family:var(--mono);font-size:12px}
+.tlseg.train{background:rgba(34,211,238,.13);border:1px solid rgba(34,211,238,.35);color:#5eead4}
+.tlseg.test{background:rgba(129,140,248,.14);border:1px solid rgba(129,140,248,.4);color:#c7d2fe}
+.tlkey{display:flex;gap:20px;flex-wrap:wrap;margin-top:11px;font-family:var(--mono);font-size:10.5px;color:var(--s4)}
+.tlkey i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:7px;vertical-align:-1px}
+.tlkey i.train{background:#22d3ee} .tlkey i.test{background:#818cf8}
+.bbar{max-width:520px}
+.bbrow{display:grid;grid-template-columns:150px 1fr auto;gap:12px;align-items:center;
+  font-family:var(--mono);font-size:11.5px;color:var(--s3);padding:6px 0}
+.bbrow.ghost{color:var(--s4)}
+.bbrow b{color:var(--ink);font-weight:500}
+.bbrow.ghost b{color:var(--s4);font-weight:400;font-size:10.5px}
+.bbt{height:13px;border-radius:3px;background:rgba(148,163,184,.1);overflow:hidden}
+.bbt i{display:block;height:100%;border-radius:3px;background:var(--grad)}
+@media(max-width:560px){.bbrow{grid-template-columns:104px 1fr auto;font-size:10.5px}}
+.cands{display:flex;gap:9px;margin-top:11px;flex-wrap:wrap}
+.cand{background:var(--tile);border:1px solid var(--line);border-radius:9px;padding:9px 13px;
+  font-family:var(--mono);font-size:11px;color:var(--s4);display:flex;align-items:center;gap:10px}
+.cand b{color:var(--s3);font-weight:500}
+.cand.win{border-color:rgba(129,140,248,.5);background:rgba(129,140,248,.1);color:#c7d2fe}
+.cand.win b{color:#c7d2fe}
+.mchips{display:flex;gap:10px;flex-wrap:wrap}
+.mchip{background:var(--tile);border:1px solid var(--line);border-radius:11px;padding:12px 16px;min-width:118px}
+.mchip span{font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--s4);display:block}
+.mchip b{font-family:var(--display);font-size:23px;font-weight:600;color:var(--cyan);display:block;margin-top:3px}
+.wlist{background:var(--tile);border:1px solid var(--line);border-radius:9px;overflow:hidden;max-width:330px}
+.wl{display:grid;grid-template-columns:26px 1fr auto;gap:10px;padding:7px 13px;
+  font-family:var(--mono);font-size:11.5px;color:var(--s2);border-bottom:1px solid var(--line-soft)}
+.wl:last-child{border-bottom:0}
+.wl span:first-child{color:var(--s4)}
+.wl b{color:#f87171;font-weight:400}
+
+/* ── #path · compact stepper ────────────────────────────────────────── */
+.stepper{position:relative;display:grid;grid-template-columns:repeat(8,1fr);margin-top:6px}
+.strack{position:absolute;top:12px;left:6.25%;right:6.25%;height:2px;border-radius:2px;
+  background:rgba(148,163,184,.16);overflow:hidden}
+.strack i{display:block;height:100%;width:0;background:var(--grad);border-radius:2px;
+  transition:width .5s cubic-bezier(.22,.61,.36,1)}
+.sn{position:relative;background:none;border:0;cursor:pointer;font:inherit;color:inherit;
+  padding:0;display:flex;flex-direction:column;align-items:center;gap:9px}
+.sd{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;flex:none;
+  background:var(--bg);border:2px solid rgba(148,163,184,.3);color:var(--s4);
+  font-family:var(--mono);font-size:11px;transition:.28s}
+.sl{font-family:var(--mono);font-size:10px;letter-spacing:.04em;color:var(--s4);
+  text-align:center;transition:.28s;line-height:1.3}
+.sn.done .sd{border-color:var(--cyan);background:var(--cyan);color:#06121a}
+.sn.done.ai .sd{border-color:var(--indigo);background:var(--indigo)}
+.sn.now .sd{border-color:var(--cyan);color:var(--cyan);background:var(--bg);
+  box-shadow:0 0 0 5px rgba(34,211,238,.14);transform:scale(1.18)}
+.sn.now.ai .sd{border-color:var(--indigo);color:var(--indigo);box-shadow:0 0 0 5px rgba(129,140,248,.16)}
+.sn.now .sl{color:var(--ink)}
+.sn:hover .sl{color:var(--s2)}
+@media(max-width:820px){.sl{display:none}.strack{top:12px}}
+.scount{display:flex;align-items:baseline;gap:10px;margin-top:20px;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.06em}
+.scount b{color:var(--cyan);font-weight:500}
+.scount span{color:var(--s4);text-transform:uppercase}
+
+/* ── hero kicker ────────────────────────────────────────────────────── */
+.kicker{display:flex;align-items:center;gap:11px;flex-wrap:wrap;font-family:var(--display);
+  font-size:clamp(15px,3.4vw,18px);font-weight:600;letter-spacing:-.01em;color:var(--ink)}
+.kicker b{font-weight:600;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.kicker span{font-family:var(--mono);font-size:10px;font-weight:400;letter-spacing:var(--ls);
+  text-transform:uppercase;color:var(--cyan);border:1px solid rgba(34,211,238,.4);
+  border-radius:999px;padding:4px 11px}
+.kicker+.eyebrow{margin-top:13px}
+
+/* ── plain-language classification outcomes ─────────────────────────── */
+.outc{display:grid;grid-template-columns:1fr 1fr;gap:11px;align-content:start}
+@media(max-width:520px){.outc{grid-template-columns:1fr}}
+.oc{border:1px solid var(--line);border-radius:12px;padding:15px 16px;background:var(--tile);
+  transition:background .25s,border-color .25s}
+.oc b{font-family:var(--display);font-size:30px;font-weight:600;display:block;line-height:1;
+  font-variant-numeric:tabular-nums}
+.oc span{display:block;margin-top:9px;font-size:13.5px;color:var(--s2);line-height:1.45}
+.oc em{display:block;margin-top:7px;font-style:normal;font-family:var(--mono);font-size:9.5px;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--s4)}
+.oc.good{background:rgba(16,185,129,.09);border-color:rgba(16,185,129,.34)} .oc.good b{color:#34d399}
+.oc.bad{background:rgba(239,68,68,.08);border-color:rgba(239,68,68,.3)}   .oc.bad b{color:#f87171}
+.oc.miss{background:rgba(251,191,36,.08);border-color:rgba(251,191,36,.3)} .oc.miss b{color:#fbbf24}
+.oc.calm b{color:var(--s3)}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}
+  [data-rv]{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M12.6 3H21v8.4l-8.9 8.9a1.9 1.9 0 0 1-2.7 0l-5.7-5.7a1.9 1.9 0 0 1 0-2.7Z"/><circle cx="17" cy="7" r="1.2"/></symbol>
+  <symbol id="i-cols" viewBox="0 0 24 24"><path d="M5 20V9M12 20V4M19 20v-7M3 20h18"/></symbol>
+  <symbol id="i-split" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="15" rx="2"/><path d="M3 10h18M13 10v10M8 3v4"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4"/><path d="M5 4.5h11l-2 3.5 2 3.5H5"/></symbol>
+  <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="10" y="10" width="4" height="4" rx="1"/><path d="M10 3v3M14 3v3M10 18v3M14 18v3M3 10h3M3 14h3M18 10h3M18 14h3"/></symbol>
+  <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M4 18a8 8 0 1 1 16 0"/><path d="M12 18l4.5-5"/><circle cx="12" cy="18" r="1.2"/></symbol>
+  <symbol id="i-route" viewBox="0 0 24 24"><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="6" r="2.5"/><path d="M8.5 18h4a3.5 3.5 0 0 0 0-7h-2a3.5 3.5 0 0 1 0-7h5"/></symbol>
+  <symbol id="i-repeat" viewBox="0 0 24 24"><path d="M4 11V9a4 4 0 0 1 4-4h11"/><path d="m16 2 3 3-3 3"/><path d="M20 13v2a4 4 0 0 1-4 4H5"/><path d="m8 22-3-3 3-3"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 5 5"/></symbol>
+  <symbol id="i-db" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7.5" ry="3"/><path d="M4.5 6v12c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3V6"/><path d="M4.5 12c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16 5.3a3.2 3.2 0 0 1 0 5.4M17.5 20a6 6 0 0 0-2.2-4.6"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3.5 13.8 9l5.7 1.8-5.7 1.8L12 18.5l-1.8-5.9L4.5 10.8 10.2 9Z"/><path d="m18.5 16.5.7 2.1 2.1.7-2.1.7-.7 2.1-.7-2.1-2.1-.7 2.1-.7Z"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6Z"/><path d="M14 3v4h4"/><path d="M9 12h6M9 16h6"/></symbol>
+  <symbol id="i-code" viewBox="0 0 24 24"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 5l-4 14"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 13 4.5 4.5L19 7"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6.5 6.5 17.5 17.5M17.5 6.5 6.5 17.5"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5Z"/><path d="m3 13 9 5 9-5"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 21h18"/><rect x="5" y="11" width="3.5" height="7"/><rect x="10.2" y="6" width="3.5" height="12"/><rect x="15.5" y="14" width="3.5" height="4"/></symbol>
+  <symbol id="i-scale" viewBox="0 0 24 24"><path d="M12 4v16M7 8h10"/><path d="m4 16 3-8 3 8a3 3 0 0 1-6 0Z"/><path d="m14 16 3-8 3 8a3 3 0 0 1-6 0Z"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 5 6v6c0 4.2 2.9 7.6 7 9 4.1-1.4 7-4.8 7-9V6Z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 12a6.5 6.5 0 0 0 13 0M12 18.5V21"/></symbol>
+  <symbol id="i-python" viewBox="0 0 24 24"><path d="M12 2.6c-3 0-2.8 1.3-2.8 1.3v2.2h2.9v.9H7.6S4.9 6.6 4.9 12s2.4 5 2.4 5h1.6v-2.3s-.1-2.4 2.3-2.4h3.4s2.2 0 2.2-2.2V4.9s.3-2.3-4.8-2.3Zm-1.6 1.6a.9.9 0 1 1 0 1.7.9.9 0 0 1 0-1.7Z"/><path d="M12 21.4c3 0 2.8-1.3 2.8-1.3v-2.2h-2.9v-.9h4.5s2.7.4 2.7-5-2.4-5-2.4-5h-1.6v2.3s.1 2.4-2.3 2.4H9.4s-2.2 0-2.2 2.2v4.2s-.3 2.3 4.8 2.3Zm1.6-1.6a.9.9 0 1 1 0-1.7.9.9 0 0 1 0 1.7Z"/></symbol>
+  <symbol id="i-table" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9.5h18M3 15h18M9 9.5V20M15 9.5V20"/></symbol>
+  <symbol id="i-brain" viewBox="0 0 24 24"><path d="M9.5 4a2.5 2.5 0 0 0-2.4 3.2A2.6 2.6 0 0 0 5 9.8a2.6 2.6 0 0 0 1 2 2.6 2.6 0 0 0-.4 3.7A2.5 2.5 0 0 0 8 19.6c.4.9 1.3 1.4 2.2 1.4a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Z"/><path d="M14.5 4a2.5 2.5 0 0 1 2.4 3.2 2.6 2.6 0 0 1 2.1 2.6 2.6 2.6 0 0 1-1 2 2.6 2.6 0 0 1 .4 3.7 2.5 2.5 0 0 1-2.4 4.1c-.4.9-1.3 1.4-2.2 1.4a2 2 0 0 1-2-2"/></symbol>
+  <symbol id="i-plot" viewBox="0 0 24 24"><path d="M4 3v17h17"/><path d="M7.5 15.5 11 11l3 2.6 4.5-6.6"/><circle cx="7.5" cy="15.5" r="1.1"/><circle cx="11" cy="11" r="1.1"/><circle cx="14" cy="13.6" r="1.1"/><circle cx="18.5" cy="7" r="1.1"/></symbol>
+  <symbol id="i-money" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M14.5 9.2c-.4-.8-1.4-1.2-2.5-1.2-1.4 0-2.5.7-2.5 1.8 0 2.6 5 1.4 5 4 0 1.2-1.1 1.9-2.5 1.9-1.2 0-2.2-.5-2.6-1.3M12 6.6v10.8"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4.5 13.2H11l-1 8.8 8.5-11.2H12Z"/></symbol>
+</defs></svg>
+
+<nav class="nav">
+  <div class="nav-in">
+    <a class="wordmark" href="https://www.amconsultingai.com" target="_blank" rel="noopener">
+      <img class="nav-logo" src="https://am-consultingai.github.io/am-assets/logo/am-logo-white-600.png" alt="AM Consulting">
+    </a>
+    <div class="nav-links">
+      <a href="#path">Method</a>
+      <a href="#models">Models</a>
+      <a href="#tools">Tools</a>
+      <a href="#value">Value</a>
+      <a href="#days">Two days</a>
+    </div>
+    <a class="btn btn-pri btn-sm" href="#contact">Book a call</a>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<header class="hero" id="top">
+  <div class="hero-in">
+    <div>
+      <div class="kicker">Data Science with <b>Claude</b><span>for analysts</span></div>
+      <div class="eyebrow">Two half-days · 15–17 people · your own product data</div>
+      <h1>Your analysts leave with a <span class="grad">working model they built.</span></h1>
+      <p class="lede">A real churn and ARR model on their own product — <b>Python, pandas and scikit-learn</b>, with AI writing the code and your analysts deciding what makes it right.</p>
+      <div class="stack">
+        <span class="lb">Stack</span>
+        <span class="tool"><svg class="icn sm"><use href="#i-python"/></svg>Python</span>
+        <span class="tool"><svg class="icn sm"><use href="#i-table"/></svg>pandas</span>
+        <span class="tool"><svg class="icn sm"><use href="#i-brain"/></svg>scikit-learn</span>
+        <span class="tool"><svg class="icn sm"><use href="#i-plot"/></svg>matplotlib</span>
+      </div>
+      <div class="cta-row">
+        <a class="btn btn-pri" href="#contact">Book a 30-minute call</a>
+        <a class="btn btn-sec" href="#models">See what they build</a>
+      </div>
+      <div class="facts">
+        <div><b>2</b><span>half-days</span></div>
+        <div><b>2</b><span>models</span></div>
+        <div><b>4</b><span>ways to judge them</span></div>
+        <div><b>8</b><span>steps</span></div>
+      </div>
+    </div>
+
+    <div class="shot">
+      <div class="win"><i></i><i></i><i></i><span>churn_model.py — anti-fraud</span><em>illustrative</em></div>
+      <div class="hstage">
+        <svg id="heroSvg" viewBox="0 0 480 330" role="img" aria-label="A classifier separating accounts that left from accounts that stayed">
+          <line class="grid-l" x1="150.0" y1="22" x2="150.0" y2="280"/><line class="grid-l" x1="254.0" y1="22" x2="254.0" y2="280"/><line class="grid-l" x1="358.0" y1="22" x2="358.0" y2="280"/><line class="grid-l" x1="46" y1="215.5" x2="462" y2="215.5"/><line class="grid-l" x1="46" y1="151.0" x2="462" y2="151.0"/><line class="grid-l" x1="46" y1="86.5" x2="462" y2="86.5"/>
+          <path id="hRegion" d="M46.0,105.9 L51.2,111.9 L56.4,117.6 L61.6,123.2 L66.8,128.5 L72.0,133.7 L77.2,138.6 L82.4,143.4 L87.6,148.0 L92.8,152.4 L98.0,156.6 L103.2,160.7 L108.4,164.7 L113.6,168.5 L118.8,172.1 L124.0,175.6 L129.2,179.0 L134.4,182.2 L139.6,185.3 L144.8,188.3 L150.0,191.2 L155.2,194.0 L160.4,196.7 L165.6,199.3 L170.8,201.7 L176.0,204.1 L181.2,206.4 L186.4,208.6 L191.6,210.8 L196.8,212.8 L202.0,214.8 L207.2,216.7 L212.4,218.5 L217.6,220.2 L222.8,221.9 L228.0,223.5 L233.2,225.1 L238.4,226.6 L243.6,228.1 L248.8,229.4 L254.0,230.8 L259.2,232.1 L264.4,233.3 L269.6,234.5 L274.8,235.7 L280.0,236.8 L285.2,237.8 L290.4,238.9 L295.6,239.8 L300.8,240.8 L306.0,241.7 L311.2,242.6 L316.4,243.4 L321.6,244.2 L326.8,245.0 L332.0,245.8 L337.2,246.5 L342.4,247.2 L347.6,247.9 L352.8,248.5 L358.0,249.1 L363.2,249.7 L368.4,250.3 L373.6,250.8 L378.8,251.4 L384.0,251.9 L389.2,252.4 L394.4,252.9 L399.6,253.3 L404.8,253.8 L410.0,254.2 L415.2,254.6 L420.4,255.0 L425.6,255.3 L430.8,255.7 L436.0,256.1 L441.2,256.4 L446.4,256.7 L451.6,257.0 L456.8,257.3 L462.0,257.6 L462.0,280.0 L46.0,280.0 Z" fill="rgba(248,113,113,.10)"/>
+          <path id="hBound" d="M46.0,105.9 L51.2,111.9 L56.4,117.6 L61.6,123.2 L66.8,128.5 L72.0,133.7 L77.2,138.6 L82.4,143.4 L87.6,148.0 L92.8,152.4 L98.0,156.6 L103.2,160.7 L108.4,164.7 L113.6,168.5 L118.8,172.1 L124.0,175.6 L129.2,179.0 L134.4,182.2 L139.6,185.3 L144.8,188.3 L150.0,191.2 L155.2,194.0 L160.4,196.7 L165.6,199.3 L170.8,201.7 L176.0,204.1 L181.2,206.4 L186.4,208.6 L191.6,210.8 L196.8,212.8 L202.0,214.8 L207.2,216.7 L212.4,218.5 L217.6,220.2 L222.8,221.9 L228.0,223.5 L233.2,225.1 L238.4,226.6 L243.6,228.1 L248.8,229.4 L254.0,230.8 L259.2,232.1 L264.4,233.3 L269.6,234.5 L274.8,235.7 L280.0,236.8 L285.2,237.8 L290.4,238.9 L295.6,239.8 L300.8,240.8 L306.0,241.7 L311.2,242.6 L316.4,243.4 L321.6,244.2 L326.8,245.0 L332.0,245.8 L337.2,246.5 L342.4,247.2 L347.6,247.9 L352.8,248.5 L358.0,249.1 L363.2,249.7 L368.4,250.3 L373.6,250.8 L378.8,251.4 L384.0,251.9 L389.2,252.4 L394.4,252.9 L399.6,253.3 L404.8,253.8 L410.0,254.2 L415.2,254.6 L420.4,255.0 L425.6,255.3 L430.8,255.7 L436.0,256.1 L441.2,256.4 L446.4,256.7 L451.6,257.0 L456.8,257.3 L462.0,257.6" fill="none" stroke="#f87171" stroke-width="2.2"
+                stroke-linecap="round" stroke-dasharray="0" opacity=".85"/>
+          <line class="axis" x1="46" y1="280" x2="462" y2="280"/>
+          <line class="axis" x1="46" y1="22" x2="46" y2="280"/>
+          <g id="hRings"><circle class="hring" cx="186.2" cy="235.7" r="9.5"/><circle class="hring" cx="76.1" cy="168.8" r="9.5"/><circle class="hring" cx="109.2" cy="218.5" r="9.5"/><circle class="hring" cx="106.9" cy="198.5" r="9.5"/><circle class="hring" cx="84.6" cy="222.6" r="9.5"/><circle class="hring" cx="318.9" cy="266.0" r="9.5"/><circle class="hring" cx="126.3" cy="243.7" r="9.5"/><circle class="hring" cx="129.4" cy="216.6" r="9.5"/><circle class="hring" cx="81.9" cy="271.4" r="9.5"/><circle class="hring" cx="100.6" cy="185.4" r="9.5"/><circle class="hring" cx="198.5" cy="264.5" r="9.5"/></g>
+          <g id="hDots"><circle class="hdot left found" cx="186.2" cy="235.7" r="5" data-i="0"/>
+            <circle class="hdot left" cx="89.5" cy="144.8" r="5" data-i="1"/>
+            <circle class="hdot left found" cx="76.1" cy="168.8" r="5" data-i="2"/>
+            <circle class="hdot" cx="96.5" cy="171.0" r="5" data-i="3"/>
+            <circle class="hdot left found" cx="109.2" cy="218.5" r="5" data-i="4"/>
+            <circle class="hdot" cx="426.3" cy="134.9" r="5" data-i="5"/>
+            <circle class="hdot" cx="437.2" cy="260.4" r="5" data-i="6"/>
+            <circle class="hdot left found" cx="106.9" cy="198.5" r="5" data-i="7"/>
+            <circle class="hdot" cx="131.2" cy="133.8" r="5" data-i="8"/>
+            <circle class="hdot" cx="204.9" cy="141.8" r="5" data-i="9"/>
+            <circle class="hdot left found" cx="84.6" cy="222.6" r="5" data-i="10"/>
+            <circle class="hdot" cx="226.1" cy="197.0" r="5" data-i="11"/>
+            <circle class="hdot" cx="367.3" cy="106.1" r="5" data-i="12"/>
+            <circle class="hdot" cx="282.6" cy="147.1" r="5" data-i="13"/>
+            <circle class="hdot" cx="342.3" cy="203.2" r="5" data-i="14"/>
+            <circle class="hdot" cx="352.9" cy="235.5" r="5" data-i="15"/>
+            <circle class="hdot" cx="76.7" cy="113.4" r="5" data-i="16"/>
+            <circle class="hdot" cx="282.1" cy="64.4" r="5" data-i="17"/>
+            <circle class="hdot" cx="329.2" cy="130.8" r="5" data-i="18"/>
+            <circle class="hdot" cx="237.2" cy="72.7" r="5" data-i="19"/>
+            <circle class="hdot" cx="244.0" cy="114.2" r="5" data-i="20"/>
+            <circle class="hdot" cx="331.6" cy="118.3" r="5" data-i="21"/>
+            <circle class="hdot" cx="377.9" cy="204.1" r="5" data-i="22"/>
+            <circle class="hdot left found" cx="318.9" cy="266.0" r="5" data-i="23"/>
+            <circle class="hdot left found" cx="126.3" cy="243.7" r="5" data-i="24"/>
+            <circle class="hdot" cx="156.9" cy="178.9" r="5" data-i="25"/>
+            <circle class="hdot" cx="376.8" cy="67.1" r="5" data-i="26"/>
+            <circle class="hdot" cx="401.9" cy="44.8" r="5" data-i="27"/>
+            <circle class="hdot left found" cx="129.4" cy="216.6" r="5" data-i="28"/>
+            <circle class="hdot" cx="248.2" cy="132.1" r="5" data-i="29"/>
+            <circle class="hdot" cx="428.3" cy="108.0" r="5" data-i="30"/>
+            <circle class="hdot" cx="299.2" cy="111.4" r="5" data-i="31"/>
+            <circle class="hdot" cx="407.7" cy="86.9" r="5" data-i="32"/>
+            <circle class="hdot" cx="368.6" cy="178.5" r="5" data-i="33"/>
+            <circle class="hdot left" cx="101.4" cy="121.3" r="5" data-i="34"/>
+            <circle class="hdot left found" cx="81.9" cy="271.4" r="5" data-i="35"/>
+            <circle class="hdot left found" cx="100.6" cy="185.4" r="5" data-i="36"/>
+            <circle class="hdot" cx="398.0" cy="126.3" r="5" data-i="37"/>
+            <circle class="hdot" cx="240.9" cy="157.0" r="5" data-i="38"/>
+            <circle class="hdot" cx="163.5" cy="75.3" r="5" data-i="39"/>
+            <circle class="hdot" cx="70.4" cy="46.5" r="5" data-i="40"/>
+            <circle class="hdot" cx="438.1" cy="67.1" r="5" data-i="41"/>
+            <circle class="hdot" cx="125.9" cy="88.9" r="5" data-i="42"/>
+            <circle class="hdot" cx="346.4" cy="217.9" r="5" data-i="43"/>
+            <circle class="hdot left found" cx="198.5" cy="264.5" r="5" data-i="44"/>
+            <circle class="hdot" cx="169.1" cy="210.1" r="5" data-i="45"/></g>
+          <text x="254" y="308" class="axl" text-anchor="middle">logins_last_30d</text>
+          <text x="18" y="151" class="axl" text-anchor="middle" transform="rotate(-90 18 151)">media_sources_count</text>
+        </svg>
+        <div class="hcap"><span class="dotk left"></span>left last quarter
+          <span class="dotk stay"></span>stayed
+          <span class="hnow" id="hNow">13 of 46 accounts left — the model found 11 of them</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="bridge"><span class="stem"></span>
+  <div class="bq"><span class="qm">?</span><q>We already ran an AI workshop here. What is new in this one?</q></div>
+<span class="stem b"></span></div>
+
+<!-- ══ 1 · WHY ══ -->
+<section id="why">
+  <div class="sec">
+    <div class="eyebrow" data-rv>What changed</div>
+    <h2 data-rv>Last time they queried the past. This time they <span class="grad">predict what happens next.</span></h2>
+    <p class="sub" data-rv>The last workshop got business users to their own answers. This one takes the analysts a level up — <b>from querying what happened to predicting what will</b>.</p>
+
+    <div class="ptog" role="group" aria-label="Highlight one kind of AI" data-rv>
+      <button type="button" data-own="gen" aria-pressed="false"><svg class="icn sm"><use href="#i-spark"/></svg>Generative AI</button>
+      <button type="button" data-own="classic" aria-pressed="false"><svg class="icn sm"><use href="#i-cpu"/></svg>Classic AI</button>
+      <span class="hint">select one to see what it owns</span>
+    </div>
+
+    <div class="pipe" id="pipe" data-rv>
+      <div class="pnode" data-own="human">
+        <div class="hd"><svg class="icn"><use href="#i-doc"/></svg><b>Your analyst</b></div>
+        <h4>Writes the plan</h4><p>The question, the label, the columns that are fair to use.</p>
+      </div>
+      <svg class="icn parrow"><use href="#i-arrow"/></svg>
+      <div class="pnode" data-own="gen">
+        <div class="hd"><svg class="icn"><use href="#i-spark"/></svg><b>Generative AI</b></div>
+        <h4>Writes the code</h4><p>Turns the plan into pandas and scikit-learn in an afternoon.</p>
+      </div>
+      <svg class="icn parrow"><use href="#i-arrow"/></svg>
+      <div class="pnode" data-own="classic">
+        <div class="hd"><svg class="icn"><use href="#i-code"/></svg><b>A .py file</b></div>
+        <h4>Learns from history</h4><p>Deterministic, versioned, yours to keep.</p>
+      </div>
+      <svg class="icn parrow"><use href="#i-arrow"/></svg>
+      <div class="pnode" data-own="classic">
+        <div class="hd"><svg class="icn"><use href="#i-gauge"/></svg><b>Every month</b></div>
+        <h4>Scores every account</h4><p>A ranked list your team can act on.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="bridge"><span class="stem"></span>
+  <div class="bq"><span class="qm">?</span><q>What will each of them be able to do on the Monday after?</q></div>
+<span class="stem b"></span></div>
+
+<!-- ══ 2 · PATH ══ -->
+<section id="path">
+  <div class="sec">
+    <div class="eyebrow" data-rv>The method, across both days</div>
+    <h2 data-rv>Answer “which customers will leave next quarter?” <span class="grad">with data, not a hunch.</span></h2>
+    <p class="sub" data-rv>Eight steps, the same every time. Five are where <b>their product knowledge decides the outcome</b>; two are where the AI does the work. Watch one get built.</p>
+
+    <div class="rail" data-rv>
+      <div class="stepper" id="steps">
+        <div class="strack"><i id="strackFill"></i></div>
+        <button class="sn" type="button" data-i="0" aria-label="Step 1, Question"><span class="sd">1</span><span class="sl">Question</span></button>
+        <button class="sn" type="button" data-i="1" aria-label="Step 2, Label"><span class="sd">2</span><span class="sl">Label</span></button>
+        <button class="sn" type="button" data-i="2" aria-label="Step 3, Features"><span class="sd">3</span><span class="sl">Features</span></button>
+        <button class="sn" type="button" data-i="3" aria-label="Step 4, Split"><span class="sd">4</span><span class="sl">Split</span></button>
+        <button class="sn" type="button" data-i="4" aria-label="Step 5, Baseline"><span class="sd">5</span><span class="sl">Baseline</span></button>
+        <button class="sn ai" type="button" data-i="5" aria-label="Step 6, Model"><span class="sd">6</span><span class="sl">Model</span></button>
+        <button class="sn ai" type="button" data-i="6" aria-label="Step 7, Score"><span class="sd">7</span><span class="sl">Score</span></button>
+        <button class="sn" type="button" data-i="7" aria-label="Step 8, Decision"><span class="sd">8</span><span class="sl">Decision</span></button>
+      </div>
+      <div class="scount"><b id="sNum">Step 1 of 8</b><span id="sWho">your analyst decides</span></div>
+      <div class="wstage" id="wstage">
+          <div class="wsl on" data-s="0"><h5>The question comes first</h5><p>A model with no decision behind it is a chart nobody opens.</p><div class="wviz"><div class="qcard"><span>“Which 20 anti-fraud accounts should the CSM call on Monday?”</span><div class="qarrow"><svg class="icn sm"><use href="#i-arrow"/></svg>one decision, one owner, every week</div></div></div></div>
+          <div class="wsl" data-s="1"><h5>“Churn” becomes a column</h5><p>It has to be something you could compute for every account.</p><div class="wviz"><div class="wcode">churned = active_days_in_quarter &lt; 3</div><table class="wtab"><tr><th>account</th><th>active_days</th><th>churned</th></tr><tr><td>acct_4471</td><td>1</td><td class="one">1</td></tr><tr><td>acct_1180</td><td>18</td><td class="zero">0</td></tr><tr><td>acct_9022</td><td>2</td><td class="one">1</td></tr></table></div></div>
+          <div class="wsl" data-s="2"><h5>One row per account</h5><p>Product knowledge does the work here — which columns actually say something.</p><div class="wviz"><table class="wtab wide"><tr><th>account</th><th>logins_30d</th><th>media_src</th><th>tickets</th><th>churned</th></tr><tr><td>acct_4471</td><td>2</td><td>1</td><td>3</td><td class="one">1</td></tr><tr><td>acct_1180</td><td>34</td><td>7</td><td>0</td><td class="zero">0</td></tr><tr><td>acct_9022</td><td>5</td><td>2</td><td>1</td><td class="one">1</td></tr></table><div class="wnote">every column as it stood on <b>1 January</b> — nothing after it</div></div></div>
+          <div class="wsl" data-s="3"><h5>Split by time, never at random</h5><p>A random split quietly lets the model read next quarter.</p><div class="wviz"><div class="tl"><div class="tlseg train">Q1</div><div class="tlseg train">Q2</div><div class="tlseg train">Q3</div><div class="tlseg test">Q4</div></div><div class="tlkey"><span><i class="train"></i>train — what it learns from</span><span><i class="test"></i>test — what it has never seen</span></div></div></div>
+          <div class="wsl" data-s="4"><h5>The number to beat</h5><p>Without a baseline, any result looks like a result.</p><div class="wviz"><div class="bbar"><div class="bbrow"><span>Today’s CSM rule</span><span class="bbt"><i style="width:45%"></i></span><b>0.45</b></div><div class="bbrow ghost"><span>Anything below this</span><span class="bbt"><i style="width:45%;opacity:.25"></i></span><b>not worth shipping</b></div></div></div></div>
+          <div class="wsl" data-s="5"><h5>The agent writes the estimator</h5><p>The part everyone expects to be hard is the part you delegate.</p><div class="wviz"><div class="wcode">HistGradientBoostingClassifier(max_depth=4).fit(X_train, y_train)</div><div class="cands"><div class="cand"><span>logistic regression</span><b>55%</b></div><div class="cand"><span>random forest</span><b>62%</b></div><div class="cand win"><span>gradient boosting</span><b>70%</b></div></div></div></div>
+          <div class="wsl" data-s="6"><h5>Was it better than the old rule?</h5><p>Three plain numbers, all from the ten accounts you would actually have called.</p><div class="wviz"><div class="mchips"><div class="mchip"><span>calls that hit</span><b>70%</b></div><div class="mchip"><span>leavers caught</span><b>78%</b></div><div class="mchip"><span>wasted calls</span><b>3</b></div></div><div class="wnote">call fewer and more calls land; call more and fewer leavers slip through</div></div></div>
+          <div class="wsl" data-s="7"><h5>It has to reach somebody</h5><p>The last step is the first one again.</p><div class="wviz"><div class="wlist"><div class="wl"><span>01</span><span>acct_4471</span><b>0.94</b></div><div class="wl"><span>02</span><span>acct_1180</span><b>0.91</b></div><div class="wl"><span>03</span><span>acct_9022</span><b>0.88</b></div></div><div class="wnote"><b>churn_scores.csv</b> → the CSM’s Monday view</div></div></div>
+      </div>
+      <div class="legend">
+        <span class="y"><i></i>Steps 1–5 and 8 · your analysts decide</span>
+        <span class="a"><i></i>Steps 6–7 · AI does the work</span>
+        <span class="hint" id="wHint">walking through…</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="bridge"><span class="stem"></span>
+  <div class="bq"><span class="qm">?</span><q>That is the method. What do they actually build with it?</q></div>
+<span class="stem b"></span></div>
+
+<!-- ══ 3 · MODELS ══ -->
+<section id="models">
+  <div class="sec">
+    <div class="eyebrow" data-rv>Two models · both built in the workshop</div>
+    <h2 data-rv>Two models: <span class="grad">who is about to leave, and how much revenue is coming.</span></h2>
+    <p class="sub" data-rv>Both charts below are live — move the controls. <b>Each model can be judged two ways, and the two ways disagree</b>, which is exactly the call an analyst has to make.</p>
+
+    <!-- classification -->
+    <div class="panel" data-rv>
+      <div class="ptitle">
+        <svg class="icn lg"><use href="#i-layers"/></svg>
+        <b>Classification — who is likely to leave</b>
+        <span class="tag"><svg class="icn sm"><use href="#i-db"/></svg>illustrative · 20 synthetic accounts</span>
+      </div>
+      <div class="clf">
+        <div class="klist">
+          <div class="khead"><span>#</span><span>ACCOUNT</span><span style="text-align:right">SCORE</span><span style="text-align:right">TRUTH</span></div>
+          <div id="klist"><div class="krow neg in" data-y="0"><span>01</span><span class="a">acct_4471</span><span class="s">0.94</span><span class="o">stayed</span></div>
+          <div class="krow pos in" data-y="1"><span>02</span><span class="a">acct_1180</span><span class="s">0.91</span><span class="o">left</span></div>
+          <div class="krow neg in" data-y="0"><span>03</span><span class="a">acct_9022</span><span class="s">0.88</span><span class="o">stayed</span></div>
+          <div class="krow pos in" data-y="1"><span>04</span><span class="a">acct_2318</span><span class="s">0.84</span><span class="o">left</span></div>
+          <div class="krow pos in" data-y="1"><span>05</span><span class="a">acct_7745</span><span class="s">0.81</span><span class="o">left</span></div>
+          <div class="krow neg in" data-y="0"><span>06</span><span class="a">acct_3390</span><span class="s">0.77</span><span class="o">stayed</span></div>
+          <div class="krow pos in" data-y="1"><span>07</span><span class="a">acct_6104</span><span class="s">0.74</span><span class="o">left</span></div>
+          <div class="krow pos in" data-y="1"><span>08</span><span class="a">acct_8827</span><span class="s">0.70</span><span class="o">left</span></div>
+          <div class="krow pos in" data-y="1"><span>09</span><span class="a">acct_1562</span><span class="s">0.67</span><span class="o">left</span></div>
+          <div class="krow pos in" data-y="1"><span>10</span><span class="a">acct_4903</span><span class="s">0.63</span><span class="o">left</span></div>
+          <div class="krow neg" data-y="0"><span>11</span><span class="a">acct_2071</span><span class="s">0.60</span><span class="o">stayed</span></div>
+          <div class="krow pos" data-y="1"><span>12</span><span class="a">acct_7418</span><span class="s">0.56</span><span class="o">left</span></div>
+          <div class="krow neg" data-y="0"><span>13</span><span class="a">acct_5236</span><span class="s">0.52</span><span class="o">stayed</span></div>
+          <div class="krow pos" data-y="1"><span>14</span><span class="a">acct_9640</span><span class="s">0.47</span><span class="o">left</span></div>
+          <div class="krow neg" data-y="0"><span>15</span><span class="a">acct_1847</span><span class="s">0.43</span><span class="o">stayed</span></div>
+          <div class="krow neg" data-y="0"><span>16</span><span class="a">acct_3055</span><span class="s">0.38</span><span class="o">stayed</span></div>
+          <div class="krow neg" data-y="0"><span>17</span><span class="a">acct_6712</span><span class="s">0.33</span><span class="o">stayed</span></div>
+          <div class="krow neg" data-y="0"><span>18</span><span class="a">acct_8399</span><span class="s">0.28</span><span class="o">stayed</span></div>
+          <div class="krow neg" data-y="0"><span>19</span><span class="a">acct_2604</span><span class="s">0.22</span><span class="o">stayed</span></div>
+          <div class="krow neg" data-y="0"><span>20</span><span class="a">acct_5188</span><span class="s">0.17</span><span class="o">stayed</span></div></div>
+        </div>
+
+        <div class="outc">
+          <div class="oc good"><b id="oTP">7</b><span>you called them, and they were leaving</span><em>true positive</em></div>
+          <div class="oc bad"><b id="oFP">3</b><span>you called them, but they were fine</span><em>false positive · a wasted call</em></div>
+          <div class="oc miss"><b id="oFN">2</b><span>you didn't call, and they left anyway</span><em>false negative · the one that hurts</em></div>
+          <div class="oc calm"><b id="oTN">8</b><span>you didn't call, and they stayed</span><em>true negative</em></div>
+        </div>
+      </div>
+
+      <div class="kctl">
+        <label for="kSlider">Accounts you call this week</label>
+        <input type="range" id="kSlider" min="1" max="20" value="10" step="1">
+        <output for="kSlider" id="kOut">10</output>
+      </div>
+
+      <div class="pfoot">
+        <div class="mt live"><span class="k">Calls that hit</span><b id="kPrec">70%</b><em id="kPrecE">7 of the 10 you called were really leaving</em></div>
+        <div class="mt live"><span class="k">Leavers caught</span><b id="kRec">78%</b><em id="kRecE">7 of the 9 who left were on your list</em></div>
+        <p class="note"><svg class="icn sm"><use href="#i-search"/></svg>
+          <span><b>Drag the slider.</b> Call fewer accounts and more of your calls land — but more leavers slip through. Call more and you catch nearly everyone, at the cost of wasted calls. <b>There is no setting that wins both</b>, and picking the trade-off is a business decision, not a technical one.</span></p>
+      </div>
+    </div>
+
+    <!-- regression -->
+    <div class="panel" data-rv>
+      <div class="ptitle">
+        <svg class="icn lg"><use href="#i-chart"/></svg>
+        <b>Regression — where next quarter's ARR lands</b>
+        <span class="tag"><svg class="icn sm"><use href="#i-db"/></svg>illustrative · 12 synthetic accounts</span>
+      </div>
+      <div class="reg">
+        <div class="plot">
+          <div class="cap" id="regCap">Predicted vs actual · the diagonal is a perfect forecast</div>
+          <svg viewBox="0 0 680 380" role="img" aria-label="Predicted versus actual ARR per account against the perfect-forecast diagonal">
+            <line x1="60" y1="30" x2="60" y2="320" class="axis"/>
+            <line x1="60" y1="320" x2="650" y2="320" class="axis"/>
+            <line x1="60.0" y1="320" x2="60.0" y2="325" class="axis"/><text x="60.0" y="340" class="axl" text-anchor="middle">0</text><line x1="223.9" y1="320" x2="223.9" y2="325" class="axis"/><text x="223.9" y="340" class="axl" text-anchor="middle">200</text><line x1="387.8" y1="320" x2="387.8" y2="325" class="axis"/><text x="387.8" y="340" class="axl" text-anchor="middle">400</text><line x1="551.7" y1="320" x2="551.7" y2="325" class="axis"/><text x="551.7" y="340" class="axl" text-anchor="middle">600</text>
+            <line id="regDiag" x1="109.2" y1="295.8" x2="650.0" y2="30.0"
+                  stroke="rgba(148,163,184,.45)" stroke-width="1.4" stroke-dasharray="5 5" style="transition:opacity .3s"/>
+            <line id="regZero" x1="60" y1="175.0" x2="650" y2="175.0" stroke="rgba(148,163,184,.45)"
+                  stroke-width="1.4" stroke-dasharray="5 5" style="opacity:0;transition:opacity .3s"/>
+            <line class="whisk" x1="404.2" y1="126.7" x2="404.2" y2="150.8" stroke="rgba(148,163,184,.38)" stroke-width="1.2"/>
+            <line class="whisk" x1="314.0" y1="219.3" x2="314.0" y2="195.1" stroke="rgba(148,163,184,.38)" stroke-width="1.2"/>
+            <line class="whisk" x1="273.1" y1="199.2" x2="273.1" y2="215.3" stroke="rgba(148,163,184,.38)" stroke-width="1.2"/>
+            <line class="whisk" x1="215.7" y1="259.6" x2="215.7" y2="243.5" stroke="rgba(148,163,184,.38)" stroke-width="1.2"/>
+            <line class="whisk" x1="584.4" y1="38.1" x2="584.4" y2="62.2" stroke="rgba(148,163,184,.38)" stroke-width="1.2"/>
+            <line class="whisk" x1="486.1" y1="130.7" x2="486.1" y2="110.6" stroke="rgba(148,163,184,.38)" stroke-width="1.2"/>
+            <line class="whisk" x1="182.9" y1="245.5" x2="182.9" y2="259.6" stroke="rgba(148,163,184,.38)" stroke-width="1.2"/>
+            <line class="whisk" x1="305.8" y1="213.3" x2="305.8" y2="199.2" stroke="rgba(148,163,184,.38)" stroke-width="1.2"/>
+            <line class="whisk" x1="232.1" y1="219.3" x2="232.1" y2="235.4" stroke="rgba(148,163,184,.38)" stroke-width="1.2"/>
+            <line class="whisk" x1="453.3" y1="144.8" x2="453.3" y2="126.7" stroke="rgba(148,163,184,.38)" stroke-width="1.2"/>
+            <line class="whisk" x1="166.5" y1="255.6" x2="166.5" y2="267.6" stroke="rgba(148,163,184,.38)" stroke-width="1.2"/>
+            <line class="whisk" x1="379.6" y1="160.9" x2="379.6" y2="162.9" stroke="rgba(148,163,184,.38)" stroke-width="1.2"/>
+            <circle class="dot" r="6" cx="404.2" cy="126.7" data-x1="404.2" data-y1="126.7" data-x2="404.2" data-y2="55.0" fill="#22d3ee" fill-opacity=".88"><title>actual 420K · forecast 480K · +60K</title></circle>
+            <circle class="dot" r="6" cx="314.0" cy="219.3" data-x1="314.0" data-y1="219.3" data-x2="314.0" data-y2="295.0" fill="#818cf8" fill-opacity=".88"><title>actual 310K · forecast 250K · -60K</title></circle>
+            <circle class="dot" r="6" cx="273.1" cy="199.2" data-x1="273.1" data-y1="199.2" data-x2="273.1" data-y2="95.0" fill="#22d3ee" fill-opacity=".88"><title>actual 260K · forecast 300K · +40K</title></circle>
+            <circle class="dot" r="6" cx="215.7" cy="259.6" data-x1="215.7" data-y1="259.6" data-x2="215.7" data-y2="255.0" fill="#818cf8" fill-opacity=".88"><title>actual 190K · forecast 150K · -40K</title></circle>
+            <circle class="dot" r="6" cx="584.4" cy="38.1" data-x1="584.4" data-y1="38.1" data-x2="584.4" data-y2="55.0" fill="#22d3ee" fill-opacity=".88"><title>actual 640K · forecast 700K · +60K</title></circle>
+            <circle class="dot" r="6" cx="486.1" cy="130.7" data-x1="486.1" data-y1="130.7" data-x2="486.1" data-y2="275.0" fill="#818cf8" fill-opacity=".88"><title>actual 520K · forecast 470K · -50K</title></circle>
+            <circle class="dot" r="6" cx="182.9" cy="245.5" data-x1="182.9" data-y1="245.5" data-x2="182.9" data-y2="105.0" fill="#22d3ee" fill-opacity=".88"><title>actual 150K · forecast 185K · +35K</title></circle>
+            <circle class="dot" r="6" cx="305.8" cy="213.3" data-x1="305.8" data-y1="213.3" data-x2="305.8" data-y2="245.0" fill="#818cf8" fill-opacity=".88"><title>actual 300K · forecast 265K · -35K</title></circle>
+            <circle class="dot" r="6" cx="232.1" cy="219.3" data-x1="232.1" data-y1="219.3" data-x2="232.1" data-y2="95.0" fill="#22d3ee" fill-opacity=".88"><title>actual 210K · forecast 250K · +40K</title></circle>
+            <circle class="dot" r="6" cx="453.3" cy="144.8" data-x1="453.3" data-y1="144.8" data-x2="453.3" data-y2="265.0" fill="#818cf8" fill-opacity=".88"><title>actual 480K · forecast 435K · -45K</title></circle>
+            <circle class="dot" r="6" cx="166.5" cy="255.6" data-x1="166.5" data-y1="255.6" data-x2="166.5" data-y2="115.0" fill="#22d3ee" fill-opacity=".88"><title>actual 130K · forecast 160K · +30K</title></circle>
+            <circle class="dot" r="6" cx="379.6" cy="160.9" data-x1="379.6" data-y1="160.9" data-x2="379.6" data-y2="165.0" fill="#22d3ee" fill-opacity=".88"><title>actual 390K · forecast 395K · +5K</title></circle>
+            <text x="355" y="365" class="axl" text-anchor="middle">actual ARR next quarter ($K)</text>
+            <text x="22" y="175" class="axl" text-anchor="middle" transform="rotate(-90 22 175)">forecast / error ($K)</text>
+          </svg>
+        </div>
+        <div class="regside">
+          <div class="awtog" role="group" aria-label="How to score the same forecast">
+            <button type="button" data-view="scatter" aria-pressed="true">Predicted vs actual</button>
+            <button type="button" data-view="resid" aria-pressed="false">Residuals</button>
+          </div>
+          <div class="mts" style="grid-template-columns:1fr 1fr">
+            <div class="mt"><span class="k">Total error</span><b id="aTot">+1.0%</b><em>what finance asks for</em></div>
+            <div class="mt live"><span class="k">Per account</span><b id="aEach">15%</b><em>what a CSM acts on</em></div>
+          </div>
+          <p class="note"><svg class="icn sm"><use href="#i-scale"/></svg>
+            <span><b>Switch to residuals.</b> The same twelve points, now around zero — seven above the line, five below. In the total they cancel to 1%. A forecast can hit the company number and be wrong about every account inside it.</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div class="bridge"><span class="stem"></span>
+  <div class="bq"><span class="qm">?</span><q>And what do they still have a week later?</q></div>
+<span class="stem b"></span></div>
+
+<!-- ══ 5 · TOOLS ══ -->
+<section id="tools">
+  <div class="sec">
+    <div class="eyebrow" data-rv>The stack, and what comes home</div>
+    <h2 data-rv>A Python file they own — and it <span class="grad">runs again next month on its own.</span></h2>
+    <p class="sub" data-rv>Not a Python course — nobody learns syntax. They learn to <b>direct the agent and judge what it hands back</b>, and they leave owning the file.</p>
+
+    <div class="panel" data-rv>
+      <div class="beam">
+        <svg class="beamsvg" id="beamsvg" viewBox="0 0 1000 56" preserveAspectRatio="none" aria-hidden="true">
+          <path id="beamPath" d="M125 28 H375 M375 28 H625 M625 28 H875" stroke="rgba(148,163,184,.22)"/>
+          <path id="beamFlow" d="M125 28 H875" stroke="#22d3ee"/>
+        </svg>
+        <div class="bnodes">
+          <div class="bn"><div class="ic"><svg class="icn lg"><use href="#i-python"/></svg></div>
+            <b>Python</b><span>The language the artifact is written in.</span><em>plain .py, no notebook lock-in</em></div>
+          <div class="bn"><div class="ic"><svg class="icn lg"><use href="#i-table"/></svg></div>
+            <b>pandas</b><span>Events become one row per account, per quarter.</span><em>the feature table</em></div>
+          <div class="bn"><div class="ic"><svg class="icn lg"><use href="#i-brain"/></svg></div>
+            <b>scikit-learn</b><span>Time split, fit, and the scores that judge it.</span><em>the model</em></div>
+          <div class="bn"><div class="ic"><svg class="icn lg"><use href="#i-plot"/></svg></div>
+            <b>matplotlib</b><span>The ROC, the residuals, the ranked list.</span><em>the charts above</em></div>
+        </div>
+      </div>
+
+      <div class="code" style="margin:6px 20px 20px">
+        <div class="ctabs" role="tablist">
+          <button role="tab" aria-selected="true" data-code="c1">features.py</button>
+          <button role="tab" aria-selected="false" data-code="c2">train.py</button>
+          <button role="tab" aria-selected="false" data-code="c3">score.py</button>
+          <span class="rt"><svg class="icn sm"><use href="#i-repeat"/></svg>re-runs monthly, same answer</span>
+        </div>
+        <pre id="c1"><b class="k1">import</b> pandas <b class="k1">as</b> pd
+
+CUTOFF = pd.<b class="k2">Timestamp</b>(<b class="k3">&quot;2026-01-01&quot;</b>)          <b class="k5"># the day the prediction is made</b>
+
+events = pd.<b class="k2">read_parquet</b>(<b class="k3">&quot;product_events.parquet&quot;</b>)
+events = events[events.ts &lt; CUTOFF]          <b class="k5"># nothing after the cutoff. ever.</b>
+
+features = (
+    events
+    .<b class="k2">groupby</b>(<b class="k3">&quot;account_id&quot;</b>)
+    .<b class="k2">agg</b>(
+        logins_last_30d=(<b class="k3">&quot;ts&quot;</b>, <b class="k1">lambda</b> s: (s &gt; CUTOFF - pd.<b class="k2">Timedelta</b>(<b class="k3">&quot;30D&quot;</b>)).<b class="k2">sum</b>()),
+        media_sources_count=(<b class="k3">&quot;media_source&quot;</b>, <b class="k3">&quot;nunique&quot;</b>),
+        support_tickets_open=(<b class="k3">&quot;ticket_open&quot;</b>, <b class="k3">&quot;sum&quot;</b>),
+    )
+    .<b class="k2">reset_index</b>()
+)</pre>
+        <pre id="c2" hidden><b class="k1">from</b> sklearn.ensemble <b class="k1">import</b> HistGradientBoostingClassifier
+
+train = panel[panel.quarter &lt;= <b class="k3">&quot;2025Q3&quot;</b>]     <b class="k5"># split by time, never at random</b>
+test  = panel[panel.quarter == <b class="k3">&quot;2025Q4&quot;</b>]
+
+model = <b class="k2">HistGradientBoostingClassifier</b>(max_depth=<b class="k4">4</b>, random_state=<b class="k4">0</b>)
+model.<b class="k2">fit</b>(train[FEATURES], train.churned)
+
+proba = model.<b class="k2">predict_proba</b>(test[FEATURES])[:, <b class="k4">1</b>]
+top10 = proba.<b class="k2">argsort</b>()[::-<b class="k4">1</b>][:<b class="k4">10</b>]        <b class="k5"># the ten we would call</b>
+<b class="k1">print</b>(test.churned.values[top10].<b class="k2">sum</b>(), <b class="k3">&quot;of 10 were really leaving&quot;</b>)   <b class="k5"># 7</b></pre>
+        <pre id="c3" hidden>scores = model.<b class="k2">predict_proba</b>(current[FEATURES])[:, <b class="k4">1</b>]
+
+ranked = (
+    current.<b class="k2">assign</b>(score=scores)
+           .<b class="k2">sort_values</b>(<b class="k3">&quot;score&quot;</b>, ascending=<b class="k1">False</b>)
+           .<b class="k2">head</b>(<b class="k4">20</b>)                         <b class="k5"># the calls a CSM can make this week</b>
+)
+
+ranked[[<b class="k3">&quot;account_id&quot;</b>, <b class="k3">&quot;score&quot;</b>]].<b class="k2">to_csv</b>(<b class="k3">&quot;churn_scores.csv&quot;</b>, index=<b class="k1">False</b>)</pre>
+        <div class="cfoot"><svg class="icn sm"><use href="#i-check"/></svg>
+          <span>Roughly 120 lines by the end of day two. <b>Every number traceable to a line</b>, and the cost of running it next month is the cost of running Python.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="bridge"><span class="stem"></span>
+  <div class="bq"><span class="qm">?</span><q>What is this actually worth to the business?</q></div>
+<span class="stem b"></span></div>
+
+<!-- ══ 6 · VALUE ══ -->
+<section id="value">
+  <div class="sec">
+    <div class="eyebrow" data-rv>The business case</div>
+    <h2 data-rv>Decisions made from data, <span class="grad">instead of from guesswork.</span></h2>
+    <p class="sub" data-rv>A CSM's week is fixed. The only variable is <b>which accounts are on the list</b> — and that is exactly what a ranked model changes.</p>
+
+    <div class="bento">
+      <div class="bt w4" data-rv>
+        <div class="bk"><svg class="icn sm"><use href="#i-users"/></svg>Ten calls, two ways to choose them</div>
+        <div class="calls">
+          <div class="crow base">
+            <span class="cl">Today's rule</span>
+            <div class="pips" id="pipsBase"><span class="pip hit"><svg class="icn"><use href="#i-check"/></svg></span><span class="pip hit"><svg class="icn"><use href="#i-check"/></svg></span><span class="pip hit"><svg class="icn"><use href="#i-check"/></svg></span><span class="pip hit"><svg class="icn"><use href="#i-check"/></svg></span><span class="pip half"></span><span class="pip"></span><span class="pip"></span><span class="pip"></span><span class="pip"></span><span class="pip"></span></div>
+            <span class="cn">≈4.5 hit</span>
+          </div>
+          <div class="crow">
+            <span class="cl">Model's top 10</span>
+            <div class="pips" id="pipsModel"><span class="pip hit"><svg class="icn"><use href="#i-check"/></svg></span><span class="pip hit"><svg class="icn"><use href="#i-check"/></svg></span><span class="pip hit"><svg class="icn"><use href="#i-check"/></svg></span><span class="pip hit"><svg class="icn"><use href="#i-check"/></svg></span><span class="pip hit"><svg class="icn"><use href="#i-check"/></svg></span><span class="pip hit"><svg class="icn"><use href="#i-check"/></svg></span><span class="pip hit"><svg class="icn"><use href="#i-check"/></svg></span><span class="pip"></span><span class="pip"></span><span class="pip"></span></div>
+            <span class="cn">7 hit</span>
+          </div>
+        </div>
+        <p>Same cost, same effort. <b>Half again as many</b> of the right accounts — the difference is one sorted column. <span style="color:var(--s4)">From the 20-account sample above; illustrative.</span></p>
+      </div>
+
+      <div class="bt" data-rv>
+        <div class="bk"><svg class="icn sm"><use href="#i-bolt"/></svg>Time to first model</div>
+        <div class="bv"><span data-to="1" data-suffix="" data-dp="0">1</span> <small>afternoon</small></div>
+        <p>Was a month of engineering. The agent types it; the analyst judges it.</p>
+      </div>
+
+      <div class="bt" data-rv>
+        <div class="bk"><svg class="icn sm"><use href="#i-gauge"/></svg>Hit rate vs the current rule</div>
+        <div class="bv"><span data-to="1.6" data-dp="1">1.6</span><small>×</small></div>
+        <p>7 of the top ten really left, against 4 or 5 picked at random.</p>
+      </div>
+
+      <div class="bt" data-rv>
+        <div class="bk"><svg class="icn sm"><use href="#i-users"/></svg>Analysts in the room</div>
+        <div class="bv"><span data-to="17" data-dp="0">17</span></div>
+        <p>Expect <b>five to ten</b> to carry it into their day job.</p>
+      </div>
+
+      <div class="bt" data-rv>
+        <div class="bk"><svg class="icn sm"><use href="#i-money"/></svg>Cost to run next month</div>
+        <div class="bv">flat</div>
+        <p>A <b>.py file</b>, not an API call per account. 400 accounts cost what 4 cost.</p>
+      </div>
+
+      <div class="bt w2" data-rv>
+        <div class="bk"><svg class="icn sm"><use href="#i-route"/></svg>Where it goes next</div>
+        <p style="margin-top:12px">The same eight steps answer <b>ARR per product</b>, <b>what separates trials that convert</b>, and <b>which customers of one product fit another</b>. Nothing new to learn.</p>
+      </div>
+      <div class="bt w2" data-rv>
+        <div class="bk"><svg class="icn sm"><use href="#i-shield"/></svg>What we are not claiming</div>
+        <p style="margin-top:12px">Nothing goes to production on day two, and some models will lose to your current rule. <b>Knowing that, with a number behind it</b>, is worth the two days.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="bridge"><span class="stem"></span>
+  <div class="bq"><span class="qm">?</span><q>How does all of that fit into two half-days with seventeen people?</q></div>
+<span class="stem b"></span></div>
+
+<!-- ══ 7 · DAYS ══ -->
+<section id="days">
+  <div class="sec">
+    <div class="eyebrow" data-rv>The two days</div>
+    <h2 data-rv>Half a day learning, half a day building — <span class="grad">and everyone finishes something.</span></h2>
+
+    <div class="wf" data-rv>
+      <div class="wf-tabs" role="tablist">
+        <button role="tab" aria-selected="true" data-tab="d1"><svg class="icn sm"><use href="#i-users"/></svg>Day one · learn</button>
+        <button role="tab" aria-selected="false" data-tab="d2"><svg class="icn sm"><use href="#i-code"/></svg>Day two · build</button>
+      </div>
+
+      <div class="stage" id="d1">
+        <div class="part"><div class="pic"><svg class="icn"><use href="#i-spark"/></svg></div>
+          <div><h4>The two AIs</h4><p>What each one does, and how they meet on one project.</p></div>
+          <div class="meta"><span class="pdur">30 min</span><div class="mrail" data-lit=""></div></div></div>
+        <div class="part"><div class="pic"><svg class="icn"><use href="#i-tag"/></svg></div>
+          <div><h4>Steps 1–3</h4><p>A business question becomes a label and a fair set of columns.</p></div>
+          <div class="meta"><span class="pdur">60 min</span><div class="mrail" data-lit="1,2,3"></div></div></div>
+        <div class="part"><div class="pic"><svg class="icn"><use href="#i-split"/></svg></div>
+          <div><h4>Steps 4–5</h4><p>Splitting by time; choosing the rule to beat.</p></div>
+          <div class="meta"><span class="pdur">45 min</span><div class="mrail" data-lit="4,5"></div></div></div>
+        <div class="part"><div class="pic"><svg class="icn"><use href="#i-scale"/></svg></div>
+          <div><h4>The two models</h4><p>Every chart above, walked through live.</p></div>
+          <div class="meta"><span class="pdur">60 min</span><div class="mrail" data-lit="6,7"></div></div></div>
+        <div class="part"><div class="pic"><svg class="icn"><use href="#i-shield"/></svg></div>
+          <div><h4>Code that lasts</h4><p>Same answer next month, and a clear source for every number.</p></div>
+          <div class="meta"><span class="pdur">30 min</span><div class="mrail" data-lit="8"></div></div></div>
+      </div>
+
+      <div class="stage" id="d2" hidden>
+        <div class="part"><div class="pic"><svg class="icn"><use href="#i-doc"/></svg></div>
+          <div><h4>Frame it</h4><p>The one-page plan becomes a spec. No modelling yet.</p></div>
+          <div class="meta"><span class="pdur">45 min</span><div class="mrail" data-lit="1,2,3"></div></div></div>
+        <div class="part"><div class="pic"><svg class="icn"><use href="#i-table"/></svg></div>
+          <div><h4>Baseline</h4><p>pandas feature table, split by time, score today's rule.</p></div>
+          <div class="meta"><span class="pdur">60 min</span><div class="mrail" data-lit="4,5"></div></div></div>
+        <div class="part"><div class="pic"><svg class="icn"><use href="#i-brain"/></svg></div>
+          <div><h4>Build it</h4><p>Scoring harness first, then the estimator.</p></div>
+          <div class="meta"><span class="pdur">75 min</span><div class="mrail" data-lit="6"></div></div></div>
+        <div class="part"><div class="pic"><svg class="icn"><use href="#i-plot"/></svg></div>
+          <div><h4>Score it twice</h4><p>Both metrics, and what to do when they disagree.</p></div>
+          <div class="meta"><span class="pdur">45 min</span><div class="mrail" data-lit="7"></div></div></div>
+        <div class="part"><div class="pic"><svg class="icn"><use href="#i-mic"/></svg></div>
+          <div><h4>Show and tell</h4><p>Five minutes a group. The room's job is to test each result.</p></div>
+          <div class="meta"><span class="pdur">30 min</span><div class="mrail" data-lit="8"></div></div></div>
+      </div>
+
+      <div class="between"><svg class="icn lg"><use href="#i-clock"/></svg>
+        <p><b>Between the two days</b> — one page each: the question, the label, the columns, the rule to beat.</p></div>
+    </div>
+
+    <div class="dnote" data-rv><svg class="icn lg"><use href="#i-db"/></svg>
+      <p><b>The data.</b> A synthetic twin of your own — your schema, your seasonality, no real customer in it. Built with one of your data engineers, with realistic traps planted on purpose.</p></div>
+
+    <div class="levels" data-rv>
+      <div class="lh"><svg class="icn sm"><use href="#i-check"/></svg>Everyone finishes something that works</div>
+      <div class="lbar"></div>
+      <div class="lmarks">
+        <div class="lm"><b>New to modelling</b><span>A clear plan and an honest baseline on their own product.</span></div>
+        <div class="lm"><b>Comfortable</b><span>A full model, scored two ways, and a read on what the scores say.</span></div>
+        <div class="lm"><b>Experienced</b><span>A ranked list their team could act on this quarter.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ FAQ ══ -->
+<section id="faq">
+  <div class="sec">
+    <h2 data-rv>Questions we get</h2>
+    <div style="margin-top:26px">
+      <details class="acc" open><summary>Do they need to know Python?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><div class="acc-b">No, and we do not teach it. Your analysts learn to read code, judge it and ask for changes. The AI writes it. What they take home is real Python — pandas and scikit-learn — that runs on its own.</div></details>
+      <details class="acc"><summary>Why scikit-learn and not something heavier?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><div class="acc-b">Because the bottleneck at AppsFlyer is not model capacity, it is framing. scikit-learn fits on a laptop, trains in seconds, and its API is stable enough that an agent writes it correctly first time. A gradient-boosted tree on a well-framed problem beats a deep model on a badly framed one, every time. If a project later needs more, the eight steps do not change.</div></details>
+      <details class="acc"><summary>Will anything go to production?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><div class="acc-b">Day two is for learning and experimenting, so people finish with something solid and a lot of confidence. Real projects start after, when someone chooses one and takes it further. That is the point of the follow-up clinic.</div></details>
+      <details class="acc"><summary>How do we keep the momentum after the day?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><div class="acc-b">Three light things work well: a clinic three to four weeks out where people bring what they built, a few office-hour slots for the groups pushing hardest, and a short showcase at a guild meeting. Two visible results tend to bring the rest along.</div></details>
+      <details class="acc"><summary>What data do they work on?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><div class="acc-b">Our recommendation is a synthetic twin: built to your schema, your account sizes and your seasonality, with no real customer in it. It is quick to approve, and we can plant realistic traps in it on purpose, which teaches better than clean data. An anonymised extract of your own data also works if it clears privacy in time.</div></details>
+      <details class="acc"><summary>Our seventeen are at different levels. Will everyone keep up?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><div class="acc-b">Yes. The eight steps have natural stopping points, and people work in groups of three or four grouped by product, so business context is shared. Finishing at a clean plan and an honest baseline is a real result — it is already more than a hand-written rule gives you.</div></details>
+      <details class="acc"><summary>What if the model is no better than the rule we use today?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><div class="acc-b">That is a useful answer, and the workshop teaches people to say it clearly. Knowing your current rule is close to the best available is worth the two days on its own, and it tells you where to spend effort instead.</div></details>
+      <details class="acc"><summary>Can we cover other questions too?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><div class="acc-b">Groups that get their baseline done early can take a stretch track: what separates trials that convert, or which customers of one product are a good fit for another. Both use the same eight steps.</div></details>
+      <details class="acc"><summary>Can product data scientists join?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><div class="acc-b">They are very welcome, and they make excellent group anchors. Worth deciding together on the call how many.</div></details>
+      <details class="acc"><summary>What do people need on their laptops?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><div class="acc-b">Python, Claude Code and permission to install packages, ready a week before day two. We send a short setup note and check it in advance.</div></details>
+      <details class="acc"><summary>Hebrew or English?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><div class="acc-b">Materials are in English, which keeps the technical terms consistent. Delivery can be in either.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA ══ -->
+<div class="cta" id="contact">
+  <div class="cta-in">
+    <div class="eyebrow" style="margin-bottom:22px">Your instructor</div>
+    <div class="bio">
+      <img class="av" src="https://am-consultingai.github.io/am-assets/portrait/avishay-200.png" alt="Avishay Meron" width="200" height="200">
+      <div class="who"><b>Avishay Meron</b><span>CEO &amp; Founder, AM Consulting</span></div>
+    </div>
+    <p class="biotext">Avishay has been taming artificial intelligence for over a decade and holds <b>10+ AI patents</b>. He designs AI-fuelled systems and trains the people who build them, and he specialises in making complex AI ideas usable by any audience — which is exactly what these two days are.</p>
+    <div class="creds">
+      <div><b>10+</b><span>AI patents</span></div>
+      <div><b>10+</b><span>years taming AI</span></div>
+      <div><b>CEO</b><span>&amp; Founder, AM Consulting</span></div>
+    </div>
+    <div class="cta-row">
+      <a class="btn btn-pri" href="https://www.linkedin.com/in/avishay-meron/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-.95 1.83-1.95 3.76-1.95C21.4 8.75 22 11 22 14.06V21h-4v-6.2c0-1.48-.03-3.38-2.06-3.38-2.06 0-2.38 1.6-2.38 3.27V21h-4V9Z"/></svg>
+        <span>Avishay on LinkedIn</span></a>
+      <a class="btn btn-sec" href="mailto:office@amconsultingai.com?subject=Data%20science%20workshop%20for%20analysts">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="m3 6 9 6.5L21 6"/></svg>
+        <span>Send an email</span></a>
+      <a class="btn btn-sec" href="https://wa.me/972512997867?text=Hi.%20I%27d%20like%20to%20talk%20about%20the%20data%20science%20workshop%20for%20our%20analysts." target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm4.52 12.02c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.8-.79.97-.14.16-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.39.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.06s.89 2.39 1.01 2.56c.12.16 1.74 2.66 4.22 3.73.59.25 1.05.4 1.41.52.59.19 1.13.16 1.56.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
+        <span>WhatsApp</span></a>
+    </div>
+  </div>
+  <footer>
+    <div class="flinks">
+      <a href="https://www.amconsultingai.com" target="_blank" rel="noopener">amconsultingai.com</a>
+      <a href="https://www.linkedin.com/in/avishay-meron/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:office@amconsultingai.com">office@amconsultingai.com</a>
+    </div>
+    © AM Consulting. All rights reserved.
+  </footer>
+</div>
+
+<script>
+(function(){
+"use strict";
+var RM = window.matchMedia ? matchMedia('(prefers-reduced-motion: reduce)').matches : false;
+var $  = function(s,r){return (r||document).querySelector(s)};
+var $$ = function(s,r){return [].slice.call((r||document).querySelectorAll(s))};
+
+/* ── hero: a classifier, learned in front of you. Loops so the story is
+   never missed; reduced motion gets the finished frame and no motion. ── */
+(function(){
+  var svg=$('#heroSvg'); if(!svg) return;
+  var dots=$$('.hdot',svg), rings=$('#hRings'), reg=$('#hRegion'), bnd=$('#hBound'), now=$('#hNow');
+  var FINAL=now?now.textContent:'';
+  if(RM) return;
+  var len=0; try{ len=bnd.getTotalLength() }catch(e){}
+  var pal=dots.map(function(d){ return d.getAttribute('class') });
+  var timers=[], running=false;
+
+  function at(ms,fn){ timers.push(setTimeout(fn,ms)) }
+  function reset(){
+    timers.forEach(clearTimeout); timers=[];
+    dots.forEach(function(d){ d.style.transition='none'; d.style.opacity='0'; d.setAttribute('class','hdot') });
+    rings.style.transition='none'; rings.style.opacity='0';
+    reg.style.transition='none';   reg.style.opacity='0';
+    if(len){ bnd.style.transition='none'; bnd.style.strokeDasharray=len; bnd.style.strokeDashoffset=len }
+    if(now) now.textContent='46 accounts on the anti-fraud product';
+    void svg.getBoundingClientRect();
+  }
+  function play(){
+    reset();
+    dots.forEach(function(d,i){
+      d.style.transition='opacity .26s ease '+(0.12+i*0.012)+'s,fill .4s ease';
+      d.style.opacity='1';
+    });
+    at(950,function(){                                   // the truth arrives
+      if(now) now.textContent='last quarter, 13 of them left';
+      dots.forEach(function(d,i){ at(i*9,function(){ d.setAttribute('class',pal[i]) }) });
+    });
+    at(1900,function(){                                  // the model learns the line
+      if(now) now.textContent='the model learns where the risk sits';
+      reg.style.transition='opacity .6s ease'; reg.style.opacity='1';
+      if(len){ bnd.style.transition='stroke-dashoffset .85s cubic-bezier(.4,0,.2,1)'; bnd.style.strokeDashoffset='0' }
+    });
+    at(2950,function(){                                  // what it caught
+      rings.style.transition='opacity .4s ease'; rings.style.opacity='1';
+      if(now) now.textContent=FINAL;
+    });
+    at(6600,play);                                       // hold, then round again
+  }
+
+  // only run while the hero is actually on screen
+  if(!('IntersectionObserver' in window)){ play(); return }
+  var io=new IntersectionObserver(function(en){
+    en.forEach(function(x){
+      if(x.isIntersecting && !running){ running=true; play() }
+      else if(!x.isIntersecting && running){ running=false; timers.forEach(clearTimeout); timers=[] }
+    });
+  },{threshold:.25});
+  io.observe(svg);
+})();
+
+/* ── #why: which AI owns which stage ─────────────────────────────────── */
+(function(){
+  var pipe=$('#pipe'); if(!pipe) return;
+  var btns=$$('.ptog button');
+  btns.forEach(function(b){
+    b.addEventListener('click',function(){
+      var on=b.getAttribute('aria-pressed')!=='true';
+      btns.forEach(function(o){o.setAttribute('aria-pressed','false')});
+      b.setAttribute('aria-pressed',on?'true':'false');
+      pipe.classList.toggle('filtered',on);
+      $$('.pnode',pipe).forEach(function(n){
+        n.classList.toggle('lit', on && n.getAttribute('data-own')===b.getAttribute('data-own'));
+      });
+    });
+  });
+})();
+
+/* ── #path: walks itself, start to finish. Clicking is optional. ────── */
+(function(){
+  var wrap=$('#steps'), stage=$('#wstage'); if(!wrap||!stage) return;
+  var nodes=$$('.sn',wrap), slides=$$('.wsl',stage);
+  var fill=$('#strackFill'), num=$('#sNum'), who=$('#sWho'), hint=$('#wHint');
+  var n=slides.length, cur=0, timer=null, auto=true, started=false, HOLD=2400;
+  var WHO=['your analyst decides','your analyst decides','your analyst decides','your analyst decides',
+           'your analyst decides','the AI does the work','the AI does the work','your analyst decides'];
+
+  function show(i){
+    cur=i;
+    slides.forEach(function(s,j){ s.classList.toggle('on', j===i) });
+    nodes.forEach(function(b,j){
+      b.classList.toggle('now', j===i);
+      b.classList.toggle('done', j<i);
+      b.setAttribute('aria-current', j===i ? 'step' : 'false');
+    });
+    if(fill) fill.style.width=(i/(n-1)*100)+'%';
+    if(num) num.textContent='Step '+(i+1)+' of '+n;
+    if(who) who.textContent=WHO[i];
+  }
+  function stop(msg){ auto=false; clearTimeout(timer); if(hint) hint.textContent=msg||'select any step to revisit it' }
+  function next(){
+    if(!auto) return;
+    if(cur>=n-1){ stop(); return }
+    show(cur+1); timer=setTimeout(next,HOLD);
+  }
+  function start(){
+    if(started) return; started=true;
+    if(RM){ show(0); stop('select any step to read it'); return }
+    show(0); if(hint) hint.textContent='walking through…';
+    timer=setTimeout(next,HOLD);
+  }
+  nodes.forEach(function(b){ b.addEventListener('click',function(){ stop(); show(+b.getAttribute('data-i')) }) });
+  wrap.addEventListener('mouseenter',function(){ if(auto){ clearTimeout(timer); if(hint) hint.textContent='paused' } });
+  wrap.addEventListener('mouseleave',function(){ if(auto){ timer=setTimeout(next,800); if(hint) hint.textContent='walking through…' } });
+
+  show(0);
+  if(!('IntersectionObserver' in window)){ start(); return }
+  var io=new IntersectionObserver(function(en){
+    en.forEach(function(x){ if(x.isIntersecting){ start(); io.disconnect() } });
+  },{threshold:.35});
+  io.observe(wrap);
+})();
+
+/* ── mini rails ──────────────────────────────────────────────────────── */
+$$('.mrail').forEach(function(m){
+  var lit=(m.getAttribute('data-lit')||'').trim();
+  var set = lit==='all' ? [1,2,3,4,5,6,7,8] : (lit? lit.split(',').map(Number) : []);
+  var html='';
+  for(var s=1;s<=8;s++){
+    var on=set.indexOf(s)>-1;
+    html+='<i class="'+(on?'on':'')+(on&&(s===6||s===7)?' ai':'')+'"></i>';
+  }
+  m.insertAdjacentHTML('afterbegin',html);
+  m.setAttribute('aria-label', set.length? 'Steps '+set.join(', ')+' of eight' : 'Before the eight steps');
+});
+
+/* ── classification: one slider, four outcomes, two rates ────────────── */
+(function(){
+  var list=$('#klist'), sl=$('#kSlider'); if(!list||!sl) return;
+  var rows=$$('.krow',list);
+  var y=rows.map(function(r){return +r.getAttribute('data-y')});
+  var P=y.reduce(function(a,b){return a+b},0), N=y.length-P;
+  function draw(K){
+    var TP=0; for(var i=0;i<K;i++){ TP+=y[i] }
+    var FP=K-TP, FN=P-TP, TN=N-FP;
+    $('#kOut').textContent=K;
+    $('#oTP').textContent=TP; $('#oFP').textContent=FP;
+    $('#oFN').textContent=FN; $('#oTN').textContent=TN;
+    $('#kPrec').textContent=Math.round(TP/K*100)+'%';
+    $('#kRec').textContent=Math.round(TP/P*100)+'%';
+    $('#kPrecE').textContent=TP+' of the '+K+' you called '+(TP===1?'was':'were')+' really leaving';
+    $('#kRecE').textContent=TP+' of the '+P+' who left '+(TP===1?'was':'were')+' on your list';
+    rows.forEach(function(r,i){
+      r.classList.toggle('in', i<K);
+      r.classList.toggle('edge', i===K-1);
+    });
+  }
+  sl.addEventListener('input',function(){ draw(+sl.value) });
+  draw(+sl.value);
+})();
+
+/* ── regression: same twelve points, two views ───────────────────────── */
+(function(){
+  var dots=$$('.dot'); if(!dots.length) return;
+  var wh=$$('.whisk'), diag=$('#regDiag'), zero=$('#regZero'), cap=$('#regCap');
+  function render(v){
+    var s = v==='scatter';
+    dots.forEach(function(d){
+      d.setAttribute('cx', d.getAttribute(s?'data-x1':'data-x2'));
+      d.setAttribute('cy', d.getAttribute(s?'data-y1':'data-y2'));
+    });
+    wh.forEach(function(w){ w.style.opacity = s?'1':'0' });
+    if(diag) diag.style.opacity = s?'1':'0';
+    if(zero) zero.style.opacity = s?'0':'1';
+    cap.textContent = s ? 'Predicted vs actual · the diagonal is a perfect forecast'
+                        : 'Residuals · distance from zero is the error on that account';
+  }
+  $$('.awtog button[data-view]').forEach(function(b){
+    b.addEventListener('click',function(){
+      $$('.awtog button[data-view]').forEach(function(o){o.setAttribute('aria-pressed','false')});
+      b.setAttribute('aria-pressed','true');
+      render(b.getAttribute('data-view'));
+    });
+  });
+  render('scatter');
+})();
+
+
+
+/* ── #tools: the beam draws through once, then rests ─────────────────── */
+(function(){
+  var flow=$('#beamFlow'); if(!flow) return;
+  var len=0; try{ len=flow.getTotalLength() }catch(e){}
+  if(!len) return;
+  flow.style.strokeDasharray=len;
+  if(RM){ flow.style.strokeDashoffset='0'; return }
+  flow.style.strokeDashoffset=len;
+  flow.setAttribute('data-len',len);
+})();
+
+/* ── code tabs ───────────────────────────────────────────────────────── */
+$$('.ctabs button').forEach(function(b){
+  b.addEventListener('click',function(){
+    $$('.ctabs button').forEach(function(t){
+      t.setAttribute('aria-selected', t===b?'true':'false');
+      document.getElementById(t.getAttribute('data-code')).hidden = (t!==b);
+    });
+  });
+});
+
+/* ── the two days ────────────────────────────────────────────────────── */
+$$('.wf-tabs button').forEach(function(b){
+  b.addEventListener('click',function(){
+    $$('button',b.parentNode).forEach(function(t){
+      t.setAttribute('aria-selected', t===b?'true':'false');
+      document.getElementById(t.getAttribute('data-tab')).hidden = (t!==b);
+    });
+  });
+});
+
+/* ── #value: the ten pips ────────────────────────────────────────────── */
+(function(){
+  function pips(el,hit,half){
+    if(!el) return;
+    var h='';
+    for(var i=1;i<=10;i++){
+      var c = i<=hit ? 'pip hit' : (half && i===hit+1 ? 'pip half' : 'pip');
+      h+='<span class="'+c+'">'+(i<=hit?'<svg class="icn"><use href="#i-check"/></svg>':'')+'</span>';
+    }
+    el.innerHTML=h;
+  }
+  pips($('#pipsBase'),4,true);
+  pips($('#pipsModel'),7,false);
+})();
+
+/* ── reveal once · number tickers · beam draw ────────────────────────── */
+(function(){
+  function tick(el){
+    var to=parseFloat(el.getAttribute('data-to')), dp=+(el.getAttribute('data-dp')||0);
+    if(RM){ el.textContent=to.toFixed(dp); return }
+    var t0=null, dur=900;
+    function step(ts){
+      if(!t0) t0=ts;
+      var p=Math.min((ts-t0)/dur,1), e=1-Math.pow(1-p,3);
+      el.textContent=(to*e).toFixed(dp);
+      if(p<1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  var els=$$('[data-rv]');
+  function showAll(){
+    els.forEach(function(e){e.classList.add('in')});
+    $$('[data-to]').forEach(tick);
+    var f=$('#beamFlow'); if(f) f.style.strokeDashoffset='0';
+  }
+  if(RM || !('IntersectionObserver' in window)){ showAll(); return }
+  var io=new IntersectionObserver(function(en){
+    en.forEach(function(x){
+      if(!x.isIntersecting) return;
+      var sibs=$$('[data-rv]',x.target.parentNode);
+      x.target.style.transitionDelay=Math.min(sibs.indexOf(x.target),5)*60+'ms';
+      x.target.classList.add('in');
+      $$('[data-to]',x.target).forEach(tick);
+      if(x.target.querySelector('#beamFlow')||x.target.contains($('#beamFlow'))){
+        var f=$('#beamFlow');
+        if(f){ f.style.transition='stroke-dashoffset 1.5s cubic-bezier(.4,0,.2,1)'; f.style.strokeDashoffset='0' }
+      }
+      io.unobserve(x.target);
+    });
+  },{rootMargin:'0px 0px -8% 0px',threshold:.08});
+  els.forEach(function(e){io.observe(e)});
+})();
+})();
+</script>
+</body>
+</html>
