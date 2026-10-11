@@ -6,7 +6,7 @@
 <title>Data Science with Claude — for Analysts</title>
 <!-- Sent by link to a named prospect; deliberately kept out of search results. -->
 <meta name="robots" content="noindex, nofollow">
-<meta name="description" content="Data Science with Claude, for analysts. Two half-days: your team builds a working churn and revenue model on your own product in Python, pandas and scikit-learn.">
+<meta name="description" content="Data Science with Claude, for analysts. Two five-hour sessions: your analysts learn how ML works, then build churn and trial look-alike models end to end with Claude Code.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
@@ -135,47 +135,6 @@ h1{font-size:clamp(31px,7vw,52px);font-weight:600;margin-top:18px;max-width:19ch
 .pipe.filtered .pnode.lit[data-own="classic"]{border-color:rgba(34,211,238,.45)}
 .parrow{align-self:center;color:var(--s4);flex:none}
 
-/* ── #path · rail ───────────────────────────────────────────────────── */
-.rail{margin-top:26px;border:1px solid var(--line);border-radius:18px;
-  background:linear-gradient(180deg,#0e1524,var(--card));padding:22px 20px 20px}
-.steps{display:grid;grid-template-columns:repeat(8,1fr);gap:9px}
-@media(max-width:900px){.steps{grid-template-columns:repeat(4,1fr)}}
-@media(max-width:560px){.steps{grid-template-columns:repeat(2,1fr)}}
-.st{background:var(--tile);border:1px solid var(--line-soft);border-radius:11px;padding:12px 11px;
-  border-top:2px solid var(--cyan);cursor:pointer;text-align:left;font:inherit;color:inherit;
-  transition:.18s;display:block;width:100%}
-.st:hover{border-color:var(--line);background:#111a2c}
-.st.ai{border-top-color:var(--indigo)}
-.st[aria-expanded="true"]{background:#131d31;box-shadow:0 0 0 1px rgba(34,211,238,.45)}
-.st.ai[aria-expanded="true"]{box-shadow:0 0 0 1px rgba(129,140,248,.5)}
-.st .top{display:flex;align-items:center;justify-content:space-between;color:var(--cyan)}
-.st.ai .top{color:var(--indigo)}
-.st .n{font-family:var(--mono);font-size:9.5px;color:var(--s4);letter-spacing:.1em}
-.st h4{font-size:14px;margin-top:8px;letter-spacing:-.01em}
-.st p{margin-top:5px;font-size:12px;color:var(--s3);line-height:1.42}
-.stdet{margin-top:15px;border-top:1px solid var(--line-soft);padding-top:16px;display:none}
-.stdet.on{display:block}
-.stdet .who{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:10px;
-  letter-spacing:var(--ls);text-transform:uppercase;color:var(--cyan);
-  border:1px solid rgba(34,211,238,.3);border-radius:999px;padding:4px 11px}
-.stdet.ai .who{color:var(--indigo);border-color:rgba(129,140,248,.35)}
-.stdet h5{font-family:var(--display);font-size:16.5px;font-weight:500;margin:12px 0 0;letter-spacing:-.01em}
-.stdet .eg{margin-top:12px;background:var(--tile);border:1px solid var(--line);border-left:2px solid var(--cyan);
-  border-radius:10px;padding:12px 14px;font-family:var(--mono);font-size:12px;color:var(--s2);line-height:1.55}
-.stdet.ai .eg{border-left-color:var(--indigo)}
-.stdet .eg b{color:var(--s4);font-weight:400;display:block;font-size:9.5px;letter-spacing:.1em;
-  text-transform:uppercase;margin-bottom:6px}
-.legend{display:flex;gap:20px;flex-wrap:wrap;align-items:center;margin-top:16px;padding-top:14px;
-  border-top:1px solid var(--line-soft);font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--s3)}
-.legend i{display:inline-block;width:16px;height:2px;border-radius:2px;margin-right:8px;vertical-align:middle}
-.legend .y i{background:var(--cyan)} .legend .a i{background:var(--indigo)}
-.legend .hint{margin-left:auto;color:var(--s4)}
-@media(max-width:760px){.legend .hint{margin-left:0}}
-.mrail{display:flex;align-items:center;gap:4px}
-.mrail i{width:10px;height:3px;border-radius:2px;background:rgba(148,163,184,.2);flex:none}
-.mrail i.on{background:var(--cyan)} .mrail i.on.ai{background:var(--indigo)}
-.mrail span{font-family:var(--mono);font-size:9.5px;color:var(--s4);letter-spacing:.05em;margin-left:8px}
-
 /* ── classification panel ───────────────────────────────────────────── */
 .clf{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:18px;padding:18px 20px}
 @media(max-width:860px){.clf{grid-template-columns:1fr}}
@@ -222,46 +181,6 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
 @media(max-width:900px){.pfoot{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.pfoot{grid-template-columns:1fr}}
 
-/* ── regression panel ───────────────────────────────────────────────── */
-.reg{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,320px);gap:16px;padding:18px 20px 20px}
-@media(max-width:860px){.reg{grid-template-columns:1fr}}
-.awtog{align-self:flex-start;display:inline-flex;background:var(--tile);border:1px solid var(--line);
-  border-radius:9px;padding:3px;gap:3px}
-.awtog button{background:transparent;border:0;cursor:pointer;border-radius:7px;padding:7px 14px;
-  font-family:var(--mono);font-size:11px;color:var(--s4);transition:.18s}
-.awtog button:hover{color:var(--s2)}
-.awtog button[aria-pressed="true"]{background:rgba(34,211,238,.13);color:var(--cyan)}
-.dot{transition:cx .6s cubic-bezier(.22,.61,.36,1),cy .6s cubic-bezier(.22,.61,.36,1),fill .3s}
-.whisk{transition:opacity .3s}
-.regside{display:flex;flex-direction:column;gap:12px}
-
-/* ── feature importance ─────────────────────────────────────────────── */
-.imp{display:flex;flex-direction:column;gap:7px;margin-top:6px}
-.irow{display:grid;grid-template-columns:150px 1fr 42px;gap:10px;align-items:center;
-  font-family:var(--mono);font-size:11px;color:var(--s3)}
-@media(max-width:600px){.irow{grid-template-columns:118px 1fr 38px;font-size:10px}}
-.irow .track{height:13px;border-radius:3px;background:rgba(148,163,184,.1);overflow:hidden}
-.irow .track i{display:block;height:100%;border-radius:3px;background:var(--grad);
-  transition:width .6s cubic-bezier(.22,.61,.36,1),background .3s}
-.irow .v{text-align:right;font-variant-numeric:tabular-nums;color:var(--s4)}
-.irow.off{opacity:.28}
-.chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}
-.chip{background:var(--tile);border:1px solid var(--line);border-radius:10px;cursor:pointer;
-  padding:9px 12px;font-family:var(--mono);font-size:11.5px;color:var(--s2);transition:.2s;
-  display:inline-flex;align-items:center;gap:9px;text-align:left;font-weight:400}
-.chip:hover{border-color:var(--s4)}
-.chip .mk{width:18px;height:18px;border-radius:50%;flex:none;display:grid;place-items:center;
-  border:1px solid var(--line);color:var(--s4);font-size:10px}
-.chip .vd{display:none;font-size:11px;color:var(--s3);font-family:var(--sans);max-width:30ch;line-height:1.4}
-.chip.done{cursor:default} .chip.done .vd{display:block}
-.chip.done.ok{border-color:rgba(16,185,129,.4);background:rgba(16,185,129,.06)}
-.chip.done.ok .mk{border-color:rgba(16,185,129,.5);color:var(--good)}
-.chip.done.bad{border-color:rgba(239,68,68,.45);background:rgba(239,68,68,.07)}
-.chip.done.bad .mk{border-color:rgba(239,68,68,.55);color:#f87171}
-.chip.done.bad .vd{color:#fca5a5}
-.score{margin-top:13px;font-family:var(--mono);font-size:11px;color:var(--s4)}
-.score.all{color:#5eead4}
-
 /* ── #tools · toolchain beam + code ─────────────────────────────────── */
 .beam{position:relative;padding:22px 20px 8px}
 .beamsvg{position:absolute;inset:22px 20px auto;height:56px;width:calc(100% - 40px);pointer-events:none;z-index:0}
@@ -295,36 +214,6 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
   display:flex;align-items:center;gap:9px;line-height:1.5;background:rgba(7,11,19,.35)}
 .cfoot .icn{color:var(--good)} .cfoot b{color:var(--ink);font-weight:500}
 
-/* ── #value · bento ─────────────────────────────────────────────────── */
-.bento{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:26px}
-@media(max-width:900px){.bento{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:520px){.bento{grid-template-columns:1fr}}
-.bt{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:19px 18px;
-  display:flex;flex-direction:column}
-.bt.w2{grid-column:span 2} .bt.w4{grid-column:span 4}
-@media(max-width:900px){.bt.w4{grid-column:span 2}}
-@media(max-width:520px){.bt.w2,.bt.w4{grid-column:span 1}}
-.bt .bk{font-family:var(--mono);font-size:10px;letter-spacing:var(--ls);text-transform:uppercase;color:var(--s4);
-  display:flex;align-items:center;gap:8px}
-.bt .bk .icn{color:var(--cyan)}
-.bt .bv{font-family:var(--display);font-size:clamp(28px,5vw,38px);font-weight:600;letter-spacing:-.025em;
-  margin-top:11px;font-variant-numeric:tabular-nums;line-height:1}
-.bt .bv small{font-size:.62em;font-weight:500;color:var(--s3);letter-spacing:0;margin-left:2px}
-.bt p{margin-top:9px;font-size:13.5px;color:var(--s3);line-height:1.5}
-.bt p b{color:var(--ink);font-weight:500}
-.calls{display:flex;flex-direction:column;gap:13px;margin-top:15px}
-.crow{display:grid;grid-template-columns:112px 1fr auto;gap:13px;align-items:center}
-@media(max-width:620px){.crow{grid-template-columns:1fr;gap:6px}}
-.crow .cl{font-family:var(--mono);font-size:10.5px;color:var(--s4);letter-spacing:.04em}
-.pips{display:flex;gap:5px;flex-wrap:wrap}
-.pip{width:20px;height:20px;border-radius:6px;background:var(--tile);border:1px solid var(--line);flex:none;
-  display:grid;place-items:center}
-.pip.hit{background:rgba(16,185,129,.16);border-color:rgba(16,185,129,.5)}
-.pip.hit .icn{color:#34d399;width:11px;height:11px}
-.pip.half{background:rgba(16,185,129,.07);border-color:rgba(16,185,129,.26);border-style:dashed}
-.crow .cn{font-family:var(--display);font-size:15px;font-weight:600;color:var(--ink);white-space:nowrap}
-.crow.base .cn{color:var(--s3)}
-
 /* ── #days ──────────────────────────────────────────────────────────── */
 .wf{margin-top:26px;border:1px solid var(--line);border-radius:18px;
   background:linear-gradient(180deg,#0e1524,var(--card));overflow:hidden}
@@ -339,6 +228,12 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
 .part{display:grid;grid-template-columns:34px 1fr auto;gap:15px;padding:14px 0;
   border-bottom:1px solid var(--line-soft);align-items:start}
 .part:last-child{border-bottom:0}
+.dsum{display:grid;grid-template-columns:1fr auto;align-items:center;gap:6px 15px;padding:14px 0;border-bottom:1px solid var(--line)}
+.dsum h4{font-size:15px} .dsum p{margin-top:4px;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--s4)}
+.dsum .pdur{font-size:11px;color:var(--ink);border-color:var(--cyan);padding:4px 11px}
+.part.brk{padding:8px 0;align-items:center}
+.part.brk .pic{background:transparent;border-style:dashed;color:var(--s4);margin-top:0}
+.part.brk h4{font-family:var(--mono);font-size:11px;font-weight:400;letter-spacing:.06em;color:var(--s4)}
 .part .pic{width:34px;height:34px;border-radius:10px;background:var(--tile);border:1px solid var(--line);
   display:grid;place-items:center;color:var(--cyan);margin-top:2px}
 .part h4{font-size:15px}
@@ -348,7 +243,8 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
   border:1px solid var(--line);border-radius:999px;padding:3px 9px;white-space:nowrap}
 @media(max-width:720px){.part{grid-template-columns:28px 1fr}
   .part .meta{grid-column:2;flex-direction:row;align-items:center;gap:12px;padding-top:4px}
-  .part .pic{width:28px;height:28px;border-radius:8px}}
+  .part .pic{width:28px;height:28px;border-radius:8px}
+  .part.brk{grid-template-columns:28px 1fr auto} .part.brk .meta{grid-column:auto;padding-top:0}}
 .between{display:flex;align-items:center;gap:13px;margin:4px 22px 20px;padding:14px 16px;
   background:rgba(34,211,238,.06);border:1px dashed rgba(34,211,238,.35);border-radius:12px}
 @media(max-width:640px){.between{margin:4px 14px 16px}}
@@ -390,118 +286,6 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
 .rule{margin-top:22px} .bio{margin-top:26px} .biotext{margin-top:18px}
 .flinks{margin-bottom:10px} .creds{margin-top:22px}
 
-/* ── hero · the classifier ──────────────────────────────────────────── */
-.hstage{padding:14px 14px 10px}
-.hstage svg{display:block;width:100%;height:auto}
-.hdot{fill:#64748b;transition:fill .5s ease,opacity .4s ease}
-.hdot.left{fill:#f87171}
-.hring{fill:none;stroke:#5eead4;stroke-width:1.6;opacity:.9}
-.hcap{display:flex;align-items:center;gap:7px;flex-wrap:wrap;padding:9px 4px 2px;
-  font-family:var(--mono);font-size:10px;color:var(--s4);border-top:1px solid var(--line-soft);margin-top:8px}
-.dotk{width:8px;height:8px;border-radius:50%;display:inline-block;flex:none}
-.dotk.left{background:#f87171}
-.dotk.stay{background:#64748b;margin-left:12px}
-.hnow{margin-left:auto;color:#5eead4;text-align:right}
-@media(max-width:520px){.hnow{margin-left:0;width:100%;text-align:left;margin-top:4px}}
-
-/* ── #path · the walkthrough ────────────────────────────────────────── */
-.st{transition:.25s}
-.st.done{border-top-color:var(--cyan);background:#101828}
-.st.done.ai{border-top-color:var(--indigo)}
-.st:not(.done):not(.now){opacity:.5}
-.st.now{background:#16213a;box-shadow:0 0 0 1px rgba(34,211,238,.5);opacity:1}
-.st.now.ai{box-shadow:0 0 0 1px rgba(129,140,248,.55)}
-.wprog{height:2px;border-radius:2px;background:rgba(148,163,184,.14);margin-top:16px;overflow:hidden}
-.wprog i{display:block;height:100%;width:12.5%;border-radius:2px;background:var(--grad);
-  transition:width .55s cubic-bezier(.22,.61,.36,1)}
-.wstage{position:relative;margin-top:18px;min-height:252px}
-@media(max-width:640px){.wstage{min-height:330px}}
-.wsl{position:absolute;inset:0;opacity:0;transform:translateY(8px);pointer-events:none;
-  transition:opacity .35s ease,transform .35s cubic-bezier(.22,.61,.36,1)}
-.wsl.on{opacity:1;transform:none;pointer-events:auto;position:relative}
-.wsl .who{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:10px;
-  letter-spacing:var(--ls);text-transform:uppercase;color:var(--cyan);
-  border:1px solid rgba(34,211,238,.3);border-radius:999px;padding:4px 11px}
-.wsl[data-s="5"] .who,.wsl[data-s="6"] .who{color:var(--indigo);border-color:rgba(129,140,248,.35)}
-.wsl h5{font-family:var(--display);font-size:18px;font-weight:500;margin:12px 0 0;letter-spacing:-.015em}
-.wsl > p{margin-top:7px;font-size:14.5px;color:var(--s3);line-height:1.5;max-width:60ch}
-.wviz{margin-top:14px;overflow-x:auto;padding-bottom:2px}
-@media(max-width:560px){.wtab{font-size:10.5px}.wtab th,.wtab td{padding:7px 9px}}
-.wnote{margin-top:10px;font-family:var(--mono);font-size:10.5px;color:var(--s4)}
-.wnote b{color:var(--s2);font-weight:400}
-.wcode{font-family:var(--mono);font-size:12.5px;color:#5eead4;background:var(--tile);
-  border:1px solid var(--line);border-left:2px solid var(--cyan);border-radius:9px;
-  padding:11px 14px;overflow-x:auto;white-space:nowrap}
-.wsl[data-s="5"] .wcode{border-left-color:var(--indigo);color:#c7d2fe}
-.qcard{background:var(--tile);border:1px solid var(--line);border-radius:11px;padding:15px 17px;max-width:620px}
-.qcard > span{font-family:var(--display);font-size:17px;color:var(--ink);line-height:1.4}
-.qarrow{margin-top:11px;display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10.5px;color:var(--cyan)}
-.wtab{border-collapse:collapse;font-family:var(--mono);font-size:11.5px;margin-top:11px;
-  background:var(--tile);border:1px solid var(--line);border-radius:9px;overflow:hidden}
-.wtab.wide{width:100%;max-width:560px}
-.wtab th,.wtab td{padding:7px 13px;text-align:left;white-space:nowrap}
-.wtab th{font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--s4);
-  border-bottom:1px solid var(--line-soft)}
-.wtab td{color:var(--s2)} .wtab td.one{color:#f87171} .wtab td.zero{color:var(--s4)}
-.tl{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;max-width:520px}
-.tlseg{border-radius:8px;padding:15px 0;text-align:center;font-family:var(--mono);font-size:12px}
-.tlseg.train{background:rgba(34,211,238,.13);border:1px solid rgba(34,211,238,.35);color:#5eead4}
-.tlseg.test{background:rgba(129,140,248,.14);border:1px solid rgba(129,140,248,.4);color:#c7d2fe}
-.tlkey{display:flex;gap:20px;flex-wrap:wrap;margin-top:11px;font-family:var(--mono);font-size:10.5px;color:var(--s4)}
-.tlkey i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:7px;vertical-align:-1px}
-.tlkey i.train{background:#22d3ee} .tlkey i.test{background:#818cf8}
-.bbar{max-width:520px}
-.bbrow{display:grid;grid-template-columns:150px 1fr auto;gap:12px;align-items:center;
-  font-family:var(--mono);font-size:11.5px;color:var(--s3);padding:6px 0}
-.bbrow.ghost{color:var(--s4)}
-.bbrow b{color:var(--ink);font-weight:500}
-.bbrow.ghost b{color:var(--s4);font-weight:400;font-size:10.5px}
-.bbt{height:13px;border-radius:3px;background:rgba(148,163,184,.1);overflow:hidden}
-.bbt i{display:block;height:100%;border-radius:3px;background:var(--grad)}
-@media(max-width:560px){.bbrow{grid-template-columns:104px 1fr auto;font-size:10.5px}}
-.cands{display:flex;gap:9px;margin-top:11px;flex-wrap:wrap}
-.cand{background:var(--tile);border:1px solid var(--line);border-radius:9px;padding:9px 13px;
-  font-family:var(--mono);font-size:11px;color:var(--s4);display:flex;align-items:center;gap:10px}
-.cand b{color:var(--s3);font-weight:500}
-.cand.win{border-color:rgba(129,140,248,.5);background:rgba(129,140,248,.1);color:#c7d2fe}
-.cand.win b{color:#c7d2fe}
-.mchips{display:flex;gap:10px;flex-wrap:wrap}
-.mchip{background:var(--tile);border:1px solid var(--line);border-radius:11px;padding:12px 16px;min-width:118px}
-.mchip span{font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--s4);display:block}
-.mchip b{font-family:var(--display);font-size:23px;font-weight:600;color:var(--cyan);display:block;margin-top:3px}
-.wlist{background:var(--tile);border:1px solid var(--line);border-radius:9px;overflow:hidden;max-width:330px}
-.wl{display:grid;grid-template-columns:26px 1fr auto;gap:10px;padding:7px 13px;
-  font-family:var(--mono);font-size:11.5px;color:var(--s2);border-bottom:1px solid var(--line-soft)}
-.wl:last-child{border-bottom:0}
-.wl span:first-child{color:var(--s4)}
-.wl b{color:#f87171;font-weight:400}
-
-/* ── #path · compact stepper ────────────────────────────────────────── */
-.stepper{position:relative;display:grid;grid-template-columns:repeat(8,1fr);margin-top:6px}
-.strack{position:absolute;top:12px;left:6.25%;right:6.25%;height:2px;border-radius:2px;
-  background:rgba(148,163,184,.16);overflow:hidden}
-.strack i{display:block;height:100%;width:0;background:var(--grad);border-radius:2px;
-  transition:width .5s cubic-bezier(.22,.61,.36,1)}
-.sn{position:relative;background:none;border:0;cursor:pointer;font:inherit;color:inherit;
-  padding:0;display:flex;flex-direction:column;align-items:center;gap:9px}
-.sd{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;flex:none;
-  background:var(--bg);border:2px solid rgba(148,163,184,.3);color:var(--s4);
-  font-family:var(--mono);font-size:11px;transition:.28s}
-.sl{font-family:var(--mono);font-size:10px;letter-spacing:.04em;color:var(--s4);
-  text-align:center;transition:.28s;line-height:1.3}
-.sn.done .sd{border-color:var(--cyan);background:var(--cyan);color:#06121a}
-.sn.done.ai .sd{border-color:var(--indigo);background:var(--indigo)}
-.sn.now .sd{border-color:var(--cyan);color:var(--cyan);background:var(--bg);
-  box-shadow:0 0 0 5px rgba(34,211,238,.14);transform:scale(1.18)}
-.sn.now.ai .sd{border-color:var(--indigo);color:var(--indigo);box-shadow:0 0 0 5px rgba(129,140,248,.16)}
-.sn.now .sl{color:var(--ink)}
-.sn:hover .sl{color:var(--s2)}
-@media(max-width:820px){.sl{display:none}.strack{top:12px}}
-.scount{display:flex;align-items:baseline;gap:10px;margin-top:20px;
-  font-family:var(--mono);font-size:10.5px;letter-spacing:.06em}
-.scount b{color:var(--cyan);font-weight:500}
-.scount span{color:var(--s4);text-transform:uppercase}
-
 /* ── hero kicker ────────────────────────────────────────────────────── */
 .kicker{display:flex;align-items:center;gap:11px;flex-wrap:wrap;font-family:var(--display);
   font-size:clamp(15px,3.4vw,18px);font-weight:600;letter-spacing:-.01em;color:var(--ink)}
@@ -531,6 +315,263 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
   *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}
   [data-rv]{opacity:1;transform:none}
 }
+
+/* ── logos (Claude, Anthropic) ──────────────────────────────────────── */
+.lgo{width:16px;height:16px;flex:none;display:inline-block;vertical-align:-3px}
+.lgo.c{fill:#D97757} .lgo.a{fill:currentColor}
+.lgo.md{width:20px;height:20px} .lgo.lgx{width:26px;height:26px}
+.tool.cl{border-color:rgba(217,119,87,.45);color:var(--ink)}
+.kicker .lgo{width:20px;height:20px;vertical-align:-3px;margin-right:2px}
+
+/* built-with strip under the hero */
+.bw{border-bottom:1px solid var(--line-soft);background:rgba(7,11,19,.35)}
+.bw-in{max-width:var(--maxw);margin:0 auto;padding:14px var(--pad);display:flex;align-items:center;
+  gap:22px;flex-wrap:wrap;font-family:var(--mono);font-size:10.5px;letter-spacing:var(--ls);
+  text-transform:uppercase;color:var(--s4)}
+.bw-in span.it{display:inline-flex;align-items:center;gap:9px;color:var(--s2);text-transform:none;
+  letter-spacing:.02em;font-size:12.5px}
+.bw-in .sep{width:1px;height:16px;background:var(--line)}
+
+/* ── hero · the Claude Code terminal ───────────────────────────────── */
+.win .lgo{width:13px;height:13px;margin-left:6px}
+.win span{margin-left:4px}
+.term{padding:16px 16px 14px;font-family:var(--mono);font-size:11.5px;line-height:1.75;min-height:300px}
+@media(max-width:520px){.term{font-size:10.5px;padding:13px 12px;min-height:0}}
+.tl{display:flex;gap:9px;align-items:baseline;white-space:pre-wrap;transition:opacity .25s ease}
+.tl .m{flex:none;width:12px;text-align:center}
+.tl.you{color:var(--ink)} .tl.you .m{color:#D97757}
+.tl.cl{color:var(--s2)}  .tl.cl .m{color:#D97757}
+.tl.ok{color:var(--s3)}  .tl.ok .m{color:#34d399}
+.tl.warn{color:#fbbf24}  .tl.warn .m{color:#fbbf24}
+.tl.dim{color:var(--s4)}
+.tl b{font-weight:500;color:var(--ink)} .tl.warn b{color:#fde68a}
+.tl i{font-style:normal;color:#5eead4}
+.tl.gap{margin-top:8px}
+.term.play .tl{opacity:0} .term.play .tl.on{opacity:1}
+.cur{display:inline-block;width:7px;height:13px;background:#D97757;vertical-align:-2px;margin-left:2px;
+  animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+
+/* ── #days · the slot chain ─────────────────────────────────────────── */
+.phead{display:flex;align-items:center;gap:10px;margin:18px 0 4px;padding-bottom:10px;
+  border-bottom:1px solid var(--line);font-family:var(--mono);font-size:10.5px;letter-spacing:var(--ls);
+  text-transform:uppercase;color:var(--cyan)}
+.phead .lgo,.phead .icn{flex:none}
+.phead em{margin-left:auto;font-style:normal;color:var(--s4)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:0 34px}
+@media(max-width:900px){.cols{grid-template-columns:1fr}}
+.cols .phead{margin-top:14px}
+.chain{position:relative}
+.slot{position:relative;display:grid;grid-template-columns:84px 1fr;gap:12px;padding:8px 0}
+.slot::before{content:"";position:absolute;left:92px;top:0;bottom:0;width:1px;background:var(--line)}
+.slot:first-child::before{top:16px} .slot:last-child::before{bottom:calc(100% - 16px)}
+.slot .t{font-family:var(--mono);font-size:10px;color:var(--s4);padding-top:3px;white-space:nowrap}
+.slot .b{position:relative;padding-left:16px;min-width:0}
+.slot .b::before{content:"";position:absolute;left:-12px;top:6px;width:9px;height:9px;border-radius:50%;
+  background:var(--card);border:2px solid var(--cyan)}
+.slot.cl .b::before{border-color:#D97757}
+.slot h4{font-size:14.5px;letter-spacing:-.01em;line-height:1.35}
+.slot .q{margin-top:4px;display:flex;align-items:flex-start;gap:7px;font-size:12.5px;color:#5eead4;line-height:1.4}
+.slot .q .qm{flex:none;width:15px;height:15px;margin-top:1px;border-radius:50%;display:grid;place-items:center;
+  font-family:var(--mono);font-size:9px;color:#06121a;background:#5eead4}
+.slot h4 code{font-family:var(--mono);font-size:.88em;font-weight:500;color:#5eead4;background:none;padding:0;margin:0}
+.slot.brk{padding:3px 0}
+.slot.brk .b::before{border-style:dashed;border-color:var(--s4)}
+.slot.brk h4{font-family:var(--mono);font-size:11px;font-weight:400;letter-spacing:.06em;color:var(--s4)}
+.slot.end .b::before{background:var(--cyan)}
+@media(max-width:640px){
+  .slot{grid-template-columns:1fr;gap:3px;padding-left:22px}
+  .slot::before{left:6px}
+  .slot.brk{padding:3px 0 3px 22px}
+  .slot .t{padding-top:0}
+  .slot .b{padding-left:0}
+  .slot .b::before{left:-22px;top:-14px}
+  details.slot{padding-left:22px}
+  .slot.brk .b::before{top:-13px}
+}
+
+/* ── top bar: countdown + scroll-following site map ─────────────────── */
+.topbar{position:sticky;top:0;z-index:80}
+.topbar .nav{position:relative;top:auto}
+section[id]{scroll-margin-top:118px}
+.cd{margin-left:auto;display:flex;align-items:center;gap:14px;font-family:var(--mono);white-space:nowrap}
+.cdl{font-size:10.5px;letter-spacing:var(--ls);text-transform:uppercase;color:var(--s4)}
+.cdl b{color:var(--cyan);font-weight:500}
+.cdt{display:flex;gap:6px}
+.cdx{font-size:10.5px;letter-spacing:var(--ls);text-transform:uppercase;color:var(--s4)}
+.cdu{display:flex;flex-direction:column;align-items:center;min-width:38px;padding:4px 6px;border-radius:8px;
+  background:var(--tile);border:1px solid var(--line)}
+.cdu b{font-family:var(--display);font-size:16px;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1.1}
+.cdu i{font-style:normal;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--s4)}
+.cd.live .cdl{color:#34d399}
+.cdm{display:none;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--cyan);line-height:1.3;white-space:normal;max-width:52px}
+@media(max-width:760px){.cdl{display:none}.cdm{display:block}.cdu{min-width:32px;padding:3px 4px}.cdu b{font-size:14px}}
+@media(max-width:520px){.nav .btn{display:none}.cd{gap:8px}}
+.smap{background:rgba(7,11,19,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line-soft)}
+.smap-in{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);display:flex;align-items:stretch;gap:4px}
+.smnow{display:none}
+.smk{flex:1 1 0;min-width:0;text-decoration:none;padding:9px 0 8px;display:flex;flex-direction:column;gap:7px}
+.smk .sl{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--s4);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:color .2s}
+.smk i{display:block;height:2px;border-radius:2px;background:rgba(148,163,184,.16);overflow:hidden}
+.smk i b{display:block;height:100%;width:0;background:var(--grad);border-radius:2px}
+.smk:hover .sl{color:var(--s2)}
+.smk.done .sl{color:var(--s3)}
+.smk.on .sl{color:var(--cyan)}
+@media(max-width:760px){
+  .smap-in{gap:3px;align-items:center}
+  .smnow{display:block;flex:none;width:96px;font-family:var(--mono);font-size:10px;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--cyan);padding:9px 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .smk{padding:0;gap:0}
+  .smk .sl{display:none}
+}
+
+/* ── overview ───────────────────────────────────────────────────────── */
+.ovp{margin-top:18px;font-size:clamp(16px,3.6vw,18px);color:var(--s2);line-height:1.65;max-width:72ch}
+.ovp b{color:var(--ink);font-weight:500}
+.ovq{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:26px}
+@media(max-width:860px){.ovq{grid-template-columns:1fr}}
+.oq{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 18px 19px}
+.oqh{display:flex;align-items:center;gap:10px;font-family:var(--display);font-size:17px;font-weight:500;color:var(--ink)}
+.oqh .qm{flex:none;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;
+  font-family:var(--mono);font-size:12px;color:#06121a;background:var(--grad)}
+.oq p{margin-top:10px;font-size:14px;color:var(--s3);line-height:1.55}
+
+/* ── syllabus ───────────────────────────────────────────────────────── */
+.syl{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:26px}
+@media(max-width:900px){.syl{grid-template-columns:1fr}}
+.sday{border:1px solid var(--line);border-radius:18px;background:linear-gradient(180deg,#0e1524,var(--card));padding:18px 18px 20px}
+.sdh{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap;
+  padding-bottom:12px;border-bottom:1px solid var(--line)}
+.sdh b{font-family:var(--display);font-size:19px;font-weight:600}
+.sdh span{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--cyan)}
+.spart{display:flex;align-items:center;gap:8px;margin:16px 0 9px;font-family:var(--mono);font-size:10px;
+  letter-spacing:var(--ls);text-transform:uppercase;color:var(--s4)}
+.spart .icn{color:var(--cyan)}
+.mods{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:520px){.mods{grid-template-columns:1fr}}
+.mod{background:var(--tile);border:1px solid var(--line-soft);border-radius:11px;padding:11px 12px 12px}
+.mh{display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:baseline}
+.mn{font-family:var(--mono);font-size:10px;color:var(--cyan)}
+.mh b{font-size:13.5px;font-weight:500;color:var(--ink);line-height:1.3}
+.md{font-family:var(--mono);font-size:9.5px;color:var(--s4);white-space:nowrap}
+.mod ul{margin:7px 0 0;padding:0 0 0 14px;font-size:12px;color:var(--s3);line-height:1.5}
+.mod li::marker{color:var(--s4)}
+
+/* ── v5: each section collapses under its answer ───────────────────── */
+.secx > summary{display:flex;align-items:center;gap:18px;padding:20px 22px;border:1px solid var(--line);
+  border-radius:18px;background:linear-gradient(180deg,#0e1524,var(--card));transition:border-color .2s}
+.secx > summary:hover{border-color:rgba(34,211,238,.45)}
+.secx > summary h2{flex:1;margin:0}
+.secx[open] > summary{border-color:rgba(34,211,238,.4)}
+.sx{flex:none;width:40px;height:40px;border-radius:50%;border:1px solid rgba(34,211,238,.45);
+  background:rgba(34,211,238,.07);display:grid;place-items:center;transition:transform .25s}
+.sx::before{content:"";width:9px;height:9px;border-right:2px solid var(--cyan);border-bottom:2px solid var(--cyan);
+  transform:translateY(-2px) rotate(45deg)}
+.secx[open] .sx{transform:rotate(180deg)}
+.secb{padding-top:4px}
+.sx{margin-left:auto}
+.secx > summary h2{max-width:none;font-size:clamp(22px,5.6vw,32px);line-height:1.2}
+section#why .sec,section#days .sec,section#syllabus .sec,section#models .sec,section#checks .sec,section#tools .sec{padding-top:10px}
+.bridge{padding-top:30px}
+.secb > :first-child{margin-top:18px}
+@media(max-width:640px){.secx > summary{padding:16px;gap:12px}.sx{width:34px;height:34px}}
+
+
+/* ── v4: tap-to-expand ──────────────────────────────────────────────── */
+details > summary{list-style:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+details > summary::-webkit-details-marker{display:none}
+.chev2{width:8px;height:8px;border-right:1.6px solid var(--s3);border-bottom:1.6px solid var(--s3);
+  transform:rotate(45deg);transition:transform .2s;margin-top:6px;justify-self:end;flex:none}
+details[open] > summary .chev2{transform:rotate(225deg);margin-top:10px;border-color:var(--cyan)}
+details.slot{display:block}
+details.slot > summary{display:grid;grid-template-columns:84px 1fr 14px;gap:12px;align-items:start;min-height:30px}
+details.slot > summary:hover h4{color:var(--cyan)}
+details.slot .q{margin:6px 0 2px 112px;padding:9px 11px;border-radius:9px;background:rgba(94,234,212,.07);
+  border:1px solid rgba(94,234,212,.22);font-size:14px;color:#a7f3e4}
+.slot .q em{display:block;font-style:normal;font-family:var(--mono);font-size:11px;letter-spacing:.06em;
+  text-transform:uppercase;color:#5eead4;margin-bottom:2px}
+.slot .q .qm{width:18px;height:18px;font-size:10.5px;margin-top:2px}
+.xall{font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;color:var(--cyan);background:rgba(34,211,238,.07);
+  border:1px solid rgba(34,211,238,.4);border-radius:999px;padding:8px 14px;cursor:pointer;white-space:nowrap;min-height:36px}
+.xall:hover{background:rgba(34,211,238,.14)}
+.oq{padding:16px 18px 18px}
+.oq .qm{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;
+  font-family:var(--mono);font-size:13px;color:#06121a;background:var(--grad)}
+.oqt{flex:1;font-family:var(--display);font-size:17px;font-weight:500;color:var(--ink)}
+.oq p{margin:10px 0 0;padding-left:37px;font-size:15px;color:var(--s2);line-height:1.55}
+.mod{padding:0}
+.mod > summary{display:grid;grid-template-columns:auto 1fr auto 12px;gap:9px;align-items:center;padding:11px 12px;min-height:44px}
+.mod[open]{border-color:rgba(34,211,238,.35)}
+.mod > summary .chev2{margin-top:-3px} .mod[open] > summary .chev2{margin-top:4px}
+.mod ul{margin:0;padding:0 14px 12px 32px;font-size:13.5px;color:var(--s2)}
+.sdh{justify-content:flex-start;align-items:center}
+.sdh .xall{margin-left:auto}
+.mods{grid-template-columns:1fr;gap:6px}
+.mod > summary b{font-size:14.5px;font-weight:500;color:var(--ink);line-height:1.3}
+.mod > summary .mn{min-width:30px}
+
+/* ── v4: contrast and minimum sizes ────────────────────────────────── */
+:root{--s2:#dde4ee;--s3:#b9c4d3;--s4:#9aa6b8}
+.k5{color:#93a3b9}
+.krow .o{color:var(--s4)} .krow.pos .o{color:#e08a8a}
+.eyebrow,.kicker span,.stack .lb,.tool,.facts span,.win span,.win em,.ptitle .tag,.plot .cap,.mt .k,
+.khead,.krow,.oc em,.hint,.ptog button,.awtog button,.lkkey,.ctabs button,.dsum p,.phead,.slot .t,
+.slot.brk h4,.spart,.md,.mn,.cdl,.cdx,.smk .sl,.smnow,.bw-in,.pdur{font-size:12px}
+.mt em,.bn span,.pnode p,.cfoot,.note,.dnote p,.between p,.lkwarn,.ac p,.part p{font-size:14px}
+.cdu i{font-size:9.5px} .cdm{font-size:10.5px}
+.term{font-size:12px}
+@media(max-width:640px){
+  details.slot > summary{grid-template-columns:1fr 14px;gap:2px 10px}
+  details.slot > summary .t{grid-column:1;grid-row:1}
+  details.slot > summary .b{grid-column:1;grid-row:2}
+  details.slot > summary .chev2{grid-column:2;grid-row:1 / span 2;align-self:center;margin-top:0}
+  details.slot .q{margin-left:0}
+  .slot h4{font-size:15.5px}
+  .dsum{grid-template-columns:1fr}
+  .dsum .xall{justify-self:start}
+  .term{font-size:11px}
+  .sec h2{font-size:clamp(26px,7.4vw,34px)}
+}
+
+
+/* ── #models · look-alike framings ──────────────────────────────────── */
+.lk{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,300px);gap:18px;padding:18px 20px}
+@media(max-width:860px){.lk{grid-template-columns:1fr}}
+.lkgrid{display:grid;grid-template-columns:repeat(15,1fr);gap:8px;max-width:480px;padding:14px;border:1px solid var(--line-soft);
+  border-radius:11px;background:var(--tile);align-content:start}
+.lkd{aspect-ratio:1;border-radius:50%;background:#334155;border:1.5px solid transparent;transition:.3s}
+.lkd.pos{background:#34d399}
+.lkd.neg{background:#64748b}
+.lkd.tgt{background:transparent;border-color:rgba(129,140,248,.7)}
+.lkkey{display:flex;gap:16px;flex-wrap:wrap;margin-top:12px;font-family:var(--mono);font-size:10px;color:var(--s4)}
+.lkkey i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+.lkkey i.pos{background:#34d399} .lkkey i.neg{background:#64748b}
+.lkkey i.tgt{border:1.5px solid rgba(129,140,248,.8)}
+.lkside{display:flex;flex-direction:column;gap:12px}
+.lkq{font-family:var(--display);font-size:16px;line-height:1.4;color:var(--ink)}
+.lkwarn{font-size:13px;color:var(--s3);line-height:1.5;border-left:2px solid #fbbf24;padding-left:11px}
+.lkwarn b{color:#fde68a;font-weight:500}
+
+.awtog{align-self:flex-start;display:inline-flex;background:var(--tile);border:1px solid var(--line);
+  border-radius:9px;padding:3px;gap:3px;flex-wrap:wrap}
+.awtog button{background:transparent;border:0;cursor:pointer;border-radius:7px;padding:7px 14px;
+  font-family:var(--mono);font-size:11px;color:var(--s4);transition:.18s}
+.awtog button:hover{color:var(--s2)}
+.awtog button[aria-pressed="true"]{background:rgba(34,211,238,.13);color:var(--cyan)}
+
+/* ── #checks ────────────────────────────────────────────────────────── */
+.ask.four{grid-template-columns:repeat(2,1fr)}
+@media(max-width:760px){.ask.four{grid-template-columns:1fr}}
+.ac .tag{display:inline-block;margin-top:12px;font-family:var(--mono);font-size:10.5px;color:#5eead4;
+  background:rgba(94,234,212,.07);border:1px solid rgba(94,234,212,.25);border-radius:7px;padding:5px 9px}
+
+/* ── take-home outcomes ─────────────────────────────────────────────── */
+.ask.out{margin-top:18px}
+.foot-tm{margin-top:12px;font-size:11.5px;color:var(--s4);line-height:1.5;display:flex;gap:8px;
+  align-items:center;justify-content:center;flex-wrap:wrap}
+
 </style>
 </head>
 <body>
@@ -566,219 +607,246 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
   <symbol id="i-plot" viewBox="0 0 24 24"><path d="M4 3v17h17"/><path d="M7.5 15.5 11 11l3 2.6 4.5-6.6"/><circle cx="7.5" cy="15.5" r="1.1"/><circle cx="11" cy="11" r="1.1"/><circle cx="14" cy="13.6" r="1.1"/><circle cx="18.5" cy="7" r="1.1"/></symbol>
   <symbol id="i-money" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M14.5 9.2c-.4-.8-1.4-1.2-2.5-1.2-1.4 0-2.5.7-2.5 1.8 0 2.6 5 1.4 5 4 0 1.2-1.1 1.9-2.5 1.9-1.2 0-2.2-.5-2.6-1.3M12 6.6v10.8"/></symbol>
   <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4.5 13.2H11l-1 8.8 8.5-11.2H12Z"/></symbol>
+  <symbol id="l-claude" viewBox="0 0 24 24"><path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></symbol>
+  <symbol id="l-anthropic" viewBox="0 0 24 24"><path d="M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z"/></symbol>
 </defs></svg>
 
+<div class="topbar">
 <nav class="nav">
   <div class="nav-in">
     <a class="wordmark" href="https://www.amconsultingai.com" target="_blank" rel="noopener">
       <img class="nav-logo" src="https://am-consultingai.github.io/am-assets/logo/am-logo-white-600.png" alt="AM Consulting">
     </a>
-    <div class="nav-links">
-      <a href="#path">Method</a>
-      <a href="#models">Models</a>
-      <a href="#tools">Tools</a>
-      <a href="#value">Value</a>
-      <a href="#days">Two days</a>
+    <div class="cd" id="cd" aria-live="off">
+      <span class="cdm" id="cdM">Day 1 · 26 Oct</span>
+      <span class="cdl" id="cdL">Day one · Mon 26 Oct · 09:30</span>
+      <span class="cdt" id="cdT"><span class="cdx">Day two · Wed 4 Nov · 09:30</span></span>
     </div>
     <a class="btn btn-pri btn-sm" href="#contact">Book a call</a>
   </div>
 </nav>
+<div class="smap" id="smap"><div class="smap-in">
+  <span class="smnow" id="smNow">Overview</span>
+  <a class="smk" href="#overview"><span class="sl">Overview</span><i><b></b></i></a>
+  <a class="smk" href="#why"><span class="sl">How it works</span><i><b></b></i></a>
+  <a class="smk" href="#days"><span class="sl">Two days</span><i><b></b></i></a>
+  <a class="smk" href="#syllabus"><span class="sl">Syllabus</span><i><b></b></i></a>
+  <a class="smk" href="#models"><span class="sl">Models</span><i><b></b></i></a>
+  <a class="smk" href="#checks"><span class="sl">Checks</span><i><b></b></i></a>
+  <a class="smk" href="#tools"><span class="sl">Take-home</span><i><b></b></i></a>
+  <a class="smk" href="#faq"><span class="sl">FAQ</span><i><b></b></i></a>
+</div></div>
+</div>
 
 <!-- ══ HERO ══ -->
 <header class="hero" id="top">
   <div class="hero-in">
     <div>
-      <div class="kicker">Data Science with <b>Claude</b><span>for analysts</span></div>
-      <div class="eyebrow">Two half-days · 15–17 people · your own product data</div>
-      <h1>Your analysts leave with a <span class="grad">working model they built.</span></h1>
-      <p class="lede">A real churn and ARR model on their own product — <b>Python, pandas and scikit-learn</b>, with AI writing the code and your analysts deciding what makes it right.</p>
+      <div class="kicker">Data Science with <b><svg class="lgo c" aria-hidden="true"><use href="#l-claude"/></svg>Claude</b><span>for analysts</span></div>
+      <div class="eyebrow">26 Oct &amp; 4 Nov · 09:30–14:30</div>
+      <h1>Your analysts build ML models <span class="grad">with Claude.</span></h1>
+      <p class="lede">Two models, built in <b>Claude Code</b>: who may churn, and who should get a trial. Claude writes the code. Your analysts make the decisions.</p>
       <div class="stack">
-        <span class="lb">Stack</span>
+        <span class="lb">Tools</span>
+        <span class="tool cl"><svg class="lgo c" aria-hidden="true"><use href="#l-claude"/></svg>Claude Code</span>
         <span class="tool"><svg class="icn sm"><use href="#i-python"/></svg>Python</span>
         <span class="tool"><svg class="icn sm"><use href="#i-table"/></svg>pandas</span>
         <span class="tool"><svg class="icn sm"><use href="#i-brain"/></svg>scikit-learn</span>
-        <span class="tool"><svg class="icn sm"><use href="#i-plot"/></svg>matplotlib</span>
+        <span class="tool"><svg class="icn sm"><use href="#i-layers"/></svg>XGBoost</span>
       </div>
       <div class="cta-row">
         <a class="btn btn-pri" href="#contact">Book a 30-minute call</a>
-        <a class="btn btn-sec" href="#models">See what they build</a>
+        <a class="btn btn-sec" href="#days">See the two days</a>
       </div>
       <div class="facts">
-        <div><b>2</b><span>half-days</span></div>
+        <div><b>2</b><span>days</span></div>
+        <div><b>10</b><span>hours</span></div>
         <div><b>2</b><span>models</span></div>
-        <div><b>4</b><span>ways to judge them</span></div>
-        <div><b>8</b><span>steps</span></div>
+        <div><b>17</b><span>modules</span></div>
       </div>
     </div>
 
     <div class="shot">
-      <div class="win"><i></i><i></i><i></i><span>churn_model.py — anti-fraud</span><em>illustrative</em></div>
-      <div class="hstage">
-        <svg id="heroSvg" viewBox="0 0 480 330" role="img" aria-label="A classifier separating accounts that left from accounts that stayed">
-          <line class="grid-l" x1="150.0" y1="22" x2="150.0" y2="280"/><line class="grid-l" x1="254.0" y1="22" x2="254.0" y2="280"/><line class="grid-l" x1="358.0" y1="22" x2="358.0" y2="280"/><line class="grid-l" x1="46" y1="215.5" x2="462" y2="215.5"/><line class="grid-l" x1="46" y1="151.0" x2="462" y2="151.0"/><line class="grid-l" x1="46" y1="86.5" x2="462" y2="86.5"/>
-          <path id="hRegion" d="M46.0,105.9 L51.2,111.9 L56.4,117.6 L61.6,123.2 L66.8,128.5 L72.0,133.7 L77.2,138.6 L82.4,143.4 L87.6,148.0 L92.8,152.4 L98.0,156.6 L103.2,160.7 L108.4,164.7 L113.6,168.5 L118.8,172.1 L124.0,175.6 L129.2,179.0 L134.4,182.2 L139.6,185.3 L144.8,188.3 L150.0,191.2 L155.2,194.0 L160.4,196.7 L165.6,199.3 L170.8,201.7 L176.0,204.1 L181.2,206.4 L186.4,208.6 L191.6,210.8 L196.8,212.8 L202.0,214.8 L207.2,216.7 L212.4,218.5 L217.6,220.2 L222.8,221.9 L228.0,223.5 L233.2,225.1 L238.4,226.6 L243.6,228.1 L248.8,229.4 L254.0,230.8 L259.2,232.1 L264.4,233.3 L269.6,234.5 L274.8,235.7 L280.0,236.8 L285.2,237.8 L290.4,238.9 L295.6,239.8 L300.8,240.8 L306.0,241.7 L311.2,242.6 L316.4,243.4 L321.6,244.2 L326.8,245.0 L332.0,245.8 L337.2,246.5 L342.4,247.2 L347.6,247.9 L352.8,248.5 L358.0,249.1 L363.2,249.7 L368.4,250.3 L373.6,250.8 L378.8,251.4 L384.0,251.9 L389.2,252.4 L394.4,252.9 L399.6,253.3 L404.8,253.8 L410.0,254.2 L415.2,254.6 L420.4,255.0 L425.6,255.3 L430.8,255.7 L436.0,256.1 L441.2,256.4 L446.4,256.7 L451.6,257.0 L456.8,257.3 L462.0,257.6 L462.0,280.0 L46.0,280.0 Z" fill="rgba(248,113,113,.10)"/>
-          <path id="hBound" d="M46.0,105.9 L51.2,111.9 L56.4,117.6 L61.6,123.2 L66.8,128.5 L72.0,133.7 L77.2,138.6 L82.4,143.4 L87.6,148.0 L92.8,152.4 L98.0,156.6 L103.2,160.7 L108.4,164.7 L113.6,168.5 L118.8,172.1 L124.0,175.6 L129.2,179.0 L134.4,182.2 L139.6,185.3 L144.8,188.3 L150.0,191.2 L155.2,194.0 L160.4,196.7 L165.6,199.3 L170.8,201.7 L176.0,204.1 L181.2,206.4 L186.4,208.6 L191.6,210.8 L196.8,212.8 L202.0,214.8 L207.2,216.7 L212.4,218.5 L217.6,220.2 L222.8,221.9 L228.0,223.5 L233.2,225.1 L238.4,226.6 L243.6,228.1 L248.8,229.4 L254.0,230.8 L259.2,232.1 L264.4,233.3 L269.6,234.5 L274.8,235.7 L280.0,236.8 L285.2,237.8 L290.4,238.9 L295.6,239.8 L300.8,240.8 L306.0,241.7 L311.2,242.6 L316.4,243.4 L321.6,244.2 L326.8,245.0 L332.0,245.8 L337.2,246.5 L342.4,247.2 L347.6,247.9 L352.8,248.5 L358.0,249.1 L363.2,249.7 L368.4,250.3 L373.6,250.8 L378.8,251.4 L384.0,251.9 L389.2,252.4 L394.4,252.9 L399.6,253.3 L404.8,253.8 L410.0,254.2 L415.2,254.6 L420.4,255.0 L425.6,255.3 L430.8,255.7 L436.0,256.1 L441.2,256.4 L446.4,256.7 L451.6,257.0 L456.8,257.3 L462.0,257.6" fill="none" stroke="#f87171" stroke-width="2.2"
-                stroke-linecap="round" stroke-dasharray="0" opacity=".85"/>
-          <line class="axis" x1="46" y1="280" x2="462" y2="280"/>
-          <line class="axis" x1="46" y1="22" x2="46" y2="280"/>
-          <g id="hRings"><circle class="hring" cx="186.2" cy="235.7" r="9.5"/><circle class="hring" cx="76.1" cy="168.8" r="9.5"/><circle class="hring" cx="109.2" cy="218.5" r="9.5"/><circle class="hring" cx="106.9" cy="198.5" r="9.5"/><circle class="hring" cx="84.6" cy="222.6" r="9.5"/><circle class="hring" cx="318.9" cy="266.0" r="9.5"/><circle class="hring" cx="126.3" cy="243.7" r="9.5"/><circle class="hring" cx="129.4" cy="216.6" r="9.5"/><circle class="hring" cx="81.9" cy="271.4" r="9.5"/><circle class="hring" cx="100.6" cy="185.4" r="9.5"/><circle class="hring" cx="198.5" cy="264.5" r="9.5"/></g>
-          <g id="hDots"><circle class="hdot left found" cx="186.2" cy="235.7" r="5" data-i="0"/>
-            <circle class="hdot left" cx="89.5" cy="144.8" r="5" data-i="1"/>
-            <circle class="hdot left found" cx="76.1" cy="168.8" r="5" data-i="2"/>
-            <circle class="hdot" cx="96.5" cy="171.0" r="5" data-i="3"/>
-            <circle class="hdot left found" cx="109.2" cy="218.5" r="5" data-i="4"/>
-            <circle class="hdot" cx="426.3" cy="134.9" r="5" data-i="5"/>
-            <circle class="hdot" cx="437.2" cy="260.4" r="5" data-i="6"/>
-            <circle class="hdot left found" cx="106.9" cy="198.5" r="5" data-i="7"/>
-            <circle class="hdot" cx="131.2" cy="133.8" r="5" data-i="8"/>
-            <circle class="hdot" cx="204.9" cy="141.8" r="5" data-i="9"/>
-            <circle class="hdot left found" cx="84.6" cy="222.6" r="5" data-i="10"/>
-            <circle class="hdot" cx="226.1" cy="197.0" r="5" data-i="11"/>
-            <circle class="hdot" cx="367.3" cy="106.1" r="5" data-i="12"/>
-            <circle class="hdot" cx="282.6" cy="147.1" r="5" data-i="13"/>
-            <circle class="hdot" cx="342.3" cy="203.2" r="5" data-i="14"/>
-            <circle class="hdot" cx="352.9" cy="235.5" r="5" data-i="15"/>
-            <circle class="hdot" cx="76.7" cy="113.4" r="5" data-i="16"/>
-            <circle class="hdot" cx="282.1" cy="64.4" r="5" data-i="17"/>
-            <circle class="hdot" cx="329.2" cy="130.8" r="5" data-i="18"/>
-            <circle class="hdot" cx="237.2" cy="72.7" r="5" data-i="19"/>
-            <circle class="hdot" cx="244.0" cy="114.2" r="5" data-i="20"/>
-            <circle class="hdot" cx="331.6" cy="118.3" r="5" data-i="21"/>
-            <circle class="hdot" cx="377.9" cy="204.1" r="5" data-i="22"/>
-            <circle class="hdot left found" cx="318.9" cy="266.0" r="5" data-i="23"/>
-            <circle class="hdot left found" cx="126.3" cy="243.7" r="5" data-i="24"/>
-            <circle class="hdot" cx="156.9" cy="178.9" r="5" data-i="25"/>
-            <circle class="hdot" cx="376.8" cy="67.1" r="5" data-i="26"/>
-            <circle class="hdot" cx="401.9" cy="44.8" r="5" data-i="27"/>
-            <circle class="hdot left found" cx="129.4" cy="216.6" r="5" data-i="28"/>
-            <circle class="hdot" cx="248.2" cy="132.1" r="5" data-i="29"/>
-            <circle class="hdot" cx="428.3" cy="108.0" r="5" data-i="30"/>
-            <circle class="hdot" cx="299.2" cy="111.4" r="5" data-i="31"/>
-            <circle class="hdot" cx="407.7" cy="86.9" r="5" data-i="32"/>
-            <circle class="hdot" cx="368.6" cy="178.5" r="5" data-i="33"/>
-            <circle class="hdot left" cx="101.4" cy="121.3" r="5" data-i="34"/>
-            <circle class="hdot left found" cx="81.9" cy="271.4" r="5" data-i="35"/>
-            <circle class="hdot left found" cx="100.6" cy="185.4" r="5" data-i="36"/>
-            <circle class="hdot" cx="398.0" cy="126.3" r="5" data-i="37"/>
-            <circle class="hdot" cx="240.9" cy="157.0" r="5" data-i="38"/>
-            <circle class="hdot" cx="163.5" cy="75.3" r="5" data-i="39"/>
-            <circle class="hdot" cx="70.4" cy="46.5" r="5" data-i="40"/>
-            <circle class="hdot" cx="438.1" cy="67.1" r="5" data-i="41"/>
-            <circle class="hdot" cx="125.9" cy="88.9" r="5" data-i="42"/>
-            <circle class="hdot" cx="346.4" cy="217.9" r="5" data-i="43"/>
-            <circle class="hdot left found" cx="198.5" cy="264.5" r="5" data-i="44"/>
-            <circle class="hdot" cx="169.1" cy="210.1" r="5" data-i="45"/></g>
-          <text x="254" y="308" class="axl" text-anchor="middle">logins_last_30d</text>
-          <text x="18" y="151" class="axl" text-anchor="middle" transform="rotate(-90 18 151)">media_sources_count</text>
-        </svg>
-        <div class="hcap"><span class="dotk left"></span>left last quarter
-          <span class="dotk stay"></span>stayed
-          <span class="hnow" id="hNow">13 of 46 accounts left — the model found 11 of them</span></div>
+      <div class="win"><i></i><i></i><i></i><svg class="lgo c" aria-hidden="true"><use href="#l-claude"/></svg><span>claude · churn-model</span><em>example</em></div>
+      <div class="term" id="term" role="img" aria-label="Claude Code builds a churn model: it reads the project rules, checks the data, beats the baseline, finds a leaking feature and writes the scoring script">
+        <div class="tl you"><span class="m">&gt;</span><span>Build the churn model. Follow CLAUDE.md.</span></div>
+        <div class="tl cl gap"><span class="m">●</span><span>Read CLAUDE.md · churn within <b>90 days</b> · split by time</span></div>
+        <div class="tl cl"><span class="m">●</span><span>Plan: check data → features → split → baseline → XGBoost</span></div>
+        <div class="tl ok gap"><span class="m">✓</span><span>Data check · 4,812 rows · <i>9%</i> churned</span></div>
+        <div class="tl ok"><span class="m">✓</span><span>Baseline (today’s rule) · top-10 hits · <b>4.5</b></span></div>
+        <div class="tl ok"><span class="m">✓</span><span>XGBoost · test AUC <b>0.96</b></span></div>
+        <div class="tl warn gap"><span class="m">!</span><span>Too good. <b>cancellation_reason</b> leaks the answer.</span></div>
+        <div class="tl cl"><span class="m">●</span><span>Removed it. Ran again.</span></div>
+        <div class="tl ok"><span class="m">✓</span><span>Real test AUC <b>0.74</b> · top-10 hits · <b>7</b></span></div>
+        <div class="tl ok"><span class="m">✓</span><span>Wrote <i>score.py</i> · no AI when it scores</span></div>
+        <div class="tl dim gap"><span class="m">&gt;</span><span><span class="cur"></span></span></div>
       </div>
     </div>
   </div>
 </header>
 
+<div class="bw"><div class="bw-in">
+  <span class="it"><svg class="lgo c md" aria-hidden="true"><use href="#l-claude"/></svg>Claude Code</span>
+  <span class="sep"></span>
+  <span class="it"><svg class="lgo a md" aria-hidden="true"><use href="#l-anthropic"/></svg>by Anthropic</span>
+</div></div>
+
+<!-- ══ 0 · OVERVIEW ══ -->
+<section id="overview">
+  <div class="sec">
+    <h2 data-rv>Two days of ML <span class="grad">with Claude.</span></h2>
+    <p class="ovp" data-rv><b>Day one:</b> how ML works, and how to make Claude do it. <b>Day two:</b> each analyst builds two models with Claude, on their own laptop.</p>
+    <div class="ovq">
+      <div class="oq" data-rv><div class="oqh"><span class="qm">?</span><span class="oqt">Why Claude?</span></div><p>Claude writes and runs the code. Your analysts focus on the decisions.</p></div>
+      <div class="oq" data-rv><div class="oqh"><span class="qm">?</span><span class="oqt">What do they build?</span></div><p>A churn model and a trial look-alike model, on data like yours.</p></div>
+      <div class="oq" data-rv><div class="oqh"><span class="qm">?</span><span class="oqt">What do they keep?</span></div><p>The skills, a CLAUDE.md file, the code, and a plan for their own question.</p></div>
+    </div>
+  </div>
+</section>
+
 <div class="bridge"><span class="stem"></span>
-  <div class="bq"><span class="qm">?</span><q>We already ran an AI workshop here. What is new in this one?</q></div>
+  <div class="bq"><span class="qm">?</span><q>What is different about ML with Claude?</q></div>
 <span class="stem b"></span></div>
 
 <!-- ══ 1 · WHY ══ -->
 <section id="why">
   <div class="sec">
-    <div class="eyebrow" data-rv>What changed</div>
-    <h2 data-rv>Last time they queried the past. This time they <span class="grad">predict what happens next.</span></h2>
-    <p class="sub" data-rv>The last workshop got business users to their own answers. This one takes the analysts a level up — <b>from querying what happened to predicting what will</b>.</p>
+    <details class="secx"><summary><h2 data-rv>Claude writes the code. <span class="grad">The model makes the predictions.</span></h2><span class="sx" aria-hidden="true"></span></summary>
+    <div class="secb">
 
     <div class="ptog" role="group" aria-label="Highlight one kind of AI" data-rv>
-      <button type="button" data-own="gen" aria-pressed="false"><svg class="icn sm"><use href="#i-spark"/></svg>Generative AI</button>
-      <button type="button" data-own="classic" aria-pressed="false"><svg class="icn sm"><use href="#i-cpu"/></svg>Classic AI</button>
-      <span class="hint">select one to see what it owns</span>
+      <button type="button" data-own="gen" aria-pressed="false"><svg class="lgo c" aria-hidden="true"><use href="#l-claude"/></svg>Claude</button>
+      <button type="button" data-own="classic" aria-pressed="false"><svg class="icn sm"><use href="#i-cpu"/></svg>Classic ML</button>
     </div>
 
     <div class="pipe" id="pipe" data-rv>
       <div class="pnode" data-own="human">
         <div class="hd"><svg class="icn"><use href="#i-doc"/></svg><b>Your analyst</b></div>
-        <h4>Writes the plan</h4><p>The question, the label, the columns that are fair to use.</p>
+        <h4>Decides</h4><p>The question, the rules, and if the result is right.</p>
       </div>
       <svg class="icn parrow"><use href="#i-arrow"/></svg>
       <div class="pnode" data-own="gen">
-        <div class="hd"><svg class="icn"><use href="#i-spark"/></svg><b>Generative AI</b></div>
-        <h4>Writes the code</h4><p>Turns the plan into pandas and scikit-learn in an afternoon.</p>
+        <div class="hd"><svg class="lgo c md" aria-hidden="true"><use href="#l-claude"/></svg><b>Claude</b></div>
+        <h4>Writes and runs the code</h4><p>Using the workshop skills.</p>
       </div>
       <svg class="icn parrow"><use href="#i-arrow"/></svg>
       <div class="pnode" data-own="classic">
-        <div class="hd"><svg class="icn"><use href="#i-code"/></svg><b>A .py file</b></div>
-        <h4>Learns from history</h4><p>Deterministic, versioned, yours to keep.</p>
+        <div class="hd"><svg class="icn"><use href="#i-code"/></svg><b>A .py model</b></div>
+        <h4>Learns from history</h4><p>Same answer every run.</p>
       </div>
       <svg class="icn parrow"><use href="#i-arrow"/></svg>
       <div class="pnode" data-own="classic">
-        <div class="hd"><svg class="icn"><use href="#i-gauge"/></svg><b>Every month</b></div>
-        <h4>Scores every account</h4><p>A ranked list your team can act on.</p>
+        <div class="hd"><svg class="icn"><use href="#i-gauge"/></svg><b>Every week</b></div>
+        <h4>Scores every account</h4><p>A ranked list for your team.</p>
       </div>
     </div>
+    </div></details>
   </div>
 </section>
 
 <div class="bridge"><span class="stem"></span>
-  <div class="bq"><span class="qm">?</span><q>What will each of them be able to do on the Monday after?</q></div>
+  <div class="bq"><span class="qm">?</span><q>How do they learn it in two days?</q></div>
 <span class="stem b"></span></div>
 
-<!-- ══ 2 · PATH ══ -->
-<section id="path">
+<!-- ══ 2 · DAYS ══ -->
+<section id="days">
   <div class="sec">
-    <div class="eyebrow" data-rv>The method, across both days</div>
-    <h2 data-rv>Answer “which customers will leave next quarter?” <span class="grad">with data, not a hunch.</span></h2>
-    <p class="sub" data-rv>Eight steps, the same every time. Five are where <b>their product knowledge decides the outcome</b>; two are where the AI does the work. Watch one get built.</p>
+    <details class="secx"><summary><h2 data-rv>Day one: learn. <span class="grad">Day two: build.</span></h2><span class="sx" aria-hidden="true"></span></summary>
+    <div class="secb">
 
-    <div class="rail" data-rv>
-      <div class="stepper" id="steps">
-        <div class="strack"><i id="strackFill"></i></div>
-        <button class="sn" type="button" data-i="0" aria-label="Step 1, Question"><span class="sd">1</span><span class="sl">Question</span></button>
-        <button class="sn" type="button" data-i="1" aria-label="Step 2, Label"><span class="sd">2</span><span class="sl">Label</span></button>
-        <button class="sn" type="button" data-i="2" aria-label="Step 3, Features"><span class="sd">3</span><span class="sl">Features</span></button>
-        <button class="sn" type="button" data-i="3" aria-label="Step 4, Split"><span class="sd">4</span><span class="sl">Split</span></button>
-        <button class="sn" type="button" data-i="4" aria-label="Step 5, Baseline"><span class="sd">5</span><span class="sl">Baseline</span></button>
-        <button class="sn ai" type="button" data-i="5" aria-label="Step 6, Model"><span class="sd">6</span><span class="sl">Model</span></button>
-        <button class="sn ai" type="button" data-i="6" aria-label="Step 7, Score"><span class="sd">7</span><span class="sl">Score</span></button>
-        <button class="sn" type="button" data-i="7" aria-label="Step 8, Decision"><span class="sd">8</span><span class="sl">Decision</span></button>
+    <div class="wf" data-rv>
+      <div class="wf-tabs" role="tablist">
+        <button role="tab" aria-selected="true" data-tab="d1"><svg class="icn sm"><use href="#i-users"/></svg>Day one · learn</button>
+        <button role="tab" aria-selected="false" data-tab="d2"><svg class="lgo c" aria-hidden="true"><use href="#l-claude"/></svg>Day two · build</button>
       </div>
-      <div class="scount"><b id="sNum">Step 1 of 8</b><span id="sWho">your analyst decides</span></div>
-      <div class="wstage" id="wstage">
-          <div class="wsl on" data-s="0"><h5>The question comes first</h5><p>A model with no decision behind it is a chart nobody opens.</p><div class="wviz"><div class="qcard"><span>“Which 20 anti-fraud accounts should the CSM call on Monday?”</span><div class="qarrow"><svg class="icn sm"><use href="#i-arrow"/></svg>one decision, one owner, every week</div></div></div></div>
-          <div class="wsl" data-s="1"><h5>“Churn” becomes a column</h5><p>It has to be something you could compute for every account.</p><div class="wviz"><div class="wcode">churned = active_days_in_quarter &lt; 3</div><table class="wtab"><tr><th>account</th><th>active_days</th><th>churned</th></tr><tr><td>acct_4471</td><td>1</td><td class="one">1</td></tr><tr><td>acct_1180</td><td>18</td><td class="zero">0</td></tr><tr><td>acct_9022</td><td>2</td><td class="one">1</td></tr></table></div></div>
-          <div class="wsl" data-s="2"><h5>One row per account</h5><p>Product knowledge does the work here — which columns actually say something.</p><div class="wviz"><table class="wtab wide"><tr><th>account</th><th>logins_30d</th><th>media_src</th><th>tickets</th><th>churned</th></tr><tr><td>acct_4471</td><td>2</td><td>1</td><td>3</td><td class="one">1</td></tr><tr><td>acct_1180</td><td>34</td><td>7</td><td>0</td><td class="zero">0</td></tr><tr><td>acct_9022</td><td>5</td><td>2</td><td>1</td><td class="one">1</td></tr></table><div class="wnote">every column as it stood on <b>1 January</b> — nothing after it</div></div></div>
-          <div class="wsl" data-s="3"><h5>Split by time, never at random</h5><p>A random split quietly lets the model read next quarter.</p><div class="wviz"><div class="tl"><div class="tlseg train">Q1</div><div class="tlseg train">Q2</div><div class="tlseg train">Q3</div><div class="tlseg test">Q4</div></div><div class="tlkey"><span><i class="train"></i>train — what it learns from</span><span><i class="test"></i>test — what it has never seen</span></div></div></div>
-          <div class="wsl" data-s="4"><h5>The number to beat</h5><p>Without a baseline, any result looks like a result.</p><div class="wviz"><div class="bbar"><div class="bbrow"><span>Today’s CSM rule</span><span class="bbt"><i style="width:45%"></i></span><b>0.45</b></div><div class="bbrow ghost"><span>Anything below this</span><span class="bbt"><i style="width:45%;opacity:.25"></i></span><b>not worth shipping</b></div></div></div></div>
-          <div class="wsl" data-s="5"><h5>The agent writes the estimator</h5><p>The part everyone expects to be hard is the part you delegate.</p><div class="wviz"><div class="wcode">HistGradientBoostingClassifier(max_depth=4).fit(X_train, y_train)</div><div class="cands"><div class="cand"><span>logistic regression</span><b>55%</b></div><div class="cand"><span>random forest</span><b>62%</b></div><div class="cand win"><span>gradient boosting</span><b>70%</b></div></div></div></div>
-          <div class="wsl" data-s="6"><h5>Was it better than the old rule?</h5><p>Three plain numbers, all from the ten accounts you would actually have called.</p><div class="wviz"><div class="mchips"><div class="mchip"><span>calls that hit</span><b>70%</b></div><div class="mchip"><span>leavers caught</span><b>78%</b></div><div class="mchip"><span>wasted calls</span><b>3</b></div></div><div class="wnote">call fewer and more calls land; call more and fewer leavers slip through</div></div></div>
-          <div class="wsl" data-s="7"><h5>It has to reach somebody</h5><p>The last step is the first one again.</p><div class="wviz"><div class="wlist"><div class="wl"><span>01</span><span>acct_4471</span><b>0.94</b></div><div class="wl"><span>02</span><span>acct_1180</span><b>0.91</b></div><div class="wl"><span>03</span><span>acct_9022</span><b>0.88</b></div></div><div class="wnote"><b>churn_scores.csv</b> → the CSM’s Monday view</div></div></div>
+
+      <div class="stage" id="d1">
+        <div class="dsum"><div><h4>Mon 26 Oct · 09:30–14:30</h4><p>The instructor builds live. You follow on your laptop.</p></div>
+          <button type="button" class="xall" data-scope="#days">Show all questions</button></div>
+        <div class="cols"><div><div class="phead"><svg class="icn sm"><use href="#i-plot"/></svg>Part 1 · ML basics, built live with Claude</div><div class="chain"><details class="slot"><summary><span class="t">09:30–09:45</span><span class="b"><h4>Claude builds any ML problem you define</h4></span><span class="chev2" aria-hidden="true"></span></summary><div class="q"><span class="qm">?</span><span>Which algorithm should Claude use?</span></div></details>
+<details class="slot"><summary><span class="t">09:45–10:15</span><span class="b"><h4>You choose the algorithm, Claude runs it</h4></span><span class="chev2" aria-hidden="true"></span></summary><div class="q"><span class="qm">?</span><span>Why does one algorithm keep winning?</span></div></details>
+<details class="slot"><summary><span class="t">10:15–10:30</span><span class="b"><h4>XGBoost works best on business data</h4></span><span class="chev2" aria-hidden="true"></span></summary><div class="q"><span class="qm">?</span><span>Should Claude ever use deep learning?</span></div></details>
+<div class="slot brk"><div class="t">10:30–10:45</div><div class="b"><h4>Break · 15 min</h4></div></div>
+<details class="slot"><summary><span class="t">10:45–11:00</span><span class="b"><h4>Deep learning is rarely worth it here</h4></span><span class="chev2" aria-hidden="true"></span></summary><div class="q"><span class="qm">?</span><span>So what makes Claude’s model good?</span></div></details>
+<details class="slot"><summary><span class="t">11:00–11:30</span><span class="b"><h4>Clean data and honest testing make it good</h4></span><span class="chev2" aria-hidden="true"></span></summary><div class="q"><span class="qm">?</span><span>What if it fails on new customers?</span></div></details>
+<details class="slot"><summary><span class="t">11:30–12:00</span><span class="b"><h4>Make Claude show train and test scores</h4></span><span class="chev2" aria-hidden="true"></span></summary><div class="q"><span class="qm">?</span><span>How do we set up Claude correctly?</span></div></details></div></div><div><div class="phead"><svg class="lgo c" aria-hidden="true"><use href="#l-claude"/></svg>Part 2 · Working with Claude</div><div class="chain"><div class="slot brk"><div class="t">12:00–12:15</div><div class="b"><h4>Break · 15 min</h4></div></div>
+<details class="slot cl"><summary><span class="t">12:15–12:35</span><span class="b"><h4>Claude writes code, you decide, <code>CLAUDE.md</code> keeps rules</h4></span><span class="chev2" aria-hidden="true"></span></summary><div class="q"><span class="qm">?</span><span>How does Claude follow the process every time?</span></div></details>
+<details class="slot cl"><summary><span class="t">12:35–13:00</span><span class="b"><h4>Skills make Claude follow the process every time</h4></span><span class="chev2" aria-hidden="true"></span></summary><div class="q"><span class="qm">?</span><span>What does a full build look like?</span></div></details>
+<details class="slot cl"><summary><span class="t">13:00–13:30</span><span class="b"><h4>Claude builds the churn model on your laptop</h4></span><span class="chev2" aria-hidden="true"></span></summary><div class="q"><span class="qm">?</span><span>How do we know it is not wrong?</span></div></details>
+<details class="slot cl"><summary><span class="t">13:30–14:00</span><span class="b"><h4>A short checklist catches Claude’s mistakes</h4></span><span class="chev2" aria-hidden="true"></span></summary><div class="q"><span class="qm">?</span><span>How does it all fit together?</span></div></details>
+<details class="slot cl"><summary><span class="t">14:00–14:30</span><span class="b"><h4>One workflow with Claude you can repeat</h4></span><span class="chev2" aria-hidden="true"></span></summary><div class="q"><span class="qm">?</span><span>Can you do it yourself?</span></div></details></div></div></div>
       </div>
-      <div class="legend">
-        <span class="y"><i></i>Steps 1–5 and 8 · your analysts decide</span>
-        <span class="a"><i></i>Steps 6–7 · AI does the work</span>
-        <span class="hint" id="wHint">walking through…</span>
+
+      <div class="stage" id="d2" hidden>
+        <div class="dsum"><div><h4>Wed 4 Nov · 09:30–14:30</h4><p>You build on your laptop. The instructor helps.</p></div>
+          <button type="button" class="xall" data-scope="#days">Show all questions</button></div>
+        <div class="cols"><div><div class="phead"><svg class="lgo c" aria-hidden="true"><use href="#l-claude"/></svg>Churn, step by step</div><div class="chain"><details class="slot cl"><summary><span class="t">09:30–09:50</span><span class="b"><h4>You do it yourself: setup and data</h4></span><span class="chev2" aria-hidden="true"></span></summary><div class="q"><span class="qm">?</span><span>Start with the data or the question?</span></div></details>
+<details class="slot cl"><summary><span class="t">09:50–10:50</span><span class="b"><h4>Start with the question. Claude builds a baseline</h4></span><span class="chev2" aria-hidden="true"></span></summary><div class="q"><span class="qm">?</span><span>Can Claude beat the baseline honestly?</span></div></details>
+<div class="slot brk"><div class="t">10:50–11:05</div><div class="b"><h4>Break · 15 min</h4></div></div>
+<details class="slot cl"><summary><span class="t">11:05–12:00</span><span class="b"><h4>Yes, after checking for overfitting and leaks</h4></span><span class="chev2" aria-hidden="true"></span></summary><div class="q"><span class="qm">?</span><span>Can you do it with less help?</span></div></details></div></div><div><div class="phead"><svg class="lgo c" aria-hidden="true"><use href="#l-claude"/></svg>Look-alikes, then your own case</div><div class="chain"><details class="slot cl"><summary><span class="t">12:00–13:15</span><span class="b"><h4>You lead Claude through look-alikes, with less help</h4></span><span class="chev2" aria-hidden="true"></span></summary><div class="q"><span class="qm">?</span><span>Whose model would you use?</span></div></details>
+<div class="slot brk"><div class="t">13:15–13:30</div><div class="b"><h4>Break · 15 min</h4></div></div>
+<details class="slot cl"><summary><span class="t">13:30–14:00</span><span class="b"><h4>Use the model that passes the team review</h4></span><span class="chev2" aria-hidden="true"></span></summary><div class="q"><span class="qm">?</span><span>How do I use this in my work?</span></div></details>
+<details class="slot cl"><summary><span class="t">14:00–14:30</span><span class="b"><h4>Your question: a plan, three prompts, a data check</h4></span><span class="chev2" aria-hidden="true"></span></summary><div class="q"><span class="qm">?</span><span>What happens after the workshop?</span></div></details><div class="slot end"><div class="t">After</div><div class="b"><h4>A working model, built with Claude, in 2–3 months</h4></div></div></div></div></div>
       </div>
+
+      <div class="between"><svg class="icn lg"><use href="#i-cpu"/></svg>
+        <p><b>Before day one:</b> Claude Code ready on every laptop. We send a setup script.</p></div>
     </div>
+
+    <div class="dnote" data-rv><svg class="icn lg"><use href="#i-db"/></svg>
+      <p><b>The data.</b> Prepared data that looks like yours, with no real customers and planted mistakes to find.</p></div>
+    </div></details>
   </div>
 </section>
 
 <div class="bridge"><span class="stem"></span>
-  <div class="bq"><span class="qm">?</span><q>That is the method. What do they actually build with it?</q></div>
+  <div class="bq"><span class="qm">?</span><q>What does each part cover?</q></div>
+<span class="stem b"></span></div>
+
+<!-- ══ 2b · SYLLABUS ══ -->
+<section id="syllabus">
+  <div class="sec">
+    <details class="secx"><summary><h2 data-rv>What each part <span class="grad">covers.</span></h2><span class="sx" aria-hidden="true"></span></summary>
+    <div class="secb">
+    <div class="syl" data-rv>
+      <div class="sday">
+        <div class="sdh"><b>Day one</b><span>Mon 26 Oct</span><button type="button" class="xall" data-scope="#sd1">Open all</button></div>
+        <div id="sd1">
+          <div class="spart"><svg class="icn sm"><use href="#i-plot"/></svg>Part 1 · ML basics</div>
+          <div class="mods"><details class="mod"><summary><span class="mn">1.1</span><b>Types of ML problems</b><span class="md">15 min</span><span class="chev2" aria-hidden="true"></span></summary><ul><li>Classification and regression</li><li>Supervised and unsupervised</li><li>Our two cases: classification</li></ul></details><details class="mod"><summary><span class="mn">1.2</span><b>The main algorithms</b><span class="md">30 min</span><span class="chev2" aria-hidden="true"></span></summary><ul><li>Linear and logistic regression</li><li>Decision trees, random forest</li><li>Gradient boosting</li><li>All tested on churn data</li></ul></details><details class="mod"><summary><span class="mn">1.3</span><b>Why XGBoost wins</b><span class="md">15 min</span><span class="chev2" aria-hidden="true"></span></summary><ul><li>Handles messy data well</li><li>Finds patterns by itself</li><li>When simple models are better</li></ul></details><details class="mod"><summary><span class="mn">1.4</span><b>Deep learning</b><span class="md">15 min</span><span class="chev2" aria-hidden="true"></span></summary><ul><li>Best for images, text, big data</li><li>Costly and hard to explain</li><li>Why not for business data</li></ul></details><details class="mod"><summary><span class="mn">1.5</span><b>Testing a model honestly</b><span class="md">30 min</span><span class="chev2" aria-hidden="true"></span></summary><ul><li>Data quality checks</li><li>Split by time</li><li>Leakage</li><li>AUC, precision@K, baseline</li></ul></details><details class="mod"><summary><span class="mn">1.6</span><b>Overfitting</b><span class="md">30 min</span><span class="chev2" aria-hidden="true"></span></summary><ul><li>Train vs test scores</li><li>Cross-validation</li><li>Ways to prevent it</li></ul></details></div>
+          <div class="spart"><svg class="lgo c" aria-hidden="true"><use href="#l-claude"/></svg>Part 2 · Working with Claude</div>
+          <div class="mods"><details class="mod"><summary><span class="mn">1.7</span><b>Claude as the builder</b><span class="md">20 min</span><span class="chev2" aria-hidden="true"></span></summary><ul><li>Claude writes, the model predicts</li><li>No AI when it scores</li><li>Rules in CLAUDE.md</li></ul></details><details class="mod"><summary><span class="mn">1.8</span><b>Workshop skills</b><span class="md">25 min</span><span class="chev2" aria-hidden="true"></span></summary><ul><li>What a skill is</li><li>The skills we prepared</li><li>How to run one</li></ul></details><details class="mod"><summary><span class="mn">1.9</span><b>Churn, built with Claude</b><span class="md">30 min</span><span class="chev2" aria-hidden="true"></span></summary><ul><li>Same problem, now with Claude</li><li>You run it on your laptop</li></ul></details><details class="mod"><summary><span class="mn">1.10</span><b>Catching Claude’s mistakes</b><span class="md">30 min</span><span class="chev2" aria-hidden="true"></span></summary><ul><li>Results that are too good</li><li>Leaks in the top features</li><li>Row counts, re-running</li></ul></details><details class="mod"><summary><span class="mn">1.11</span><b>Wrap-up</b><span class="md">30 min</span><span class="chev2" aria-hidden="true"></span></summary><ul><li>The full workflow</li><li>Laptop check for day two</li></ul></details></div>
+        </div>
+      </div>
+      <div class="sday">
+        <div class="sdh"><b>Day two</b><span>Wed 4 Nov</span><button type="button" class="xall" data-scope="#sd2">Open all</button></div>
+        <div id="sd2">
+          <div class="spart"><svg class="lgo c" aria-hidden="true"><use href="#l-claude"/></svg>Churn, step by step</div>
+          <div class="mods"><details class="mod"><summary><span class="mn">2.1</span><b>Start</b><span class="md">20 min</span><span class="chev2" aria-hidden="true"></span></summary><ul><li>Laptop check</li><li>The two datasets</li></ul></details><details class="mod"><summary><span class="mn">2.2</span><b>Churn: question to baseline</b><span class="md">60 min</span><span class="chev2" aria-hidden="true"></span></summary><ul><li>The plan in CLAUDE.md</li><li>Data check, go or no-go</li><li>Features, split by time</li><li>Today’s rule as baseline</li></ul></details><details class="mod"><summary><span class="mn">2.3</span><b>Churn: beat the baseline</b><span class="md">55 min</span><span class="chev2" aria-hidden="true"></span></summary><ul><li>Logistic regression, XGBoost</li><li>Overfitting check</li><li>Find the planted leak</li><li>A ranked list for CSMs</li></ul></details></div>
+          <div class="spart"><svg class="lgo c" aria-hidden="true"><use href="#l-claude"/></svg>Look-alikes, then your own case</div>
+          <div class="mods"><details class="mod"><summary><span class="mn">2.4</span><b>Look-alikes, with less help</b><span class="md">75 min</span><span class="chev2" aria-hidden="true"></span></summary><ul><li>Choose a framing</li><li>Full workflow with skills</li><li>A ranked list for trials</li></ul></details><details class="mod"><summary><span class="mn">2.5</span><b>Team review</b><span class="md">30 min</span><span class="chev2" aria-hidden="true"></span></summary><ul><li>Each team shows its model</li><li>Others look for problems</li></ul></details><details class="mod"><summary><span class="mn">2.6</span><b>Your own question</b><span class="md">30 min</span><span class="chev2" aria-hidden="true"></span></summary><ul><li>A one-page plan</li><li>First three prompts</li><li>First data check</li></ul></details></div>
+        </div>
+      </div>
+    </div>
+    </div></details>
+  </div>
+</section>
+
+<div class="bridge"><span class="stem"></span>
+  <div class="bq"><span class="qm">?</span><q>What do they build on day two?</q></div>
 <span class="stem b"></span></div>
 
 <!-- ══ 3 · MODELS ══ -->
 <section id="models">
   <div class="sec">
-    <div class="eyebrow" data-rv>Two models · both built in the workshop</div>
-    <h2 data-rv>Two models: <span class="grad">who is about to leave, and how much revenue is coming.</span></h2>
-    <p class="sub" data-rv>Both charts below are live — move the controls. <b>Each model can be judged two ways, and the two ways disagree</b>, which is exactly the call an analyst has to make.</p>
+    <details class="secx"><summary><h2 data-rv>Who may churn, <span class="grad">and who should get a trial.</span></h2><span class="sx" aria-hidden="true"></span></summary>
+    <div class="secb">
 
-    <!-- classification -->
+    <!-- churn -->
     <div class="panel" data-rv>
       <div class="ptitle">
         <svg class="icn lg"><use href="#i-layers"/></svg>
-        <b>Classification — who is likely to leave</b>
+        <b>Churn: who may leave in the next 90 days</b>
         <span class="tag"><svg class="icn sm"><use href="#i-db"/></svg>illustrative · 20 synthetic accounts</span>
       </div>
       <div class="clf">
@@ -824,84 +892,82 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
         <div class="mt live"><span class="k">Calls that hit</span><b id="kPrec">70%</b><em id="kPrecE">7 of the 10 you called were really leaving</em></div>
         <div class="mt live"><span class="k">Leavers caught</span><b id="kRec">78%</b><em id="kRecE">7 of the 9 who left were on your list</em></div>
         <p class="note"><svg class="icn sm"><use href="#i-search"/></svg>
-          <span><b>Drag the slider.</b> Call fewer accounts and more of your calls land — but more leavers slip through. Call more and you catch nearly everyone, at the cost of wasted calls. <b>There is no setting that wins both</b>, and picking the trade-off is a business decision, not a technical one.</span></p>
+          <span>Fewer calls: more of them hit, but you miss leavers. More calls: you catch more leavers, but waste calls. <b>Choosing the balance is a business decision.</b></span></p>
       </div>
     </div>
 
-    <!-- regression -->
+
+    <!-- look-alikes -->
     <div class="panel" data-rv>
       <div class="ptitle">
-        <svg class="icn lg"><use href="#i-chart"/></svg>
-        <b>Regression — where next quarter's ARR lands</b>
-        <span class="tag"><svg class="icn sm"><use href="#i-db"/></svg>illustrative · 12 synthetic accounts</span>
+        <svg class="icn lg"><use href="#i-users"/></svg>
+        <b>Look-alikes: who should get the next trial</b>
+        <span class="tag"><svg class="icn sm"><use href="#i-db"/></svg>example · 60 accounts</span>
       </div>
-      <div class="reg">
-        <div class="plot">
-          <div class="cap" id="regCap">Predicted vs actual · the diagonal is a perfect forecast</div>
-          <svg viewBox="0 0 680 380" role="img" aria-label="Predicted versus actual ARR per account against the perfect-forecast diagonal">
-            <line x1="60" y1="30" x2="60" y2="320" class="axis"/>
-            <line x1="60" y1="320" x2="650" y2="320" class="axis"/>
-            <line x1="60.0" y1="320" x2="60.0" y2="325" class="axis"/><text x="60.0" y="340" class="axl" text-anchor="middle">0</text><line x1="223.9" y1="320" x2="223.9" y2="325" class="axis"/><text x="223.9" y="340" class="axl" text-anchor="middle">200</text><line x1="387.8" y1="320" x2="387.8" y2="325" class="axis"/><text x="387.8" y="340" class="axl" text-anchor="middle">400</text><line x1="551.7" y1="320" x2="551.7" y2="325" class="axis"/><text x="551.7" y="340" class="axl" text-anchor="middle">600</text>
-            <line id="regDiag" x1="109.2" y1="295.8" x2="650.0" y2="30.0"
-                  stroke="rgba(148,163,184,.45)" stroke-width="1.4" stroke-dasharray="5 5" style="transition:opacity .3s"/>
-            <line id="regZero" x1="60" y1="175.0" x2="650" y2="175.0" stroke="rgba(148,163,184,.45)"
-                  stroke-width="1.4" stroke-dasharray="5 5" style="opacity:0;transition:opacity .3s"/>
-            <line class="whisk" x1="404.2" y1="126.7" x2="404.2" y2="150.8" stroke="rgba(148,163,184,.38)" stroke-width="1.2"/>
-            <line class="whisk" x1="314.0" y1="219.3" x2="314.0" y2="195.1" stroke="rgba(148,163,184,.38)" stroke-width="1.2"/>
-            <line class="whisk" x1="273.1" y1="199.2" x2="273.1" y2="215.3" stroke="rgba(148,163,184,.38)" stroke-width="1.2"/>
-            <line class="whisk" x1="215.7" y1="259.6" x2="215.7" y2="243.5" stroke="rgba(148,163,184,.38)" stroke-width="1.2"/>
-            <line class="whisk" x1="584.4" y1="38.1" x2="584.4" y2="62.2" stroke="rgba(148,163,184,.38)" stroke-width="1.2"/>
-            <line class="whisk" x1="486.1" y1="130.7" x2="486.1" y2="110.6" stroke="rgba(148,163,184,.38)" stroke-width="1.2"/>
-            <line class="whisk" x1="182.9" y1="245.5" x2="182.9" y2="259.6" stroke="rgba(148,163,184,.38)" stroke-width="1.2"/>
-            <line class="whisk" x1="305.8" y1="213.3" x2="305.8" y2="199.2" stroke="rgba(148,163,184,.38)" stroke-width="1.2"/>
-            <line class="whisk" x1="232.1" y1="219.3" x2="232.1" y2="235.4" stroke="rgba(148,163,184,.38)" stroke-width="1.2"/>
-            <line class="whisk" x1="453.3" y1="144.8" x2="453.3" y2="126.7" stroke="rgba(148,163,184,.38)" stroke-width="1.2"/>
-            <line class="whisk" x1="166.5" y1="255.6" x2="166.5" y2="267.6" stroke="rgba(148,163,184,.38)" stroke-width="1.2"/>
-            <line class="whisk" x1="379.6" y1="160.9" x2="379.6" y2="162.9" stroke="rgba(148,163,184,.38)" stroke-width="1.2"/>
-            <circle class="dot" r="6" cx="404.2" cy="126.7" data-x1="404.2" data-y1="126.7" data-x2="404.2" data-y2="55.0" fill="#22d3ee" fill-opacity=".88"><title>actual 420K · forecast 480K · +60K</title></circle>
-            <circle class="dot" r="6" cx="314.0" cy="219.3" data-x1="314.0" data-y1="219.3" data-x2="314.0" data-y2="295.0" fill="#818cf8" fill-opacity=".88"><title>actual 310K · forecast 250K · -60K</title></circle>
-            <circle class="dot" r="6" cx="273.1" cy="199.2" data-x1="273.1" data-y1="199.2" data-x2="273.1" data-y2="95.0" fill="#22d3ee" fill-opacity=".88"><title>actual 260K · forecast 300K · +40K</title></circle>
-            <circle class="dot" r="6" cx="215.7" cy="259.6" data-x1="215.7" data-y1="259.6" data-x2="215.7" data-y2="255.0" fill="#818cf8" fill-opacity=".88"><title>actual 190K · forecast 150K · -40K</title></circle>
-            <circle class="dot" r="6" cx="584.4" cy="38.1" data-x1="584.4" data-y1="38.1" data-x2="584.4" data-y2="55.0" fill="#22d3ee" fill-opacity=".88"><title>actual 640K · forecast 700K · +60K</title></circle>
-            <circle class="dot" r="6" cx="486.1" cy="130.7" data-x1="486.1" data-y1="130.7" data-x2="486.1" data-y2="275.0" fill="#818cf8" fill-opacity=".88"><title>actual 520K · forecast 470K · -50K</title></circle>
-            <circle class="dot" r="6" cx="182.9" cy="245.5" data-x1="182.9" data-y1="245.5" data-x2="182.9" data-y2="105.0" fill="#22d3ee" fill-opacity=".88"><title>actual 150K · forecast 185K · +35K</title></circle>
-            <circle class="dot" r="6" cx="305.8" cy="213.3" data-x1="305.8" data-y1="213.3" data-x2="305.8" data-y2="245.0" fill="#818cf8" fill-opacity=".88"><title>actual 300K · forecast 265K · -35K</title></circle>
-            <circle class="dot" r="6" cx="232.1" cy="219.3" data-x1="232.1" data-y1="219.3" data-x2="232.1" data-y2="95.0" fill="#22d3ee" fill-opacity=".88"><title>actual 210K · forecast 250K · +40K</title></circle>
-            <circle class="dot" r="6" cx="453.3" cy="144.8" data-x1="453.3" data-y1="144.8" data-x2="453.3" data-y2="265.0" fill="#818cf8" fill-opacity=".88"><title>actual 480K · forecast 435K · -45K</title></circle>
-            <circle class="dot" r="6" cx="166.5" cy="255.6" data-x1="166.5" data-y1="255.6" data-x2="166.5" data-y2="115.0" fill="#22d3ee" fill-opacity=".88"><title>actual 130K · forecast 160K · +30K</title></circle>
-            <circle class="dot" r="6" cx="379.6" cy="160.9" data-x1="379.6" data-y1="160.9" data-x2="379.6" data-y2="165.0" fill="#22d3ee" fill-opacity=".88"><title>actual 390K · forecast 395K · +5K</title></circle>
-            <text x="355" y="365" class="axl" text-anchor="middle">actual ARR next quarter ($K)</text>
-            <text x="22" y="175" class="axl" text-anchor="middle" transform="rotate(-90 22 175)">forecast / error ($K)</text>
-          </svg>
-        </div>
-        <div class="regside">
-          <div class="awtog" role="group" aria-label="How to score the same forecast">
-            <button type="button" data-view="scatter" aria-pressed="true">Predicted vs actual</button>
-            <button type="button" data-view="resid" aria-pressed="false">Residuals</button>
+      <div class="lk">
+        <div>
+          <div class="awtog" role="group" aria-label="Choose how to frame the question">
+            <button type="button" data-frame="trial" aria-pressed="true">Trial accounts only</button>
+            <button type="button" data-frame="all" aria-pressed="false">All accounts</button>
           </div>
+          <div class="lkgrid" id="lkgrid" style="margin-top:12px"><span class="lkd tgt" data-t="0" data-c="0" data-o="0"></span><span class="lkd neg" data-t="1" data-c="0" data-o="0"></span><span class="lkd tgt" data-t="0" data-c="0" data-o="0"></span><span class="lkd tgt" data-t="0" data-c="0" data-o="0"></span><span class="lkd pos" data-t="1" data-c="1" data-o="0"></span><span class="lkd tgt" data-t="0" data-c="0" data-o="0"></span><span class="lkd tgt" data-t="0" data-c="0" data-o="0"></span><span class="lkd neg" data-t="1" data-c="0" data-o="0"></span><span class="lkd tgt" data-t="0" data-c="0" data-o="0"></span><span class="lkd pos" data-t="1" data-c="1" data-o="0"></span><span class="lkd tgt" data-t="0" data-c="0" data-o="0"></span><span class="lkd tgt" data-t="0" data-c="0" data-o="1"></span><span class="lkd tgt" data-t="0" data-c="0" data-o="0"></span><span class="lkd neg" data-t="1" data-c="0" data-o="0"></span><span class="lkd tgt" data-t="0" data-c="0" data-o="0"></span><span class="lkd tgt" data-t="0" data-c="0" data-o="0"></span><span class="lkd pos" data-t="1" data-c="1" data-o="0"></span><span class="lkd tgt" data-t="0" data-c="0" data-o="0"></span><span class="lkd tgt" data-t="0" data-c="0" data-o="0"></span><span class="lkd tgt" data-t="0" data-c="0" data-o="0"></span><span class="lkd neg" data-t="1" data-c="0" data-o="0"></span><span class="lkd tgt" data-t="0" data-c="0" data-o="0"></span><span class="lkd pos" data-t="1" data-c="1" data-o="0"></span><span class="lkd tgt" data-t="0" data-c="0" data-o="0"></span><span class="lkd tgt" data-t="0" data-c="0" data-o="0"></span><span class="lkd tgt" data-t="0" data-c="0" data-o="1"></span><span class="lkd tgt" data-t="0" data-c="0" data-o="0"></span><span class="lkd neg" data-t="1" data-c="0" data-o="0"></span><span class="lkd tgt" data-t="0" data-c="0" data-o="0"></span><span class="lkd tgt" data-t="0" data-c="0" data-o="0"></span><span class="lkd neg" data-t="1" data-c="0" data-o="0"></span><span class="lkd tgt" data-t="0" data-c="0" data-o="0"></span><span class="lkd tgt" data-t="0" data-c="0" data-o="0"></span><span class="lkd pos" data-t="1" data-c="1" data-o="0"></span><span class="lkd tgt" data-t="0" data-c="0" data-o="0"></span><span class="lkd tgt" data-t="0" data-c="0" data-o="0"></span><span class="lkd tgt" data-t="0" data-c="0" data-o="0"></span><span class="lkd neg" data-t="1" data-c="0" data-o="0"></span><span class="lkd tgt" data-t="0" data-c="0" data-o="0"></span><span class="lkd tgt" data-t="0" data-c="0" data-o="1"></span><span class="lkd tgt" data-t="0" data-c="0" data-o="0"></span><span class="lkd neg" data-t="1" data-c="0" data-o="0"></span><span class="lkd tgt" data-t="0" data-c="0" data-o="0"></span><span class="lkd tgt" data-t="0" data-c="0" data-o="0"></span><span class="lkd pos" data-t="1" data-c="1" data-o="0"></span><span class="lkd tgt" data-t="0" data-c="0" data-o="0"></span><span class="lkd tgt" data-t="0" data-c="0" data-o="0"></span><span class="lkd tgt" data-t="0" data-c="0" data-o="1"></span><span class="lkd neg" data-t="1" data-c="0" data-o="0"></span><span class="lkd tgt" data-t="0" data-c="0" data-o="0"></span><span class="lkd tgt" data-t="0" data-c="0" data-o="0"></span><span class="lkd neg" data-t="1" data-c="0" data-o="0"></span><span class="lkd tgt" data-t="0" data-c="0" data-o="1"></span><span class="lkd tgt" data-t="0" data-c="0" data-o="0"></span><span class="lkd tgt" data-t="0" data-c="0" data-o="0"></span><span class="lkd pos" data-t="1" data-c="1" data-o="0"></span><span class="lkd tgt" data-t="0" data-c="0" data-o="0"></span><span class="lkd tgt" data-t="0" data-c="0" data-o="0"></span><span class="lkd neg" data-t="1" data-c="0" data-o="0"></span><span class="lkd tgt" data-t="0" data-c="0" data-o="0"></span></div>
+          <div class="lkkey"><span><i class="pos"></i>bought</span><span><i class="neg"></i>did not buy</span><span><i class="tgt"></i>scored by the model</span></div>
+        </div>
+        <div class="lkside">
+          <div class="lkq" id="lkQ">Of the accounts that had a trial, who bought?</div>
           <div class="mts" style="grid-template-columns:1fr 1fr">
-            <div class="mt"><span class="k">Total error</span><b id="aTot">+1.0%</b><em>what finance asks for</em></div>
-            <div class="mt live"><span class="k">Per account</span><b id="aEach">15%</b><em>what a CSM acts on</em></div>
+            <div class="mt live"><span class="k">Learns from</span><b id="lkN">18</b><em id="lkNE">accounts with a trial</em></div>
+            <div class="mt"><span class="k">Bought</span><b id="lkP">7</b><em id="lkPE">after the trial</em></div>
           </div>
-          <p class="note"><svg class="icn sm"><use href="#i-scale"/></svg>
-            <span><b>Switch to residuals.</b> The same twelve points, now around zero — seven above the line, five below. In the total they cancel to 1%. A forecast can hit the company number and be wrong about every account inside it.</span></p>
+          <div class="mt"><span class="k">Then scores</span><b id="lkS">42</b><em id="lkSE">accounts with no trial</em></div>
+          <p class="lkwarn" id="lkW"><b>Good labels, different group.</b> Today’s rules chose who got a trial, so the scored accounts are not like them.</p>
         </div>
+      </div>
+      <div class="pfoot" style="grid-template-columns:1fr">
+        <p class="note"><svg class="icn sm"><use href="#i-search"/></svg>
+          <span>Both views are valid. <b>Choosing one is your decision, not Claude’s.</b></span></p>
       </div>
     </div>
+    </div></details>
   </div>
 </section>
 
-
 <div class="bridge"><span class="stem"></span>
-  <div class="bq"><span class="qm">?</span><q>And what do they still have a week later?</q></div>
+  <div class="bq"><span class="qm">?</span><q>How do they know Claude is right?</q></div>
 <span class="stem b"></span></div>
 
-<!-- ══ 5 · TOOLS ══ -->
+<!-- ══ 4 · CHECKS ══ -->
+<section id="checks">
+  <div class="sec">
+    <details class="secx"><summary><h2 data-rv>Four ways to check <span class="grad">Claude’s work.</span></h2><span class="sx" aria-hidden="true"></span></summary>
+    <div class="secb">
+    <div class="ask four">
+      <div class="ac" data-rv><span class="num">1</span>
+        <h4><svg class="icn"><use href="#i-flag"/></svg>Too good to be true</h4>
+        <p>Churn AUC above 0.9? Look for a problem first.</p></div>
+      <div class="ac" data-rv><span class="num">2</span>
+        <h4><svg class="icn"><use href="#i-search"/></svg>Leakage</h4>
+        <p>Check the top features. Remove any that already know the answer.</p></div>
+      <div class="ac" data-rv><span class="num">3</span>
+        <h4><svg class="icn"><use href="#i-table"/></svg>Hidden changes</h4>
+        <p>Claude may drop rows or change the test. Ask for row counts at every step.</p></div>
+      <div class="ac" data-rv><span class="num">4</span>
+        <h4><svg class="icn"><use href="#i-repeat"/></svg>Run it again</h4>
+        <p>An apology proves nothing. Run the code again and read the numbers.</p></div>
+    </div>
+    </div></details>
+  </div>
+</section>
+
+<div class="bridge"><span class="stem"></span>
+  <div class="bq"><span class="qm">?</span><q>What do they keep after the workshop?</q></div>
+<span class="stem b"></span></div>
+
+<!-- ══ 5 · TAKE-HOME ══ -->
 <section id="tools">
   <div class="sec">
-    <div class="eyebrow" data-rv>The stack, and what comes home</div>
-    <h2 data-rv>A Python file they own — and it <span class="grad">runs again next month on its own.</span></h2>
-    <p class="sub" data-rv>Not a Python course — nobody learns syntax. They learn to <b>direct the agent and judge what it hands back</b>, and they leave owning the file.</p>
+    <details class="secx"><summary><h2 data-rv>Skills, a CLAUDE.md file, <span class="grad">and working code.</span></h2><span class="sx" aria-hidden="true"></span></summary>
+    <div class="secb">
 
     <div class="panel" data-rv>
       <div class="beam">
@@ -910,25 +976,40 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
           <path id="beamFlow" d="M125 28 H875" stroke="#22d3ee"/>
         </svg>
         <div class="bnodes">
-          <div class="bn"><div class="ic"><svg class="icn lg"><use href="#i-python"/></svg></div>
-            <b>Python</b><span>The language the artifact is written in.</span><em>plain .py, no notebook lock-in</em></div>
-          <div class="bn"><div class="ic"><svg class="icn lg"><use href="#i-table"/></svg></div>
-            <b>pandas</b><span>Events become one row per account, per quarter.</span><em>the feature table</em></div>
+          <div class="bn"><div class="ic"><svg class="lgo c lgx" aria-hidden="true"><use href="#l-claude"/></svg></div>
+            <b>Claude Code</b><span>Writes and runs the code.</span></div>
+          <div class="bn"><div class="ic"><svg class="icn lg"><use href="#i-layers"/></svg></div>
+            <b>Workshop skills</b><span>One for each step.</span></div>
           <div class="bn"><div class="ic"><svg class="icn lg"><use href="#i-brain"/></svg></div>
-            <b>scikit-learn</b><span>Time split, fit, and the scores that judge it.</span><em>the model</em></div>
-          <div class="bn"><div class="ic"><svg class="icn lg"><use href="#i-plot"/></svg></div>
-            <b>matplotlib</b><span>The ROC, the residuals, the ranked list.</span><em>the charts above</em></div>
+            <b>pandas · XGBoost</b><span>The data and the model.</span></div>
+          <div class="bn"><div class="ic"><svg class="icn lg"><use href="#i-gauge"/></svg></div>
+            <b>score.py</b><span>Scores every account, every week.</span></div>
         </div>
       </div>
 
       <div class="code" style="margin:6px 20px 20px">
         <div class="ctabs" role="tablist">
-          <button role="tab" aria-selected="true" data-code="c1">features.py</button>
+          <button role="tab" aria-selected="true" data-code="c0">CLAUDE.md</button>
+          <button role="tab" aria-selected="false" data-code="c1">features.py</button>
           <button role="tab" aria-selected="false" data-code="c2">train.py</button>
           <button role="tab" aria-selected="false" data-code="c3">score.py</button>
-          <span class="rt"><svg class="icn sm"><use href="#i-repeat"/></svg>re-runs monthly, same answer</span>
         </div>
-        <pre id="c1"><b class="k1">import</b> pandas <b class="k1">as</b> pd
+        <pre id="c0"><b class="k1"># Churn model · project rules</b>
+<b class="k5">Claude reads this file at the start of every session.</b>
+
+<b class="k1">## The question</b>
+Rank accounts by risk of churning in the <b class="k4">90 days</b> after the cutoff.
+The CSM team acts on the top <b class="k4">10</b> each week.
+
+<b class="k1">## Rules</b>
+- Label: no renewal, or contraction below threshold, within 90 days
+- Cutoff <b class="k3">2026-01-01</b>. Features use data from before it only.
+- <b class="k2">Split by time. Never at random.</b>
+- Baseline: today's CSM rule. Every model must beat it.
+- <b class="k2">random_state=0</b> everywhere.
+- Report train <b class="k2">and</b> test scores. Print row counts at every step.
+- Never print raw customer rows.</pre>
+        <pre id="c1" hidden><b class="k1">import</b> pandas <b class="k1">as</b> pd
 
 CUTOFF = pd.<b class="k2">Timestamp</b>(<b class="k3">&quot;2026-01-01&quot;</b>)          <b class="k5"># the day the prediction is made</b>
 
@@ -945,12 +1026,12 @@ features = (
     )
     .<b class="k2">reset_index</b>()
 )</pre>
-        <pre id="c2" hidden><b class="k1">from</b> sklearn.ensemble <b class="k1">import</b> HistGradientBoostingClassifier
+        <pre id="c2" hidden><b class="k1">from</b> xgboost <b class="k1">import</b> XGBClassifier
 
 train = panel[panel.quarter &lt;= <b class="k3">&quot;2025Q3&quot;</b>]     <b class="k5"># split by time, never at random</b>
 test  = panel[panel.quarter == <b class="k3">&quot;2025Q4&quot;</b>]
 
-model = <b class="k2">HistGradientBoostingClassifier</b>(max_depth=<b class="k4">4</b>, random_state=<b class="k4">0</b>)
+model = <b class="k2">XGBClassifier</b>(max_depth=<b class="k4">4</b>, n_estimators=<b class="k4">300</b>, random_state=<b class="k4">0</b>)
 model.<b class="k2">fit</b>(train[FEATURES], train.churned)
 
 proba = model.<b class="k2">predict_proba</b>(test[FEATURES])[:, <b class="k4">1</b>]
@@ -966,165 +1047,40 @@ ranked = (
 
 ranked[[<b class="k3">&quot;account_id&quot;</b>, <b class="k3">&quot;score&quot;</b>]].<b class="k2">to_csv</b>(<b class="k3">&quot;churn_scores.csv&quot;</b>, index=<b class="k1">False</b>)</pre>
         <div class="cfoot"><svg class="icn sm"><use href="#i-check"/></svg>
-          <span>Roughly 120 lines by the end of day two. <b>Every number traceable to a line</b>, and the cost of running it next month is the cost of running Python.</span></div>
+          <span>Running it again next month costs almost nothing.</span></div>
       </div>
     </div>
+
+    <div class="ask out">
+      <div class="ac" data-rv><span class="num">1</span>
+        <h4><svg class="icn"><use href="#i-brain"/></svg>Enough ML to lead Claude</h4>
+        <p>They know what to ask, and when to push back.</p></div>
+      <div class="ac" data-rv><span class="num">2</span>
+        <h4><svg class="lgo c md" aria-hidden="true"><use href="#l-claude"/></svg>Two working models</h4>
+        <p>Built with Claude, on their own laptop.</p></div>
+      <div class="ac" data-rv><span class="num">3</span>
+        <h4><svg class="icn"><use href="#i-route"/></svg>A plan for their own question</h4>
+        <p>Ready to start within two weeks.</p></div>
+    </div>
+
+    <div class="dnote" data-rv><svg class="icn lg"><use href="#i-target"/></svg>
+      <p><b>Success</b> is a working model two to three months later.</p></div>
+    </div></details>
   </div>
 </section>
-
-<div class="bridge"><span class="stem"></span>
-  <div class="bq"><span class="qm">?</span><q>What is this actually worth to the business?</q></div>
-<span class="stem b"></span></div>
-
-<!-- ══ 6 · VALUE ══ -->
-<section id="value">
-  <div class="sec">
-    <div class="eyebrow" data-rv>The business case</div>
-    <h2 data-rv>Decisions made from data, <span class="grad">instead of from guesswork.</span></h2>
-    <p class="sub" data-rv>A CSM's week is fixed. The only variable is <b>which accounts are on the list</b> — and that is exactly what a ranked model changes.</p>
-
-    <div class="bento">
-      <div class="bt w4" data-rv>
-        <div class="bk"><svg class="icn sm"><use href="#i-users"/></svg>Ten calls, two ways to choose them</div>
-        <div class="calls">
-          <div class="crow base">
-            <span class="cl">Today's rule</span>
-            <div class="pips" id="pipsBase"><span class="pip hit"><svg class="icn"><use href="#i-check"/></svg></span><span class="pip hit"><svg class="icn"><use href="#i-check"/></svg></span><span class="pip hit"><svg class="icn"><use href="#i-check"/></svg></span><span class="pip hit"><svg class="icn"><use href="#i-check"/></svg></span><span class="pip half"></span><span class="pip"></span><span class="pip"></span><span class="pip"></span><span class="pip"></span><span class="pip"></span></div>
-            <span class="cn">≈4.5 hit</span>
-          </div>
-          <div class="crow">
-            <span class="cl">Model's top 10</span>
-            <div class="pips" id="pipsModel"><span class="pip hit"><svg class="icn"><use href="#i-check"/></svg></span><span class="pip hit"><svg class="icn"><use href="#i-check"/></svg></span><span class="pip hit"><svg class="icn"><use href="#i-check"/></svg></span><span class="pip hit"><svg class="icn"><use href="#i-check"/></svg></span><span class="pip hit"><svg class="icn"><use href="#i-check"/></svg></span><span class="pip hit"><svg class="icn"><use href="#i-check"/></svg></span><span class="pip hit"><svg class="icn"><use href="#i-check"/></svg></span><span class="pip"></span><span class="pip"></span><span class="pip"></span></div>
-            <span class="cn">7 hit</span>
-          </div>
-        </div>
-        <p>Same cost, same effort. <b>Half again as many</b> of the right accounts — the difference is one sorted column. <span style="color:var(--s4)">From the 20-account sample above; illustrative.</span></p>
-      </div>
-
-      <div class="bt" data-rv>
-        <div class="bk"><svg class="icn sm"><use href="#i-bolt"/></svg>Time to first model</div>
-        <div class="bv"><span data-to="1" data-suffix="" data-dp="0">1</span> <small>afternoon</small></div>
-        <p>Was a month of engineering. The agent types it; the analyst judges it.</p>
-      </div>
-
-      <div class="bt" data-rv>
-        <div class="bk"><svg class="icn sm"><use href="#i-gauge"/></svg>Hit rate vs the current rule</div>
-        <div class="bv"><span data-to="1.6" data-dp="1">1.6</span><small>×</small></div>
-        <p>7 of the top ten really left, against 4 or 5 picked at random.</p>
-      </div>
-
-      <div class="bt" data-rv>
-        <div class="bk"><svg class="icn sm"><use href="#i-users"/></svg>Analysts in the room</div>
-        <div class="bv"><span data-to="17" data-dp="0">17</span></div>
-        <p>Expect <b>five to ten</b> to carry it into their day job.</p>
-      </div>
-
-      <div class="bt" data-rv>
-        <div class="bk"><svg class="icn sm"><use href="#i-money"/></svg>Cost to run next month</div>
-        <div class="bv">flat</div>
-        <p>A <b>.py file</b>, not an API call per account. 400 accounts cost what 4 cost.</p>
-      </div>
-
-      <div class="bt w2" data-rv>
-        <div class="bk"><svg class="icn sm"><use href="#i-route"/></svg>Where it goes next</div>
-        <p style="margin-top:12px">The same eight steps answer <b>ARR per product</b>, <b>what separates trials that convert</b>, and <b>which customers of one product fit another</b>. Nothing new to learn.</p>
-      </div>
-      <div class="bt w2" data-rv>
-        <div class="bk"><svg class="icn sm"><use href="#i-shield"/></svg>What we are not claiming</div>
-        <p style="margin-top:12px">Nothing goes to production on day two, and some models will lose to your current rule. <b>Knowing that, with a number behind it</b>, is worth the two days.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="bridge"><span class="stem"></span>
-  <div class="bq"><span class="qm">?</span><q>How does all of that fit into two half-days with seventeen people?</q></div>
-<span class="stem b"></span></div>
-
-<!-- ══ 7 · DAYS ══ -->
-<section id="days">
-  <div class="sec">
-    <div class="eyebrow" data-rv>The two days</div>
-    <h2 data-rv>Half a day learning, half a day building — <span class="grad">and everyone finishes something.</span></h2>
-
-    <div class="wf" data-rv>
-      <div class="wf-tabs" role="tablist">
-        <button role="tab" aria-selected="true" data-tab="d1"><svg class="icn sm"><use href="#i-users"/></svg>Day one · learn</button>
-        <button role="tab" aria-selected="false" data-tab="d2"><svg class="icn sm"><use href="#i-code"/></svg>Day two · build</button>
-      </div>
-
-      <div class="stage" id="d1">
-        <div class="part"><div class="pic"><svg class="icn"><use href="#i-spark"/></svg></div>
-          <div><h4>The two AIs</h4><p>What each one does, and how they meet on one project.</p></div>
-          <div class="meta"><span class="pdur">30 min</span><div class="mrail" data-lit=""></div></div></div>
-        <div class="part"><div class="pic"><svg class="icn"><use href="#i-tag"/></svg></div>
-          <div><h4>Steps 1–3</h4><p>A business question becomes a label and a fair set of columns.</p></div>
-          <div class="meta"><span class="pdur">60 min</span><div class="mrail" data-lit="1,2,3"></div></div></div>
-        <div class="part"><div class="pic"><svg class="icn"><use href="#i-split"/></svg></div>
-          <div><h4>Steps 4–5</h4><p>Splitting by time; choosing the rule to beat.</p></div>
-          <div class="meta"><span class="pdur">45 min</span><div class="mrail" data-lit="4,5"></div></div></div>
-        <div class="part"><div class="pic"><svg class="icn"><use href="#i-scale"/></svg></div>
-          <div><h4>The two models</h4><p>Every chart above, walked through live.</p></div>
-          <div class="meta"><span class="pdur">60 min</span><div class="mrail" data-lit="6,7"></div></div></div>
-        <div class="part"><div class="pic"><svg class="icn"><use href="#i-shield"/></svg></div>
-          <div><h4>Code that lasts</h4><p>Same answer next month, and a clear source for every number.</p></div>
-          <div class="meta"><span class="pdur">30 min</span><div class="mrail" data-lit="8"></div></div></div>
-      </div>
-
-      <div class="stage" id="d2" hidden>
-        <div class="part"><div class="pic"><svg class="icn"><use href="#i-doc"/></svg></div>
-          <div><h4>Frame it</h4><p>The one-page plan becomes a spec. No modelling yet.</p></div>
-          <div class="meta"><span class="pdur">45 min</span><div class="mrail" data-lit="1,2,3"></div></div></div>
-        <div class="part"><div class="pic"><svg class="icn"><use href="#i-table"/></svg></div>
-          <div><h4>Baseline</h4><p>pandas feature table, split by time, score today's rule.</p></div>
-          <div class="meta"><span class="pdur">60 min</span><div class="mrail" data-lit="4,5"></div></div></div>
-        <div class="part"><div class="pic"><svg class="icn"><use href="#i-brain"/></svg></div>
-          <div><h4>Build it</h4><p>Scoring harness first, then the estimator.</p></div>
-          <div class="meta"><span class="pdur">75 min</span><div class="mrail" data-lit="6"></div></div></div>
-        <div class="part"><div class="pic"><svg class="icn"><use href="#i-plot"/></svg></div>
-          <div><h4>Score it twice</h4><p>Both metrics, and what to do when they disagree.</p></div>
-          <div class="meta"><span class="pdur">45 min</span><div class="mrail" data-lit="7"></div></div></div>
-        <div class="part"><div class="pic"><svg class="icn"><use href="#i-mic"/></svg></div>
-          <div><h4>Show and tell</h4><p>Five minutes a group. The room's job is to test each result.</p></div>
-          <div class="meta"><span class="pdur">30 min</span><div class="mrail" data-lit="8"></div></div></div>
-      </div>
-
-      <div class="between"><svg class="icn lg"><use href="#i-clock"/></svg>
-        <p><b>Between the two days</b> — one page each: the question, the label, the columns, the rule to beat.</p></div>
-    </div>
-
-    <div class="dnote" data-rv><svg class="icn lg"><use href="#i-db"/></svg>
-      <p><b>The data.</b> A synthetic twin of your own — your schema, your seasonality, no real customer in it. Built with one of your data engineers, with realistic traps planted on purpose.</p></div>
-
-    <div class="levels" data-rv>
-      <div class="lh"><svg class="icn sm"><use href="#i-check"/></svg>Everyone finishes something that works</div>
-      <div class="lbar"></div>
-      <div class="lmarks">
-        <div class="lm"><b>New to modelling</b><span>A clear plan and an honest baseline on their own product.</span></div>
-        <div class="lm"><b>Comfortable</b><span>A full model, scored two ways, and a read on what the scores say.</span></div>
-        <div class="lm"><b>Experienced</b><span>A ranked list their team could act on this quarter.</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
 
 <!-- ══ FAQ ══ -->
 <section id="faq">
   <div class="sec">
-    <h2 data-rv>Questions we get</h2>
+    <h2 data-rv>Common questions</h2>
     <div style="margin-top:26px">
-      <details class="acc" open><summary>Do they need to know Python?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><div class="acc-b">No, and we do not teach it. Your analysts learn to read code, judge it and ask for changes. The AI writes it. What they take home is real Python — pandas and scikit-learn — that runs on its own.</div></details>
-      <details class="acc"><summary>Why scikit-learn and not something heavier?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><div class="acc-b">Because the bottleneck at AppsFlyer is not model capacity, it is framing. scikit-learn fits on a laptop, trains in seconds, and its API is stable enough that an agent writes it correctly first time. A gradient-boosted tree on a well-framed problem beats a deep model on a badly framed one, every time. If a project later needs more, the eight steps do not change.</div></details>
-      <details class="acc"><summary>Will anything go to production?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><div class="acc-b">Day two is for learning and experimenting, so people finish with something solid and a lot of confidence. Real projects start after, when someone chooses one and takes it further. That is the point of the follow-up clinic.</div></details>
-      <details class="acc"><summary>How do we keep the momentum after the day?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><div class="acc-b">Three light things work well: a clinic three to four weeks out where people bring what they built, a few office-hour slots for the groups pushing hardest, and a short showcase at a guild meeting. Two visible results tend to bring the rest along.</div></details>
-      <details class="acc"><summary>What data do they work on?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><div class="acc-b">Our recommendation is a synthetic twin: built to your schema, your account sizes and your seasonality, with no real customer in it. It is quick to approve, and we can plant realistic traps in it on purpose, which teaches better than clean data. An anonymised extract of your own data also works if it clears privacy in time.</div></details>
-      <details class="acc"><summary>Our seventeen are at different levels. Will everyone keep up?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><div class="acc-b">Yes. The eight steps have natural stopping points, and people work in groups of three or four grouped by product, so business context is shared. Finishing at a clean plan and an honest baseline is a real result — it is already more than a hand-written rule gives you.</div></details>
-      <details class="acc"><summary>What if the model is no better than the rule we use today?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><div class="acc-b">That is a useful answer, and the workshop teaches people to say it clearly. Knowing your current rule is close to the best available is worth the two days on its own, and it tells you where to spend effort instead.</div></details>
-      <details class="acc"><summary>Can we cover other questions too?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><div class="acc-b">Groups that get their baseline done early can take a stretch track: what separates trials that convert, or which customers of one product are a good fit for another. Both use the same eight steps.</div></details>
-      <details class="acc"><summary>Can product data scientists join?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><div class="acc-b">They are very welcome, and they make excellent group anchors. Worth deciding together on the call how many.</div></details>
-      <details class="acc"><summary>What do people need on their laptops?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><div class="acc-b">Python, Claude Code and permission to install packages, ready a week before day two. We send a short setup note and check it in advance.</div></details>
-      <details class="acc"><summary>Hebrew or English?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><div class="acc-b">Materials are in English, which keeps the technical terms consistent. Delivery can be in either.</div></details>
+      <details class="acc" open><summary>Do they need to know Python?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><div class="acc-b">No. Claude writes the code. They learn to read it well enough to check it.</div></details>
+      <details class="acc"><summary>Why Claude Code?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><div class="acc-b">It writes and runs the code, and follows your project rules. The result is plain Python that your BI team can use.</div></details>
+      <details class="acc"><summary>Why XGBoost and not deep learning?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><div class="acc-b">On business data, XGBoost usually wins. Deep learning is best for images, text and very large data.</div></details>
+      <details class="acc"><summary>What are the workshop skills?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><div class="acc-b">Ready-made instructions that Claude follows for each step: data check, features, training and testing. Your analysts keep them.</div></details>
+      <details class="acc"><summary>Will anything go to production?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><div class="acc-b">Not in the workshop. We show how it works. Your BI team does it later.</div></details>
+      <details class="acc"><summary>How do we keep going after the workshop?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><div class="acc-b">Each analyst leaves with a plan. A follow-up session a few weeks later helps most.</div></details>
+      <details class="acc"><summary>Hebrew or English?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><div class="acc-b">Materials are in English. Teaching can be in either.</div></details>
     </div>
   </div>
 </section>
@@ -1162,6 +1118,7 @@ ranked[[<b class="k3">&quot;account_id&quot;</b>, <b class="k3">&quot;score&quot
       <a href="mailto:office@amconsultingai.com">office@amconsultingai.com</a>
     </div>
     © AM Consulting. All rights reserved.
+    <div class="foot-tm"><svg class="lgo a" aria-hidden="true"><use href="#l-anthropic"/></svg>Claude and Anthropic are trademarks of Anthropic, PBC. AM Consulting is an independent trainer and is not affiliated with Anthropic.</div>
   </footer>
 </div>
 
@@ -1172,58 +1129,171 @@ var RM = window.matchMedia ? matchMedia('(prefers-reduced-motion: reduce)').matc
 var $  = function(s,r){return (r||document).querySelector(s)};
 var $$ = function(s,r){return [].slice.call((r||document).querySelectorAll(s))};
 
-/* ── hero: a classifier, learned in front of you. Loops so the story is
-   never missed; reduced motion gets the finished frame and no motion. ── */
+/* ── hero: Claude Code builds the model, line by line. Loops while on
+   screen; reduced motion and no-JS get the finished transcript. ──────── */
 (function(){
-  var svg=$('#heroSvg'); if(!svg) return;
-  var dots=$$('.hdot',svg), rings=$('#hRings'), reg=$('#hRegion'), bnd=$('#hBound'), now=$('#hNow');
-  var FINAL=now?now.textContent:'';
-  if(RM) return;
-  var len=0; try{ len=bnd.getTotalLength() }catch(e){}
-  var pal=dots.map(function(d){ return d.getAttribute('class') });
-  var timers=[], running=false;
-
+  var term=$('#term'); if(!term||RM) return;
+  var ls=$$('.tl',term), timers=[], running=false;
   function at(ms,fn){ timers.push(setTimeout(fn,ms)) }
-  function reset(){
-    timers.forEach(clearTimeout); timers=[];
-    dots.forEach(function(d){ d.style.transition='none'; d.style.opacity='0'; d.setAttribute('class','hdot') });
-    rings.style.transition='none'; rings.style.opacity='0';
-    reg.style.transition='none';   reg.style.opacity='0';
-    if(len){ bnd.style.transition='none'; bnd.style.strokeDasharray=len; bnd.style.strokeDashoffset=len }
-    if(now) now.textContent='46 accounts on the anti-fraud product';
-    void svg.getBoundingClientRect();
-  }
   function play(){
-    reset();
-    dots.forEach(function(d,i){
-      d.style.transition='opacity .26s ease '+(0.12+i*0.012)+'s,fill .4s ease';
-      d.style.opacity='1';
+    timers.forEach(clearTimeout); timers=[];
+    term.classList.add('play');
+    ls.forEach(function(l){ l.classList.remove('on') });
+    var t=300;
+    ls.forEach(function(l,i){
+      var gap = l.classList.contains('you') ? 0 : (l.classList.contains('warn') ? 900 : 520);
+      t += gap; at(t,function(){ l.classList.add('on') });
+      if(i===0) t+=500;
     });
-    at(950,function(){                                   // the truth arrives
-      if(now) now.textContent='last quarter, 13 of them left';
-      dots.forEach(function(d,i){ at(i*9,function(){ d.setAttribute('class',pal[i]) }) });
-    });
-    at(1900,function(){                                  // the model learns the line
-      if(now) now.textContent='the model learns where the risk sits';
-      reg.style.transition='opacity .6s ease'; reg.style.opacity='1';
-      if(len){ bnd.style.transition='stroke-dashoffset .85s cubic-bezier(.4,0,.2,1)'; bnd.style.strokeDashoffset='0' }
-    });
-    at(2950,function(){                                  // what it caught
-      rings.style.transition='opacity .4s ease'; rings.style.opacity='1';
-      if(now) now.textContent=FINAL;
-    });
-    at(6600,play);                                       // hold, then round again
+    at(t+4200,play);
   }
-
-  // only run while the hero is actually on screen
   if(!('IntersectionObserver' in window)){ play(); return }
-  var io=new IntersectionObserver(function(en){
+  new IntersectionObserver(function(en){
     en.forEach(function(x){
       if(x.isIntersecting && !running){ running=true; play() }
-      else if(!x.isIntersecting && running){ running=false; timers.forEach(clearTimeout); timers=[] }
+      else if(!x.isIntersecting && running){
+        running=false; timers.forEach(clearTimeout); timers=[];
+        ls.forEach(function(l){ l.classList.add('on') });
+      }
     });
-  },{threshold:.25});
-  io.observe(svg);
+  },{threshold:.25}).observe(term);
+})();
+
+/* ── countdown to the next session. Israel time: both dates fall after
+   DST ends (25 Oct 2026), so UTC+2. No-JS keeps the two dates. ─────── */
+(function(){
+  var cd=$('#cd'), L=$('#cdL'), T=$('#cdT'), M=$('#cdM'); if(!cd) return;
+  var EV=[{n:'Day one',d:'Mon 26 Oct',s:Date.parse('2026-10-26T09:30:00+02:00')},
+          {n:'Day two',d:'Wed 4 Nov', s:Date.parse('2026-11-04T09:30:00+02:00')}];
+  var DUR=5*3600e3, U=[['d',86400],['h',3600],['m',60],['s',1]];
+  T.innerHTML=U.map(function(u){return '<span class="cdu"><b data-u="'+u[0]+'">0</b><i>'+u[0]+'</i></span>'}).join('');
+  var cells={}; $$('b[data-u]',T).forEach(function(b){cells[b.getAttribute('data-u')]=b});
+  function pad(n){return n<10?'0'+n:''+n}
+  function tick(){
+    var now=Date.now(), ev=null;
+    for(var i=0;i<EV.length;i++){ if(now<EV[i].s+DUR){ ev=EV[i]; break } }
+    if(!ev){ L.innerHTML='<b>Both sessions complete</b>'; M.textContent='Done'; T.hidden=true; cd.classList.remove('live'); return }
+    if(now>=ev.s){ cd.classList.add('live'); L.innerHTML='<b>'+ev.n+' is live</b> · until 14:30'; M.textContent=ev.n+' live'; T.hidden=true; return }
+    cd.classList.remove('live'); T.hidden=false;
+    L.innerHTML='<b>'+ev.n+'</b> · '+ev.d+' · 09:30 · starts in'; M.textContent=ev.n+' in';
+    var left=Math.floor((ev.s-now)/1000);
+    U.forEach(function(u){ var v=Math.floor(left/u[1]); left-=v*u[1]; cells[u[0]].textContent=u[0]==='d'?v:pad(v) });
+  }
+  tick(); setInterval(tick,1000);
+})();
+
+/* ── site map: each segment fills as its section scrolls past ───────── */
+(function(){
+  var links=$$('#smap .smk'); if(!links.length) return;
+  var now=$('#smNow'), bar=$('.topbar');
+  var secs=links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)) });
+  var fills=links.map(function(a){ return $('i b',a) });
+  var queued=false;
+  function update(){
+    queued=false;
+    var hh=bar?bar.offsetHeight:0, y=window.scrollY, line=y+hh+(window.innerHeight-hh)*0.3, act=-1;
+    secs.forEach(function(s,i){
+      if(!s) return;
+      var top=s.getBoundingClientRect().top+y;
+      var end=(i<secs.length-1 && secs[i+1]) ? secs[i+1].getBoundingClientRect().top+y : top+s.offsetHeight;
+      var p=Math.max(0,Math.min(1,(line-top)/(end-top)));
+      fills[i].style.width=(p*100)+'%';
+      links[i].classList.toggle('done',p>=1);
+      if(line>=top && line<end) act=i;
+    });
+    links.forEach(function(a,i){ a.classList.toggle('on',i===act); if(i===act) a.setAttribute('aria-current','true'); else a.removeAttribute('aria-current') });
+    if(now) now.textContent = act>-1 ? $('.sl',links[act]).textContent : (window.scrollY<200 ? 'Overview' : now.textContent);
+  }
+  function req(){ if(!queued){ queued=true; requestAnimationFrame(update) } }
+  window.addEventListener('scroll',req,{passive:true});
+  window.addEventListener('resize',req);
+  $$('.wf-tabs button').forEach(function(b){ b.addEventListener('click',req) });
+  update();
+})();
+
+
+
+/* ── a link to a section opens it ─────────────────────────────────────── */
+(function(){
+  function open(id){
+    var sec=id && document.getElementById(id), d=sec && sec.querySelector('details.secx');
+    if(d && !d.open) d.open=true;
+  }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest && e.target.closest('a[href^="#"]');
+    if(a) open(a.getAttribute('href').slice(1));
+  },true);
+  if(location.hash) open(location.hash.slice(1));
+})();
+
+/* ── expand / collapse all ───────────────────────────────────────────── */
+(function(){
+  var PAIR={'Show all questions':'Hide all questions','Open all':'Close all'};
+  var btns=$$('.xall'); if(!btns.length) return;
+  btns.forEach(function(b){ b.setAttribute('data-off',b.textContent); b.setAttribute('data-on',PAIR[b.textContent]||'Close all') });
+  function sync(){
+    btns.forEach(function(b){
+      var ds=$$('details',$(b.getAttribute('data-scope')));
+      var all=ds.length && ds.every(function(d){return d.open});
+      b.textContent=b.getAttribute(all?'data-on':'data-off');
+      b.setAttribute('aria-expanded',all?'true':'false');
+    });
+  }
+  btns.forEach(function(b){
+    b.addEventListener('click',function(){
+      var ds=$$('details',$(b.getAttribute('data-scope')));
+      var open=!ds.every(function(d){return d.open});
+      ds.forEach(function(d){ d.open=open });
+      sync();
+    });
+  });
+  document.addEventListener('toggle',sync,true);
+})();
+
+/* ── look-alikes: same 60 accounts, two framings. Every number is
+   counted from the dots, never typed. ─────────────────────────────── */
+(function(){
+  var grid=$('#lkgrid'); if(!grid) return;
+  var dots=$$('.lkd',grid);
+  var T=dots.map(function(d){return d.getAttribute('data-t')==='1'});
+  var Cv=dots.map(function(d){return d.getAttribute('data-c')==='1'});
+  var O=dots.map(function(d){return d.getAttribute('data-o')==='1'});
+  var F={
+    trial:{q:'Of the accounts that had a trial, who bought?',
+      ne:'accounts with a trial', pe:'after the trial', se:'accounts with no trial',
+      w:'<b>Good labels, different group.</b> Today’s rules chose who got a trial, so the scored accounts are not like them.'},
+    all:{q:'Of all accounts, who looks like a buyer?',
+      ne:'all accounts', pe:'with or without a trial', se:'accounts without the product',
+      w:'<b>Covers everyone, weaker labels.</b> “Did not buy” does not mean “will not buy”.'}
+  };
+  function draw(f){
+    var n=0,p=0,s=0;
+    dots.forEach(function(d,i){
+      var cls='lkd';
+      if(f==='trial'){
+        if(T[i]){ n++; if(Cv[i]){p++;cls+=' pos'} else cls+=' neg' }
+        else { s++; cls+=' tgt' }
+      } else {
+        n++;
+        if(Cv[i]||O[i]){ p++; cls+=' pos' } else { s++; cls+=' neg tgt' }
+      }
+      d.className=cls;
+    });
+    var c=F[f];
+    $('#lkQ').textContent=c.q;
+    $('#lkN').textContent=n; $('#lkNE').textContent=c.ne;
+    $('#lkP').textContent=p; $('#lkPE').textContent=c.pe;
+    $('#lkS').textContent=s; $('#lkSE').textContent=c.se;
+    $('#lkW').innerHTML=c.w;
+  }
+  $$('.awtog button[data-frame]').forEach(function(b){
+    b.addEventListener('click',function(){
+      $$('.awtog button[data-frame]').forEach(function(o){o.setAttribute('aria-pressed','false')});
+      b.setAttribute('aria-pressed','true');
+      draw(b.getAttribute('data-frame'));
+    });
+  });
+  draw('trial');
 })();
 
 /* ── #why: which AI owns which stage ─────────────────────────────────── */
@@ -1242,64 +1312,6 @@ var $$ = function(s,r){return [].slice.call((r||document).querySelectorAll(s))};
     });
   });
 })();
-
-/* ── #path: walks itself, start to finish. Clicking is optional. ────── */
-(function(){
-  var wrap=$('#steps'), stage=$('#wstage'); if(!wrap||!stage) return;
-  var nodes=$$('.sn',wrap), slides=$$('.wsl',stage);
-  var fill=$('#strackFill'), num=$('#sNum'), who=$('#sWho'), hint=$('#wHint');
-  var n=slides.length, cur=0, timer=null, auto=true, started=false, HOLD=2400;
-  var WHO=['your analyst decides','your analyst decides','your analyst decides','your analyst decides',
-           'your analyst decides','the AI does the work','the AI does the work','your analyst decides'];
-
-  function show(i){
-    cur=i;
-    slides.forEach(function(s,j){ s.classList.toggle('on', j===i) });
-    nodes.forEach(function(b,j){
-      b.classList.toggle('now', j===i);
-      b.classList.toggle('done', j<i);
-      b.setAttribute('aria-current', j===i ? 'step' : 'false');
-    });
-    if(fill) fill.style.width=(i/(n-1)*100)+'%';
-    if(num) num.textContent='Step '+(i+1)+' of '+n;
-    if(who) who.textContent=WHO[i];
-  }
-  function stop(msg){ auto=false; clearTimeout(timer); if(hint) hint.textContent=msg||'select any step to revisit it' }
-  function next(){
-    if(!auto) return;
-    if(cur>=n-1){ stop(); return }
-    show(cur+1); timer=setTimeout(next,HOLD);
-  }
-  function start(){
-    if(started) return; started=true;
-    if(RM){ show(0); stop('select any step to read it'); return }
-    show(0); if(hint) hint.textContent='walking through…';
-    timer=setTimeout(next,HOLD);
-  }
-  nodes.forEach(function(b){ b.addEventListener('click',function(){ stop(); show(+b.getAttribute('data-i')) }) });
-  wrap.addEventListener('mouseenter',function(){ if(auto){ clearTimeout(timer); if(hint) hint.textContent='paused' } });
-  wrap.addEventListener('mouseleave',function(){ if(auto){ timer=setTimeout(next,800); if(hint) hint.textContent='walking through…' } });
-
-  show(0);
-  if(!('IntersectionObserver' in window)){ start(); return }
-  var io=new IntersectionObserver(function(en){
-    en.forEach(function(x){ if(x.isIntersecting){ start(); io.disconnect() } });
-  },{threshold:.35});
-  io.observe(wrap);
-})();
-
-/* ── mini rails ──────────────────────────────────────────────────────── */
-$$('.mrail').forEach(function(m){
-  var lit=(m.getAttribute('data-lit')||'').trim();
-  var set = lit==='all' ? [1,2,3,4,5,6,7,8] : (lit? lit.split(',').map(Number) : []);
-  var html='';
-  for(var s=1;s<=8;s++){
-    var on=set.indexOf(s)>-1;
-    html+='<i class="'+(on?'on':'')+(on&&(s===6||s===7)?' ai':'')+'"></i>';
-  }
-  m.insertAdjacentHTML('afterbegin',html);
-  m.setAttribute('aria-label', set.length? 'Steps '+set.join(', ')+' of eight' : 'Before the eight steps');
-});
 
 /* ── classification: one slider, four outcomes, two rates ────────────── */
 (function(){
@@ -1325,34 +1337,6 @@ $$('.mrail').forEach(function(m){
   sl.addEventListener('input',function(){ draw(+sl.value) });
   draw(+sl.value);
 })();
-
-/* ── regression: same twelve points, two views ───────────────────────── */
-(function(){
-  var dots=$$('.dot'); if(!dots.length) return;
-  var wh=$$('.whisk'), diag=$('#regDiag'), zero=$('#regZero'), cap=$('#regCap');
-  function render(v){
-    var s = v==='scatter';
-    dots.forEach(function(d){
-      d.setAttribute('cx', d.getAttribute(s?'data-x1':'data-x2'));
-      d.setAttribute('cy', d.getAttribute(s?'data-y1':'data-y2'));
-    });
-    wh.forEach(function(w){ w.style.opacity = s?'1':'0' });
-    if(diag) diag.style.opacity = s?'1':'0';
-    if(zero) zero.style.opacity = s?'0':'1';
-    cap.textContent = s ? 'Predicted vs actual · the diagonal is a perfect forecast'
-                        : 'Residuals · distance from zero is the error on that account';
-  }
-  $$('.awtog button[data-view]').forEach(function(b){
-    b.addEventListener('click',function(){
-      $$('.awtog button[data-view]').forEach(function(o){o.setAttribute('aria-pressed','false')});
-      b.setAttribute('aria-pressed','true');
-      render(b.getAttribute('data-view'));
-    });
-  });
-  render('scatter');
-})();
-
-
 
 /* ── #tools: the beam draws through once, then rests ─────────────────── */
 (function(){
@@ -1384,21 +1368,6 @@ $$('.wf-tabs button').forEach(function(b){
     });
   });
 });
-
-/* ── #value: the ten pips ────────────────────────────────────────────── */
-(function(){
-  function pips(el,hit,half){
-    if(!el) return;
-    var h='';
-    for(var i=1;i<=10;i++){
-      var c = i<=hit ? 'pip hit' : (half && i===hit+1 ? 'pip half' : 'pip');
-      h+='<span class="'+c+'">'+(i<=hit?'<svg class="icn"><use href="#i-check"/></svg>':'')+'</span>';
-    }
-    el.innerHTML=h;
-  }
-  pips($('#pipsBase'),4,true);
-  pips($('#pipsModel'),7,false);
-})();
 
 /* ── reveal once · number tickers · beam draw ────────────────────────── */
 (function(){
