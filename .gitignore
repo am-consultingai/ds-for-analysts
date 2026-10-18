@@ -14,6 +14,15 @@ outreach-email.html
 outreach-email.txt
 procurement-email.txt
 procurement-email-he.txt
+syllabus-email.html
 
 # Meeting transcripts and summaries from client calls. Never publish.
 docs/
+
+# Workshop design and planning notes, written while shaping the workshop.
+# Stays ignored even after workshop-content/ below is un-ignored.
+workshop-content/internal-docs/
+
+# All workshop content, until AppsFlyer clears sharing the sample data.
+# Remove this line once cleared; internal-docs/ above stays ignored.
+workshop-content/

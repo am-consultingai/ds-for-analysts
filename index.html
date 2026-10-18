@@ -459,6 +459,13 @@ section[id]{scroll-margin-top:118px}
 .mod ul{margin:7px 0 0;padding:0 0 0 14px;font-size:12px;color:var(--s3);line-height:1.5}
 .mod li::marker{color:var(--s4)}
 
+/* ── prerequisites ──────────────────────────────────────────────────── */
+.prq{margin:18px 0 0;padding:0;list-style:none;display:grid;gap:10px;max-width:560px}
+.prq li{position:relative;padding-left:26px;font-size:16px;color:var(--s2);line-height:1.5}
+.prq li code{font-family:var(--mono);font-size:.88em;color:#5eead4;background:var(--tile);border:1px solid var(--line);border-radius:6px;padding:1px 7px}
+.prq li::before{content:"";position:absolute;left:3px;top:.62em;width:8px;height:8px;border-radius:50%;background:var(--cyan)}
+
+
 /* ── v5: each section collapses under its answer ───────────────────── */
 .secx > summary{display:flex;align-items:center;gap:18px;padding:20px 22px;border:1px solid var(--line);
   border-radius:18px;background:linear-gradient(180deg,#0e1524,var(--card));transition:border-color .2s}
@@ -635,6 +642,7 @@ details.slot .q{margin:6px 0 2px 112px;padding:9px 11px;border-radius:9px;backgr
   <a class="smk" href="#checks"><span class="sl">Checks</span><i><b></b></i></a>
   <a class="smk" href="#tools"><span class="sl">Take-home</span><i><b></b></i></a>
   <a class="smk" href="#faq"><span class="sl">FAQ</span><i><b></b></i></a>
+  <a class="smk" href="#prereq"><span class="sl">Prerequisites</span><i><b></b></i></a>
 </div></div>
 </div>
 
@@ -1082,6 +1090,18 @@ ranked[[<b class="k3">&quot;account_id&quot;</b>, <b class="k3">&quot;score&quot
       <details class="acc"><summary>How do we keep going after the workshop?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><div class="acc-b">Each analyst leaves with a plan. A follow-up session a few weeks later helps most.</div></details>
       <details class="acc"><summary>Hebrew or English?<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><div class="acc-b">Materials are in English. Teaching can be in either.</div></details>
     </div>
+  </div>
+</section>
+
+<!-- ══ PREREQUISITES ══ -->
+<section id="prereq">
+  <div class="sec">
+    <h2 data-rv>Prerequisites</h2>
+    <ul class="prq">
+      <li>A computer with an internet connection</li>
+      <li>Claude Code installed</li>
+      <li>Anaconda installed (includes Python 3.14)</li>
+    </ul>
   </div>
 </section>
 
