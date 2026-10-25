@@ -1,0 +1,67 @@
+# The churn project's spec: every fact the scripts need. Nothing churn-specific is written in the scripts.
+# Change a decision here, never in the code, then re-run the steps that depend on it.
+
+# 1 · Define the question
+question: Which accounts will churn in the next 90 days?
+decision: CSMs call the top K accounts each month
+entity_id: account_id
+time_column: month
+
+tables:
+  accounts: data/churn/accounts.csv          # one row per account
+  monthly:                                   # account x month
+    - data/churn/arr_monthly.csv
+    - data/churn/traffic_monthly.csv
+    - data/churn/adoption_monthly.csv
+
+value_column: arr                            # churn = this goes from above 0 to 0; also used for ARR at risk
+value_decline_threshold: 0.02                # a drop of more than 2% counts as a downgrade month
+
+label:
+  type: event_within_horizon
+  horizon_months: 3
+
+eligibility:
+  min_tenure_months: 3
+
+# 4 · Feature engineering
+snapshots: {first: 2024-04-01, last: 2026-06-01}
+created_column: created_date
+contract:                                    # gives months_to_renewal
+  start_column: created_date
+  term_years_column: package_contract_term
+ignore_columns: [previous_month_arr, mom_delta_arr]   # restate arr; not features
+ordinal:                                     # text levels turned into numbers; anything else becomes missing
+  No Usage: 0
+  Low: 1
+  Medium: 2
+  High: 3
+static_columns:                              # account columns used as features
+  - current_segment
+  - region
+  - package_type
+  - package_level
+  - package_contract_term
+  - is_package_auto_renewal
+  - seats
+presence_columns: [csm_name]                 # becomes has_csm_name (1 if filled in)
+ratios:
+  logins_per_seat: [dashboard_logins, seats]
+date_columns: [last_login_date]              # becomes days_since_last_login
+excluded_columns: []          # columns found to leak go here; then re-run from /build-panel
+
+# 5 · Split
+split: {method: time, test_from: 2026-01-01, gap_months: 3}
+
+# 2 · Today's rule
+baseline:
+  rule: arr_down_run >= 3                    # three downgrade months in a row
+  score: arr_down_run
+
+# 6 · Train
+models: [logistic]
+
+# 7 · Evaluate
+metric: {primary: precision_at_k, k: 50}
+
+seed: 0
