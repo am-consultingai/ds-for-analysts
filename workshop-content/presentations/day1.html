@@ -76,9 +76,6 @@ svg .grid{stroke:rgba(148,163,184,.14);stroke-width:2}
   transition:transform .8s cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--i,0) * 120ms + 400ms)}
 .growy.down{transform-origin:center top}
 .slide.on .grow,.slide.on .growy{transform:none}
-@media (prefers-reduced-motion:reduce){
-  .slide,.slide [data-a],.draw,.grow,.growy,.dot{transition:none!important}
-}
 /* ?static in the URL: no motion at all, every slide shown in its finished state */
 .static .slide,.static .slide [data-a],.static .draw,.static .grow,.static .growy,.static .dot,.static .progress{transition:none!important}
 
@@ -968,7 +965,7 @@ table.tb{border-collapse:separate;border-spacing:0;width:100%;font-size:34px}
 (function(){
 var stage=document.getElementById('stage'), slides=[].slice.call(document.querySelectorAll('.slide')),
     bar=document.getElementById('progress'), cur=-1, LOGO='https://cdn.jsdelivr.net/gh/am-consultingai/am-assets@v2/logo/am-logo-white-600.png';
-var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches || /static/.test(location.search);
+var reduce=/static/.test(location.search);   // animations always play, unless ?static is in the URL
 if(/static/.test(location.search)) document.documentElement.classList.add('static');
 
 /* ── frame: the logo, the ML pipeline step, the section and the slide number on every slide ── */
@@ -993,8 +990,9 @@ function countUp(el){
   var to=parseFloat(el.dataset.count), fmt=el.dataset.fmt||'#', dec=(el.dataset.count.split('.')[1]||'').length;
   var show=function(v){ el.textContent=fmt.replace('#',v.toLocaleString('en-US',{minimumFractionDigits:dec,maximumFractionDigits:dec})) };
   if(reduce){ show(to); return }
-  var t0=null, dur=1100;
-  (function step(t){ t0=t0||t; var k=Math.min(1,(t-t0)/dur); show(to*(1-Math.pow(1-k,3))); if(k<1) requestAnimationFrame(step) })(performance.now());
+  var t0=0, dur=1100;
+  // A timer, not animation frames: it runs in every browser and always lands on the final number.
+  (function step(){ var t=performance.now(); t0=t0||t; var k=Math.min(1,(t-t0)/dur); show(to*(1-Math.pow(1-k,3))); if(k<1) setTimeout(step,16) })();
 }
 
 /* ── navigation ── */
