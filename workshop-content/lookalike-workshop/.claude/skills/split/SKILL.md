@@ -24,7 +24,7 @@ Needs `runs/latest/02_panel.csv`. If it's missing, run `/build-panel` first.
 
 ## Report
 
-Read `runs/latest/03_split.md` and report, for each side: the months, the trials, how many bought and the rate, and how many trials today's rule would have picked. Explain in one sentence why there is no gap: each trial's outcome is known 30 days after it starts, before the next round.
+Read `runs/latest/03_split.md` and report, for each side: the months, the trials, how many bought and the rate, and how many trials today's rule would have picked. Explain in one sentence why there is no gap: each trial's outcome is known 30 days after it starts, by the start of the next round.
 
 ## Rules
 

@@ -3,7 +3,7 @@
     python split.py --spec ml_spec.yaml [--panel runs/latest/02_panel.csv] [--out runs/latest]
 
 Training: trials that start before `test_from`. Test: trials from `test_from` to the last one in the
-data. No gap is needed: each trial's outcome is known 30 days after it starts, before the next round.
+data. No gap is needed: each trial's outcome is known 30 days after it starts, by the start of the next round.
 Writes 03_split.json and 03_split.md.
 """
 import argparse
@@ -43,7 +43,7 @@ def to_markdown(result):
         d = result[side]
         lines.append(f"| {side} | {d['first']} | {d['last']} | {d['months']} | {d['trials']:,} | {d['buyers']} | "
                      f"{d['label_rate']:.0%} | {d['rule_hits']} |")
-    lines += ["", "Split by trial start date. Every training trial ends before the first test trial starts."]
+    lines += ["", "Split by trial start date. Every training trial's outcome is known by the time the first test trial starts."]
     return "\n".join(lines)
 
 

@@ -231,11 +231,14 @@ def snapshot_section(panel, spec):
     cell, pad = 6, " " * 12
     seg = lambda text, n: "<" + f" {text} ".center(n * cell - 2, "-") + ">"
     bar = len(pad) + len(before) * cell
+    end = start + pd.Timedelta(days=30)
+    trial = "<-- 30-day trial: not used -->"
     drawing = [
         f"Example: {row[ent]}, trial starting {start:%-d %b %Y}", "",
         pad + "".join(f"{m:%b}".ljust(cell) for m in before) + "| " + f"{start:%b}".ljust(cell),
         "features x".ljust(len(pad)) + seg(f"previous {ROLL}", ROLL) + seg(f"last {ROLL}", ROLL) + "|",
-        "target y".ljust(len(pad)) + " " * (len(before) * cell) + "| " + "<-- 30-day trial: bought? -->",
+        "trial".ljust(len(pad)) + " " * (len(before) * cell) + "| " + trial,
+        "target y".ljust(len(pad)) + " " * (len(before) * cell + 2 + len(trial)) + f"^ bought? known {end:%-d %b}",
         " " * (bar - len("snapshot ^") + 1) + "snapshot ^"]
     first, last = panel["trial_start"].min(), panel["trial_start"].max()
     return ["### The trial row", "",
@@ -243,7 +246,8 @@ def snapshot_section(panel, spec):
             "```", *drawing, "```", "",
             f"- **Features (x)** use only months up to the **snapshot**, the month before the trial: the last {ROLL} "
             f"months, and the {ROLL} before them for trends. The trial month itself is already in-trial data.",
-            f"- **Target (y)** is 1 if the account bought {spec['label']['product']} after its 30-day trial. For {row[ent]} it is 1.",
+            f"- **Target (y)** is 1 if the account bought {spec['label']['product']} at the end of its 30-day trial "
+            f"(for this trial, known on {end:%-d %b %Y}). Nothing from the trial itself is used. For {row[ent]} it is 1.",
             f"- **Trials** start on the 1st of each month, from {first:%b %Y} to {last:%b %Y} "
             f"({panel['trial_start'].nunique()} months).", ""]
 
