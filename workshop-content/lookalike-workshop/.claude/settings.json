@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(./link-env.sh)",
+      "Bash(.venv/bin/python scripts/audit.py:*)",
+      "Bash(.venv/bin/python scripts/build_panel.py:*)",
+      "Bash(.venv/bin/python scripts/split.py:*)",
+      "Bash(.venv/bin/python scripts/baseline.py:*)",
+      "Bash(.venv/bin/python scripts/train.py:*)",
+      "Bash(.venv/bin/python scripts/evaluate.py:*)",
+      "Bash(.venv/bin/python scripts/leakage.py:*)",
+      "Bash(.venv/bin/python scripts/score.py:*)",
+      "Bash(.venv/bin/python scripts/pipeline.py:*)"
+    ]
+  }
+}

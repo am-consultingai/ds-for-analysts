@@ -1,0 +1,641 @@
+account_id,account_name,industry_grouped,region,csm_name,tenure_months_at_trial,arr_at_trial_start,trial_product,trial_start_date,trial_length_days,trial_end_date,converted
+ACC-1880,Quiet Harbor Arcade,Hyper-Casual,APAC,Casey Novak,43,129087.0,Audiences,2024-01-01,30,2024-01-31,Yes
+ACC-0020,Rapid Harbor Apps,Mobile Gaming,EMEA,Alex Rivera,37,1789019.0,Audiences,2024-01-01,30,2024-01-31,Yes
+ACC-1910,Golden Harbor Mobile,E-commerce,APAC,Taylor Kim,37,333389.0,Audiences,2024-01-01,30,2024-01-31,Yes
+ACC-0348,Scarlet Lynx Labs,Social Casino,APAC,Alex Rivera,44,211324.0,Audiences,2024-01-01,30,2024-01-31,Yes
+ACC-0951,Vivid Comet Apps,Casual Gaming,EMEA,Casey Novak,59,470309.0,Audiences,2024-01-01,30,2024-01-31,Yes
+ACC-1380,Iron Forge Arcade,Hyper-Casual,EMEA,Robin Shah,62,150834.0,Audiences,2024-01-01,30,2024-01-31,No
+ACC-1201,Iron Forge Apps,Casual Gaming,EMEA,Morgan Lee,13,97473.0,Audiences,2024-01-01,30,2024-01-31,No
+ACC-1463,Crystal Ridge Arcade,Casual Gaming,APAC,Casey Novak,72,257665.0,Audiences,2024-01-01,30,2024-01-31,No
+ACC-0315,Rapid Grove Mobile,Mid-Core Gaming,NA,Alex Rivera,16,321759.0,Audiences,2024-01-01,30,2024-01-31,Yes
+ACC-1250,Scarlet Ridge Digital,Casual Gaming,EMEA,Robin Shah,41,143245.0,Audiences,2024-01-01,30,2024-01-31,No
+ACC-0993,Bright Falcon Mobile,Utilities,EMEA,Casey Novak,43,443182.0,Audiences,2024-01-01,30,2024-01-31,No
+ACC-0777,Bright Peak Studios,Hyper-Casual,NA,Morgan Lee,72,917331.0,Audiences,2024-01-01,30,2024-01-31,Yes
+ACC-1016,Scarlet Harbor Arcade,Mid-Core Gaming,EMEA,Sam Patel,14,355977.0,Audiences,2024-01-01,30,2024-01-31,No
+ACC-1220,Rapid Meadow Labs,Mobile Gaming,NA,Sam Patel,52,1105131.0,Audiences,2024-01-01,30,2024-01-31,Yes
+ACC-1304,Iron Ridge Labs,Social Casino,NA,Jordan Blake,56,369910.0,Audiences,2024-01-01,30,2024-01-31,Yes
+ACC-0618,Scarlet Falcon Studios,E-commerce,EMEA,Robin Shah,41,542454.0,Audiences,2024-01-01,30,2024-01-31,No
+ACC-0657,Golden Meadow Arcade,Utilities,NA,Alex Rivera,29,555043.0,Audiences,2024-01-01,30,2024-01-31,No
+ACC-0622,Iron Nova Labs,Mid-Core Gaming,APAC,Jordan Blake,34,683893.0,Audiences,2024-01-01,30,2024-01-31,No
+ACC-1782,Scarlet Peak Arcade,Utilities,NA,Casey Novak,59,240169.0,Audiences,2024-01-01,30,2024-01-31,Yes
+ACC-1111,Silent Reef Labs,Casual Gaming,NA,Morgan Lee,16,60605.0,Audiences,2024-01-01,30,2024-01-31,No
+ACC-1135,Scarlet Reef Labs,Casual Gaming,LATAM,Robin Shah,53,519141.0,Audiences,2024-02-01,30,2024-03-02,Yes
+ACC-0048,Lunar Peak Games,Mid-Core Gaming,NA,Taylor Kim,11,666619.0,Audiences,2024-02-01,30,2024-03-02,No
+ACC-0159,Crystal Ridge Digital,Casual Gaming,NA,Sam Patel,33,659463.0,Audiences,2024-02-01,30,2024-03-02,No
+ACC-1810,Quiet Grove Labs,Hyper-Casual,EMEA,Jordan Blake,19,177414.0,Audiences,2024-02-01,30,2024-03-02,No
+ACC-0545,Quiet Tide Games,Mid-Core Gaming,NA,Jordan Blake,42,165403.0,Audiences,2024-02-01,30,2024-03-02,No
+ACC-1295,Silent Lynx Games,Social Casino,LATAM,Taylor Kim,37,264109.0,Audiences,2024-02-01,30,2024-03-02,No
+ACC-1328,Quiet Tide Studios,Mobile Gaming,EMEA,Alex Rivera,35,509222.0,Audiences,2024-02-01,30,2024-03-02,Yes
+ACC-1441,Crystal Meadow Studios,Casual Gaming,EMEA,Alex Rivera,69,1415737.0,Audiences,2024-02-01,30,2024-03-02,No
+ACC-0021,Hollow Forge Labs,Social Casino,APAC,Dana Cohen,63,285090.0,Audiences,2024-02-01,30,2024-03-02,Yes
+ACC-1939,Vivid Peak Arcade,Mid-Core Gaming,APAC,Casey Novak,72,125697.0,Audiences,2024-02-01,30,2024-03-02,No
+ACC-1553,Bright Forge Digital,Mid-Core Gaming,NA,Dana Cohen,60,212378.0,Audiences,2024-02-01,30,2024-03-02,No
+ACC-1477,Wild Nova Games,Utilities,NA,Alex Rivera,9,823159.0,Audiences,2024-02-01,30,2024-03-02,No
+ACC-0844,Bright Falcon Digital,Mobile Gaming,APAC,Alex Rivera,65,547266.0,Audiences,2024-02-01,30,2024-03-02,No
+ACC-1821,Golden Falcon Games,Social Casino,APAC,Casey Novak,70,259997.0,Audiences,2024-02-01,30,2024-03-02,No
+ACC-1541,Vivid Nova Mobile,Social Casino,NA,Casey Novak,65,84124.0,Audiences,2024-02-01,30,2024-03-02,No
+ACC-0402,Iron Harbor Studios,Casual Gaming,EMEA,Robin Shah,61,358763.0,Audiences,2024-02-01,30,2024-03-02,No
+ACC-1027,Silent Peak Labs,Mid-Core Gaming,NA,Sam Patel,70,151442.0,Audiences,2024-02-01,30,2024-03-02,Yes
+ACC-0011,Vivid Forge Studios,Hyper-Casual,NA,Taylor Kim,40,579817.0,Audiences,2024-02-01,30,2024-03-02,No
+ACC-0658,Bright Forge Apps,Hyper-Casual,EMEA,Dana Cohen,35,76034.0,Audiences,2024-02-01,30,2024-03-02,Yes
+ACC-1424,Iron Grove Labs,Mid-Core Gaming,LATAM,Taylor Kim,31,125358.0,Audiences,2024-02-01,30,2024-03-02,No
+ACC-0408,Crystal Harbor Arcade,Casual Gaming,EMEA,Alex Rivera,30,130530.0,Audiences,2024-03-01,30,2024-03-31,No
+ACC-1106,Rapid Falcon Studios,Hyper-Casual,LATAM,Sam Patel,51,417494.0,Audiences,2024-03-01,30,2024-03-31,Yes
+ACC-1166,Golden Peak Apps,Mid-Core Gaming,APAC,Robin Shah,41,105428.0,Audiences,2024-03-01,30,2024-03-31,Yes
+ACC-1401,Bright Lynx Digital,Mid-Core Gaming,NA,Jordan Blake,74,131008.0,Audiences,2024-03-01,30,2024-03-31,Yes
+ACC-1445,Hollow Forge Labs,Mobile Gaming,NA,Alex Rivera,58,116777.0,Audiences,2024-03-01,30,2024-03-31,Yes
+ACC-1042,Iron Forge Studios,E-commerce,NA,Robin Shah,25,375089.0,Audiences,2024-03-01,30,2024-03-31,Yes
+ACC-1182,Hollow Tide Arcade,Mobile Gaming,APAC,Dana Cohen,26,74855.0,Audiences,2024-03-01,30,2024-03-31,Yes
+ACC-1509,Silent Peak Studios,E-commerce,NA,Taylor Kim,43,141840.0,Audiences,2024-03-01,30,2024-03-31,Yes
+ACC-0328,Wild Nova Studios,Social Casino,APAC,Jordan Blake,9,232395.0,Audiences,2024-03-01,30,2024-03-31,Yes
+ACC-1446,Hollow Forge Mobile,Social Casino,NA,Casey Novak,32,444839.0,Audiences,2024-03-01,30,2024-03-31,No
+ACC-0640,Crystal Harbor Apps,Hyper-Casual,LATAM,Casey Novak,4,382951.0,Audiences,2024-03-01,30,2024-03-31,No
+ACC-1588,Rapid Meadow Mobile,Casual Gaming,NA,Dana Cohen,22,204789.0,Audiences,2024-03-01,30,2024-03-31,Yes
+ACC-1915,Lunar Harbor Interactive,Mid-Core Gaming,NA,Sam Patel,35,308812.0,Audiences,2024-03-01,30,2024-03-31,Yes
+ACC-1692,Wild Forge Arcade,Social Casino,EMEA,Morgan Lee,4,148352.0,Audiences,2024-03-01,30,2024-03-31,Yes
+ACC-0461,Quiet Peak Labs,Mid-Core Gaming,NA,Robin Shah,41,1034122.0,Audiences,2024-03-01,30,2024-03-31,Yes
+ACC-1877,Golden Peak Interactive,Social Casino,APAC,Casey Novak,33,180800.0,Audiences,2024-03-01,30,2024-03-31,No
+ACC-1795,Rapid Harbor Arcade,Mid-Core Gaming,EMEA,Jordan Blake,58,569221.0,Audiences,2024-03-01,30,2024-03-31,Yes
+ACC-0796,Hollow Lynx Games,E-commerce,EMEA,Taylor Kim,11,243514.0,Audiences,2024-03-01,30,2024-03-31,No
+ACC-0211,Iron Falcon Interactive,Hyper-Casual,APAC,Sam Patel,70,121387.0,Audiences,2024-03-01,30,2024-03-31,No
+ACC-0504,Quiet Meadow Interactive,Utilities,EMEA,Sam Patel,55,719772.0,Audiences,2024-03-01,30,2024-03-31,Yes
+ACC-1964,Rapid Tide Digital,Mid-Core Gaming,EMEA,Robin Shah,4,124775.0,Audiences,2024-04-01,30,2024-05-01,No
+ACC-0044,Rapid Grove Games,Casual Gaming,NA,Jordan Blake,34,86690.0,Audiences,2024-04-01,30,2024-05-01,Yes
+ACC-0129,Scarlet Nova Interactive,Social Casino,EMEA,Robin Shah,73,108437.0,Audiences,2024-04-01,30,2024-05-01,No
+ACC-1958,Quiet Reef Interactive,Mobile Gaming,EMEA,Alex Rivera,72,76774.0,Audiences,2024-04-01,30,2024-05-01,Yes
+ACC-0092,Lunar Nova Digital,Casual Gaming,NA,Casey Novak,29,736481.0,Audiences,2024-04-01,30,2024-05-01,Yes
+ACC-0351,Hollow Lynx Mobile,Hyper-Casual,APAC,Casey Novak,53,156313.0,Audiences,2024-04-01,30,2024-05-01,Yes
+ACC-1261,Silent Nova Arcade,Hyper-Casual,APAC,Robin Shah,59,136776.0,Audiences,2024-04-01,30,2024-05-01,Yes
+ACC-0775,Quiet Lynx Studios,Utilities,APAC,Taylor Kim,49,112703.0,Audiences,2024-04-01,30,2024-05-01,No
+ACC-1231,Vivid Forge Studios,Mobile Gaming,APAC,Taylor Kim,32,116298.0,Audiences,2024-04-01,30,2024-05-01,No
+ACC-1048,Wild Tide Games,Hyper-Casual,APAC,Jordan Blake,42,671200.0,Audiences,2024-04-01,30,2024-05-01,Yes
+ACC-1656,Lunar Reef Games,Mobile Gaming,APAC,Morgan Lee,56,87140.0,Audiences,2024-04-01,30,2024-05-01,Yes
+ACC-1245,Crystal Lynx Labs,Social Casino,NA,Morgan Lee,34,124895.0,Audiences,2024-04-01,30,2024-05-01,No
+ACC-0117,Golden Falcon Arcade,Mobile Gaming,EMEA,Jordan Blake,61,232609.0,Audiences,2024-04-01,30,2024-05-01,Yes
+ACC-0423,Scarlet Nova Labs,Social Casino,EMEA,Alex Rivera,55,97657.0,Audiences,2024-04-01,30,2024-05-01,Yes
+ACC-1078,Quiet Reef Labs,Mid-Core Gaming,NA,Jordan Blake,37,92692.0,Audiences,2024-04-01,30,2024-05-01,Yes
+ACC-0001,Vivid Falcon Arcade,Mid-Core Gaming,NA,Dana Cohen,9,249326.0,Audiences,2024-04-01,30,2024-05-01,No
+ACC-0987,Bright Forge Games,Utilities,NA,Taylor Kim,8,166990.0,Audiences,2024-04-01,30,2024-05-01,Yes
+ACC-1768,Golden Forge Games,Mobile Gaming,NA,Morgan Lee,4,111101.0,Audiences,2024-04-01,30,2024-05-01,Yes
+ACC-1689,Lunar Meadow Interactive,Casual Gaming,EMEA,Casey Novak,16,62060.0,Audiences,2024-04-01,30,2024-05-01,No
+ACC-0334,Wild Harbor Interactive,Hyper-Casual,NA,Jordan Blake,19,165036.0,Audiences,2024-04-01,30,2024-05-01,No
+ACC-1464,Bright Reef Interactive,Hyper-Casual,NA,Dana Cohen,4,152497.0,Audiences,2024-05-01,30,2024-05-31,Yes
+ACC-0096,Silent Falcon Arcade,Utilities,EMEA,Casey Novak,45,217631.0,Audiences,2024-05-01,30,2024-05-31,Yes
+ACC-0380,Scarlet Tide Games,Social Casino,LATAM,Robin Shah,50,146387.0,Audiences,2024-05-01,30,2024-05-31,No
+ACC-1344,Scarlet Peak Arcade,Casual Gaming,LATAM,Alex Rivera,56,640494.0,Audiences,2024-05-01,30,2024-05-31,No
+ACC-1308,Iron Tide Mobile,Mobile Gaming,EMEA,Dana Cohen,43,580784.0,Audiences,2024-05-01,30,2024-05-31,No
+ACC-1673,Scarlet Grove Mobile,Hyper-Casual,NA,Sam Patel,44,94079.0,Audiences,2024-05-01,30,2024-05-31,Yes
+ACC-0302,Bright Falcon Games,Mobile Gaming,NA,Dana Cohen,4,1263807.0,Audiences,2024-05-01,30,2024-05-31,Yes
+ACC-1269,Bright Harbor Interactive,Utilities,EMEA,Robin Shah,30,113526.0,Audiences,2024-05-01,30,2024-05-31,No
+ACC-1852,Hollow Meadow Labs,Hyper-Casual,APAC,Sam Patel,13,56409.0,Audiences,2024-05-01,30,2024-05-31,Yes
+ACC-0766,Wild Harbor Interactive,Casual Gaming,EMEA,Alex Rivera,19,440637.0,Audiences,2024-05-01,30,2024-05-31,Yes
+ACC-1790,Silent Grove Mobile,Casual Gaming,NA,Alex Rivera,64,62356.0,Audiences,2024-05-01,30,2024-05-31,No
+ACC-1523,Lunar Falcon Interactive,Mid-Core Gaming,EMEA,Morgan Lee,33,221989.0,Audiences,2024-05-01,30,2024-05-31,Yes
+ACC-1805,Wild Peak Mobile,Mid-Core Gaming,NA,Dana Cohen,48,130111.0,Audiences,2024-05-01,30,2024-05-31,Yes
+ACC-1726,Golden Reef Interactive,Mid-Core Gaming,APAC,Taylor Kim,30,274609.0,Audiences,2024-05-01,30,2024-05-31,Yes
+ACC-0552,Bright Peak Arcade,Mobile Gaming,NA,Casey Novak,19,50728.0,Audiences,2024-05-01,30,2024-05-31,No
+ACC-0653,Scarlet Forge Mobile,Casual Gaming,NA,Dana Cohen,21,154308.0,Audiences,2024-05-01,30,2024-05-31,No
+ACC-0684,Bright Harbor Digital,Social Casino,NA,Jordan Blake,58,193234.0,Audiences,2024-05-01,30,2024-05-31,Yes
+ACC-0937,Rapid Lynx Mobile,Hyper-Casual,LATAM,Morgan Lee,38,116638.0,Audiences,2024-05-01,30,2024-05-31,Yes
+ACC-0567,Silent Grove Labs,Social Casino,NA,Taylor Kim,45,195601.0,Audiences,2024-05-01,30,2024-05-31,No
+ACC-1818,Crystal Meadow Apps,Casual Gaming,EMEA,Robin Shah,10,156513.0,Audiences,2024-05-01,30,2024-05-31,Yes
+ACC-0738,Hollow Meadow Games,Hyper-Casual,NA,Robin Shah,4,122235.0,Audiences,2024-06-01,30,2024-07-01,No
+ACC-1503,Quiet Ridge Arcade,Hyper-Casual,LATAM,Morgan Lee,38,316192.0,Audiences,2024-06-01,30,2024-07-01,Yes
+ACC-1562,Wild Grove Studios,E-commerce,NA,Robin Shah,11,297099.0,Audiences,2024-06-01,30,2024-07-01,No
+ACC-0608,Rapid Reef Games,Mobile Gaming,EMEA,Casey Novak,29,603082.0,Audiences,2024-06-01,30,2024-07-01,Yes
+ACC-0719,Quiet Lynx Interactive,Mobile Gaming,APAC,Sam Patel,4,235547.0,Audiences,2024-06-01,30,2024-07-01,Yes
+ACC-0802,Vivid Lynx Interactive,Casual Gaming,NA,Sam Patel,74,83298.0,Audiences,2024-06-01,30,2024-07-01,Yes
+ACC-1705,Wild Reef Interactive,E-commerce,NA,Robin Shah,20,66582.0,Audiences,2024-06-01,30,2024-07-01,Yes
+ACC-0661,Scarlet Falcon Studios,Mid-Core Gaming,LATAM,Morgan Lee,4,413585.0,Audiences,2024-06-01,30,2024-07-01,Yes
+ACC-1483,Iron Reef Labs,Mid-Core Gaming,NA,Taylor Kim,69,451117.0,Audiences,2024-06-01,30,2024-07-01,Yes
+ACC-0966,Rapid Falcon Apps,Casual Gaming,NA,Dana Cohen,58,106182.0,Audiences,2024-06-01,30,2024-07-01,No
+ACC-0822,Hollow Meadow Games,E-commerce,NA,Casey Novak,71,58322.0,Audiences,2024-06-01,30,2024-07-01,Yes
+ACC-1150,Hollow Falcon Digital,Mobile Gaming,NA,Morgan Lee,37,91624.0,Audiences,2024-06-01,30,2024-07-01,Yes
+ACC-0069,Crystal Peak Games,Social Casino,EMEA,Alex Rivera,75,42037.0,Audiences,2024-06-01,30,2024-07-01,Yes
+ACC-1665,Scarlet Lynx Interactive,E-commerce,EMEA,Jordan Blake,15,494544.0,Audiences,2024-06-01,30,2024-07-01,Yes
+ACC-1321,Iron Nova Games,Utilities,NA,Jordan Blake,45,137332.0,Audiences,2024-06-01,30,2024-07-01,No
+ACC-1310,Iron Nova Games,Social Casino,APAC,Morgan Lee,53,73734.0,Audiences,2024-06-01,30,2024-07-01,Yes
+ACC-0200,Lunar Nova Games,Casual Gaming,NA,Jordan Blake,22,87571.0,Audiences,2024-06-01,30,2024-07-01,No
+ACC-1743,Crystal Reef Games,Utilities,NA,Morgan Lee,43,99074.0,Audiences,2024-06-01,30,2024-07-01,Yes
+ACC-0879,Bright Tide Interactive,Hyper-Casual,LATAM,Alex Rivera,15,193252.0,Audiences,2024-06-01,30,2024-07-01,No
+ACC-1731,Quiet Lynx Studios,Mobile Gaming,NA,Robin Shah,46,213308.0,Audiences,2024-06-01,30,2024-07-01,Yes
+ACC-0612,Bright Lynx Arcade,Casual Gaming,APAC,Jordan Blake,4,1152172.0,Audiences,2024-07-01,30,2024-07-31,Yes
+ACC-0724,Lunar Harbor Studios,Hyper-Casual,APAC,Alex Rivera,4,87756.0,Audiences,2024-07-01,30,2024-07-31,Yes
+ACC-0088,Lunar Lynx Studios,Social Casino,APAC,Morgan Lee,4,114448.0,Audiences,2024-07-01,30,2024-07-31,No
+ACC-1322,Crystal Reef Games,Social Casino,NA,Alex Rivera,75,178433.0,Audiences,2024-07-01,30,2024-07-31,No
+ACC-0907,Golden Peak Arcade,Mid-Core Gaming,NA,Dana Cohen,63,95229.0,Audiences,2024-07-01,30,2024-07-31,Yes
+ACC-1009,Wild Harbor Studios,Mid-Core Gaming,EMEA,Morgan Lee,19,110873.0,Audiences,2024-07-01,30,2024-07-31,Yes
+ACC-1090,Quiet Falcon Mobile,Hyper-Casual,NA,Dana Cohen,30,43114.0,Audiences,2024-07-01,30,2024-07-31,No
+ACC-0783,Silent Meadow Mobile,Utilities,NA,Alex Rivera,45,187456.0,Audiences,2024-07-01,30,2024-07-31,No
+ACC-0695,Lunar Harbor Labs,Social Casino,NA,Dana Cohen,71,87150.0,Audiences,2024-07-01,30,2024-07-31,Yes
+ACC-1372,Crystal Harbor Arcade,E-commerce,NA,Sam Patel,63,873982.0,Audiences,2024-07-01,30,2024-07-31,No
+ACC-1623,Quiet Forge Arcade,Casual Gaming,NA,Sam Patel,41,93199.0,Audiences,2024-07-01,30,2024-07-31,Yes
+ACC-1999,Bright Ridge Games,Casual Gaming,NA,Dana Cohen,47,34924.0,Audiences,2024-07-01,30,2024-07-31,No
+ACC-0487,Crystal Comet Apps,Casual Gaming,APAC,Alex Rivera,7,292856.0,Audiences,2024-07-01,30,2024-07-31,Yes
+ACC-0018,Vivid Meadow Labs,Casual Gaming,NA,Alex Rivera,67,97637.0,Audiences,2024-07-01,30,2024-07-31,No
+ACC-0207,Scarlet Meadow Studios,Social Casino,EMEA,Alex Rivera,23,362244.0,Audiences,2024-07-01,30,2024-07-31,Yes
+ACC-1899,Iron Comet Studios,E-commerce,NA,Dana Cohen,8,77817.0,Audiences,2024-07-01,30,2024-07-31,No
+ACC-0975,Scarlet Nova Arcade,Social Casino,NA,Alex Rivera,16,104016.0,Audiences,2024-07-01,30,2024-07-31,Yes
+ACC-0172,Hollow Comet Mobile,Mid-Core Gaming,NA,Sam Patel,43,44926.0,Audiences,2024-07-01,30,2024-07-31,No
+ACC-0677,Vivid Nova Interactive,Mobile Gaming,NA,Sam Patel,51,60976.0,Audiences,2024-07-01,30,2024-07-31,No
+ACC-0025,Hollow Grove Studios,Social Casino,APAC,Jordan Blake,51,167578.0,Audiences,2024-07-01,30,2024-07-31,No
+ACC-0058,Vivid Meadow Studios,Mid-Core Gaming,EMEA,Casey Novak,5,164720.0,Audiences,2024-08-01,30,2024-08-31,No
+ACC-0421,Iron Tide Studios,Mid-Core Gaming,APAC,Casey Novak,63,57318.0,Audiences,2024-08-01,30,2024-08-31,Yes
+ACC-1008,Vivid Reef Studios,Hyper-Casual,NA,Jordan Blake,28,493525.0,Audiences,2024-08-01,30,2024-08-31,Yes
+ACC-1772,Hollow Nova Apps,E-commerce,EMEA,Robin Shah,11,465277.0,Audiences,2024-08-01,30,2024-08-31,No
+ACC-0043,Silent Ridge Games,Hyper-Casual,EMEA,Morgan Lee,49,97332.0,Audiences,2024-08-01,30,2024-08-31,Yes
+ACC-0397,Iron Harbor Arcade,Mid-Core Gaming,NA,Sam Patel,4,659638.0,Audiences,2024-08-01,30,2024-08-31,Yes
+ACC-0495,Scarlet Falcon Games,Social Casino,APAC,Casey Novak,40,93834.0,Audiences,2024-08-01,30,2024-08-31,Yes
+ACC-0400,Silent Forge Arcade,Hyper-Casual,NA,Dana Cohen,60,181996.0,Audiences,2024-08-01,30,2024-08-31,No
+ACC-0173,Golden Lynx Games,Social Casino,EMEA,Casey Novak,5,92179.0,Audiences,2024-08-01,30,2024-08-31,No
+ACC-1816,Quiet Harbor Digital,Casual Gaming,NA,Taylor Kim,67,291629.0,Audiences,2024-08-01,30,2024-08-31,Yes
+ACC-1338,Rapid Meadow Studios,Social Casino,APAC,Sam Patel,4,133576.0,Audiences,2024-08-01,30,2024-08-31,Yes
+ACC-1752,Wild Ridge Apps,Mid-Core Gaming,APAC,Morgan Lee,68,92312.0,Audiences,2024-08-01,30,2024-08-31,No
+ACC-1636,Wild Lynx Arcade,E-commerce,NA,Alex Rivera,41,103502.0,Audiences,2024-08-01,30,2024-08-31,No
+ACC-0128,Crystal Comet Digital,Mobile Gaming,APAC,Taylor Kim,28,158741.0,Audiences,2024-08-01,30,2024-08-31,Yes
+ACC-0520,Crystal Forge Games,Hyper-Casual,APAC,Casey Novak,70,151367.0,Audiences,2024-08-01,30,2024-08-31,Yes
+ACC-1185,Lunar Lynx Interactive,Social Casino,EMEA,Sam Patel,4,249294.0,Audiences,2024-08-01,30,2024-08-31,Yes
+ACC-1986,Wild Nova Apps,Social Casino,APAC,Robin Shah,15,75749.0,Audiences,2024-08-01,30,2024-08-31,No
+ACC-1627,Bright Nova Studios,Hyper-Casual,EMEA,Morgan Lee,49,209778.0,Audiences,2024-08-01,30,2024-08-31,Yes
+ACC-0757,Vivid Comet Digital,Hyper-Casual,NA,Alex Rivera,42,126969.0,Audiences,2024-08-01,30,2024-08-31,No
+ACC-1973,Crystal Comet Labs,Casual Gaming,LATAM,Morgan Lee,5,68497.0,Audiences,2024-08-01,30,2024-08-31,Yes
+ACC-0457,Rapid Nova Arcade,Mid-Core Gaming,EMEA,Taylor Kim,15,33312.0,Audiences,2024-09-01,30,2024-10-01,No
+ACC-1460,Iron Harbor Games,Casual Gaming,APAC,Dana Cohen,8,496967.0,Audiences,2024-09-01,30,2024-10-01,No
+ACC-0909,Vivid Lynx Digital,Hyper-Casual,APAC,Dana Cohen,68,117994.0,Audiences,2024-09-01,30,2024-10-01,No
+ACC-1563,Silent Meadow Interactive,Casual Gaming,NA,Morgan Lee,42,128956.0,Audiences,2024-09-01,30,2024-10-01,Yes
+ACC-0367,Lunar Harbor Games,Social Casino,NA,Robin Shah,12,23752.0,Audiences,2024-09-01,30,2024-10-01,Yes
+ACC-1301,Rapid Reef Mobile,Mid-Core Gaming,APAC,Taylor Kim,71,125094.0,Audiences,2024-09-01,30,2024-10-01,No
+ACC-1569,Crystal Meadow Interactive,Utilities,APAC,Dana Cohen,25,116596.0,Audiences,2024-09-01,30,2024-10-01,No
+ACC-1945,Scarlet Comet Apps,Social Casino,NA,Taylor Kim,46,626278.0,Audiences,2024-09-01,30,2024-10-01,No
+ACC-1340,Scarlet Grove Mobile,Casual Gaming,EMEA,Taylor Kim,31,71767.0,Audiences,2024-09-01,30,2024-10-01,Yes
+ACC-1599,Quiet Harbor Apps,E-commerce,NA,Alex Rivera,15,51082.0,Audiences,2024-09-01,30,2024-10-01,No
+ACC-0127,Crystal Peak Games,Mid-Core Gaming,NA,Dana Cohen,59,59296.0,Audiences,2024-09-01,30,2024-10-01,Yes
+ACC-1437,Bright Forge Labs,Mobile Gaming,NA,Morgan Lee,80,208616.0,Audiences,2024-09-01,30,2024-10-01,Yes
+ACC-0541,Hollow Tide Games,Casual Gaming,NA,Robin Shah,33,28441.0,Audiences,2024-09-01,30,2024-10-01,No
+ACC-0729,Hollow Lynx Digital,Casual Gaming,LATAM,Sam Patel,7,28717.0,Audiences,2024-09-01,30,2024-10-01,Yes
+ACC-1892,Rapid Ridge Studios,E-commerce,NA,Robin Shah,68,250375.0,Audiences,2024-09-01,30,2024-10-01,Yes
+ACC-0371,Bright Ridge Games,E-commerce,APAC,Jordan Blake,21,88397.0,Audiences,2024-09-01,30,2024-10-01,Yes
+ACC-0325,Lunar Harbor Studios,Casual Gaming,APAC,Sam Patel,55,131644.0,Audiences,2024-09-01,30,2024-10-01,No
+ACC-1773,Hollow Grove Labs,Mid-Core Gaming,NA,Jordan Blake,14,81059.0,Audiences,2024-09-01,30,2024-10-01,No
+ACC-1273,Bright Comet Mobile,Mid-Core Gaming,LATAM,Alex Rivera,67,367398.0,Audiences,2024-09-01,30,2024-10-01,No
+ACC-0810,Scarlet Grove Arcade,Casual Gaming,APAC,Robin Shah,38,78493.0,Audiences,2024-09-01,30,2024-10-01,Yes
+ACC-0703,Scarlet Comet Games,Mid-Core Gaming,EMEA,Robin Shah,48,106581.0,Audiences,2024-10-01,30,2024-10-31,Yes
+ACC-1092,Crystal Ridge Arcade,E-commerce,APAC,Sam Patel,4,73755.0,Audiences,2024-10-01,30,2024-10-31,No
+ACC-1334,Scarlet Peak Games,Hyper-Casual,NA,Morgan Lee,18,51247.0,Audiences,2024-10-01,30,2024-10-31,No
+ACC-0015,Wild Comet Digital,Mobile Gaming,APAC,Dana Cohen,50,48627.0,Audiences,2024-10-01,30,2024-10-31,No
+ACC-0647,Wild Lynx Labs,Utilities,APAC,Sam Patel,41,59186.0,Audiences,2024-10-01,30,2024-10-31,No
+ACC-1991,Iron Reef Digital,Hyper-Casual,APAC,Casey Novak,4,111414.0,Audiences,2024-10-01,30,2024-10-31,Yes
+ACC-1442,Scarlet Ridge Studios,Casual Gaming,EMEA,,25,57106.0,Audiences,2024-10-01,30,2024-10-31,Yes
+ACC-0570,Crystal Meadow Arcade,Mid-Core Gaming,EMEA,Taylor Kim,4,35581.0,Audiences,2024-10-01,30,2024-10-31,Yes
+ACC-1952,Crystal Lynx Arcade,Mobile Gaming,EMEA,Taylor Kim,73,436996.0,Audiences,2024-10-01,30,2024-10-31,No
+ACC-0555,Hollow Forge Games,Social Casino,APAC,Taylor Kim,73,71393.0,Audiences,2024-10-01,30,2024-10-31,Yes
+ACC-0785,Wild Harbor Studios,Hyper-Casual,NA,Robin Shah,75,101790.0,Audiences,2024-10-01,30,2024-10-31,No
+ACC-1085,Iron Comet Digital,Hyper-Casual,NA,Dana Cohen,73,114135.0,Audiences,2024-10-01,30,2024-10-31,Yes
+ACC-1178,Vivid Comet Arcade,Hyper-Casual,NA,Dana Cohen,19,96353.0,Audiences,2024-10-01,30,2024-10-31,No
+ACC-1884,Rapid Tide Arcade,Utilities,EMEA,,49,79652.0,Audiences,2024-10-01,30,2024-10-31,No
+ACC-0359,Golden Ridge Interactive,Mobile Gaming,NA,Morgan Lee,40,60541.0,Audiences,2024-10-01,30,2024-10-31,Yes
+ACC-0124,Bright Nova Studios,Casual Gaming,NA,Morgan Lee,20,78015.0,Audiences,2024-10-01,30,2024-10-31,Yes
+ACC-0473,Golden Tide Studios,Utilities,NA,Jordan Blake,10,73062.0,Audiences,2024-10-01,30,2024-10-31,Yes
+ACC-1118,Bright Falcon Interactive,Social Casino,APAC,Taylor Kim,4,40647.0,Audiences,2024-10-01,30,2024-10-31,No
+ACC-1347,Rapid Comet Digital,Mobile Gaming,EMEA,Robin Shah,55,29135.0,Audiences,2024-10-01,30,2024-10-31,No
+ACC-0355,Bright Peak Labs,Hyper-Casual,APAC,Jordan Blake,45,103179.0,Audiences,2024-10-01,30,2024-10-31,No
+ACC-0553,Crystal Grove Digital,Casual Gaming,LATAM,Robin Shah,6,104867.0,Audiences,2024-11-01,30,2024-12-01,Yes
+ACC-1885,Lunar Reef Digital,Social Casino,APAC,Taylor Kim,4,97612.0,Audiences,2024-11-01,30,2024-12-01,No
+ACC-1847,Hollow Harbor Interactive,Casual Gaming,NA,,54,108503.0,Audiences,2024-11-01,30,2024-12-01,No
+ACC-0648,Wild Ridge Labs,Mid-Core Gaming,EMEA,Dana Cohen,58,101537.0,Audiences,2024-11-01,30,2024-12-01,Yes
+ACC-0064,Vivid Grove Studios,Social Casino,EMEA,Robin Shah,24,42162.0,Audiences,2024-11-01,30,2024-12-01,No
+ACC-1902,Hollow Harbor Digital,Mid-Core Gaming,EMEA,Alex Rivera,22,172168.0,Audiences,2024-11-01,30,2024-12-01,No
+ACC-1638,Rapid Ridge Studios,Casual Gaming,NA,,4,54790.0,Audiences,2024-11-01,30,2024-12-01,No
+ACC-1419,Rapid Peak Mobile,Mid-Core Gaming,NA,Taylor Kim,4,40612.0,Audiences,2024-11-01,30,2024-12-01,No
+ACC-1429,Golden Grove Labs,Utilities,APAC,Taylor Kim,4,120280.0,Audiences,2024-11-01,30,2024-12-01,Yes
+ACC-1109,Scarlet Comet Mobile,Mid-Core Gaming,EMEA,Jordan Blake,4,110331.0,Audiences,2024-11-01,30,2024-12-01,Yes
+ACC-1548,Rapid Ridge Studios,E-commerce,APAC,Morgan Lee,63,295468.0,Audiences,2024-11-01,30,2024-12-01,No
+ACC-1870,Bright Comet Studios,Mobile Gaming,NA,Jordan Blake,4,244321.0,Audiences,2024-11-01,30,2024-12-01,Yes
+ACC-0458,Bright Nova Arcade,Hyper-Casual,APAC,Taylor Kim,80,61399.0,Audiences,2024-11-01,30,2024-12-01,No
+ACC-1758,Quiet Nova Mobile,Hyper-Casual,APAC,Alex Rivera,66,65599.0,Audiences,2024-11-01,30,2024-12-01,Yes
+ACC-1122,Hollow Lynx Interactive,Casual Gaming,NA,Morgan Lee,68,30867.0,Audiences,2024-11-01,30,2024-12-01,No
+ACC-0146,Iron Grove Arcade,Mid-Core Gaming,NA,Taylor Kim,28,1282202.0,Audiences,2024-11-01,30,2024-12-01,No
+ACC-0210,Rapid Falcon Arcade,Hyper-Casual,EMEA,Jordan Blake,72,100036.0,Audiences,2024-11-01,30,2024-12-01,Yes
+ACC-0591,Crystal Lynx Apps,Hyper-Casual,NA,Jordan Blake,41,25086.0,Audiences,2024-11-01,30,2024-12-01,No
+ACC-0526,Iron Comet Arcade,Mobile Gaming,NA,Jordan Blake,76,36534.0,Audiences,2024-11-01,30,2024-12-01,No
+ACC-1995,Golden Meadow Interactive,Utilities,EMEA,Jordan Blake,49,282277.0,Audiences,2024-11-01,30,2024-12-01,Yes
+ACC-1155,Bright Ridge Labs,Social Casino,NA,Morgan Lee,4,324287.0,Audiences,2024-12-01,30,2024-12-31,Yes
+ACC-0467,Lunar Tide Digital,Casual Gaming,EMEA,Casey Novak,4,512502.0,Audiences,2024-12-01,30,2024-12-31,Yes
+ACC-0806,Quiet Nova Interactive,Casual Gaming,EMEA,Morgan Lee,4,46937.0,Audiences,2024-12-01,30,2024-12-31,No
+ACC-1100,Scarlet Peak Labs,Hyper-Casual,NA,Dana Cohen,5,226969.0,Audiences,2024-12-01,30,2024-12-31,No
+ACC-1077,Lunar Ridge Interactive,E-commerce,APAC,Casey Novak,9,28277.0,Audiences,2024-12-01,30,2024-12-31,No
+ACC-0257,Wild Harbor Games,Mobile Gaming,APAC,Jordan Blake,74,387033.0,Audiences,2024-12-01,30,2024-12-31,Yes
+ACC-0789,Scarlet Tide Arcade,Mid-Core Gaming,EMEA,Dana Cohen,22,55897.0,Audiences,2024-12-01,30,2024-12-31,No
+ACC-1635,Quiet Reef Games,Casual Gaming,EMEA,Alex Rivera,4,274029.0,Audiences,2024-12-01,30,2024-12-31,Yes
+ACC-0269,Bright Harbor Apps,Social Casino,APAC,Sam Patel,4,266080.0,Audiences,2024-12-01,30,2024-12-31,No
+ACC-0666,Iron Nova Games,Hyper-Casual,EMEA,Jordan Blake,17,95483.0,Audiences,2024-12-01,30,2024-12-31,No
+ACC-1284,Lunar Harbor Arcade,Social Casino,EMEA,Taylor Kim,6,52599.0,Audiences,2024-12-01,30,2024-12-31,No
+ACC-0833,Iron Nova Labs,Casual Gaming,NA,Alex Rivera,5,855063.0,Audiences,2024-12-01,30,2024-12-31,No
+ACC-0836,Hollow Ridge Apps,Casual Gaming,APAC,Alex Rivera,60,1339475.0,Audiences,2024-12-01,30,2024-12-31,No
+ACC-1158,Hollow Comet Mobile,Mobile Gaming,NA,Alex Rivera,66,25388.0,Audiences,2024-12-01,30,2024-12-31,Yes
+ACC-0090,Lunar Falcon Games,Casual Gaming,EMEA,Morgan Lee,82,4751.0,Audiences,2024-12-01,30,2024-12-31,No
+ACC-0113,Golden Harbor Studios,Social Casino,APAC,Robin Shah,45,534656.0,Audiences,2024-12-01,30,2024-12-31,No
+ACC-0039,Wild Lynx Digital,Casual Gaming,NA,Taylor Kim,10,98572.0,Audiences,2024-12-01,30,2024-12-31,No
+ACC-0164,Scarlet Peak Studios,Mobile Gaming,NA,,21,9544.0,Audiences,2024-12-01,30,2024-12-31,No
+ACC-0716,Bright Tide Apps,Hyper-Casual,EMEA,Robin Shah,26,6534.0,Audiences,2024-12-01,30,2024-12-31,Yes
+ACC-0471,Iron Tide Arcade,Mid-Core Gaming,NA,Morgan Lee,72,81104.0,Audiences,2024-12-01,30,2024-12-31,No
+ACC-1248,Hollow Harbor Studios,Hyper-Casual,EMEA,Sam Patel,4,152604.0,Audiences,2025-01-01,30,2025-01-31,No
+ACC-1644,Rapid Peak Arcade,Mobile Gaming,NA,Dana Cohen,5,694026.0,Audiences,2025-01-01,30,2025-01-31,Yes
+ACC-1736,Golden Forge Games,Casual Gaming,LATAM,Dana Cohen,5,77301.0,Audiences,2025-01-01,30,2025-01-31,No
+ACC-1341,Crystal Nova Interactive,Utilities,APAC,Casey Novak,70,81385.0,Audiences,2025-01-01,30,2025-01-31,No
+ACC-0853,Hollow Harbor Digital,Mobile Gaming,EMEA,Jordan Blake,4,129220.0,Audiences,2025-01-01,30,2025-01-31,No
+ACC-0527,Golden Falcon Studios,Mid-Core Gaming,NA,Dana Cohen,4,111908.0,Audiences,2025-01-01,30,2025-01-31,Yes
+ACC-1059,Lunar Tide Apps,Hyper-Casual,APAC,,57,4459.0,Audiences,2025-01-01,30,2025-01-31,No
+ACC-1012,Rapid Lynx Digital,Casual Gaming,EMEA,,6,46872.0,Audiences,2025-01-01,30,2025-01-31,No
+ACC-1013,Golden Meadow Games,Casual Gaming,APAC,Dana Cohen,42,10006.0,Audiences,2025-01-01,30,2025-01-31,No
+ACC-1136,Golden Comet Games,Mid-Core Gaming,NA,Alex Rivera,48,29677.0,Audiences,2025-01-01,30,2025-01-31,Yes
+ACC-1661,Silent Nova Digital,Casual Gaming,APAC,Morgan Lee,5,120309.0,Audiences,2025-01-01,30,2025-01-31,No
+ACC-0849,Bright Peak Apps,Utilities,EMEA,,77,20007.0,Audiences,2025-01-01,30,2025-01-31,Yes
+ACC-0205,Scarlet Ridge Interactive,Hyper-Casual,EMEA,Taylor Kim,56,42064.0,Audiences,2025-01-01,30,2025-01-31,Yes
+ACC-0030,Vivid Falcon Mobile,Mobile Gaming,EMEA,Sam Patel,13,39938.0,Audiences,2025-01-01,30,2025-01-31,No
+ACC-1785,Bright Reef Games,Mobile Gaming,EMEA,Alex Rivera,22,26334.0,Audiences,2025-01-01,30,2025-01-31,No
+ACC-0382,Bright Peak Mobile,Mobile Gaming,APAC,Jordan Blake,80,3643.0,Audiences,2025-01-01,30,2025-01-31,No
+ACC-1151,Silent Grove Interactive,Mid-Core Gaming,LATAM,Robin Shah,51,471487.0,Audiences,2025-01-01,30,2025-01-31,No
+ACC-0425,Bright Nova Interactive,Mid-Core Gaming,APAC,Alex Rivera,43,53497.0,Audiences,2025-01-01,30,2025-01-31,No
+ACC-1018,Wild Grove Games,Hyper-Casual,NA,Casey Novak,4,6051.0,Audiences,2025-01-01,30,2025-01-31,No
+ACC-0152,Vivid Nova Labs,Mobile Gaming,NA,Morgan Lee,21,169608.0,Audiences,2025-01-01,30,2025-01-31,No
+ACC-1026,Rapid Grove Digital,Social Casino,NA,Taylor Kim,4,387637.0,Audiences,2025-02-01,30,2025-03-03,No
+ACC-1978,Quiet Lynx Digital,Mobile Gaming,LATAM,Taylor Kim,4,125715.0,Audiences,2025-02-01,30,2025-03-03,No
+ACC-1102,Rapid Meadow Interactive,Hyper-Casual,EMEA,Taylor Kim,18,106696.0,Audiences,2025-02-01,30,2025-03-03,No
+ACC-1049,Scarlet Tide Digital,Social Casino,EMEA,Robin Shah,55,142713.0,Audiences,2025-02-01,30,2025-03-03,No
+ACC-1575,Rapid Nova Studios,Hyper-Casual,EMEA,Morgan Lee,4,114778.0,Audiences,2025-02-01,30,2025-03-03,No
+ACC-0933,Crystal Reef Games,Mobile Gaming,LATAM,Casey Novak,47,27715.0,Audiences,2025-02-01,30,2025-03-03,Yes
+ACC-1184,Rapid Tide Games,E-commerce,EMEA,Dana Cohen,73,8376.0,Audiences,2025-02-01,30,2025-03-03,No
+ACC-0826,Golden Ridge Digital,Hyper-Casual,APAC,Casey Novak,55,144574.0,Audiences,2025-02-01,30,2025-03-03,No
+ACC-0436,Golden Falcon Studios,Hyper-Casual,EMEA,,4,80800.0,Audiences,2025-02-01,30,2025-03-03,No
+ACC-1323,Rapid Peak Arcade,Casual Gaming,NA,Taylor Kim,8,100339.0,Audiences,2025-02-01,30,2025-03-03,No
+ACC-0678,Crystal Lynx Digital,Mid-Core Gaming,EMEA,Alex Rivera,15,18732.0,Audiences,2025-02-01,30,2025-03-03,No
+ACC-0307,Golden Falcon Mobile,Mid-Core Gaming,EMEA,Robin Shah,75,12342.0,Audiences,2025-02-01,30,2025-03-03,No
+ACC-0121,Iron Lynx Digital,Casual Gaming,EMEA,Robin Shah,41,75636.0,Audiences,2025-02-01,30,2025-03-03,Yes
+ACC-1934,Scarlet Tide Arcade,Casual Gaming,EMEA,Robin Shah,10,155560.0,Audiences,2025-02-01,30,2025-03-03,No
+ACC-0925,Crystal Tide Arcade,Social Casino,NA,Jordan Blake,6,66918.0,Audiences,2025-02-01,30,2025-03-03,No
+ACC-0692,Wild Reef Arcade,Social Casino,NA,Alex Rivera,85,24496.0,Audiences,2025-02-01,30,2025-03-03,Yes
+ACC-1095,Vivid Grove Games,Hyper-Casual,EMEA,Morgan Lee,65,160219.0,Audiences,2025-02-01,30,2025-03-03,Yes
+ACC-0749,Scarlet Nova Games,Mid-Core Gaming,EMEA,Jordan Blake,79,128107.0,Audiences,2025-02-01,30,2025-03-03,No
+ACC-0281,Quiet Ridge Games,Casual Gaming,APAC,Jordan Blake,57,10270.0,Audiences,2025-02-01,30,2025-03-03,No
+ACC-0435,Scarlet Falcon Labs,Mid-Core Gaming,NA,Casey Novak,80,38900.0,Audiences,2025-02-01,30,2025-03-03,No
+ACC-1859,Hollow Meadow Arcade,Casual Gaming,NA,Alex Rivera,4,154911.0,Audiences,2025-03-01,30,2025-03-31,Yes
+ACC-1114,Quiet Nova Apps,Casual Gaming,APAC,Taylor Kim,4,81743.0,Audiences,2025-03-01,30,2025-03-31,Yes
+ACC-1652,Lunar Grove Interactive,Casual Gaming,APAC,Casey Novak,4,84261.0,Audiences,2025-03-01,30,2025-03-31,No
+ACC-1177,Iron Peak Studios,Mid-Core Gaming,NA,Taylor Kim,11,26357.0,Audiences,2025-03-01,30,2025-03-31,Yes
+ACC-0664,Hollow Nova Games,Social Casino,EMEA,Dana Cohen,13,174461.0,Audiences,2025-03-01,30,2025-03-31,No
+ACC-1600,Rapid Peak Games,Social Casino,NA,Dana Cohen,12,42784.0,Audiences,2025-03-01,30,2025-03-31,No
+ACC-1330,Vivid Nova Apps,Social Casino,APAC,Dana Cohen,21,58384.0,Audiences,2025-03-01,30,2025-03-31,No
+ACC-1194,Wild Falcon Arcade,Hyper-Casual,EMEA,Dana Cohen,30,6493.0,Audiences,2025-03-01,30,2025-03-31,No
+ACC-1152,Silent Tide Studios,E-commerce,EMEA,Robin Shah,8,22506.0,Audiences,2025-03-01,30,2025-03-31,Yes
+ACC-0013,Iron Ridge Studios,Mid-Core Gaming,NA,Casey Novak,47,1173903.0,Audiences,2025-03-01,30,2025-03-31,No
+ACC-0413,Lunar Harbor Mobile,Casual Gaming,EMEA,Sam Patel,77,27870.0,Audiences,2025-03-01,30,2025-03-31,Yes
+ACC-0743,Quiet Peak Labs,Casual Gaming,NA,Casey Novak,14,73323.0,Audiences,2025-03-01,30,2025-03-31,No
+ACC-1487,Scarlet Harbor Arcade,Casual Gaming,APAC,Sam Patel,4,402231.0,Audiences,2025-03-01,30,2025-03-31,No
+ACC-0921,Wild Ridge Labs,E-commerce,NA,Jordan Blake,44,889748.0,Audiences,2025-03-01,30,2025-03-31,No
+ACC-0715,Lunar Harbor Digital,Utilities,EMEA,Sam Patel,44,6822.0,Audiences,2025-03-01,30,2025-03-31,No
+ACC-0204,Vivid Nova Mobile,Social Casino,NA,Casey Novak,78,17258.0,Audiences,2025-03-01,30,2025-03-31,No
+ACC-0084,Hollow Grove Games,Utilities,NA,Taylor Kim,11,62549.0,Audiences,2025-03-01,30,2025-03-31,Yes
+ACC-0424,Rapid Tide Interactive,Mid-Core Gaming,NA,Taylor Kim,14,51378.0,Audiences,2025-03-01,30,2025-03-31,No
+ACC-0587,Bright Harbor Apps,Mid-Core Gaming,EMEA,Robin Shah,4,282862.0,Audiences,2025-03-01,30,2025-03-31,No
+ACC-0965,Rapid Meadow Studios,Social Casino,APAC,Dana Cohen,43,15085.0,Audiences,2025-03-01,30,2025-03-31,No
+ACC-1153,Golden Comet Mobile,Casual Gaming,NA,Morgan Lee,4,32069.0,Audiences,2025-04-01,30,2025-05-01,No
+ACC-1786,Golden Reef Interactive,Casual Gaming,NA,Alex Rivera,4,111473.0,Audiences,2025-04-01,30,2025-05-01,Yes
+ACC-1084,Rapid Grove Interactive,Mid-Core Gaming,EMEA,Morgan Lee,83,17316.0,Audiences,2025-04-01,30,2025-05-01,No
+ACC-1695,Quiet Tide Arcade,Mobile Gaming,EMEA,Casey Novak,84,26216.0,Audiences,2025-04-01,30,2025-05-01,No
+ACC-0385,Scarlet Forge Digital,E-commerce,APAC,,17,8962.0,Audiences,2025-04-01,30,2025-05-01,Yes
+ACC-0352,Scarlet Reef Digital,Social Casino,NA,Jordan Blake,9,30856.0,Audiences,2025-04-01,30,2025-05-01,No
+ACC-0433,Scarlet Forge Apps,Social Casino,APAC,Dana Cohen,30,32148.0,Audiences,2025-04-01,30,2025-05-01,No
+ACC-1582,Wild Peak Apps,Utilities,APAC,Morgan Lee,23,3611.0,Audiences,2025-04-01,30,2025-05-01,No
+ACC-1183,Lunar Comet Games,Social Casino,EMEA,Morgan Lee,36,59562.0,Audiences,2025-04-01,30,2025-05-01,No
+ACC-1482,Scarlet Harbor Studios,Hyper-Casual,LATAM,,66,16710.0,Audiences,2025-04-01,30,2025-05-01,Yes
+ACC-0979,Crystal Forge Mobile,Casual Gaming,EMEA,Jordan Blake,11,19557.0,Audiences,2025-04-01,30,2025-05-01,No
+ACC-0811,Vivid Forge Mobile,Mobile Gaming,LATAM,Alex Rivera,53,91672.0,Audiences,2025-04-01,30,2025-05-01,No
+ACC-1196,Hollow Comet Interactive,Mid-Core Gaming,NA,Dana Cohen,28,10986.0,Audiences,2025-04-01,30,2025-05-01,Yes
+ACC-0882,Lunar Reef Mobile,Social Casino,LATAM,Dana Cohen,56,34414.0,Audiences,2025-04-01,30,2025-05-01,Yes
+ACC-1783,Wild Peak Digital,Mid-Core Gaming,NA,Sam Patel,61,8714.0,Audiences,2025-04-01,30,2025-05-01,Yes
+ACC-1065,Scarlet Ridge Studios,Social Casino,EMEA,Robin Shah,81,11490.0,Audiences,2025-04-01,30,2025-05-01,No
+ACC-0560,Golden Harbor Labs,Social Casino,EMEA,Morgan Lee,75,53588.0,Audiences,2025-04-01,30,2025-05-01,Yes
+ACC-0710,Hollow Lynx Digital,Mobile Gaming,NA,Jordan Blake,32,10719.0,Audiences,2025-04-01,30,2025-05-01,No
+ACC-0709,Bright Tide Arcade,Casual Gaming,EMEA,Jordan Blake,34,26196.0,Audiences,2025-04-01,30,2025-05-01,Yes
+ACC-0532,Crystal Nova Interactive,Hyper-Casual,EMEA,Robin Shah,37,7771.0,Audiences,2025-04-01,30,2025-05-01,Yes
+ACC-1408,Golden Meadow Digital,Hyper-Casual,NA,Sam Patel,4,220907.0,Audiences,2025-05-01,30,2025-05-31,Yes
+ACC-1583,Wild Meadow Mobile,Hyper-Casual,LATAM,Alex Rivera,4,153652.0,Audiences,2025-05-01,30,2025-05-31,No
+ACC-1319,Quiet Nova Digital,Mid-Core Gaming,NA,Casey Novak,4,323916.0,Audiences,2025-05-01,30,2025-05-31,Yes
+ACC-1576,Hollow Comet Apps,E-commerce,EMEA,Robin Shah,4,104016.0,Audiences,2025-05-01,30,2025-05-31,Yes
+ACC-0369,Silent Ridge Arcade,Mobile Gaming,APAC,Jordan Blake,4,185400.0,Audiences,2025-05-01,30,2025-05-31,No
+ACC-0533,Quiet Tide Games,Utilities,LATAM,Sam Patel,4,67145.0,Audiences,2025-05-01,30,2025-05-31,Yes
+ACC-1798,Vivid Peak Mobile,Social Casino,EMEA,Dana Cohen,4,60263.0,Audiences,2025-05-01,30,2025-05-31,No
+ACC-0135,Golden Falcon Arcade,Mid-Core Gaming,EMEA,Jordan Blake,46,22966.0,Audiences,2025-05-01,30,2025-05-31,Yes
+ACC-1036,Hollow Lynx Apps,Hyper-Casual,LATAM,Jordan Blake,4,83880.0,Audiences,2025-05-01,30,2025-05-31,No
+ACC-0354,Quiet Lynx Games,Hyper-Casual,NA,Sam Patel,4,199347.0,Audiences,2025-05-01,30,2025-05-31,No
+ACC-1394,Quiet Comet Studios,Casual Gaming,EMEA,Jordan Blake,7,15547.0,Audiences,2025-05-01,30,2025-05-31,No
+ACC-1568,Vivid Reef Interactive,E-commerce,NA,Dana Cohen,43,2585.0,Audiences,2025-05-01,30,2025-05-31,No
+ACC-0353,Crystal Lynx Games,E-commerce,EMEA,Jordan Blake,69,23316.0,Audiences,2025-05-01,30,2025-05-31,Yes
+ACC-0771,Golden Grove Apps,Mobile Gaming,APAC,Taylor Kim,37,22200.0,Audiences,2025-05-01,30,2025-05-31,No
+ACC-1729,Quiet Reef Interactive,Hyper-Casual,EMEA,Casey Novak,48,82070.0,Audiences,2025-05-01,30,2025-05-31,No
+ACC-1283,Vivid Ridge Games,Mid-Core Gaming,EMEA,Dana Cohen,30,14532.0,Audiences,2025-05-01,30,2025-05-31,No
+ACC-1120,Scarlet Reef Studios,Casual Gaming,EMEA,Robin Shah,4,25990.0,Audiences,2025-05-01,30,2025-05-31,No
+ACC-0476,Wild Nova Mobile,Hyper-Casual,EMEA,Morgan Lee,46,8268.0,Audiences,2025-05-01,30,2025-05-31,No
+ACC-1229,Quiet Grove Arcade,Mid-Core Gaming,EMEA,,82,36033.0,Audiences,2025-05-01,30,2025-05-31,No
+ACC-1375,Crystal Comet Labs,Social Casino,LATAM,Casey Novak,6,19357.0,Audiences,2025-05-01,30,2025-05-31,No
+ACC-1616,Scarlet Ridge Studios,Social Casino,APAC,Morgan Lee,4,909807.0,Audiences,2025-06-01,30,2025-07-01,Yes
+ACC-0957,Golden Lynx Games,Casual Gaming,LATAM,Casey Novak,4,2230971.0,Audiences,2025-06-01,30,2025-07-01,No
+ACC-1946,Scarlet Comet Apps,Mobile Gaming,EMEA,Morgan Lee,4,204396.0,Audiences,2025-06-01,30,2025-07-01,No
+ACC-1739,Bright Harbor Games,Mobile Gaming,EMEA,Jordan Blake,4,351309.0,Audiences,2025-06-01,30,2025-07-01,Yes
+ACC-1103,Bright Grove Arcade,E-commerce,NA,Taylor Kim,4,260327.0,Audiences,2025-06-01,30,2025-07-01,Yes
+ACC-1759,Bright Harbor Interactive,Mid-Core Gaming,NA,Jordan Blake,4,50452.0,Audiences,2025-06-01,30,2025-07-01,No
+ACC-1431,Quiet Falcon Studios,E-commerce,APAC,Robin Shah,4,663955.0,Audiences,2025-06-01,30,2025-07-01,Yes
+ACC-0656,Iron Harbor Studios,Social Casino,APAC,Sam Patel,5,323628.0,Audiences,2025-06-01,30,2025-07-01,Yes
+ACC-1683,Rapid Peak Studios,Casual Gaming,EMEA,Sam Patel,4,518000.0,Audiences,2025-06-01,30,2025-07-01,No
+ACC-0441,Bright Ridge Apps,Social Casino,NA,Jordan Blake,4,134907.0,Audiences,2025-06-01,30,2025-07-01,Yes
+ACC-0711,Iron Meadow Interactive,E-commerce,NA,,11,22681.0,Audiences,2025-06-01,30,2025-07-01,No
+ACC-1533,Crystal Harbor Apps,Hyper-Casual,EMEA,Casey Novak,56,69202.0,Audiences,2025-06-01,30,2025-07-01,No
+ACC-0793,Scarlet Grove Mobile,Casual Gaming,NA,Taylor Kim,28,14672.0,Audiences,2025-06-01,30,2025-07-01,No
+ACC-0675,Golden Forge Arcade,Mid-Core Gaming,EMEA,Dana Cohen,4,421950.0,Audiences,2025-06-01,30,2025-07-01,No
+ACC-0511,Wild Nova Labs,Hyper-Casual,NA,Jordan Blake,50,53837.0,Audiences,2025-06-01,30,2025-07-01,No
+ACC-1474,Hollow Nova Studios,Mobile Gaming,EMEA,Jordan Blake,27,47420.0,Audiences,2025-06-01,30,2025-07-01,No
+ACC-1764,Hollow Comet Interactive,Social Casino,NA,Casey Novak,13,19760.0,Audiences,2025-06-01,30,2025-07-01,No
+ACC-0245,Bright Forge Labs,Mid-Core Gaming,EMEA,Casey Novak,8,20702.0,Audiences,2025-06-01,30,2025-07-01,Yes
+ACC-1985,Rapid Comet Arcade,Social Casino,NA,Jordan Blake,50,21853.0,Audiences,2025-06-01,30,2025-07-01,No
+ACC-0310,Crystal Grove Apps,Mobile Gaming,NA,Alex Rivera,4,92924.0,Audiences,2025-06-01,30,2025-07-01,No
+ACC-1434,Bright Reef Mobile,Utilities,EMEA,Casey Novak,4,596185.0,Audiences,2025-07-01,30,2025-07-31,No
+ACC-0059,Lunar Nova Apps,Utilities,NA,Taylor Kim,4,338592.0,Audiences,2025-07-01,30,2025-07-31,No
+ACC-0934,Lunar Grove Interactive,Utilities,NA,Taylor Kim,38,17484.0,Audiences,2025-07-01,30,2025-07-31,No
+ACC-1402,Silent Lynx Labs,Utilities,EMEA,Sam Patel,5,23609.0,Audiences,2025-07-01,30,2025-07-31,No
+ACC-0674,Iron Comet Apps,Hyper-Casual,APAC,Jordan Blake,31,293881.0,Audiences,2025-07-01,30,2025-07-31,No
+ACC-1053,Lunar Harbor Interactive,Hyper-Casual,EMEA,Dana Cohen,59,14902.0,Audiences,2025-07-01,30,2025-07-31,No
+ACC-1346,Hollow Nova Studios,Casual Gaming,NA,,22,9121.0,Audiences,2025-07-01,30,2025-07-31,No
+ACC-0646,Golden Peak Arcade,Mid-Core Gaming,NA,Sam Patel,57,5628.0,Audiences,2025-07-01,30,2025-07-31,No
+ACC-1510,Rapid Tide Apps,Mid-Core Gaming,APAC,Casey Novak,86,9113.0,Audiences,2025-07-01,30,2025-07-31,Yes
+ACC-1241,Rapid Nova Arcade,Mid-Core Gaming,EMEA,Casey Novak,16,33656.0,Audiences,2025-07-01,30,2025-07-31,No
+ACC-0547,Wild Tide Games,Utilities,EMEA,Alex Rivera,53,10526.0,Audiences,2025-07-01,30,2025-07-31,No
+ACC-1495,Vivid Tide Labs,Casual Gaming,LATAM,Casey Novak,70,7265.0,Audiences,2025-07-01,30,2025-07-31,Yes
+ACC-1331,Wild Ridge Interactive,Social Casino,APAC,Morgan Lee,4,960217.0,Audiences,2025-07-01,30,2025-07-31,No
+ACC-0390,Quiet Forge Arcade,Mid-Core Gaming,NA,,31,6254.0,Audiences,2025-07-01,30,2025-07-31,No
+ACC-1390,Lunar Meadow Studios,Hyper-Casual,LATAM,Taylor Kim,4,2579.0,Audiences,2025-07-01,30,2025-07-31,No
+ACC-1894,Lunar Lynx Interactive,E-commerce,LATAM,Robin Shah,6,47166.0,Audiences,2025-07-01,30,2025-07-31,No
+ACC-1311,Lunar Falcon Apps,Casual Gaming,APAC,Sam Patel,34,11241.0,Audiences,2025-07-01,30,2025-07-31,No
+ACC-1360,Bright Peak Labs,Mid-Core Gaming,NA,Taylor Kim,4,30277.0,Audiences,2025-07-01,30,2025-07-31,Yes
+ACC-1069,Iron Tide Games,Mid-Core Gaming,NA,Dana Cohen,12,27037.0,Audiences,2025-07-01,30,2025-07-31,No
+ACC-0074,Quiet Nova Apps,Hyper-Casual,APAC,Taylor Kim,4,24140.0,Audiences,2025-07-01,30,2025-07-31,Yes
+ACC-1377,Golden Grove Digital,Mid-Core Gaming,NA,Dana Cohen,4,218922.0,Audiences,2025-08-01,30,2025-08-31,No
+ACC-0309,Rapid Harbor Labs,Social Casino,APAC,Robin Shah,4,91418.0,Audiences,2025-08-01,30,2025-08-31,Yes
+ACC-0419,Quiet Falcon Digital,Mid-Core Gaming,APAC,Morgan Lee,4,160604.0,Audiences,2025-08-01,30,2025-08-31,No
+ACC-1501,Silent Meadow Games,Hyper-Casual,LATAM,Dana Cohen,12,34896.0,Audiences,2025-08-01,30,2025-08-31,No
+ACC-0866,Lunar Harbor Arcade,Casual Gaming,EMEA,Casey Novak,9,12752.0,Audiences,2025-08-01,30,2025-08-31,No
+ACC-0538,Silent Reef Arcade,Social Casino,NA,Alex Rivera,5,67761.0,Audiences,2025-08-01,30,2025-08-31,Yes
+ACC-0115,Hollow Forge Mobile,Hyper-Casual,LATAM,Dana Cohen,6,14487.0,Audiences,2025-08-01,30,2025-08-31,Yes
+ACC-1352,Scarlet Harbor Digital,Mid-Core Gaming,EMEA,Morgan Lee,4,130395.0,Audiences,2025-08-01,30,2025-08-31,No
+ACC-1690,Quiet Lynx Studios,Mobile Gaming,NA,Sam Patel,57,11121.0,Audiences,2025-08-01,30,2025-08-31,Yes
+ACC-0498,Hollow Peak Digital,Casual Gaming,EMEA,Robin Shah,26,39727.0,Audiences,2025-08-01,30,2025-08-31,Yes
+ACC-0874,Rapid Forge Arcade,Hyper-Casual,EMEA,Jordan Blake,15,16116.0,Audiences,2025-08-01,30,2025-08-31,No
+ACC-0158,Lunar Grove Games,Mobile Gaming,LATAM,Alex Rivera,54,4294.0,Audiences,2025-08-01,30,2025-08-31,No
+ACC-0801,Rapid Forge Interactive,Casual Gaming,NA,Morgan Lee,4,31900.0,Audiences,2025-08-01,30,2025-08-31,No
+ACC-1489,Wild Forge Labs,Mid-Core Gaming,APAC,Casey Novak,41,21806.0,Audiences,2025-08-01,30,2025-08-31,No
+ACC-0911,Lunar Ridge Interactive,Utilities,EMEA,Dana Cohen,32,47362.0,Audiences,2025-08-01,30,2025-08-31,No
+ACC-0876,Golden Nova Digital,Utilities,EMEA,Casey Novak,53,5897.0,Audiences,2025-08-01,30,2025-08-31,No
+ACC-1332,Rapid Lynx Games,Casual Gaming,NA,Morgan Lee,5,36222.0,Audiences,2025-08-01,30,2025-08-31,No
+ACC-1210,Rapid Nova Arcade,Social Casino,NA,Morgan Lee,8,46551.0,Audiences,2025-08-01,30,2025-08-31,No
+ACC-1518,Quiet Falcon Apps,Mid-Core Gaming,EMEA,Jordan Blake,4,34418.0,Audiences,2025-08-01,30,2025-08-31,No
+ACC-1603,Crystal Tide Studios,Mobile Gaming,NA,Casey Novak,13,33894.0,Audiences,2025-08-01,30,2025-08-31,No
+ACC-1538,Silent Harbor Arcade,Mid-Core Gaming,NA,Alex Rivera,4,96913.0,Audiences,2025-09-01,30,2025-10-01,Yes
+ACC-1784,Silent Forge Mobile,Mid-Core Gaming,APAC,Sam Patel,4,179223.0,Audiences,2025-09-01,30,2025-10-01,Yes
+ACC-1159,Rapid Harbor Arcade,Hyper-Casual,EMEA,Robin Shah,6,198756.0,Audiences,2025-09-01,30,2025-10-01,No
+ACC-0329,Wild Lynx Mobile,Mobile Gaming,EMEA,Jordan Blake,57,11754.0,Audiences,2025-09-01,30,2025-10-01,No
+ACC-0817,Scarlet Ridge Interactive,E-commerce,LATAM,Dana Cohen,92,11689.0,Audiences,2025-09-01,30,2025-10-01,Yes
+ACC-0008,Crystal Comet Labs,Mobile Gaming,NA,Dana Cohen,52,13920.0,Audiences,2025-09-01,30,2025-10-01,No
+ACC-0940,Wild Forge Apps,E-commerce,NA,Jordan Blake,44,32110.0,Audiences,2025-09-01,30,2025-10-01,No
+ACC-0060,Lunar Tide Games,E-commerce,NA,Morgan Lee,14,10154.0,Audiences,2025-09-01,30,2025-10-01,Yes
+ACC-1455,Scarlet Lynx Apps,Utilities,EMEA,Robin Shah,20,16855.0,Audiences,2025-09-01,30,2025-10-01,No
+ACC-0645,Vivid Falcon Mobile,Casual Gaming,NA,Dana Cohen,4,25343.0,Audiences,2025-09-01,30,2025-10-01,No
+ACC-1698,Hollow Grove Labs,Utilities,EMEA,,73,21573.0,Audiences,2025-09-01,30,2025-10-01,No
+ACC-1780,Quiet Tide Apps,Mobile Gaming,EMEA,Robin Shah,7,10173.0,Audiences,2025-09-01,30,2025-10-01,No
+ACC-1874,Wild Nova Interactive,Mid-Core Gaming,NA,,83,38223.0,Audiences,2025-09-01,30,2025-10-01,Yes
+ACC-1968,Golden Peak Arcade,Hyper-Casual,NA,Robin Shah,8,100185.0,Audiences,2025-09-01,30,2025-10-01,Yes
+ACC-1297,Wild Ridge Mobile,Casual Gaming,NA,Robin Shah,20,4156.0,Audiences,2025-09-01,30,2025-10-01,No
+ACC-0615,Hollow Peak Mobile,Mobile Gaming,EMEA,Morgan Lee,66,62816.0,Audiences,2025-09-01,30,2025-10-01,No
+ACC-1274,Quiet Meadow Games,Casual Gaming,NA,Casey Novak,57,50345.0,Audiences,2025-09-01,30,2025-10-01,Yes
+ACC-1472,Vivid Meadow Mobile,Utilities,EMEA,Taylor Kim,90,38266.0,Audiences,2025-09-01,30,2025-10-01,No
+ACC-0189,Golden Grove Labs,Social Casino,EMEA,Alex Rivera,8,31547.0,Audiences,2025-09-01,30,2025-10-01,Yes
+ACC-0578,Scarlet Peak Digital,Mid-Core Gaming,NA,Morgan Lee,4,45926.0,Audiences,2025-09-01,30,2025-10-01,No
+ACC-1896,Vivid Reef Interactive,Casual Gaming,NA,Jordan Blake,4,40581.0,Audiences,2025-10-01,30,2025-10-31,Yes
+ACC-1866,Rapid Grove Apps,Utilities,NA,Dana Cohen,4,85561.0,Audiences,2025-10-01,30,2025-10-31,No
+ACC-0386,Bright Tide Apps,Mobile Gaming,NA,Taylor Kim,4,37635.0,Audiences,2025-10-01,30,2025-10-31,No
+ACC-1625,Crystal Lynx Arcade,Mobile Gaming,APAC,Robin Shah,4,36470.0,Audiences,2025-10-01,30,2025-10-31,No
+ACC-0601,Silent Comet Labs,Casual Gaming,APAC,Casey Novak,12,6429.0,Audiences,2025-10-01,30,2025-10-31,Yes
+ACC-0140,Vivid Nova Games,Mid-Core Gaming,LATAM,Dana Cohen,91,79597.0,Audiences,2025-10-01,30,2025-10-31,No
+ACC-0971,Bright Reef Interactive,Mid-Core Gaming,NA,Sam Patel,31,104561.0,Audiences,2025-10-01,30,2025-10-31,Yes
+ACC-0050,Crystal Nova Digital,Mid-Core Gaming,NA,Dana Cohen,29,6769.0,Audiences,2025-10-01,30,2025-10-31,No
+ACC-1252,Lunar Meadow Apps,Casual Gaming,APAC,Jordan Blake,6,5401.0,Audiences,2025-10-01,30,2025-10-31,No
+ACC-0492,Quiet Reef Mobile,Hyper-Casual,NA,,4,10069.0,Audiences,2025-10-01,30,2025-10-31,No
+ACC-0463,Vivid Reef Interactive,Mobile Gaming,EMEA,Taylor Kim,13,14182.0,Audiences,2025-10-01,30,2025-10-31,No
+ACC-1730,Quiet Forge Labs,Hyper-Casual,APAC,Sam Patel,80,8062.0,Audiences,2025-10-01,30,2025-10-31,No
+ACC-0085,Hollow Peak Labs,Hyper-Casual,EMEA,Dana Cohen,70,6110.0,Audiences,2025-10-01,30,2025-10-31,Yes
+ACC-1179,Crystal Forge Apps,Social Casino,LATAM,,71,59477.0,Audiences,2025-10-01,30,2025-10-31,No
+ACC-1358,Wild Meadow Interactive,Mid-Core Gaming,NA,Dana Cohen,23,11203.0,Audiences,2025-10-01,30,2025-10-31,No
+ACC-0322,Bright Lynx Mobile,Hyper-Casual,NA,Alex Rivera,11,10121.0,Audiences,2025-10-01,30,2025-10-31,No
+ACC-0339,Lunar Tide Apps,Social Casino,EMEA,Taylor Kim,73,4271.0,Audiences,2025-10-01,30,2025-10-31,No
+ACC-1093,Hollow Grove Arcade,Hyper-Casual,EMEA,Jordan Blake,81,6333.0,Audiences,2025-10-01,30,2025-10-31,No
+ACC-1701,Golden Comet Games,E-commerce,NA,Robin Shah,13,121327.0,Audiences,2025-10-01,30,2025-10-31,No
+ACC-1869,Vivid Meadow Mobile,Mid-Core Gaming,EMEA,Sam Patel,49,11906.0,Audiences,2025-10-01,30,2025-10-31,No
+ACC-0720,Lunar Meadow Mobile,Hyper-Casual,EMEA,Sam Patel,4,139069.0,Audiences,2025-11-01,30,2025-12-01,No
+ACC-1685,Quiet Lynx Games,Hyper-Casual,EMEA,Alex Rivera,4,32553.0,Audiences,2025-11-01,30,2025-12-01,No
+ACC-1846,Wild Lynx Arcade,Casual Gaming,NA,Taylor Kim,4,65594.0,Audiences,2025-11-01,30,2025-12-01,No
+ACC-1667,Wild Nova Digital,Casual Gaming,NA,,4,38422.0,Audiences,2025-11-01,30,2025-12-01,No
+ACC-0319,Iron Meadow Studios,Mobile Gaming,NA,,7,2902.0,Audiences,2025-11-01,30,2025-12-01,No
+ACC-0883,Scarlet Peak Games,Social Casino,NA,Morgan Lee,4,8189.0,Audiences,2025-11-01,30,2025-12-01,No
+ACC-0938,Golden Tide Arcade,Casual Gaming,NA,Morgan Lee,89,22188.0,Audiences,2025-11-01,30,2025-12-01,Yes
+ACC-1913,Wild Tide Arcade,Mid-Core Gaming,LATAM,Sam Patel,4,23811.0,Audiences,2025-11-01,30,2025-12-01,No
+ACC-0528,Rapid Peak Interactive,Utilities,EMEA,Dana Cohen,4,14338.0,Audiences,2025-11-01,30,2025-12-01,No
+ACC-0554,Iron Ridge Games,Utilities,EMEA,Morgan Lee,71,8931.0,Audiences,2025-11-01,30,2025-12-01,No
+ACC-1969,Hollow Lynx Interactive,Hyper-Casual,APAC,Morgan Lee,53,21651.0,Audiences,2025-11-01,30,2025-12-01,No
+ACC-1133,Rapid Nova Digital,Hyper-Casual,EMEA,Casey Novak,9,8510.0,Audiences,2025-11-01,30,2025-12-01,No
+ACC-0162,Lunar Meadow Studios,Mid-Core Gaming,APAC,Sam Patel,42,9038.0,Audiences,2025-11-01,30,2025-12-01,No
+ACC-1149,Silent Harbor Apps,Casual Gaming,EMEA,Robin Shah,8,10131.0,Audiences,2025-11-01,30,2025-12-01,No
+ACC-0821,Vivid Reef Apps,Utilities,EMEA,Sam Patel,7,26673.0,Audiences,2025-11-01,30,2025-12-01,No
+ACC-0733,Quiet Falcon Digital,Social Casino,APAC,,19,10704.0,Audiences,2025-11-01,30,2025-12-01,No
+ACC-1157,Lunar Ridge Apps,Mid-Core Gaming,APAC,Robin Shah,61,14487.0,Audiences,2025-11-01,30,2025-12-01,Yes
+ACC-1170,Golden Harbor Games,Mobile Gaming,EMEA,Jordan Blake,4,33655.0,Audiences,2025-11-01,30,2025-12-01,No
+ACC-1081,Bright Falcon Games,Mid-Core Gaming,EMEA,Robin Shah,4,186109.0,Audiences,2025-11-01,30,2025-12-01,Yes
+ACC-0860,Quiet Meadow Apps,Social Casino,EMEA,Casey Novak,75,45269.0,Audiences,2025-11-01,30,2025-12-01,No
+ACC-1324,Rapid Ridge Apps,Hyper-Casual,NA,Taylor Kim,4,112767.0,Audiences,2025-12-01,30,2025-12-31,No
+ACC-1507,Crystal Reef Apps,Mid-Core Gaming,NA,Sam Patel,4,208061.0,Audiences,2025-12-01,30,2025-12-31,No
+ACC-1650,Iron Falcon Digital,Hyper-Casual,NA,Sam Patel,4,82310.0,Audiences,2025-12-01,30,2025-12-31,Yes
+ACC-0120,Silent Comet Apps,Social Casino,NA,Alex Rivera,4,109890.0,Audiences,2025-12-01,30,2025-12-31,Yes
+ACC-0076,Rapid Peak Studios,Casual Gaming,NA,,67,44911.0,Audiences,2025-12-01,30,2025-12-31,No
+ACC-0894,Rapid Comet Mobile,Casual Gaming,APAC,Robin Shah,79,17338.0,Audiences,2025-12-01,30,2025-12-31,Yes
+ACC-1208,Quiet Comet Apps,Social Casino,EMEA,Casey Novak,4,302987.0,Audiences,2025-12-01,30,2025-12-31,No
+ACC-1728,Lunar Grove Arcade,Social Casino,APAC,Taylor Kim,4,135001.0,Audiences,2025-12-01,30,2025-12-31,No
+ACC-1941,Bright Tide Arcade,Mid-Core Gaming,EMEA,Jordan Blake,4,190043.0,Audiences,2025-12-01,30,2025-12-31,No
+ACC-1981,Quiet Reef Games,Social Casino,NA,Dana Cohen,19,16798.0,Audiences,2025-12-01,30,2025-12-31,No
+ACC-0843,Scarlet Tide Interactive,Mid-Core Gaming,NA,Alex Rivera,94,14721.0,Audiences,2025-12-01,30,2025-12-31,No
+ACC-1609,Lunar Ridge Digital,Casual Gaming,NA,,12,6881.0,Audiences,2025-12-01,30,2025-12-31,No
+ACC-1398,Quiet Tide Games,Social Casino,APAC,Casey Novak,7,4224.0,Audiences,2025-12-01,30,2025-12-31,Yes
+ACC-0531,Vivid Meadow Games,Utilities,NA,Jordan Blake,5,9866.0,Audiences,2025-12-01,30,2025-12-31,No
+ACC-0023,Iron Reef Arcade,Casual Gaming,LATAM,Taylor Kim,4,31445.0,Audiences,2025-12-01,30,2025-12-31,No
+ACC-1820,Lunar Nova Digital,Social Casino,NA,Robin Shah,20,12868.0,Audiences,2025-12-01,30,2025-12-31,No
+ACC-0145,Wild Comet Arcade,Hyper-Casual,NA,,82,6257.0,Audiences,2025-12-01,30,2025-12-31,No
+ACC-0686,Iron Meadow Arcade,Social Casino,NA,Alex Rivera,70,7339.0,Audiences,2025-12-01,30,2025-12-31,Yes
+ACC-1303,Bright Falcon Digital,Casual Gaming,NA,,8,2869.0,Audiences,2025-12-01,30,2025-12-31,No
+ACC-0922,Iron Meadow Arcade,Mid-Core Gaming,EMEA,Jordan Blake,19,7814.0,Audiences,2025-12-01,30,2025-12-31,Yes
+ACC-0707,Bright Meadow Games,E-commerce,APAC,Taylor Kim,4,97487.0,Audiences,2026-01-01,30,2026-01-31,Yes
+ACC-0267,Iron Meadow Digital,Mid-Core Gaming,NA,Dana Cohen,4,149716.0,Audiences,2026-01-01,30,2026-01-31,Yes
+ACC-1003,Golden Reef Studios,Social Casino,EMEA,Morgan Lee,4,72949.0,Audiences,2026-01-01,30,2026-01-31,No
+ACC-0950,Rapid Forge Mobile,Social Casino,NA,Alex Rivera,11,5982.0,Audiences,2026-01-01,30,2026-01-31,Yes
+ACC-1554,Golden Ridge Games,Casual Gaming,APAC,Casey Novak,88,20166.0,Audiences,2026-01-01,30,2026-01-31,Yes
+ACC-1546,Vivid Peak Labs,Casual Gaming,NA,Taylor Kim,77,20973.0,Audiences,2026-01-01,30,2026-01-31,No
+ACC-0808,Silent Forge Games,Hyper-Casual,EMEA,Casey Novak,80,63225.0,Audiences,2026-01-01,30,2026-01-31,No
+ACC-1763,Scarlet Lynx Studios,Hyper-Casual,EMEA,Morgan Lee,20,29282.0,Audiences,2026-01-01,30,2026-01-31,No
+ACC-0759,Crystal Peak Labs,Social Casino,NA,Sam Patel,79,4814.0,Audiences,2026-01-01,30,2026-01-31,Yes
+ACC-1054,Bright Nova Arcade,Utilities,NA,Jordan Blake,42,36535.0,Audiences,2026-01-01,30,2026-01-31,No
+ACC-1703,Quiet Meadow Digital,Mid-Core Gaming,EMEA,Casey Novak,35,42222.0,Audiences,2026-01-01,30,2026-01-31,No
+ACC-1191,Bright Lynx Interactive,Utilities,EMEA,Alex Rivera,82,10571.0,Audiences,2026-01-01,30,2026-01-31,No
+ACC-0558,Silent Tide Games,Hyper-Casual,EMEA,Sam Patel,24,23629.0,Audiences,2026-01-01,30,2026-01-31,Yes
+ACC-0439,Silent Grove Studios,Hyper-Casual,EMEA,Taylor Kim,5,9755.0,Audiences,2026-01-01,30,2026-01-31,No
+ACC-0149,Hollow Forge Arcade,Casual Gaming,NA,,6,2767.0,Audiences,2026-01-01,30,2026-01-31,No
+ACC-0931,Vivid Grove Digital,Mobile Gaming,EMEA,,32,9416.0,Audiences,2026-01-01,30,2026-01-31,No
+ACC-1571,Quiet Nova Labs,Hyper-Casual,LATAM,Morgan Lee,72,5531.0,Audiences,2026-01-01,30,2026-01-31,No
+ACC-1566,Wild Reef Games,Hyper-Casual,APAC,,4,9464.0,Audiences,2026-01-01,30,2026-01-31,No
+ACC-0741,Wild Forge Apps,Mobile Gaming,EMEA,Alex Rivera,88,19197.0,Audiences,2026-01-01,30,2026-01-31,Yes
+ACC-0368,Rapid Meadow Digital,Casual Gaming,NA,Dana Cohen,86,3756.0,Audiences,2026-01-01,30,2026-01-31,No
+ACC-1713,Silent Lynx Arcade,E-commerce,EMEA,Taylor Kim,4,207710.0,Audiences,2026-02-01,30,2026-03-03,No
+ACC-1011,Lunar Peak Studios,Mobile Gaming,NA,Jordan Blake,4,496517.0,Audiences,2026-02-01,30,2026-03-03,No
+ACC-1531,Crystal Tide Mobile,Mid-Core Gaming,NA,Jordan Blake,4,86617.0,Audiences,2026-02-01,30,2026-03-03,Yes
+ACC-0035,Scarlet Grove Mobile,E-commerce,EMEA,Morgan Lee,5,130371.0,Audiences,2026-02-01,30,2026-03-03,Yes
+ACC-0986,Lunar Forge Labs,Social Casino,NA,Alex Rivera,4,57827.0,Audiences,2026-02-01,30,2026-03-03,Yes
+ACC-1732,Golden Harbor Mobile,E-commerce,APAC,Jordan Blake,4,151583.0,Audiences,2026-02-01,30,2026-03-03,No
+ACC-1147,Wild Peak Digital,Mid-Core Gaming,EMEA,,5,34614.0,Audiences,2026-02-01,30,2026-03-03,Yes
+ACC-1889,Scarlet Ridge Labs,E-commerce,LATAM,Casey Novak,4,19387.0,Audiences,2026-02-01,30,2026-03-03,Yes
+ACC-1366,Hollow Falcon Games,Hyper-Casual,EMEA,Jordan Blake,10,10921.0,Audiences,2026-02-01,30,2026-03-03,No
+ACC-1965,Vivid Harbor Arcade,Mid-Core Gaming,NA,Alex Rivera,10,3249.0,Audiences,2026-02-01,30,2026-03-03,No
+ACC-0813,Hollow Grove Studios,Social Casino,APAC,Alex Rivera,21,120521.0,Audiences,2026-02-01,30,2026-03-03,No
+ACC-1671,Lunar Comet Labs,Mobile Gaming,NA,Morgan Lee,41,23114.0,Audiences,2026-02-01,30,2026-03-03,Yes
+ACC-1720,Crystal Reef Digital,Social Casino,NA,Robin Shah,35,3683.0,Audiences,2026-02-01,30,2026-03-03,Yes
+ACC-1771,Rapid Ridge Digital,Casual Gaming,APAC,Casey Novak,24,17140.0,Audiences,2026-02-01,30,2026-03-03,Yes
+ACC-1369,Silent Lynx Labs,Hyper-Casual,APAC,Dana Cohen,6,5337.0,Audiences,2026-02-01,30,2026-03-03,No
+ACC-1629,Rapid Harbor Labs,Mobile Gaming,APAC,,8,37174.0,Audiences,2026-02-01,30,2026-03-03,No
+ACC-0635,Rapid Falcon Apps,Mid-Core Gaming,APAC,,75,12541.0,Audiences,2026-02-01,30,2026-03-03,No
+ACC-0599,Rapid Comet Studios,Mid-Core Gaming,APAC,Dana Cohen,9,128797.0,Audiences,2026-02-01,30,2026-03-03,No
+ACC-0066,Hollow Falcon Interactive,Mobile Gaming,NA,Jordan Blake,5,84976.0,Audiences,2026-02-01,30,2026-03-03,No
+ACC-1619,Wild Meadow Apps,Hyper-Casual,LATAM,Casey Novak,5,18823.0,Audiences,2026-02-01,30,2026-03-03,Yes
+ACC-1494,Bright Nova Arcade,Hyper-Casual,APAC,Dana Cohen,5,62928.0,Audiences,2026-03-01,30,2026-03-31,Yes
+ACC-0606,Hollow Falcon Interactive,Casual Gaming,NA,Alex Rivera,4,282179.0,Audiences,2026-03-01,30,2026-03-31,No
+ACC-0438,Scarlet Lynx Interactive,Utilities,NA,Taylor Kim,4,54060.0,Audiences,2026-03-01,30,2026-03-31,Yes
+ACC-1216,Quiet Nova Digital,Mid-Core Gaming,EMEA,Robin Shah,4,47024.0,Audiences,2026-03-01,30,2026-03-31,No
+ACC-1796,Crystal Meadow Studios,Casual Gaming,APAC,Morgan Lee,77,6780.0,Audiences,2026-03-01,30,2026-03-31,No
+ACC-0160,Rapid Nova Studios,Hyper-Casual,EMEA,Taylor Kim,4,125728.0,Audiences,2026-03-01,30,2026-03-31,No
+ACC-0394,Rapid Ridge Mobile,Social Casino,EMEA,Robin Shah,69,10818.0,Audiences,2026-03-01,30,2026-03-31,Yes
+ACC-0462,Lunar Comet Mobile,Mobile Gaming,APAC,Jordan Blake,4,50076.0,Audiences,2026-03-01,30,2026-03-31,No
+ACC-1299,Lunar Comet Apps,Mid-Core Gaming,APAC,Alex Rivera,33,8446.0,Audiences,2026-03-01,30,2026-03-31,No
+ACC-0697,Iron Nova Studios,Mid-Core Gaming,NA,Morgan Lee,4,38935.0,Audiences,2026-03-01,30,2026-03-31,Yes
+ACC-0998,Rapid Harbor Apps,Mobile Gaming,NA,Morgan Lee,5,63966.0,Audiences,2026-03-01,30,2026-03-31,No
+ACC-1769,Scarlet Forge Labs,Mid-Core Gaming,APAC,,5,9140.0,Audiences,2026-03-01,30,2026-03-31,No
+ACC-1565,Vivid Comet Digital,E-commerce,EMEA,,24,8957.0,Audiences,2026-03-01,30,2026-03-31,Yes
+ACC-1282,Hollow Lynx Games,Hyper-Casual,NA,Taylor Kim,82,22716.0,Audiences,2026-03-01,30,2026-03-31,No
+ACC-0682,Quiet Meadow Arcade,Utilities,EMEA,Dana Cohen,74,2640.0,Audiences,2026-03-01,30,2026-03-31,No
+ACC-1388,Lunar Meadow Apps,Utilities,NA,Alex Rivera,17,8593.0,Audiences,2026-03-01,30,2026-03-31,Yes
+ACC-0123,Silent Ridge Digital,Social Casino,LATAM,Casey Novak,7,28874.0,Audiences,2026-03-01,30,2026-03-31,Yes
+ACC-0102,Wild Falcon Arcade,Mobile Gaming,APAC,Dana Cohen,67,1723.0,Audiences,2026-03-01,30,2026-03-31,No
+ACC-1947,Crystal Tide Digital,Social Casino,NA,,90,7697.0,Audiences,2026-03-01,30,2026-03-31,Yes
+ACC-0024,Wild Falcon Labs,Casual Gaming,NA,,16,18584.0,Audiences,2026-03-01,30,2026-03-31,Yes
+ACC-1396,Silent Tide Apps,Casual Gaming,EMEA,Dana Cohen,4,186083.0,Audiences,2026-04-01,30,2026-05-01,Yes
+ACC-0143,Wild Reef Apps,Mid-Core Gaming,APAC,Morgan Lee,4,610731.0,Audiences,2026-04-01,30,2026-05-01,Yes
+ACC-0850,Scarlet Reef Interactive,Casual Gaming,EMEA,Dana Cohen,4,461872.0,Audiences,2026-04-01,30,2026-05-01,No
+ACC-1254,Iron Meadow Digital,Casual Gaming,LATAM,Sam Patel,4,54972.0,Audiences,2026-04-01,30,2026-05-01,Yes
+ACC-1508,Bright Ridge Apps,Mid-Core Gaming,NA,Dana Cohen,4,212936.0,Audiences,2026-04-01,30,2026-05-01,No
+ACC-0075,Wild Harbor Labs,Mid-Core Gaming,NA,Morgan Lee,6,35231.0,Audiences,2026-04-01,30,2026-05-01,No
+ACC-1275,Bright Lynx Mobile,Mid-Core Gaming,APAC,Alex Rivera,4,14154.0,Audiences,2026-04-01,30,2026-05-01,Yes
+ACC-0168,Wild Tide Studios,Casual Gaming,EMEA,Jordan Blake,4,9869.0,Audiences,2026-04-01,30,2026-05-01,No
+ACC-1169,Silent Tide Games,Utilities,EMEA,Morgan Lee,5,7570.0,Audiences,2026-04-01,30,2026-05-01,No
+ACC-0016,Rapid Tide Games,E-commerce,APAC,Casey Novak,4,5396.0,Audiences,2026-04-01,30,2026-05-01,No
+ACC-1039,Rapid Lynx Digital,Mid-Core Gaming,EMEA,Robin Shah,5,82577.0,Audiences,2026-04-01,30,2026-05-01,Yes
+ACC-0432,Scarlet Nova Apps,Casual Gaming,APAC,,4,21453.0,Audiences,2026-04-01,30,2026-05-01,No
+ACC-0241,Vivid Peak Interactive,Utilities,EMEA,Taylor Kim,6,5378.0,Audiences,2026-04-01,30,2026-05-01,No
+ACC-0516,Wild Reef Arcade,Mid-Core Gaming,NA,Jordan Blake,6,17190.0,Audiences,2026-04-01,30,2026-05-01,No
+ACC-0455,Rapid Peak Interactive,Casual Gaming,EMEA,Casey Novak,4,18617.0,Audiences,2026-04-01,30,2026-05-01,No
+ACC-0046,Silent Harbor Interactive,Mid-Core Gaming,NA,Morgan Lee,5,197025.0,Audiences,2026-04-01,30,2026-05-01,No
+ACC-1236,Lunar Comet Interactive,Casual Gaming,NA,,57,11736.0,Audiences,2026-04-01,30,2026-05-01,Yes
+ACC-0239,Silent Falcon Mobile,Mobile Gaming,EMEA,,69,5965.0,Audiences,2026-04-01,30,2026-05-01,No
+ACC-0417,Iron Harbor Labs,Mid-Core Gaming,EMEA,Jordan Blake,57,11412.0,Audiences,2026-04-01,30,2026-05-01,Yes
+ACC-0816,Wild Grove Digital,Utilities,NA,Dana Cohen,18,11165.0,Audiences,2026-04-01,30,2026-05-01,No
+ACC-0572,Lunar Grove Labs,Hyper-Casual,EMEA,Alex Rivera,4,44872.0,Audiences,2026-05-01,30,2026-05-31,No
+ACC-1359,Quiet Ridge Interactive,Casual Gaming,NA,Taylor Kim,4,133875.0,Audiences,2026-05-01,30,2026-05-31,No
+ACC-1209,Iron Lynx Studios,Hyper-Casual,NA,Dana Cohen,5,77844.0,Audiences,2026-05-01,30,2026-05-31,No
+ACC-0502,Crystal Comet Studios,Utilities,LATAM,Casey Novak,39,6421.0,Audiences,2026-05-01,30,2026-05-31,No
+ACC-0430,Wild Meadow Labs,Casual Gaming,EMEA,,4,31692.0,Audiences,2026-05-01,30,2026-05-31,No
+ACC-1433,Scarlet Nova Apps,Mobile Gaming,APAC,Casey Novak,25,122426.0,Audiences,2026-05-01,30,2026-05-31,No
+ACC-1004,Rapid Peak Games,Mid-Core Gaming,NA,Jordan Blake,22,47732.0,Audiences,2026-05-01,30,2026-05-31,No
+ACC-0303,Lunar Reef Arcade,Mid-Core Gaming,NA,Casey Novak,71,3986.0,Audiences,2026-05-01,30,2026-05-31,Yes
+ACC-1954,Iron Forge Apps,Mobile Gaming,EMEA,Dana Cohen,10,22932.0,Audiences,2026-05-01,30,2026-05-31,No
+ACC-1649,Wild Meadow Games,Hyper-Casual,NA,Dana Cohen,69,11286.0,Audiences,2026-05-01,30,2026-05-31,No
+ACC-0054,Golden Meadow Games,Casual Gaming,EMEA,Taylor Kim,9,76295.0,Audiences,2026-05-01,30,2026-05-31,Yes
+ACC-0508,Hollow Grove Digital,Casual Gaming,NA,,32,6887.0,Audiences,2026-05-01,30,2026-05-31,No
+ACC-0396,Wild Nova Labs,Mobile Gaming,APAC,,27,4891.0,Audiences,2026-05-01,30,2026-05-31,No
+ACC-1528,Silent Harbor Games,Hyper-Casual,NA,Dana Cohen,41,19262.0,Audiences,2026-05-01,30,2026-05-31,Yes
+ACC-0447,Silent Reef Studios,Social Casino,EMEA,Dana Cohen,5,21395.0,Audiences,2026-05-01,30,2026-05-31,No
+ACC-0258,Hollow Grove Studios,Hyper-Casual,EMEA,Taylor Kim,11,2073.0,Audiences,2026-05-01,30,2026-05-31,Yes
+ACC-0287,Wild Falcon Mobile,Social Casino,EMEA,Morgan Lee,12,8926.0,Audiences,2026-05-01,30,2026-05-31,No
+ACC-0027,Hollow Nova Digital,Casual Gaming,APAC,Taylor Kim,50,13561.0,Audiences,2026-05-01,30,2026-05-31,Yes
+ACC-1704,Vivid Reef Studios,E-commerce,APAC,,4,35342.0,Audiences,2026-05-01,30,2026-05-31,Yes
+ACC-1556,Scarlet Forge Games,Hyper-Casual,EMEA,Sam Patel,9,10602.0,Audiences,2026-05-01,30,2026-05-31,No
+ACC-1022,Rapid Grove Apps,Casual Gaming,EMEA,Casey Novak,4,250046.0,Audiences,2026-06-01,30,2026-07-01,Yes
+ACC-0924,Wild Meadow Studios,Mid-Core Gaming,APAC,Alex Rivera,4,200783.0,Audiences,2026-06-01,30,2026-07-01,Yes
+ACC-0514,Golden Tide Studios,Hyper-Casual,APAC,Dana Cohen,4,105649.0,Audiences,2026-06-01,30,2026-07-01,No
+ACC-1615,Bright Grove Studios,Social Casino,APAC,Dana Cohen,4,495945.0,Audiences,2026-06-01,30,2026-07-01,No
+ACC-0338,Rapid Nova Apps,Mid-Core Gaming,NA,Dana Cohen,4,75888.0,Audiences,2026-06-01,30,2026-07-01,No
+ACC-0232,Bright Ridge Digital,Mid-Core Gaming,NA,,4,35891.0,Audiences,2026-06-01,30,2026-07-01,No
+ACC-1886,Golden Forge Labs,Mid-Core Gaming,NA,Morgan Lee,4,16287.0,Audiences,2026-06-01,30,2026-07-01,No
+ACC-0868,Golden Forge Studios,Mobile Gaming,NA,Morgan Lee,4,16484.0,Audiences,2026-06-01,30,2026-07-01,Yes
+ACC-1530,Wild Comet Digital,Hyper-Casual,EMEA,,4,32389.0,Audiences,2026-06-01,30,2026-07-01,No
+ACC-1753,Wild Ridge Digital,Mobile Gaming,NA,Taylor Kim,4,12107.0,Audiences,2026-06-01,30,2026-07-01,No
+ACC-0155,Quiet Ridge Studios,Mid-Core Gaming,APAC,Robin Shah,12,4341.0,Audiences,2026-06-01,30,2026-07-01,No
+ACC-1606,Silent Falcon Arcade,Mid-Core Gaming,NA,Robin Shah,79,7734.0,Audiences,2026-06-01,30,2026-07-01,No
+ACC-0080,Vivid Meadow Digital,Hyper-Casual,EMEA,Morgan Lee,41,5872.0,Audiences,2026-06-01,30,2026-07-01,Yes
+ACC-1512,Rapid Nova Studios,Mid-Core Gaming,APAC,,7,10825.0,Audiences,2026-06-01,30,2026-07-01,No
+ACC-1127,Lunar Peak Labs,Hyper-Casual,NA,Alex Rivera,5,71951.0,Audiences,2026-06-01,30,2026-07-01,No
+ACC-1791,Silent Reef Digital,Mid-Core Gaming,NA,Robin Shah,27,53391.0,Audiences,2026-06-01,30,2026-07-01,No
+ACC-0132,Rapid Comet Labs,Mid-Core Gaming,EMEA,Sam Patel,93,4602.0,Audiences,2026-06-01,30,2026-07-01,Yes
+ACC-1242,Scarlet Grove Games,E-commerce,NA,Casey Novak,79,33166.0,Audiences,2026-06-01,30,2026-07-01,No
+ACC-0237,Vivid Lynx Studios,Mobile Gaming,EMEA,Sam Patel,62,3479.0,Audiences,2026-06-01,30,2026-07-01,No
+ACC-1075,Scarlet Meadow Studios,Hyper-Casual,APAC,Robin Shah,4,21905.0,Audiences,2026-06-01,30,2026-07-01,No
+ACC-0053,Vivid Reef Digital,Mid-Core Gaming,LATAM,Morgan Lee,4,366338.0,Audiences,2026-07-01,30,2026-07-31,No
+ACC-1286,Iron Harbor Games,Hyper-Casual,APAC,Taylor Kim,4,235989.0,Audiences,2026-07-01,30,2026-07-31,Yes
+ACC-0190,Silent Tide Interactive,Utilities,EMEA,Alex Rivera,4,112018.0,Audiences,2026-07-01,30,2026-07-31,Yes
+ACC-1747,Quiet Meadow Apps,Mid-Core Gaming,NA,Dana Cohen,4,179664.0,Audiences,2026-07-01,30,2026-07-31,No
+ACC-1500,Bright Harbor Digital,Casual Gaming,EMEA,Casey Novak,4,709055.0,Audiences,2026-07-01,30,2026-07-31,No
+ACC-1580,Silent Forge Studios,Casual Gaming,EMEA,Taylor Kim,4,116451.0,Audiences,2026-07-01,30,2026-07-31,No
+ACC-0291,Hollow Falcon Games,Mid-Core Gaming,EMEA,Morgan Lee,4,319384.0,Audiences,2026-07-01,30,2026-07-31,No
+ACC-1190,Golden Ridge Labs,E-commerce,EMEA,Jordan Blake,4,226810.0,Audiences,2026-07-01,30,2026-07-31,No
+ACC-0482,Scarlet Lynx Labs,Casual Gaming,NA,Morgan Lee,4,22663.0,Audiences,2026-07-01,30,2026-07-31,Yes
+ACC-1186,Iron Reef Digital,Social Casino,NA,Taylor Kim,5,10257.0,Audiences,2026-07-01,30,2026-07-31,Yes
+ACC-1350,Rapid Peak Games,Social Casino,NA,Casey Novak,5,13897.0,Audiences,2026-07-01,30,2026-07-31,No
+ACC-0259,Bright Peak Studios,Mid-Core Gaming,NA,Taylor Kim,90,7426.0,Audiences,2026-07-01,30,2026-07-31,Yes
+ACC-0178,Scarlet Falcon Mobile,Mid-Core Gaming,EMEA,Robin Shah,85,6490.0,Audiences,2026-07-01,30,2026-07-31,No
+ACC-0337,Lunar Ridge Digital,Hyper-Casual,NA,Morgan Lee,5,7092.0,Audiences,2026-07-01,30,2026-07-31,No
+ACC-0081,Vivid Ridge Apps,Casual Gaming,EMEA,Taylor Kim,8,26554.0,Audiences,2026-07-01,30,2026-07-31,No
+ACC-0488,Crystal Lynx Arcade,Mid-Core Gaming,EMEA,Sam Patel,67,27624.0,Audiences,2026-07-01,30,2026-07-31,No
+ACC-1232,Golden Meadow Interactive,Mobile Gaming,APAC,Robin Shah,6,81097.0,Audiences,2026-07-01,30,2026-07-31,No
+ACC-0191,Crystal Comet Apps,Mobile Gaming,EMEA,,51,64816.0,Audiences,2026-07-01,30,2026-07-31,No
+ACC-0901,Quiet Reef Studios,Utilities,EMEA,Alex Rivera,99,42226.0,Audiences,2026-07-01,30,2026-07-31,Yes
+ACC-0517,Quiet Lynx Mobile,Casual Gaming,NA,Casey Novak,15,5063.0,Audiences,2026-07-01,30,2026-07-31,No
+ACC-0236,Bright Ridge Digital,Casual Gaming,APAC,Robin Shah,4,50240.0,Audiences,2026-08-01,30,2026-08-31,Yes
+ACC-0250,Rapid Ridge Arcade,E-commerce,NA,Robin Shah,4,137670.0,Audiences,2026-08-01,30,2026-08-31,No
+ACC-0859,Wild Reef Apps,Utilities,NA,Morgan Lee,4,72881.0,Audiences,2026-08-01,30,2026-08-31,No
+ACC-1458,Rapid Nova Interactive,Casual Gaming,NA,Alex Rivera,4,232891.0,Audiences,2026-08-01,30,2026-08-31,Yes
+ACC-0577,Wild Comet Labs,Utilities,EMEA,Taylor Kim,4,19728.0,Audiences,2026-08-01,30,2026-08-31,No
+ACC-1313,Golden Nova Labs,Social Casino,APAC,Alex Rivera,4,22767.0,Audiences,2026-08-01,30,2026-08-31,No
+ACC-1253,Crystal Falcon Mobile,Mobile Gaming,NA,Morgan Lee,4,66453.0,Audiences,2026-08-01,30,2026-08-31,No
+ACC-0871,Rapid Grove Mobile,Casual Gaming,EMEA,Dana Cohen,8,2485.0,Audiences,2026-08-01,30,2026-08-31,No
+ACC-1511,Bright Falcon Apps,Mid-Core Gaming,NA,Robin Shah,4,26865.0,Audiences,2026-08-01,30,2026-08-31,Yes
+ACC-1384,Iron Falcon Arcade,Hyper-Casual,APAC,Jordan Blake,79,4608.0,Audiences,2026-08-01,30,2026-08-31,No
+ACC-0559,Wild Grove Interactive,Mid-Core Gaming,EMEA,Jordan Blake,4,14296.0,Audiences,2026-08-01,30,2026-08-31,No
+ACC-1449,Lunar Peak Mobile,Mid-Core Gaming,NA,Taylor Kim,4,13349.0,Audiences,2026-08-01,30,2026-08-31,No
+ACC-0650,Silent Comet Digital,Social Casino,EMEA,Dana Cohen,9,8818.0,Audiences,2026-08-01,30,2026-08-31,Yes
+ACC-0877,Hollow Peak Digital,Casual Gaming,NA,,72,16065.0,Audiences,2026-08-01,30,2026-08-31,Yes
+ACC-0356,Vivid Tide Games,Social Casino,APAC,,21,14676.0,Audiences,2026-08-01,30,2026-08-31,No
+ACC-1829,Vivid Meadow Digital,Mid-Core Gaming,APAC,Taylor Kim,97,10969.0,Audiences,2026-08-01,30,2026-08-31,No
+ACC-0110,Bright Meadow Games,Hyper-Casual,APAC,Morgan Lee,4,9908.0,Audiences,2026-08-01,30,2026-08-31,No
+ACC-1819,Lunar Lynx Studios,Social Casino,APAC,Taylor Kim,84,8811.0,Audiences,2026-08-01,30,2026-08-31,No
+ACC-1409,Golden Falcon Interactive,E-commerce,NA,Sam Patel,87,12670.0,Audiences,2026-08-01,30,2026-08-31,Yes
+ACC-1812,Silent Forge Interactive,Social Casino,NA,Jordan Blake,19,5540.0,Audiences,2026-08-01,30,2026-08-31,No

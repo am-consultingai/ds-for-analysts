@@ -1,0 +1,96 @@
+# The look-alike project's spec: every fact the scripts need. Nothing look-alike-specific is written in the scripts.
+# Change a decision here, never in the code, then re-run the steps that depend on it.
+
+# 1 · Define the question
+question: Which accounts will buy Audiences after a 30-day trial?
+decision: On the 1st of each month, CSMs start trials with 20 accounts
+entity_id: account_id
+time_column: month
+
+tables:
+  accounts: data/churn/accounts.csv          # one row per account
+  monthly:                                   # account x month: the features come from here
+    - data/churn/arr_monthly.csv
+    - data/churn/traffic_monthly.csv
+    - data/churn/adoption_monthly.csv
+  trials: data/lookalike/trial_accounts.csv  # one row per trial: the examples and the target
+  purchases: data/lookalike/addon_purchases.csv   # who already bought Audiences
+
+value_column: arr                            # an account pays when this is above 0
+value_decline_threshold: 0.02
+
+label:
+  type: outcome_column                       # the target is a column in the trials table
+  column: converted
+  positive: "Yes"
+  date_column: trial_start_date              # features come from the month BEFORE this date
+  product: Audiences
+
+eligibility:                                 # who can get a trial
+  min_tenure_months: 3                       # tenure in the month before the trial
+  not_licensed: Audiences                    # doesn't have Audiences already
+  not_trialed: true                          # never had an Audiences trial
+  not_bought: true                           # not in the purchases table
+
+# 4 · Feature engineering: the same feature code as the churn project; only the listed features go to the model
+created_column: created_date
+contract:                                    # gives months_to_renewal
+  start_column: created_date
+  term_years_column: package_contract_term
+ignore_columns: [previous_month_arr, mom_delta_arr]   # restate arr; not features
+ordinal:                                     # text levels turned into numbers; anything else becomes missing
+  No Usage: 0
+  Low: 1
+  Medium: 2
+  High: 3
+static_columns: [current_segment, region, package_type, seats, industry_grouped]   # account columns
+presence_columns: [csm_name]                 # becomes has_csm_name (1 if filled in)
+ratios:
+  logins_per_seat: [dashboard_logins, seats]
+features:                                    # fixed by hand: feature selection is outside the workshop
+  - tenure_months
+  - arr
+  - seats
+  - current_segment
+  - package_type
+  - has_csm_name
+  - products_medium_plus
+  - Analytics_level
+  - Analytics_level_mean_3m
+  - SKAN_level
+  - Protect360_level
+  - ROI360_Ad_Revenue_level
+  - sessions_mean_3m
+  - sessions_trend_3v3
+  - dashboard_logins_trend_3v3
+  - logins_per_seat_mean_3m
+  - arr_chg_3m
+  - months_to_renewal
+  - region
+  - industry_grouped
+
+# 5 · Split: by trial start date; the test runs to the last trial in the data
+split: {method: time, test_from: 2025-07-01}
+
+# 2 · Today's rule
+baseline:
+  rule: "current_segment in ['Strategic', 'Enterprise', 'Mid-Market'] and (SKAN_level >= 2 or Analytics_level >= 2)"
+  score: arr                                 # accounts the rule picks come first, then by ARR
+
+# 6 · Train: each model tries these settings and keeps the one with the best check score
+models:
+  tree:     {max_depth: [2, 3, 4, 6, null], min_samples_leaf: [1, 10, 30]}
+  logistic: {C: [0.01, 0.1, 1, 10]}
+  forest:   {max_depth: [3, 6, null], min_samples_leaf: [1, 5, 20]}
+  xgboost:  {max_depth: [2, 3, 4, 6], learning_rate: [0.03, 0.1]}
+check: {method: time, months: 9}             # each setting: fit on earlier training months, check on each of the last 9
+
+# 7 · Evaluate, and choose the model
+metric: {primary: auc, k: 8, leads: 20}      # backtest: each month, the top 8 of the 20 trialed; business: 20 leads a month
+selection:
+  close_to_best: 0.02                        # models whose check score is this close to the best one count as equal
+  simplest_first: [tree, logistic, forest, xgboost]   # among those, take the first in this list
+final_model: null                            # written at /evaluate after the analyst says yes; /score uses it
+leakage: {suspect_auc: 0.80}                 # one feature alone with an AUC at or above this is suspect
+
+seed: 0
