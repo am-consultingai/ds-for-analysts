@@ -637,6 +637,25 @@ table.tb{border-collapse:separate;border-spacing:0;width:100%;font-size:34px}
 </section>
 
 <section class="slide" data-sect="Theory 2 · Four models" data-step="6">
+  <h2>A random forest grows many trees side by side, each on a different sample, and averages them</h2>
+  <div class="body" style="gap:28px">
+    <div class="flow">
+      <div class="node" data-a style="--i:1"><div class="k">Tree 1</div><p class="t ink">Its own random sample of trials</p></div>
+      <div class="node" data-a style="--i:2;margin-left:18px"><div class="k">Tree 2</div><p class="t ink">Another sample, other features to ask about</p></div>
+      <div class="node" data-a style="--i:3;margin-left:18px"><div class="k">… Tree 300</div><p class="t ink">Each one makes different mistakes</p></div>
+      <div class="arrow" data-a style="--i:4">→</div>
+      <div class="node claude" data-a style="--i:5"><div class="k">The average</div><p class="t ink">The mistakes cancel out</p></div>
+    </div>
+    <p class="t" data-a style="--i:6">One tree gives a few groups. 300 trees, each 3 questions deep, give every account <b>its own chance</b>: no ties.</p>
+    <div class="grid2">
+      <div class="card" data-a style="--i:7;padding:22px 30px;border-color:rgba(52,211,153,.55)"><div class="k green">✓ Good</div><p class="t" style="margin-top:8px">Fine-grained ranking. The best check score of the four: <b>0.676</b>.</p></div>
+      <div class="card bad" data-a style="--i:8;padding:22px 30px"><div class="k red">✗ Weak</div><p class="t" style="margin-top:8px">300 trees can't be read as rules. It still memorises some: <b>0.83</b> on the trials it learned from, <b>0.72</b> on new months.</p></div>
+    </div>
+  </div>
+  <footer class="q"><span class="qm">?</span><q>What if each tree learned from the mistakes of the ones before?</q></footer>
+</section>
+
+<section class="slide" data-sect="Theory 2 · Four models" data-step="6">
   <h2>XGBoost builds trees one after another, and each new tree fixes the errors of the ones before</h2>
   <div class="body" style="gap:28px">
     <div class="flow">
@@ -803,7 +822,7 @@ table.tb{border-collapse:separate;border-spacing:0;width:100%;font-size:34px}
 </section>
 
 <section class="slide" data-sect="Theory 3 · Choosing honestly" data-step="7">
-  <h2>The model gives 10 sales a month from 20 leads. Today's rule gives 6</h2>
+  <h2>On the test months, the model's 8 picks hold 4 buyers a month. The rule's hold 2.5</h2>
   <div class="body" style="gap:24px">
     <div class="row" style="gap:40px;align-items:stretch">
       <div class="card" data-a style="--i:1;flex:0 0 1180px;padding:18px 24px"><div class="k">Buyers in each test month's 8 picks</div><svg id="byMonth2" viewBox="0 0 1120 380" width="100%"></svg></div>
@@ -812,7 +831,34 @@ table.tb{border-collapse:separate;border-spacing:0;width:100%;font-size:34px}
         <div class="card stat" data-a style="--i:3;padding:22px 30px"><div class="big" style="font-size:96px;color:var(--s3)" data-count="35">35</div><div class="lbl">buyers in 112 picks, rule</div></div>
       </div>
     </div>
-    <p class="t" data-a style="--i:4"><b>1 sale per 2 leads instead of 1 per 3</b>: the same CSM team, about 60% more sales. In October 2025 every model's picks bought 0, so judge over several months, not one.</p>
+    <p class="t" data-a style="--i:4">14 test months × 8 picks = 112 picks for each method. In October 2025 every model's picks bought 0, so judge over several months, not one.</p>
+  </div>
+  <footer class="q"><span class="qm">?</span><q>What does that mean in sales a month?</q></footer>
+</section>
+
+<section class="slide" data-sect="Theory 3 · Choosing honestly" data-step="7">
+  <h2>The model gives 10 sales a month from 20 leads. Today's rule gives 6</h2>
+  <div class="body" style="gap:30px">
+    <div class="flow">
+      <div class="node" data-a style="--i:1"><div class="k">Model</div><p class="t ink"><b>56</b> buyers in 112 picks</p></div>
+      <div class="arrow" data-a style="--i:2">→</div>
+      <div class="node" data-a style="--i:3"><div class="k">Hit rate</div><p class="t ink"><b>50%</b> of picks buy</p></div>
+      <div class="arrow" data-a style="--i:4">→</div>
+      <div class="node" data-a style="--i:5"><div class="k">× 20 leads</div><p class="t ink">20 × 50%</p></div>
+      <div class="arrow" data-a style="--i:6">→</div>
+      <div class="node claude" data-a style="--i:7"><div class="k">Sales a month</div><p class="t ink"><b class="cyan" style="font-size:1.6em">10</b></p></div>
+    </div>
+    <div class="flow">
+      <div class="node" data-a style="--i:8"><div class="k">Today's rule</div><p class="t ink"><b>35</b> buyers in 112 picks</p></div>
+      <div class="arrow" data-a style="--i:9">→</div>
+      <div class="node" data-a style="--i:10"><div class="k">Hit rate</div><p class="t ink"><b>31%</b> of picks buy</p></div>
+      <div class="arrow" data-a style="--i:11">→</div>
+      <div class="node" data-a style="--i:12"><div class="k">× 20 leads</div><p class="t ink">20 × 31%</p></div>
+      <div class="arrow" data-a style="--i:13">→</div>
+      <div class="node" data-a style="--i:14"><div class="k">Sales a month</div><p class="t ink"><b style="font-size:1.6em;color:var(--s3)">6</b></p></div>
+    </div>
+    <p class="t" data-a style="--i:15"><b>1 sale per 2 leads instead of 1 per 3</b>: the same CSM team, about 60% more sales.</p>
+    <p class="lbl" data-a style="--i:16">This assumes the hit rate on past trials holds when the model picks its 20 leads from all the accounts that can get a trial.</p>
   </div>
   <footer class="q"><span class="qm">?</span><q>Will you get the same numbers?</q></footer>
 </section>
