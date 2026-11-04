@@ -1,0 +1,95 @@
+# ml_spec.yaml: every decision for one project. The scripts read this file; no value is typed into the code.
+# Analyst decisions are written only after the analyst says yes. Kit decisions are written by the kit and
+# logged in decisions.md with a reason. Paths are relative to the kit folder.
+
+# --- The analyst's own words (filled at /frame). Every report uses these nouns.
+terms:
+  row:                 # what one entity is called
+  rows:                # the plural
+  event:               # what happens that we want to know ahead of time
+  actor:               # who acts on the list
+  value_column:        # optional: the column that measures each entity's size or value
+
+question:              # one sentence, in the analyst's words
+decision:              # who acts, on what, how often
+
+# --- The data (filled at /profile-data, confirmed by the analyst)
+data_folder:           # folder holding the CSV files
+entity_id:             # the column that names one entity
+time_column:           # the column that names one period
+period:                # detected length of one period: day, week, month, quarter or year
+tables:
+  entities:            # the file with one row per entity (optional)
+  periods: []          # the files with one row per entity per period
+
+# --- The question (filled at /frame)
+label:
+  type: event_within_horizon
+  event:
+    kind:              # category_value | above | below | drops_by | reaches_zero
+    column:
+    value:             # the category, the threshold, or the share for drops_by (0.2 = 20%)
+  horizon_periods:     # how far ahead the analyst needs to know
+snapshot_every: 1      # one snapshot every N periods: the analyst's cycle
+eligibility:
+  min_tenure_periods:  # entities younger than this are not on the list
+  value_above_zero:    # true: only entities whose value column is above 0
+  exclude_in_event: true   # entities already in the event state are not on the list
+
+# --- Columns (proposed at /profile-data; ordered levels and exclusions confirmed by the analyst)
+columns:
+  start_date:          # the entities file's start date column, for tenure (optional)
+  ordinal: {}          # column -> {level: number}
+  fixed: []            # entities-file columns used as they are, or one yes/no per value
+  presence: []         # entities-file columns used as "is it filled in"
+  dates: []            # entities-file date columns, used as periods since the date
+  excluded: []         # never used: identifiers, columns that restate the event, leaks
+extra_features: {}     # only features the analyst asked for by name: name -> {formula, reason}
+
+# --- Today's rule (filled at /frame, in the analyst's words and as an expression on the panel columns)
+baseline:
+  words:               # the rule as the analyst said it
+  rule:                # which rows it flags, e.g. "<column> >= 3"; empty = no rule (compare with picking at random)
+  score:               # how it ranks the flagged rows
+
+# --- The measure (filled at /frame)
+metric:
+  k:                   # list length per snapshot
+  extra_hits:          # how many more real cases than today's rule, out of k, make switching worth it
+  g:                   # computed: extra_hits / k
+
+# --- Set by /size (kit decisions)
+split:
+  method: time         # the only method allowed
+  test_from:
+  gap_periods:         # equals horizon_periods
+features:
+  keep: []             # empty = all; otherwise the columns kept under the feature cap
+
+# --- Data science defaults (kit decisions; change only through /decisions)
+defaults:
+  recent_periods: 3              # R: the "recent" window; trends compare it with the R before
+  decline_threshold: 0.02        # a fall of more than this share counts as a decline period
+  max_run_periods: 12            # decline runs are counted back at most this far
+  ordinal_share: 0.90            # a text column is ordered when this share of its values are known levels
+  max_text_values: 20            # text with more values is not split into yes/no columns
+  presence_band: [0.05, 0.95]    # many-valued text becomes "is it filled in" when its fill rate is in this band
+  restate_corr: 0.99             # a number this correlated with the value column (or its change) restates it
+  restate_share: 0.90            # a category value present at this share of event periods restates the event
+  events_per_feature: 10         # training events needed per model column
+  min_features: 5                # fewer model columns than this: too few events
+  min_test_snapshots: 2
+  picks_factor: 1.0              # test picks needed = picks_factor / g^2
+  events_factor: 0.4             # test events needed = events_factor / g^2
+  logistic: {C: 1.0, max_iter: 3000}
+  max_gap: 0.10                  # training minus test precision@k above this: memorised or leaking
+  too_good: 0.80                 # training precision@k above max(this, 2 x rule): too good
+  suspect: 0.60                  # one column alone above max(this, 2 x rule): suspect
+  mix_band: [0.67, 1.5]          # test / training rate outside this band is reported
+  missing_words: ["NA", "N/A", "None", "null", "NULL", "nan"]
+  edge_share: 0.25               # more than this share of entities starting in the first period
+  many_missing: 0.05             # columns at least this empty are reported
+  shuffles: 5
+  planted_flip: 0.05
+  reasons_per_row: 3
+seed: 0

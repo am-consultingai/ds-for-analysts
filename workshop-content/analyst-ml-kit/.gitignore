@@ -1,0 +1,4 @@
+.venv
+projects/*
+!projects/.gitkeep
+__pycache__/

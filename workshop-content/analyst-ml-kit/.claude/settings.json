@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(./link-env.sh)",
+      "Bash(.venv/bin/python projects/*/scripts/*.py*)",
+      "Bash(.venv/bin/python projects/*/checks/*.py*)",
+      "Bash(sha256sum *)",
+      "Bash(cmp *)",
+      "Bash(diff *)"
+    ],
+    "deny": [
+      "Bash(.venv/bin/pip *)",
+      "Bash(.venv/bin/python -m pip *)",
+      "Bash(pip *)"
+    ]
+  }
+}
