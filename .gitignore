@@ -23,7 +23,7 @@ docs/
 # Stays ignored even after workshop-content/ below is un-ignored.
 workshop-content/internal-docs/
 
-# Workshop content stays private, except the two participant projects and the Day 1 deck.
+# Workshop content stays private, except the two participant projects and the Day 1 and Day 2 decks.
 # The generator, answer key, Day 2 data and AppsFlyer's original sample stay ignored.
 workshop-content/*
 !workshop-content/churn-workshop/
@@ -35,3 +35,4 @@ workshop-content/lookalike-workshop/.venv
 !workshop-content/presentations/
 workshop-content/presentations/*
 !workshop-content/presentations/day1.html
+!workshop-content/presentations/day2.html

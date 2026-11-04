@@ -1,0 +1,1128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Day 2: The Look-alike Pipeline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/am-consultingai/am-assets@v2/brand.css">
+<link rel="icon" href="https://cdn.jsdelivr.net/gh/am-consultingai/am-assets@v2/logo/am-favicon.png">
+<style>
+/* brand.css carries the tokens and fonts. This file adds the deck layout only.
+   Contrast override: brand.css v2 greys are too dim on the dark background. */
+:root{--s2:#dde4ee;--s3:#b9c4d3;--s4:#9aa6b8;
+  --red:#f87171;--green:#34d399;--amber:#fbbf24;--theory:#a5b4fc;--rest:#475569}
+
+html,body{height:100%;margin:0;overflow:hidden;background:var(--deep)}
+.stage{position:absolute;left:50%;top:50%;width:1920px;height:1080px;background:var(--bg);overflow:hidden;
+  transform:translate(-50%,-50%) scale(var(--scale,1))}
+.progress{position:absolute;left:0;top:0;height:5px;background:var(--grad);transition:width .4s ease;z-index:5}
+
+/* ── slide frame ─────────────────────────────────────────────────────── */
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;padding:52px 96px 0;
+  opacity:0;visibility:hidden;transition:opacity .45s ease,visibility 0s .45s}
+.slide.on{opacity:1;visibility:visible;transition:opacity .45s ease}
+.top{display:flex;align-items:center;justify-content:space-between;height:56px;flex:none}
+.top img{height:50px;width:auto}
+.sect{font-family:var(--mono);font-size:26px;letter-spacing:.1em;text-transform:uppercase;color:var(--s3);
+  display:flex;align-items:center;gap:16px}
+.sect i{width:16px;height:16px;border-radius:4px;background:var(--theory)}
+.sect.hands i{background:var(--cyan)} .sect.wrap i{background:var(--sky)}
+.sect .n{color:var(--s3);margin-left:14px;padding-left:22px;border-left:1px solid var(--line)}
+.slide h2{font-size:66px;line-height:1.1;margin:40px 0 0;max-width:1700px;color:var(--ink)}
+.body{flex:1;min-height:0;margin:44px 0 40px;display:flex;flex-direction:column;justify-content:center;gap:36px}
+.q{flex:none;margin:0 -96px;padding:26px 96px 32px;border-top:1px solid var(--line);background:var(--deep);
+  display:flex;align-items:center;gap:26px}
+.q .qm{flex:none;width:58px;height:58px;border-radius:50%;border:2px solid var(--cyan);color:var(--cyan);
+  display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:32px}
+.q q{quotes:none;font-family:var(--display);font-size:40px;font-weight:500;color:var(--ink);line-height:1.25}
+
+/* ── type and shared pieces ──────────────────────────────────────────── */
+.t{font-size:32px;line-height:1.45;color:var(--s2);font-weight:400}
+.t b,.lbl b{color:var(--ink);font-weight:600}
+.lbl{font-size:28px;line-height:1.38;color:var(--s3);font-weight:400}
+.k{font-family:var(--mono);font-size:26px;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan)}
+.big{font-family:var(--display);font-weight:600;font-size:116px;line-height:1;letter-spacing:-.03em;color:var(--ink);
+  font-variant-numeric:tabular-nums}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:34px 38px}
+.card.hi{border-color:rgba(34,211,238,.55);background:linear-gradient(180deg,rgba(34,211,238,.08),var(--card))}
+.card.bad{border-color:rgba(248,113,113,.6);background:linear-gradient(180deg,rgba(248,113,113,.09),var(--card))}
+.slide code{font-size:.9em;padding:2px 10px;border-radius:7px;color:#67e8f9;background:#0a1626}
+.row{display:flex;gap:32px;align-items:stretch}
+.row>*{flex:1;min-width:0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+.arrow{flex:0 0 56px!important;display:grid;place-items:center;color:var(--cyan);font-size:52px;font-family:var(--display)}
+.cyan{color:var(--cyan)!important} .red{color:var(--red)!important} .green{color:var(--green)!important}
+.ink{color:var(--ink)!important}
+.mono{font-family:var(--mono)}
+.todo{outline:3px dashed var(--amber);outline-offset:6px;border-radius:8px;color:var(--amber)!important}
+svg text{font-family:var(--sans);font-size:26px;fill:var(--s2)}
+svg .axis{stroke:rgba(203,213,225,.35);stroke-width:2}
+svg .grid{stroke:rgba(148,163,184,.14);stroke-width:2}
+
+/* ── motion: on entering a slide, things rise in, lines draw, bars grow ─ */
+.slide [data-a]{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease;
+  transition-delay:calc(var(--i,0) * 140ms + 150ms)}
+.slide.on [data-a]{opacity:1;transform:none}
+.draw{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.6s ease;transition-delay:var(--d,.5s)}
+.slide.on .draw{stroke-dashoffset:0}
+.grow{transform:scaleX(0);transform-origin:left center;transform-box:fill-box;
+  transition:transform .9s cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--i,0) * 160ms + 400ms)}
+.growy{transform:scaleY(0);transform-origin:center bottom;transform-box:fill-box;
+  transition:transform .8s cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--i,0) * 120ms + 400ms)}
+.growy.down{transform-origin:center top}
+.slide.on .grow,.slide.on .growy{transform:none}
+/* ?static in the URL: no motion at all, every slide shown in its finished state */
+.static .slide,.static .slide [data-a],.static .draw,.static .grow,.static .growy,.static .dot,.static .progress{transition:none!important}
+
+/* ── opening ─────────────────────────────────────────────────────────── */
+.open{justify-content:center;padding-top:0}
+.open .logo{height:120px;width:auto;margin-bottom:64px;align-self:flex-start}
+.open h1{font-size:112px;line-height:1.02;letter-spacing:-.035em;max-width:1500px}
+.open .subt{font-family:var(--display);font-size:52px;font-weight:500;color:var(--cyan);margin-top:30px}
+.open .meta{font-size:32px;color:var(--s2);margin-top:56px;padding-top:34px;border-top:1px solid var(--line);max-width:1300px}
+.open .body{flex:none;margin:0}
+.open .spacer{flex:1}
+.open .q{margin-top:auto}
+
+/* ── agenda ──────────────────────────────────────────────────────────── */
+.agenda{display:grid;grid-template-columns:150px 900px 1fr;row-gap:16px;align-items:center}
+.agenda>div{font-size:34px;color:var(--s2)}
+.agenda .tm{font-family:var(--mono);color:var(--ink);font-size:34px}
+.agenda .bk{font-family:var(--display);font-weight:600;color:var(--ink)}
+.agenda .bk.sky{color:var(--sky)} .agenda .bk.brk{color:var(--s3);font-weight:500}
+.agenda .brk{color:var(--s3)}
+.agenda .dur{display:flex;align-items:center;gap:18px}
+.agenda .dur span{height:46px;border-radius:9px;background:var(--theory)}
+.agenda .dur.h span{background:var(--cyan)} .agenda .dur.w span{background:var(--sky)}
+.agenda .dur.b span{background:var(--rest)}
+.agenda .dur em{white-space:nowrap;font-style:normal;font-family:var(--mono);font-size:26px;color:var(--s3)}
+.legend{display:flex;gap:44px;font-size:28px;color:var(--s2)}
+.legend span{display:inline-flex;align-items:center;gap:14px}
+.legend i{width:26px;height:26px;border-radius:6px;display:inline-block}
+
+/* ── stat tiles ──────────────────────────────────────────────────────── */
+.stat .big{margin:18px 0 14px}
+.stat .lbl{font-size:30px;color:var(--s2)}
+
+/* ── dots (accounts) ─────────────────────────────────────────────────── */
+.dots{display:grid;gap:16px}
+.dot{width:100%;aspect-ratio:1;border-radius:50%;border:3px solid rgba(203,213,225,.45);background:transparent;
+  transition:background .35s ease,border-color .35s ease;transition-delay:calc(var(--i,0) * 70ms + 500ms)}
+.slide.on .dot.hit{background:var(--cyan);border-color:var(--cyan)}
+.dot.leave{background:var(--red);border-color:var(--red)}
+.dot.stay{background:rgba(203,213,225,.5);border-color:transparent}
+.dot.unk{border-style:dashed}
+
+/* ── table ───────────────────────────────────────────────────────────── */
+table.tb{border-collapse:separate;border-spacing:0;width:100%;font-size:34px}
+.tb td{white-space:nowrap}
+.tb th{font-weight:500;color:var(--s3);text-align:left;vertical-align:bottom;padding:14px 22px;font-size:28px;border-bottom:2px solid var(--line)}
+.tb td{padding:16px 22px;color:var(--s2);border-bottom:1px solid var(--line-soft);font-variant-numeric:tabular-nums}
+.tb td.f{background:rgba(34,211,238,.05)} .tb td.l{background:rgba(165,180,252,.08);color:var(--ink);font-weight:600}
+.tb .grp th{border:0;padding:0 22px 12px;font-family:var(--mono);font-size:26px;letter-spacing:.08em;text-transform:uppercase}
+.tb .grp .fg{color:var(--cyan);border-bottom:3px solid var(--cyan)}
+.tb .grp .lg{color:var(--theory);border-bottom:3px solid var(--theory)}
+
+/* ── timeline of known / unknown facts ───────────────────────────────── */
+.when{display:grid;grid-template-columns:1fr 6px 1fr;gap:0 48px;align-items:start}
+.when .line{background:var(--cyan);height:100%;border-radius:3px;position:relative}
+.when .line b{position:absolute;top:-62px;left:50%;transform:translateX(-50%);white-space:nowrap;
+  font-family:var(--mono);font-size:26px;color:var(--cyan);font-weight:500}
+.chips{display:flex;flex-direction:column;gap:18px}
+.chip{display:flex;align-items:center;gap:20px;font-size:34px;color:var(--ink);padding:18px 26px;border-radius:14px;
+  background:var(--card);border:1px solid var(--line)}
+.chip .ic{flex:none;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:26px}
+.chip.ok .ic{background:rgba(52,211,153,.16);color:var(--green)}
+.chip.no{border-color:rgba(248,113,113,.55)} .chip.no .ic{background:rgba(248,113,113,.16);color:var(--red)}
+.chip small{display:block;font-size:26px;color:var(--s3);margin-top:4px}
+
+/* ── the eight-step rail ─────────────────────────────────────────────── */
+.rail{display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
+.step{position:relative;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:28px 30px 30px;
+  display:flex;flex-direction:column;gap:12px}
+.step .num{width:52px;height:52px;border-radius:50%;background:rgba(34,211,238,.14);color:var(--cyan);
+  display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:28px}
+.step h3{font-size:36px;color:var(--ink)}
+.step .tag{font-family:var(--mono);font-size:26px;color:var(--s3)}
+.step code{font-size:28px;align-self:flex-start}
+.step.dim{opacity:.5}
+.step.hot{border-color:rgba(248,113,113,.6)}
+.step .fail{font-size:28px;color:var(--red);font-weight:500;line-height:1.3}
+.step .dq{font-family:var(--display);font-size:34px;line-height:1.22;color:var(--ink);font-weight:500}
+.slide.on .rail .step{animation:none}
+
+/* ── flow diagram ────────────────────────────────────────────────────── */
+.flow{display:flex;align-items:stretch;gap:0}
+.node{flex:1;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:30px 30px;
+  display:flex;flex-direction:column;gap:12px}
+.node h3{font-size:40px;color:var(--ink)}
+.node.you{border-color:rgba(165,180,252,.6)} .node.you h3{color:var(--theory)}
+.node.claude{border-color:rgba(34,211,238,.6)} .node.claude h3{color:var(--cyan)}
+.node.script{border-color:rgba(52,211,153,.6)} .node.script h3{color:var(--green)}
+
+/* ── terminal card ───────────────────────────────────────────────────── */
+.fill>.term{display:flex;flex-direction:column}
+.fill>.term .cmds{flex:1;align-content:center}
+.term{background:#050810;border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.term .bar{display:flex;gap:10px;padding:16px 22px;border-bottom:1px solid var(--line-soft)}
+.term .bar{align-items:center} .term .bar .sn{margin-left:16px;font-family:var(--mono);font-size:26px;color:var(--s2)}
+.term .bar i{width:16px;height:16px;border-radius:50%;background:#334155}
+.cmds{display:grid;grid-template-columns:auto 1fr;gap:18px 44px;padding:32px 38px;font-size:33px}
+.cmds .c{font-family:var(--mono);color:#67e8f9;white-space:nowrap}
+.cmds .d{color:var(--s2)}
+.seq{display:flex;flex-direction:column;gap:22px}
+.seq .s{display:flex;gap:24px;align-items:flex-start}
+.seq .s .num{flex:none;width:52px;height:52px;border-radius:50%;background:rgba(34,211,238,.14);color:var(--cyan);
+  display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:28px}
+.seq .s .t{padding-top:4px}
+
+/* ── split timeline ──────────────────────────────────────────────────── */
+.span{display:flex;height:140px;border-radius:16px;overflow:hidden;font-family:var(--display);font-size:34px;font-weight:600}
+.span>div{display:flex;flex-direction:column;justify-content:center;padding:0 28px;color:#06121a}
+.span .tr{background:var(--theory)} .span .gp{background:repeating-linear-gradient(45deg,#1e293b 0 14px,#273449 14px 28px);color:var(--ink)}
+.span .te{background:var(--cyan)}
+.span small{font-family:var(--sans);font-size:26px;font-weight:500}
+.ticks{display:flex;justify-content:space-between;font-family:var(--mono);font-size:26px;color:var(--s3);margin-top:14px}
+
+/* ── formula ─────────────────────────────────────────────────────────── */
+.formula{font-family:var(--mono);font-size:40px;color:var(--ink);line-height:1.5}
+.formula .b{color:var(--theory)} .formula .x{color:var(--cyan)}
+.key{display:grid;grid-template-columns:auto 1fr;gap:14px 24px;align-items:baseline}
+.key .s{font-family:var(--mono);font-size:34px;font-weight:600}
+
+/* ── checks ──────────────────────────────────────────────────────────── */
+.check{display:flex;flex-direction:column;gap:16px}
+.check .num{font-family:var(--display);font-size:72px;font-weight:700;color:var(--cyan);line-height:1}
+.check h3{font-size:40px;color:var(--ink);line-height:1.15}
+/* ── blocks that fill the free height of the slide ── */
+.fill{flex:1;min-height:0}
+.rail.fill,.grid2.fill,.grid4.fill{grid-auto-rows:1fr}
+.fill>.card,.fill>.step,.fill>.node{display:flex;flex-direction:column;justify-content:center}
+.fill .t{font-size:36px} .fill .lbl{font-size:31px} .fill .k{font-size:28px}
+.fill .step h3{font-size:38px} .fill .dq{font-size:40px}
+.fill .check h3{font-size:46px} .fill .check .num{font-size:92px}
+.step .hd{display:flex;align-items:center;gap:18px}
+.stat{padding:44px 44px 40px} .stat .big{font-size:150px}
+
+.flow.wide .node .t,.flow.wide .card .t{font-size:36px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.grid3.fill{grid-auto-rows:1fr}
+.pairtab{display:grid;grid-template-columns:200px repeat(3,1fr);gap:10px;margin:20px 0 18px;font-size:28px;text-align:center}
+.pairtab .h{color:var(--s2);align-self:center;font-family:var(--mono);font-size:26px}
+.pairtab .ok,.pairtab .no,.pairtab .tie{border-radius:10px;padding:10px 0;font-weight:700;font-size:32px}
+.pairtab .ok{background:rgba(34,211,238,.16);color:var(--cyan)} .pairtab .no{background:rgba(248,113,113,.16);color:var(--red)}
+.pairtab .tie{background:rgba(148,163,184,.2);color:var(--s2)}
+.tb.roles{font-size:29px} .tb.roles td{padding:12px 18px!important} .tb.roles th{padding:10px 18px} .tb.roles td{white-space:normal;vertical-align:top;line-height:1.35}
+.tb.roles td small{display:block;font-size:26px;color:var(--s3);margin-top:4px}
+.tb.roles td.f{color:#a5f3fc} .tb.roles td.y{color:var(--theory);font-weight:600} .tb.roles td.x{color:var(--red)}
+.tb.roles th.cf{color:var(--cyan)} .tb.roles th.cy{color:var(--theory)} .tb.roles th.cx{color:var(--red)}
+.hb{display:flex;flex-direction:column;gap:12px;margin-top:16px}
+.hb .r{display:grid;grid-template-columns:200px 1fr 70px;align-items:center;gap:14px;font-size:28px;color:var(--s2)}
+.hb .r i{height:26px;border-radius:5px;background:var(--cyan);display:block}
+.hb .r b{font-family:var(--mono);color:var(--ink);font-weight:500}
+.run{gap:16px} .run .pr{font-size:26px;line-height:1.4;color:var(--ink);font-style:italic}
+.run .kv{display:grid;grid-template-columns:1fr auto;gap:6px 18px;font-size:28px;color:var(--s2)}
+.run .kv b{font-family:var(--mono);color:var(--ink)}
+.trap{font-size:26px;color:var(--red);border:1px solid rgba(248,113,113,.5);background:rgba(248,113,113,.08);border-radius:10px;padding:5px 14px}
+.run{gap:12px!important;padding:26px 30px} .traps .step{padding:20px 24px;gap:8px}
+.fill>.card.run{justify-content:flex-start}
+.gains{display:flex;gap:18px;flex-wrap:wrap}
+.gains span{font-size:29px;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 22px}
+.gains span b{font-family:var(--mono);color:var(--cyan);font-weight:500;margin-left:8px}
+.cmd2 code{font-size:28px}
+.step .fail{font-size:27px}
+.cm{display:grid;grid-template-columns:250px 1fr 1fr;gap:14px;align-content:center}
+.cm .h{font-size:28px;color:var(--s2);align-self:end;text-align:center;padding-bottom:4px}
+.cm .h.r{align-self:center;text-align:left;color:var(--ink);font-weight:500}
+.cm .h small{display:block;font-size:26px;color:var(--s3);font-weight:400}
+.cm .c{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px 16px;text-align:center;
+  font-family:var(--display);font-size:64px;font-weight:600;color:var(--s2);line-height:1}
+.cm .c span,.cm .c.hit,.cm .c.miss{font-size:28px}
+.cm .c span{display:block;font-family:var(--sans);font-weight:400;color:var(--s3);margin-top:10px}
+.cm .c b{display:block;font-size:64px;margin-bottom:10px}
+.cm .c.hit{border-color:rgba(34,211,238,.6);background:rgba(34,211,238,.1);color:var(--cyan);font-family:var(--sans);font-weight:500}
+.cm .c.miss{border-color:rgba(248,113,113,.6);background:rgba(248,113,113,.08);color:var(--red);font-family:var(--sans);font-weight:500}
+.cm .c.hit b,.cm .c.miss b{font-family:var(--display)}
+.run .rep{font-size:26px;color:var(--ink);font-family:var(--mono);line-height:1.35}
+.fx{display:flex;align-items:flex-start;gap:14px;margin:22px 0 22px;font-family:var(--mono)}
+.fx .p{font-size:84px;color:var(--s3);line-height:1}
+.fx .tok{display:flex;flex-direction:column;align-items:center;gap:10px}
+.fx .tok b{font-size:84px;line-height:1;font-weight:600;padding:6px 18px;border-radius:14px}
+.fx .tok small{font-family:var(--sans);font-size:26px;color:var(--s2);white-space:nowrap}
+.fx .tok.known b{color:var(--ink);box-shadow:inset 0 0 0 3px rgba(243,244,246,.85)}
+.fx .tok.find b{color:#06121a;background:var(--cyan)}
+.fx.sm{gap:8px;margin:6px 0;flex:none} .fx.sm .p{font-size:40px} .fx.sm .tok{gap:6px}
+.fx.sm .tok b{font-size:40px;padding:4px 12px;border-radius:9px} .fx.sm .tok.known b{box-shadow:inset 0 0 0 2px rgba(243,244,246,.85)}
+.fx.sm .tok small{font-size:26px}
+.tk{display:inline-flex;align-items:center;justify-content:center;min-width:1.45em;height:1.45em;padding:0 .28em;margin-right:.4em;
+  border-radius:.28em;font-family:var(--mono);font-weight:600;font-size:.95em;line-height:1;vertical-align:middle;
+  text-transform:none;letter-spacing:0;color:var(--ink);box-shadow:inset 0 0 0 2px rgba(243,244,246,.85)}
+.tk.find{background:var(--cyan);color:#06121a;box-shadow:none}
+.tk.leak{font-size:1.15em;min-width:auto;height:1.6em;padding:0 .2em 0 .35em;gap:.25em}
+.tk .tk.in{font-size:.75em;margin:0}
+.tks{margin-left:auto;display:inline-flex;gap:6px;font-size:28px} .tks .tk{margin:0}
+.step .hd{width:100%}
+.sides{display:flex;margin-top:6px}
+.dots.mini{display:inline-grid;grid-template-columns:repeat(10,20px);gap:6px;flex:none}
+.dots.mini .dot{border-width:2px}
+.pair50{display:flex;flex-direction:column;align-items:center;gap:8px;flex:none}
+.pair50 span{font-size:26px;color:var(--s2)}
+.ps{display:flex;align-items:center;gap:10px;margin:0 32px 0 auto}
+.ps i{width:16px;height:16px;border-radius:50%;background:#334155;display:block}
+.ps i.done{background:rgba(34,211,238,.45)}
+.ps i.on{width:22px;height:22px;background:var(--cyan);box-shadow:0 0 0 6px rgba(34,211,238,.18)}
+.ps b{font-family:var(--mono);font-size:26px;font-weight:500;color:var(--cyan);margin-left:12px;letter-spacing:.04em}
+.k.nc{text-transform:none;letter-spacing:.04em;font-size:28px}
+.rc{display:flex;flex-direction:column;gap:6px;padding:20px 30px} .rc .t{font-size:30px} .rc .lbl{font-size:27px}
+.rc .rh{display:flex;align-items:baseline;justify-content:space-between;gap:16px}
+.rc .cnt{font-family:var(--mono);font-size:28px;color:var(--s2);white-space:nowrap}
+.rc .cnt b{font-family:var(--display);font-size:48px;color:var(--cyan);margin-left:6px}
+.tb.feat{font-size:30px;width:100%} .tb.feat td{padding:9px 18px} .tb.feat th{padding:8px 18px}
+.tb.feat td.kd{color:var(--s3)} .tb.feat td.arr{color:var(--cyan);padding:12px 4px}
+.tb.feat td.num{font-family:var(--mono);color:#a5f3fc;background:rgba(34,211,238,.06)}
+.vrow{display:flex;justify-content:space-between;align-items:center;gap:40px;padding:24px 38px}
+.vb{display:flex;align-items:center;gap:14px;font-family:var(--mono);font-size:38px;color:var(--ink);white-space:nowrap}
+.vb .tk{font-size:40px;margin:0} .vb .br{font-size:56px;color:var(--cyan);line-height:1}
+.vb .vv{color:#a5f3fc}
+.span.sp8{height:140px}
+/* ── Day 2 additions: the same tokens and pieces as Day 1, a few new arrangements ── */
+.agenda.tight{row-gap:0} .agenda.tight>div,.agenda.tight .tm{font-size:28px} .agenda.tight .dur span{height:30px}
+.cmdl{padding:24px 34px;font-family:var(--mono);font-size:26px;line-height:1.5;color:#67e8f9;white-space:pre}
+.ic4{width:100%;height:120px;margin-bottom:4px}
+.tb.cmp{font-size:32px} .tb.cmp td{padding:13px 22px}
+.tb.cmp td.y{color:var(--green)} .tb.cmp td.n{color:var(--red)} .tb.cmp td.m{color:var(--amber)} .tb.cmp td.kd{color:var(--s3)}
+.tb.cmp td.num,.tb.roles td.num{font-family:var(--mono);color:var(--cyan);font-weight:600;font-size:36px}
+.tb.sm th{padding:10px 22px} .tb.sm td{padding:11px 22px}
+.dot.buy{background:var(--green);border-color:var(--green)}
+.dot.tied{border-color:var(--amber)} .slide.on .dot.tied.in{background:var(--amber);border-color:var(--amber)}
+.span .tr .tk,.span .te .tk{color:#06121a;box-shadow:inset 0 0 0 2px #06121a}
+.fill>.card.check.ctop{justify-content:flex-start;padding-top:30px}
+.rail.six .step{padding:24px 22px} .rail.six .step code{font-size:26px}
+.fill>.card.ctop{justify-content:flex-start;padding-top:40px}
+.span .yv{background:var(--green)} .span .yv .tk{color:#06121a;box-shadow:inset 0 0 0 2px #06121a}
+.card.set{display:flex;flex-direction:column;gap:6px;padding:22px 30px} .card.set .ic4{height:80px;margin:2px 0} .card.set .sn{font-size:28px;color:var(--s2);margin-top:6px}
+.vals{display:flex;flex-direction:row;flex-wrap:wrap;gap:8px} .vals i{font-style:normal;font-family:var(--mono);font-size:28px;color:var(--ink);background:#0a1626;border:1px solid var(--line);border-radius:9px;padding:4px 12px}
+.card.set .cnt{margin-top:auto;padding-top:12px;font-family:var(--mono);font-size:28px;color:var(--s3)} .card.set .cnt b{color:var(--cyan);font-size:40px}
+.hm{display:grid;grid-template-columns:170px repeat(3,1fr);gap:10px;margin-top:18px;align-items:center}
+.hm .ch{font-size:28px;color:var(--s2);text-align:center} .hm .rh{font-size:28px;color:var(--s2)}
+.hm .c{height:64px;border-radius:12px;display:grid;place-items:center;font-family:var(--mono);font-size:30px;font-weight:600}
+.hm .c.best{box-shadow:0 0 0 4px var(--ink)} .hm .c.worst{box-shadow:0 0 0 4px var(--red)}
+.tb.data6{font-size:28px} .tb.data6 td{padding:9px 16px!important} .tb.data6 td small{font-size:26px} .tb.data6 .tk{font-size:26px}
+
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+<div class="progress" id="progress"></div>
+
+<!-- ═══════════════════════════ OPENING ═══════════════════════════ -->
+<section class="slide open">
+  <div class="spacer"></div>
+  <div class="body">
+    <img class="logo" data-a src="https://cdn.jsdelivr.net/gh/am-consultingai/am-assets@v2/logo/am-logo-white-600.png" alt="AM Consulting">
+    <h1 data-a style="--i:1">Building ML Models with Claude</h1>
+    <div class="subt" data-a style="--i:2">Day 2: the look-alike pipeline</div>
+    <div class="meta" data-a style="--i:3">Avishay Meron · AM Consulting · Wednesday 4 November 2026</div>
+  </div>
+  <div class="spacer"></div>
+  <footer class="q"><span class="qm">?</span><q>What does the day look like?</q></footer>
+</section>
+
+<!-- ═══════════════════════════ AGENDA ═══════════════════════════ -->
+<section class="slide" data-sect="Agenda">
+  <h2>Today: the same pipeline, a new question</h2>
+  <div class="body" style="gap:14px;margin-top:30px">
+    <div class="agenda tight" data-a style="--i:1">
+      <div class="tm">09:30</div><div><b class="bk">Recap</b> · Day 1 in 20 minutes</div><div class="dur"><span style="width:140px"></span><em>20 min</em></div>
+      <div class="tm">09:50</div><div><b class="bk">Theory 1</b> · The new question</div><div class="dur"><span style="width:175px"></span><em>25 min</em></div>
+      <div class="tm">10:15</div><div><b class="bk cyan">Hands-on 1</b> · From question to baseline</div><div class="dur h"><span style="width:210px"></span><em>30 min</em></div>
+      <div class="tm">10:45</div><div><b class="bk brk">Break</b></div><div class="dur b"><span style="width:105px"></span><em>15 min</em></div>
+      <div class="tm">11:00</div><div><b class="bk">Theory 2</b> · Four models</div><div class="dur"><span style="width:280px"></span><em>40 min</em></div>
+      <div class="tm">11:40</div><div><b class="bk cyan">Hands-on 2</b> · Train</div><div class="dur h"><span style="width:140px"></span><em>20 min</em></div>
+      <div class="tm">12:00</div><div><b class="bk brk">Lunch</b></div><div class="dur b"><span style="width:315px"></span><em>45 min</em></div>
+      <div class="tm">12:45</div><div><b class="bk">Theory 3</b> · Choosing honestly</div><div class="dur"><span style="width:210px"></span><em>30 min</em></div>
+      <div class="tm">13:15</div><div><b class="bk cyan">Hands-on 3</b> · Evaluate and score</div><div class="dur h"><span style="width:210px"></span><em>30 min</em></div>
+      <div class="tm">13:45</div><div><b class="bk brk">Break</b></div><div class="dur b"><span style="width:105px"></span><em>15 min</em></div>
+      <div class="tm">14:00</div><div><b class="bk sky">Review</b> · Would you act on it?</div><div class="dur w"><span style="width:140px"></span><em>20 min</em></div>
+      <div class="tm">14:20</div><div><b class="bk sky">Demo</b> · From churn to look-alike, with prompts</div><div class="dur w"><span style="width:105px"></span><em>15 min</em></div>
+      <div class="tm">14:35</div><div><b class="bk cyan">Your own question</b> · A first spec</div><div class="dur h"><span style="width:175px"></span><em>25 min</em></div>
+    </div>
+    <div class="legend" data-a style="--i:2">
+      <span><i style="background:var(--theory)"></i>Theory</span>
+      <span><i style="background:var(--cyan)"></i>Hands-on with Claude</span>
+      <span><i style="background:var(--sky)"></i>Review and demo</span>
+      <span style="margin-left:auto;font-family:var(--mono)">End 15:00</span>
+    </div>
+  </div>
+  <footer class="q"><span class="qm">?</span><q>What did we learn on Day 1?</q></footer>
+</section>
+
+<!-- ═══════════════════════════ RECAP ═══════════════════════════ -->
+<section class="slide" data-sect="Recap · Day 1">
+  <h2>Regular code computes y. Machine learning computes f.</h2>
+  <div class="body">
+    <div class="grid2" style="gap:40px">
+      <div class="card ctop" data-a style="--i:1"><div class="k" style="color:var(--s2)">Regular code</div>
+        <div class="fx"><div class="tok known"><b>f</b><small>written by you</small></div><span class="p">(</span><div class="tok known"><b>x</b><small>given</small></div><span class="p">) =</span><div class="tok find"><b>y</b><small>computed</small></div></div>
+        <p class="t">You write the rule <b>f</b>, feed it <b>x</b>, and get <b>y</b>.</p></div>
+      <div class="card hi ctop" data-a style="--i:2"><div class="k">Machine learning</div>
+        <div class="fx"><div class="tok find"><b>f</b><small>learned</small></div><span class="p">(</span><div class="tok known"><b>x</b><small>past features</small></div><span class="p">) =</span><div class="tok known"><b>y</b><small>past outcomes</small></div></div>
+        <p class="t">We have <b>x</b> and <b>y</b> from the past. The computer finds the <b>f</b> that best links them.</p></div>
+    </div>
+    <p class="t" data-a style="--i:3">Then we feed f a <b>new x</b>, and get a predicted y. It works only if <b>x explains y</b>.</p>
+  </div>
+  <footer class="q"><span class="qm">?</span><q>What does f learn from?</q></footer>
+</section>
+
+<section class="slide" data-sect="Recap · Day 1" data-step="4">
+  <h2>Each example is a list of numbers: the features, <span class="tk known">x</span></h2>
+  <div class="body" style="gap:20px">
+    <div data-a style="--i:1"><table class="tb feat"><tr><th>ACC-1625 · May 2026</th><th>Kind</th><th>Value</th><th></th><th>As a number</th></tr><tr><td>Sessions a month, 3-month average</td><td class="kd">a count</td><td>217</td><td class="arr">→</td><td class="num">217</td></tr><tr><td>ARR change, last 3 months</td><td class="kd">a change</td><td>−29%</td><td class="arr">→</td><td class="num">−0.29</td></tr><tr><td>Has a CSM</td><td class="kd">yes / no</td><td>yes</td><td class="arr">→</td><td class="num">1</td></tr><tr><td>Analytics usage</td><td class="kd">a level</td><td>No Usage</td><td class="arr">→</td><td class="num">0</td></tr><tr><td>Segment</td><td class="kd">a category</td><td>Mid-Market</td><td class="arr">→</td><td class="num">0 · 0 · 1 · 0 · 0</td></tr></table></div>
+    <div class="card hi vrow" data-a style="--i:2">
+      <div class="vb"><span class="tk known">x</span><span class="eq">=</span><span class="br">[</span><span class="vv">217, −0.29, 1, 0, 0, 0, 1, 0, 0, … 54 numbers</span><span class="br">]</span></div>
+      <div class="vb"><span class="tk known">y</span><span class="eq">=</span><span class="vv">1</span></div>
+    </div>
+    <p class="t" data-a style="--i:3">A <b>feature</b> is one fact we knew on the date, as a number. <b>x</b> is a list of numbers, in the same order every time.</p>
+  </div>
+  <footer class="q"><span class="qm">?</span><q>How do we get from raw tables to x, y and f?</q></footer>
+</section>
+
+<section class="slide" data-sect="Recap · Day 1">
+  <h2>The ML pipeline: eight steps, and one decision that is yours at each step</h2>
+  <div class="body" style="gap:24px">
+    <div class="rail fill traps" style="gap:18px">
+      <div class="step" data-a style="--i:1"><div class="hd"><div class="tag">1 · Define the question</div><span class="tks"><span class="tk known">y</span></span></div><p class="dq" style="font-size:33px">Will anyone act on the answer?</p><code>/frame</code></div>
+      <div class="step" data-a style="--i:2"><div class="hd"><div class="tag">2 · Today's rule</div><span class="tks"><span class="tk known">f</span></span></div><p class="dq" style="font-size:33px">Is this really the rule we use?</p><code>/baseline</code></div>
+      <div class="step" data-a style="--i:3"><div class="hd"><div class="tag">3 · Check the data</div><span class="tks"><span class="tk known">x</span><span class="tk known">y</span></span></div><p class="dq" style="font-size:33px">Go or no-go?</p><code>/data-audit</code></div>
+      <div class="step" data-a style="--i:4"><div class="hd"><div class="tag">4 · Feature engineering</div><span class="tks"><span class="tk known">x</span></span></div><p class="dq" style="font-size:33px">Could I have known this on that date?</p><code>/build-panel</code></div>
+      <div class="step" data-a style="--i:5"><div class="hd"><div class="tag">5 · Split</div><span class="tks"><span class="tk known">x</span><span class="tk known">y</span></span></div><p class="dq" style="font-size:33px">Do both sides look sensible?</p><code>/split</code></div>
+      <div class="step" data-a style="--i:6"><div class="hd"><div class="tag">6 · Train</div><span class="tks"><span class="tk find">f</span></span></div><p class="dq" style="font-size:33px">Do the weights make sense?</p><code>/train</code></div>
+      <div class="step" data-a style="--i:7"><div class="hd"><div class="tag">7 · Evaluate</div><span class="tks"><span class="tk known">y</span></span></div><p class="dq" style="font-size:33px">Does it beat today's rule? Is it too good?</p><code>/evaluate</code></div>
+      <div class="step" data-a style="--i:8"><div class="hd"><div class="tag">8 · Score</div><span class="tks"><span class="tk find">y</span></span></div><p class="dq" style="font-size:33px">Would I act on this list?</p><code>/score</code></div>
+    </div>
+    <p class="t" data-a style="--i:9">Each step has a skill. Claude runs it, and <b>you make the decision</b>.</p>
+  </div>
+  <footer class="q"><span class="qm">?</span><q>Why does a script do the maths, and not Claude?</q></footer>
+</section>
+
+<section class="slide" data-sect="Recap · Day 1">
+  <h2>Skills run fixed Python scripts: consistent, accurate and efficient</h2>
+  <div class="body" style="gap:40px">
+    <div class="grid3">
+      <div class="card hi check" data-a style="--i:1"><h3>Consistency</h3><p class="t">The same numbers on every run, for everyone</p></div>
+      <div class="card hi check" data-a style="--i:2"><h3>Accuracy</h3><p class="t">Tested code does the maths, not a new guess</p></div>
+      <div class="card hi check" data-a style="--i:3"><h3>Efficiency</h3><p class="t">One command and a short summary: fewer tokens</p></div>
+    </div>
+    <div class="flow">
+      <div class="node you" data-a style="--i:4"><h3>You</h3><p class="t"><code>/build-panel</code></p></div>
+      <div class="arrow" data-a style="--i:5">→</div>
+      <div class="node claude" data-a style="--i:6"><h3>Claude · agentic</h3><p class="t">Runs the skill</p></div>
+      <div class="arrow" data-a style="--i:7">→</div>
+      <div class="node script" data-a style="--i:8"><h3>Python · fixed</h3><p class="t">Does the maths</p></div>
+      <div class="arrow" data-a style="--i:9">→</div>
+      <div class="node claude" data-a style="--i:10"><h3>Claude</h3><p class="t">Explains. You decide.</p></div>
+    </div>
+  </div>
+  <footer class="q"><span class="qm">?</span><q>Same pipeline, a harder question: what changes?</q></footer>
+</section>
+
+<!-- ═══════════════════════════ THEORY 1 · THE NEW QUESTION ═══════════════════════════ -->
+<section class="slide" data-sect="Theory 1 · The new question" data-step="1">
+  <h2>The new question: which 20 accounts should get an Audiences trial this month?</h2>
+  <div class="body">
+    <div class="grid4">
+      <div class="card stat" data-a style="--i:1;padding:30px 36px"><div class="k">On the 1st of</div><div class="big" style="font-size:96px">every</div><div class="lbl">month</div></div>
+      <div class="card stat hi" data-a style="--i:2;padding:30px 36px"><div class="k">CSMs start</div><div class="big cyan" style="font-size:96px" data-count="20">20</div><div class="lbl">Audiences trials</div></div>
+      <div class="card stat" data-a style="--i:3;padding:30px 36px"><div class="k">Each trial lasts</div><div class="big" style="font-size:96px" data-count="30">30</div><div class="lbl">days, with CSM time</div></div>
+      <div class="card stat" data-a style="--i:4;padding:30px 36px"><div class="k">The goal</div><div class="big green" style="font-size:96px">buy</div><div class="lbl">as many of the 20 as possible</div></div>
+    </div>
+    <div class="row" data-a style="--i:5;align-items:center;gap:44px"><div class="fx sm"><div class="tok find"><b>f</b><small>to learn</small></div><span class="p">(</span><div class="tok known"><b>x</b><small>the account before the trial</small></div><span class="p">) =</span><div class="tok known"><b>y</b><small>bought after the trial?</small></div></div>
+      <p class="t" style="flex:1">The target <b>y</b>: did the account buy Audiences after its trial? <b>Yes or no.</b></p></div>
+  </div>
+  <footer class="q"><span class="qm">?</span><q>What can we learn from?</q></footer>
+</section>
+
+<section class="slide" data-sect="Theory 1 · The new question" data-step="3">
+  <h2>We can learn from 640 past trials: 242 of them bought</h2>
+  <div class="body" style="gap:16px">
+    <div class="grid4">
+      <div class="card stat" data-a style="--i:1;padding:18px 30px"><div class="big" style="font-size:72px" data-count="640">640</div><div class="lbl">trials, one row each</div></div>
+      <div class="card stat" data-a style="--i:2;padding:18px 30px"><div class="big green" style="font-size:72px" data-count="242">242</div><div class="lbl">bought (38%)</div></div>
+      <div class="card stat" data-a style="--i:3;padding:18px 30px"><div class="big" style="font-size:72px" data-count="32">32</div><div class="lbl">months: Jan 2024 – Aug 2026</div></div>
+      <div class="card stat" data-a style="--i:4;padding:18px 30px"><div class="big cyan" style="font-size:72px" data-count="20">20</div><div class="lbl">features per trial</div></div>
+    </div>
+    <div class="row" style="gap:36px">
+      <div data-a style="--i:5;flex:1.25"><table class="tb sm" style="font-size:28px">
+        <tr><th>Account</th><th>Trial start</th><th>Segment</th><th>Analytics</th><th>Bought?</th></tr>
+        <tr><td>ACC-0110</td><td>1 Aug 2026</td><td>SMB</td><td class="f">Low</td><td class="l">No</td></tr>
+        <tr><td>ACC-0236</td><td>1 Aug 2026</td><td>Mid-Market</td><td class="f">High</td><td class="l green">Yes</td></tr>
+        <tr><td>ACC-0250</td><td>1 Aug 2026</td><td>Mid-Market</td><td class="f">No Usage</td><td class="l">No</td></tr>
+        <tr><td>ACC-0356</td><td>1 Aug 2026</td><td>Longtail</td><td class="f">Medium</td><td class="l">No</td></tr>
+      </table></div>
+      <div class="card" data-a style="--i:6;flex:1;padding:22px 28px"><div class="k">Share that bought, by year</div><svg id="byYear" viewBox="0 0 640 250" width="100%"></svg></div>
+    </div>
+  </div>
+  <footer class="q"><span class="qm">?</span><q>How are the 20 picked today?</q></footer>
+</section>
+
+<section class="slide" data-sect="Theory 1 · The new question" data-step="2">
+  <h2>Today's rule: big accounts that already use SKAN or Analytics</h2>
+  <div class="body" style="gap:34px">
+    <div class="flow">
+      <div class="node" data-a style="--i:1;justify-content:center"><div class="k">Segment</div><p class="t ink" style="font-size:38px">Strategic, Enterprise or Mid-Market</p></div>
+      <div class="arrow" data-a style="--i:2;flex:0 0 120px!important;font-size:36px;font-weight:700">and</div>
+      <div class="node" data-a style="--i:3;justify-content:center"><div class="k">Product use</div><p class="t ink" style="font-size:38px">SKAN or Analytics at Medium or above</p></div>
+      <div class="arrow" data-a style="--i:4">→</div>
+      <div class="node claude" data-a style="--i:5;justify-content:center"><div class="k">The 20 trials</div><p class="t">Passes both: <b>first in line</b>. The rest: <b>biggest ARR first</b></p></div>
+    </div>
+    <div class="row" style="gap:40px;align-items:stretch">
+      <div class="card" data-a style="--i:6;flex:1.2;display:flex;align-items:center;padding:24px 34px"><div class="fx sm"><div class="tok known"><b>f</b><small>written by hand</small></div><span class="p">(</span><div class="tok known"><b>x</b><small>segment, SKAN, Analytics</small></div><span class="p">) =</span><div class="tok find"><b>y</b><small>gets a trial</small></div></div></div>
+      <div class="card hi stat" data-a style="--i:7;flex:1;padding:22px 34px"><div class="k">The number to beat</div><div class="big cyan" style="font-size:96px;margin:6px 0" data-count="6">6</div><div class="lbl">sales a month from 20 leads</div></div>
+    </div>
+  </div>
+  <footer class="q"><span class="qm">?</span><q>How do we test the rule against a model?</q></footer>
+</section>
+
+<section class="slide" data-sect="Theory 1 · The new question" data-step="1">
+  <h2>We know the result only for accounts that had a trial, so we test methods on those</h2>
+  <div class="body" style="gap:28px">
+    <div class="grid2" style="gap:36px">
+      <div class="card hi" data-a style="--i:1;padding:26px 32px"><div class="k">Had a trial: 20 a month</div>
+        <div class="dots" data-trial="1" style="grid-template-columns:repeat(20,1fr);gap:8px;margin:16px 0"></div>
+        <p class="t">We know who <b class="green">bought</b> and who didn't.</p></div>
+      <div class="card" data-a style="--i:2;padding:26px 32px"><div class="k" style="color:var(--s2)">No trial</div>
+        <div class="dots" data-trial="0" style="grid-template-columns:repeat(20,1fr);gap:8px;margin:16px 0"></div>
+        <p class="t">No result. We <b>can't know</b> if they would have bought.</p></div>
+    </div>
+    <div class="card" data-a style="--i:3;padding:24px 34px;display:flex;align-items:center;gap:40px">
+      <div class="big cyan" style="font-size:96px;white-space:nowrap">8 of 20</div>
+      <p class="t">To compare methods on past months: each month, <b>every method picks its best 8 of the 20 trialed accounts</b>, and we count how many bought. Today's rule: <b>35 buyers in 112 picks</b> (14 months × 8).</p>
+    </div>
+    <p class="lbl" data-a style="--i:4">In real use, the model picks 20 leads from all the accounts that can get a trial.</p>
+  </div>
+  <footer class="q"><span class="qm">?</span><q>What data do we have about each account?</q></footer>
+</section>
+
+<section class="slide" data-sect="Theory 1 · The new question" data-step="3">
+  <h2>Our data: six tables, joined by account</h2>
+  <div class="body" style="gap:24px">
+    <div data-a style="--i:1"><table class="tb roles data6">
+        <tr><th>Table</th><th>Rows</th><th>What it gives the model</th></tr>
+        <tr><td><b>accounts</b><small>per account</small></td><td class="num">2,000</td><td class="f"><span class="tk known">x</span>segment, region, package, seats, CSM</td></tr>
+        <tr><td><b>arr_monthly</b></td><td class="num">39,209</td><td class="f"><span class="tk known">x</span>ARR, month by month</td></tr>
+        <tr><td><b>traffic_monthly</b></td><td class="num">38,821</td><td class="f"><span class="tk known">x</span>sessions, dashboard logins</td></tr>
+        <tr><td><b>adoption_monthly</b></td><td class="num">38,821</td><td class="f"><span class="tk known">x</span>usage level of 5 products</td></tr>
+        <tr><td><b>trial_accounts</b><small>per trial</small></td><td class="num">640</td><td class="y"><span class="tk known">y</span>bought? and the trial date</td></tr>
+        <tr><td><b>addon_purchases</b></td><td class="num">285</td><td>who already bought: no new trial</td></tr>
+      </table></div>
+    <div class="gains" data-a style="--i:3"><span>Typical ARR <b>$66K</b></span><span>Typical tenure <b>20 months</b></span><span>With a CSM <b>92%</b></span></div>
+  </div>
+  <footer class="q"><span class="qm">?</span><q>How do these tables become one trial's features?</q></footer>
+</section>
+
+<section class="slide" data-sect="Theory 1 · The new question" data-step="4">
+  <h2>Features come from the month before the trial, never from the trial itself</h2>
+  <div class="body" style="gap:18px">
+    <div data-a style="--i:1">
+      <div class="span" style="height:100px">
+        <div class="tr" style="flex:2.6"><span><span class="tk known">x</span>Previous 3 months</span><small>Feb – Apr 2026</small></div>
+        <div class="te" style="flex:2.6">Last 3 months<small>May – Jul · Jul = the snapshot</small></div>
+        <div class="gp" style="flex:1.7">30-day trial<small>1 – 31 Aug · not used</small></div>
+        <div class="yv" style="flex:1.3"><span><span class="tk known">y</span>Bought?</span><small>known 31 Aug</small></div>
+      </div>
+    </div>
+    <div data-a style="--i:2"><table class="tb feat">
+      <tr><th>ACC-1511, before its trial on 1 Aug 2026</th><th>Looks at</th><th>Value</th></tr>
+      <tr><td>Analytics level</td><td class="kd">1 month: July</td><td class="num">Medium (2)</td></tr>
+      <tr><td>Sessions, 3-month average</td><td class="kd">3 months: May – Jul</td><td class="num">547</td></tr>
+      <tr><td>Dashboard logins, trend</td><td class="kd">6 months: last 3 against the 3 before</td><td class="num">+38%</td></tr>
+      <tr><td>ARR change</td><td class="kd">3 months</td><td class="num">−1%</td></tr>
+      <tr><td>Segment, region</td><td class="kd">no time: fixed facts</td><td class="num">SMB, NA</td></tr>
+    </table></div>
+    <p class="t" data-a style="--i:3">Nothing from the trial is used. <b>y</b> is known at its end. ACC-1511 bought.</p>
+  </div>
+  <footer class="q"><span class="qm">?</span><q>Does the data look the way we think?</q></footer>
+</section>
+
+<!-- ═══════════════════════════ HANDS-ON 1 ═══════════════════════════ -->
+<section class="slide" data-sect="Hands-on 1 · Question to baseline" data-kind="hands">
+  <h2>Download the look-alike project, then run steps 1 to 5 and today's rule</h2>
+  <div class="body" style="gap:26px">
+    <div class="term" data-a style="--i:1"><div class="bar"><i></i><i></i><i></i><span class="sn">in your home folder</span></div>
+      <div class="cmdl">curl -fsSL https://github.com/am-consultingai/ds-for-analysts/archive/refs/heads/main.tar.gz \
+  | tar xz --strip-components=2 ds-for-analysts-main/workshop-content/lookalike-workshop
+<span class="ink">cd lookalike-workshop &amp;&amp; ./link-env.sh &amp;&amp; claude</span></div></div>
+    <div class="rail six" style="grid-template-columns:repeat(6,1fr);gap:18px">
+      <div class="step" data-a style="--i:2"><div class="tag">1 · Question</div><code>/frame</code><p class="dq" style="font-size:29px">Will anyone act on it?</p></div>
+      <div class="step" data-a style="--i:3"><div class="tag">3 · Data</div><code>/data-audit</code><p class="dq" style="font-size:29px">Go or no-go?</p></div>
+      <div class="step" data-a style="--i:4"><div class="tag">4 · Features</div><code>/build-panel</code><p class="dq" style="font-size:29px">Known before the trial?</p></div>
+      <div class="step" data-a style="--i:5"><div class="tag">5 · Split</div><code>/split</code><p class="dq" style="font-size:29px">Do both sides look sensible?</p></div>
+      <div class="step" data-a style="--i:6"><div class="tag">2 · Today's rule</div><code>/baseline</code><p class="dq" style="font-size:29px">Is this how trials are picked?</p></div>
+      <div class="step" data-a style="--i:7;justify-content:center"><div class="tag">Check</div><p class="dq" style="font-size:29px">Same numbers as your neighbour?</p></div>
+    </div>
+  </div>
+  <footer class="q"><span class="qm">?</span><q>The rule finds 6 sales a month. Which model can beat it?</q></footer>
+</section>
+
+<!-- ═══════════════════════════ THEORY 2 · FOUR MODELS ═══════════════════════════ -->
+<section class="slide" data-sect="Theory 2 · Four models" data-step="6">
+  <h2>Four models can beat the rule. Each one learns in a different way</h2>
+  <div class="body">
+    <div class="grid4 fill">
+      <div class="card check ctop" data-a style="--i:1"><svg class="ic4" id="icLR" viewBox="0 0 200 120"></svg><h3>Logistic regression</h3><p class="t">Gives each feature a <b>weight</b>, and adds them up</p></div>
+      <div class="card check ctop" data-a style="--i:2"><svg class="ic4" id="icTree" viewBox="0 0 200 120"></svg><h3>Decision tree</h3><p class="t">Asks <b>yes/no questions</b> and puts accounts into groups</p></div>
+      <div class="card check ctop" data-a style="--i:3"><svg class="ic4" id="icForest" viewBox="0 0 200 120"></svg><h3>Random forest</h3><p class="t">Many trees, and <b>their average</b></p></div>
+      <div class="card check ctop" data-a style="--i:4"><svg class="ic4" id="icXgb" viewBox="0 0 200 120"></svg><h3>XGBoost</h3><p class="t">Trees one after another; each <b>fixes the errors</b> before it</p></div>
+    </div>
+    <div class="row" data-a style="--i:5;align-items:center;gap:40px;margin-top:8px"><div class="fx sm"><div class="tok known"><b>f</b><small>any of the four</small></div><span class="p">(</span><div class="tok known"><b>x</b><small>an account</small></div><span class="p">) =</span><div class="tok find"><b>y</b><small>0 to 1</small></div></div>
+      <p class="t" style="flex:1">All four give each account a <b>chance of buying</b>, from 0 to 1. We rank by it.</p></div>
+  </div>
+  <footer class="q"><span class="qm">?</span><q>How does the first one work?</q></footer>
+</section>
+
+<section class="slide" data-sect="Theory 2 · Four models" data-step="6">
+  <h2>Logistic regression gives every feature a weight, adds them up, and turns the total into a chance</h2>
+  <div class="body" style="gap:20px">
+    <div class="row" style="gap:44px;align-items:stretch">
+      <div style="flex:1;display:flex;flex-direction:column;gap:22px;justify-content:center">
+        <div class="formula" data-a style="--i:1">score = <span class="b">b₀</span> + <span class="b">b₁</span>·<span class="x">x₁</span> + <span class="b">b₂</span>·<span class="x">x₂</span> + …</div>
+        <div class="formula" data-a style="--i:2">chance = 1 / (1 + e<sup>−score</sup>)</div>
+        <p class="t" data-a style="--i:3">The same model as on Day 1. A plus pushes toward buying, a minus away from it.</p>
+      </div>
+      <div class="card" data-a style="--i:4;flex:0 0 900px;padding:20px 26px"><div class="k">Our largest weights</div><svg id="lrWeights" viewBox="0 0 860 330" width="100%"></svg></div>
+    </div>
+    <div class="grid2">
+      <div class="card" data-a style="--i:5;padding:16px 28px;border-color:rgba(52,211,153,.55)"><div class="k green">✓ Good</div><p class="t" style="margin-top:4px">Easy to explain, stable, works with little data</p></div>
+      <div class="card bad" data-a style="--i:6;padding:16px 28px"><div class="k red">✗ Weak</div><p class="t" style="margin-top:4px">Each feature counts alone. It can't see “high Analytics <b>and also</b> many products”</p></div>
+    </div>
+  </div>
+  <footer class="q"><span class="qm">?</span><q>Which model can see such combinations?</q></footer>
+</section>
+
+<section class="slide" data-sect="Theory 2 · Four models" data-step="6">
+  <h2>A decision tree asks yes/no questions, and the answers put accounts into groups</h2>
+  <div class="body">
+    <div class="row" style="gap:44px;align-items:center">
+      <div class="card" data-a style="--i:1;flex:0 0 1100px;padding:18px 22px"><svg id="treeSvg" viewBox="0 0 1060 520" width="100%"></svg></div>
+      <div style="display:flex;flex-direction:column;gap:22px;flex:1">
+        <p class="t" data-a style="--i:2">Two questions, <b>four groups</b>. The share is of the training trials in each group that bought.</p>
+        <div class="card" data-a style="--i:3;padding:20px 26px;border-color:rgba(52,211,153,.55)"><div class="k green">✓ Good</div><p class="t" style="margin-top:6px">Read it as rules. It finds combinations.</p></div>
+        <div class="card bad" data-a style="--i:4;padding:20px 26px"><div class="k red">✗ Weak</div><p class="t" style="margin-top:6px">Everyone in a group gets the same chance.</p></div>
+      </div>
+    </div>
+  </div>
+  <footer class="q"><span class="qm">?</span><q>What goes wrong if we let the tree ask more questions?</q></footer>
+</section>
+
+<section class="slide" data-sect="Theory 2 · Four models" data-step="6">
+  <h2>A tree with no limit memorises the past, and fails on new months</h2>
+  <div class="body">
+    <div class="grid2" style="gap:40px">
+      <div class="card bad" data-a style="--i:1;padding:26px 32px"><div class="k red">Too many questions</div>
+        <p class="t" style="margin:10px 0 4px">A tiny group for almost every trial</p>
+        <svg id="deepTree" viewBox="0 0 760 270" width="100%"></svg>
+        <p class="lbl">AUC: 0.50 is a coin flip, 1.00 is perfect</p></div>
+      <div class="card" data-a style="--i:2;padding:26px 32px;border-color:rgba(251,191,36,.6)"><div class="k" style="color:var(--amber)">Too few questions</div>
+        <p class="t" style="margin:10px 0 14px">Few groups, so <b>many ties</b>. September 2026:</p>
+        <div class="dots tie" data-ties="1" style="grid-template-columns:repeat(17,1fr);gap:9px"></div>
+        <p class="t" style="margin-top:16px"><b class="cyan">5</b> in the best group. Then <b style="color:var(--amber)">29 accounts share one chance</b>, for the last <b>15</b> of the 20 leads.</p><p class="lbl" style="margin-top:10px">Filled: gets a lead. Empty: left out. The model can't tell them apart, so the account ID decides.</p></div>
+    </div>
+  </div>
+  <footer class="q"><span class="qm">?</span><q>Can many trees work together?</q></footer>
+</section>
+
+<section class="slide" data-sect="Theory 2 · Four models" data-step="6">
+  <h2>XGBoost builds trees one after another, and each new tree fixes the errors of the ones before</h2>
+  <div class="body" style="gap:28px">
+    <div class="flow">
+      <div class="node" data-a style="--i:1"><div class="k">Tree 1</div><p class="t ink">Makes a first guess</p></div>
+      <div class="arrow" data-a style="--i:2">→</div>
+      <div class="node" data-a style="--i:3"><div class="k">Tree 2</div><p class="t ink">Learns where tree 1 was wrong</p></div>
+      <div class="arrow" data-a style="--i:4">→</div>
+      <div class="node" data-a style="--i:5"><div class="k">Tree 3</div><p class="t ink">Fixes what is still wrong</p></div>
+      <div class="arrow" data-a style="--i:6">→</div>
+      <div class="node claude" data-a style="--i:7"><div class="k">… Tree 200</div><p class="t ink">The sum of all 200</p></div>
+    </div>
+    <p class="t" data-a style="--i:8">This is why XGBoost wins on <b>large</b> business data sets. Here it has a problem:</p>
+    <div class="grid2">
+      <div class="card bad" data-a style="--i:9;padding:22px 30px"><div class="k red">It needs many examples</div><p class="t" style="margin-top:8px"><b>157 buyers</b> for <b>35 columns</b>: 4.5 per column. The rule of thumb is at least 10.</p></div>
+      <div class="card bad" data-a style="--i:10;padding:22px 30px"><div class="k red">So it memorises</div><p class="t" style="margin-top:8px"><b>0.89</b> on the trials it learned from, <b>0.71</b> on new months.</p></div>
+    </div>
+  </div>
+  <footer class="q"><span class="qm">?</span><q>So which model should we use?</q></footer>
+</section>
+
+<section class="slide" data-sect="Theory 2 · Four models" data-step="6">
+  <h2>Side by side: each model is strong in a different way</h2>
+  <div class="body">
+    <table class="tb cmp" data-a style="--i:1">
+      <tr><th></th><th>Easy to explain?</th><th>Works with little data?</th><th>Risk of memorising</th><th>Fine-grained ranking?</th><th>Sales a month, our data</th></tr>
+      <tr><td><b class="ink">Logistic regression</b></td><td class="y">✓ yes</td><td class="y">✓ yes</td><td class="y">low</td><td class="y">✓ yes</td><td class="num">10</td></tr>
+      <tr><td><b class="ink">Small decision tree</b></td><td class="y">✓ yes</td><td class="y">✓ yes</td><td class="y">low</td><td class="n">✗ no: ties</td><td class="num">10</td></tr>
+      <tr><td><b class="ink">Random forest</b></td><td class="n">✗ no</td><td class="m">fairly</td><td class="m">medium</td><td class="y">✓ yes</td><td class="num">10</td></tr>
+      <tr><td><b class="ink">XGBoost</b></td><td class="n">✗ no</td><td class="n">✗ no</td><td class="n">high</td><td class="y">✓ yes</td><td class="num">10</td></tr>
+      <tr><td class="kd">Today's rule</td><td></td><td></td><td></td><td></td><td class="num" style="color:var(--s3)">6</td></tr>
+    </table>
+    <p class="t" data-a style="--i:2">On our data, all four reach <b>about 10 sales a month</b> from 20 leads. So the choice comes from the other columns.</p>
+  </div>
+  <footer class="q"><span class="qm">?</span><q>When should I choose which?</q></footer>
+</section>
+
+<section class="slide" data-sect="Theory 2 · Four models" data-step="6">
+  <h2>Start simple. Use XGBoost only when you have a lot of data, and it clearly wins</h2>
+  <div class="body">
+    <div class="grid2 fill" style="gap:40px">
+      <div class="card hi" data-a style="--i:1"><div class="k">Hundreds of examples</div>
+        <h3 style="font-size:46px;margin:14px 0;color:var(--ink)">Logistic regression or a small tree</h3>
+        <p class="t">Hard to fool, and easy to explain to the business.</p></div>
+      <div class="card" data-a style="--i:2"><div class="k" style="color:var(--theory)">Many thousands of examples, many features</div>
+        <h3 style="font-size:46px;margin:14px 0;color:var(--ink)">Try random forest and XGBoost</h3>
+        <p class="t">Keep one only if it wins on new months by enough to be worth losing the explanation.</p></div>
+    </div>
+    <div class="card" data-a style="--i:3;padding:24px 34px"><p class="t"><b>Always compare</b> on new months, against the simple model and against today's rule. On our 360 training trials, XGBoost <b>does not</b> win by enough.</p></div>
+  </div>
+  <footer class="q"><span class="qm">?</span><q>Each model also has settings. What are they?</q></footer>
+</section>
+
+<!-- ═══════════════════════════ HANDS-ON 2 ═══════════════════════════ -->
+<section class="slide" data-sect="Theory 2 · Grid search" data-step="6">
+  <h2>Every model has a few settings, and each one changes what it learns</h2>
+  <div class="body" style="gap:24px">
+    <div class="grid4">
+      <div class="card set" data-a style="--i:1"><div class="k">Decision tree</div><svg class="ic4" id="setTree" viewBox="0 0 200 120"></svg>
+        <p class="sn">Depth</p><span class="vals"><i>2</i><i>3</i><i>4</i><i>6</i><i>∞</i></span><p class="sn">Smallest group</p><span class="vals"><i>1</i><i>10</i><i>30</i></span><p class="cnt">5 × 3 = <b>15</b></p></div>
+      <div class="card set" data-a style="--i:2"><div class="k">Logistic regression</div><svg class="ic4" id="setLR" viewBox="0 0 200 120"></svg>
+        <p class="sn">Weight limit</p><span class="vals"><i>0.01</i><i>0.1</i><i>1</i><i>10</i></span><p class="cnt">4 × 1 = <b>4</b></p></div>
+      <div class="card set" data-a style="--i:3"><div class="k">Random forest</div><svg class="ic4" id="setForest" viewBox="0 0 200 120"></svg>
+        <p class="sn">Depth</p><span class="vals"><i>3</i><i>6</i><i>∞</i></span><p class="sn">Smallest group</p><span class="vals"><i>1</i><i>5</i><i>20</i></span><p class="cnt">3 × 3 = <b>9</b></p></div>
+      <div class="card set" data-a style="--i:4"><div class="k">XGBoost</div><svg class="ic4" id="setXgb" viewBox="0 0 200 120"></svg>
+        <p class="sn">Depth</p><span class="vals"><i>2</i><i>3</i><i>4</i><i>6</i></span><p class="sn">Step size</p><span class="vals"><i>0.03</i><i>0.1</i></span><p class="cnt">4 × 2 = <b>8</b></p></div>
+    </div>
+    <p class="t" data-a style="--i:5">We choose these <b>before</b> training. The model can't learn them from the data.</p>
+  </div>
+  <footer class="q"><span class="qm">?</span><q>How do we know which setting to choose?</q></footer>
+</section>
+
+<section class="slide" data-sect="Theory 2 · Grid search" data-step="6">
+  <h2>Grid search: try every combination, score each one, keep the best</h2>
+  <div class="body">
+    <div class="row" style="gap:56px;align-items:center">
+      <div class="card" data-a style="--i:0;flex:0 0 900px;padding:26px 32px"><div class="k">Decision tree · check score for each setting</div>
+        <div class="hm">
+        <div></div><div class="ch">Group 1</div><div class="ch">Group 10</div><div class="ch">Group 30</div>
+        <div class="rh">Depth 2</div>
+        <div class="c" data-a style="--i:0;background:rgba(34,211,238,0.65);color:#06121a">0.631</div>
+        <div class="c best" data-a style="--i:1;background:rgba(34,211,238,0.86);color:#06121a">0.660</div>
+        <div class="c" data-a style="--i:2;background:rgba(34,211,238,0.81);color:#06121a">0.653</div>
+        <div class="rh">Depth 3</div>
+        <div class="c" data-a style="--i:3;background:rgba(34,211,238,0.46);color:var(--ink)">0.603</div>
+        <div class="c" data-a style="--i:4;background:rgba(34,211,238,0.75);color:#06121a">0.644</div>
+        <div class="c" data-a style="--i:5;background:rgba(34,211,238,0.59);color:#06121a">0.622</div>
+        <div class="rh">Depth 4</div>
+        <div class="c" data-a style="--i:6;background:rgba(34,211,238,0.39);color:var(--ink)">0.594</div>
+        <div class="c" data-a style="--i:7;background:rgba(34,211,238,0.55);color:#06121a">0.617</div>
+        <div class="c" data-a style="--i:8;background:rgba(34,211,238,0.61);color:#06121a">0.625</div>
+        <div class="rh">Depth 6</div>
+        <div class="c" data-a style="--i:9;background:rgba(34,211,238,0.38);color:var(--ink)">0.593</div>
+        <div class="c" data-a style="--i:10;background:rgba(34,211,238,0.43);color:var(--ink)">0.600</div>
+        <div class="c" data-a style="--i:11;background:rgba(34,211,238,0.58);color:#06121a">0.621</div>
+        <div class="rh">No limit</div>
+        <div class="c worst" data-a style="--i:12;background:rgba(34,211,238,0.10);color:var(--ink)">0.553</div>
+        <div class="c" data-a style="--i:13;background:rgba(34,211,238,0.43);color:var(--ink)">0.600</div>
+        <div class="c" data-a style="--i:14;background:rgba(34,211,238,0.58);color:#06121a">0.621</div>
+        </div></div>
+      <div class="seq" style="flex:1">
+        <div class="s" data-a style="--i:16"><div class="num">1</div><p class="t">List the values of each setting</p></div>
+        <div class="s" data-a style="--i:17"><div class="num">2</div><p class="t">Try <b>every combination</b>: 5 × 3 = 15</p></div>
+        <div class="s" data-a style="--i:18"><div class="num">3</div><p class="t">Score each one. <b>Keep the best</b>: <span class="cyan">depth 2, group 10</span></p></div>
+        <div class="gains" data-a style="--i:19;margin-top:10px"><span>Tree <b>15</b></span><span>Logistic <b>4</b></span><span>Forest <b>9</b></span><span>XGBoost <b>8</b></span><span>All <b>36</b></span></div>
+        <p class="lbl" data-a style="--i:20"><span class="red">Red frame:</span> no limit, group 1. The tree that memorised.</p>
+      </div>
+    </div>
+  </div>
+  <footer class="q"><span class="qm">?</span><q>How does /train score each setting?</q></footer>
+</section>
+
+<!-- ═══════════════════════════ THEORY 3 · CHOOSING HONESTLY ═══════════════════════════ -->
+<section class="slide" data-sect="Theory 3 · Choosing honestly" data-step="6">
+  <h2>Each setting is checked on later months, the same way we split</h2>
+  <div class="body" style="gap:12px;margin-bottom:32px">
+    <div class="card" data-a style="--i:1;padding:18px 24px"><svg id="cvTime" viewBox="0 0 1700 400" width="100%"></svg></div>
+    <div class="grid3">
+      <p class="t" data-a style="--i:2">Fit on the months before, <b>check on the next month</b>. 9 times. Take the average.</p>
+      <p class="t" data-a style="--i:3">Checking on months it learned from measures <b>memory</b>, not skill.</p>
+      <p class="t" data-a style="--i:4">The <b>test months stay closed</b>. They open once, at the end.</p>
+    </div>
+  </div>
+  <footer class="q"><span class="qm">?</span><q>What score does the check give?</q></footer>
+</section>
+
+<section class="slide" data-sect="Theory 3 · Choosing honestly" data-step="7">
+  <h2>AUC: the chance that a random buyer is ranked above a random non-buyer</h2>
+  <div class="body">
+    <div class="row" style="gap:50px;align-items:center">
+      <div class="card" data-a style="--i:1;flex:0 0 1000px;padding:22px 28px"><svg id="aucBars" viewBox="0 0 760 380" width="100%"></svg></div>
+      <div style="display:flex;flex-direction:column;gap:26px;flex:1">
+        <p class="t" data-a style="--i:2">Take one buyer and one non-buyer at random. <b>Does the model rank the buyer higher?</b> AUC is how often it does.</p>
+        <p class="t" data-a style="--i:3">AUC looks at the <b>whole ranking</b>, so we need no K to compare models.</p>
+        <p class="t" data-a style="--i:4">For the business we still count <b>buyers in the picks</b> and sales a month.</p>
+      </div>
+    </div>
+  </div>
+  <footer class="q"><span class="qm">?</span><q>Is a high AUC enough to trust a model?</q></footer>
+</section>
+
+<section class="slide" data-sect="Theory 3 · Choosing honestly" data-step="7">
+  <h2>No: a model can have a great memory and little skill</h2>
+  <div class="body" style="gap:22px">
+    <div class="card" data-a style="--i:1;padding:18px 24px"><svg id="memSkill" viewBox="0 0 1700 480" width="100%"></svg></div>
+    <p class="t" data-a style="--i:2"><b style="color:var(--theory)">Memory</b> = AUC on the trials it learned from. <b class="cyan">Skill</b> = AUC on months it has never seen. A big gap means it memorised. <b>Never choose a model by its training score.</b></p>
+  </div>
+  <footer class="q"><span class="qm">?</span><q>So how do we choose the model?</q></footer>
+</section>
+
+<section class="slide" data-sect="Theory 3 · Choosing honestly" data-step="7">
+  <h2>Choose the simplest model whose check score is close to the best</h2>
+  <div class="body">
+    <div class="row" style="gap:50px;align-items:center">
+      <div class="card" data-a style="--i:1;flex:0 0 1000px;padding:22px 28px"><div class="k">Check scores (AUC, later training months)</div><svg id="checkBars" viewBox="0 0 760 400" width="100%"></svg></div>
+      <div class="seq" style="flex:1">
+        <div class="s" data-a style="--i:2"><div class="num">1</div><p class="t">Close to the best (within <b>0.02</b>): forest, XGBoost, small tree</p></div>
+        <div class="s" data-a style="--i:3"><div class="num">2</div><p class="t">The simplest of them: <b class="cyan">the small tree</b></p></div>
+        <div class="s" data-a style="--i:4"><div class="num">3</div><p class="t">Open the test months once, to confirm: <b>0.74</b>, no gap</p></div>
+      </div>
+    </div>
+    <p class="t" data-a style="--i:5">We didn't choose by the test months. If we had, they would no longer be a fair final check.</p>
+  </div>
+  <footer class="q"><span class="qm">?</span><q>Does it beat today's rule in business terms?</q></footer>
+</section>
+
+<section class="slide" data-sect="Theory 3 · Choosing honestly" data-step="7">
+  <h2>The model gives 10 sales a month from 20 leads. Today's rule gives 6</h2>
+  <div class="body" style="gap:24px">
+    <div class="row" style="gap:40px;align-items:stretch">
+      <div class="card" data-a style="--i:1;flex:0 0 1180px;padding:18px 24px"><div class="k">Buyers in each test month's 8 picks</div><svg id="byMonth2" viewBox="0 0 1120 380" width="100%"></svg></div>
+      <div style="display:flex;flex-direction:column;gap:24px;flex:1">
+        <div class="card stat hi" data-a style="--i:2;padding:22px 30px"><div class="big cyan" style="font-size:96px" data-count="56">56</div><div class="lbl">buyers in 112 picks, model</div></div>
+        <div class="card stat" data-a style="--i:3;padding:22px 30px"><div class="big" style="font-size:96px;color:var(--s3)" data-count="35">35</div><div class="lbl">buyers in 112 picks, rule</div></div>
+      </div>
+    </div>
+    <p class="t" data-a style="--i:4"><b>1 sale per 2 leads instead of 1 per 3</b>: the same CSM team, about 60% more sales. In October 2025 every model's picks bought 0, so judge over several months, not one.</p>
+  </div>
+  <footer class="q"><span class="qm">?</span><q>Will you get the same numbers?</q></footer>
+</section>
+
+<!-- ═══════════════════════════ HANDS-ON 3 ═══════════════════════════ -->
+<section class="slide" data-sect="Hands-on 3 · Evaluate and score" data-kind="hands" data-step="7">
+  <h2>Evaluate, choose your model, check for leaks, then pick this month's 20 leads</h2>
+  <div class="body">
+    <div class="rail fill" style="grid-template-columns:repeat(3,1fr);gap:28px">
+      <div class="step" data-a style="--i:1"><div class="hd"><div class="num">7</div><h3>Evaluate</h3><span class="tks"><span class="tk known">y</span></span></div><div class="cmd2"><code>/evaluate</code></div><p class="lbl">Memory against skill, against today's rule, and the suggested model</p><p class="dq" style="font-size:36px;margin-top:8px">Which model do we use?</p></div>
+      <div class="step" data-a style="--i:2"><div class="hd"><div class="num">7</div><h3>Leakage check</h3><span class="tks"><span class="tk known leak">x<span class="tk find in">y</span></span></span></div><div class="cmd2"><code>/leakage-check</code></div><p class="lbl">Each feature alone, against a limit of AUC 0.80</p><p class="dq" style="font-size:36px;margin-top:8px">Any feature we couldn't have known?</p></div>
+      <div class="step" data-a style="--i:3"><div class="hd"><div class="num">8</div><h3>Score</h3><span class="tks"><span class="tk find">y</span></span></div><div class="cmd2"><code>/score</code></div><p class="lbl">The accounts that can get a trial, ranked, with reasons</p><p class="dq" style="font-size:36px;margin-top:8px">Would you give CSMs this list?</p></div>
+    </div>
+  </div>
+  <footer class="q"><span class="qm">?</span><q>Would you give CSMs this list?</q></footer>
+</section>
+
+<!-- ═══════════════════════════ REVIEW ═══════════════════════════ -->
+<section class="slide" data-sect="Review · Would you act on it?" data-kind="wrap" data-step="8">
+  <h2>Team review: show your model and your list, and let the room challenge it</h2>
+  <div class="body">
+    <div class="grid4 fill">
+      <div class="card check" data-a style="--i:1"><div class="hd"><div class="num">1</div><h3>The choice</h3></div><p class="lbl">Which model, and why that one?</p></div>
+      <div class="card check" data-a style="--i:2"><div class="hd"><div class="num">2</div><h3>The gap</h3></div><p class="lbl">Memory against skill: did it memorise?</p></div>
+      <div class="card check" data-a style="--i:3"><div class="hd"><div class="num">3</div><h3>The list</h3></div><p class="lbl">Ties at the cut? Do the reasons make sense?</p></div>
+      <div class="card check" data-a style="--i:4"><div class="hd"><div class="num">4</div><h3>The decision</h3></div><p class="lbl">Would you give CSMs this list on the 1st?</p></div>
+    </div>
+  </div>
+  <footer class="q"><span class="qm">?</span><q>How did we get from the churn flow to this one?</q></footer>
+</section>
+
+<!-- ═══════════════════════════ DEMO ═══════════════════════════ -->
+<section class="slide" data-sect="Demo · Churn to look-alike" data-kind="wrap">
+  <h2>From churn to look-alike, with prompts: the same pipeline, a new spec</h2>
+  <div class="body">
+    <p class="t todo" data-a style="--i:1;padding:20px 26px">Content to come: the prompts that turn the churn flow into the look-alike flow.</p>
+  </div>
+  <footer class="q"><span class="qm">?</span><q>Can you do this for your own question?</q></footer>
+</section>
+
+<!-- ═══════════════════════════ YOUR OWN QUESTION ═══════════════════════════ -->
+<section class="slide" data-sect="Wrap-up · Your own question" data-kind="wrap" data-step="1">
+  <h2>Your own question: a first spec, three prompts, a first data check</h2>
+  <div class="body">
+    <div class="grid4 fill">
+      <div class="card check" data-a style="--i:1"><div class="hd"><div class="num">1</div><h3>Pick a question</h3></div><p class="lbl">From your own work, tied to a decision someone makes</p></div>
+      <div class="card check" data-a style="--i:2"><div class="hd"><div class="num">2</div><h3>Write its spec</h3></div><p class="lbl"><code>/frame</code> asks the questions and writes a first <code>ml_spec.yaml</code></p></div>
+      <div class="card check" data-a style="--i:3"><div class="hd"><div class="num">3</div><h3>Three prompts</h3></div><p class="lbl">What you will ask Claude first, in your words</p></div>
+      <div class="card check" data-a style="--i:4"><div class="hd"><div class="num">4</div><h3>A first data check</h3></div><p class="lbl">Which tables, which rows, what could be wrong</p></div>
+    </div>
+  </div>
+  <footer class="q"><span class="qm">?</span><q>What happens after the workshop?</q></footer>
+</section>
+
+<section class="slide" data-sect="Wrap-up · Your own question" data-kind="wrap">
+  <h2>After the workshop: start within two weeks, and aim for a working model in 2 to 3 months</h2>
+  <div class="body">
+    <div class="grid3 fill">
+      <div class="card" data-a style="--i:1"><div class="k">You keep</div><p class="t" style="margin-top:12px">Both projects, the skills, the scripts and <code>CLAUDE.md</code></p></div>
+      <div class="card" data-a style="--i:2"><div class="k">The same eight steps</div><p class="t" style="margin-top:12px">A new question needs a new spec, not new code</p></div>
+      <div class="card hi" data-a style="--i:3"><div class="k">Your part</div><p class="t" style="margin-top:12px">The question, and the decision at every step. Claude does the rest.</p></div>
+    </div>
+  </div>
+  <footer class="q"><span class="qm">?</span><q>Which decision in your work will you start with?</q></footer>
+</section>
+
+</div>
+
+<script>
+(function(){
+var stage=document.getElementById('stage'), slides=[].slice.call(document.querySelectorAll('.slide')),
+    bar=document.getElementById('progress'), cur=-1, LOGO='https://cdn.jsdelivr.net/gh/am-consultingai/am-assets@v2/logo/am-logo-white-600.png';
+var reduce=/static/.test(location.search);   // animations always play, unless ?static is in the URL
+if(/static/.test(location.search)) document.documentElement.classList.add('static');
+
+/* ── frame: the logo, the ML pipeline step, the section and the slide number on every slide ── */
+var STEPS=['Define the question',"Today's rule",'Check the data','Feature engineering','Split','Train','Evaluate','Score'];
+slides.forEach(function(s,i){
+  if(!s.dataset.sect) return;
+  var kind=s.dataset.kind||'', top=document.createElement('div');
+  top.className='top';
+  var st=+s.dataset.step||0, ps='';
+  if(st){ for(var k=1;k<=8;k++) ps+='<i class="'+(k===st?'on':k<st?'done':'')+'"></i>'; ps='<div class="ps" title="ML pipeline">'+ps+'<b>'+st+' · '+STEPS[st-1]+'</b></div>' }
+  top.innerHTML='<img src="'+LOGO+'" alt="AM Consulting">'+ps+'<div class="sect '+kind+'"><i></i>'+s.dataset.sect+
+    '<span class="n">'+(i+1)+' / '+slides.length+'</span></div>';
+  s.insertBefore(top,s.firstChild);
+});
+
+/* ── scale the 1920×1080 stage to the window ── */
+function fit(){ stage.style.setProperty('--scale',Math.min(innerWidth/1920,innerHeight/1080)) }
+addEventListener('resize',fit); fit();
+
+/* ── count-up numbers ── */
+function countUp(el){
+  var to=parseFloat(el.dataset.count), fmt=el.dataset.fmt||'#', dec=(el.dataset.count.split('.')[1]||'').length;
+  var show=function(v){ el.textContent=fmt.replace('#',v.toLocaleString('en-US',{minimumFractionDigits:dec,maximumFractionDigits:dec})) };
+  if(reduce){ show(to); return }
+  var t0=0, dur=1100;
+  // A timer, not animation frames: it runs in every browser and always lands on the final number.
+  (function step(){ var t=performance.now(); t0=t0||t; var k=Math.min(1,(t-t0)/dur); show(to*(1-Math.pow(1-k,3))); if(k<1) setTimeout(step,16) })();
+}
+
+/* ── navigation ── */
+function go(n){
+  n=Math.max(0,Math.min(slides.length-1,n)); if(n===cur) return;
+  if(cur>=0) slides[cur].classList.remove('on');
+  cur=n; var s=slides[cur];
+  void s.offsetWidth; s.classList.add('on');
+  s.querySelectorAll('[data-count]').forEach(countUp);
+  bar.style.width=((cur+1)/slides.length*100)+'%';
+  history.replaceState(null,'','#'+(cur+1));
+}
+addEventListener('keydown',function(e){
+  var k=e.key;
+  if(k==='ArrowRight'||k==='PageDown'||k===' '||k==='ArrowDown'){ e.preventDefault(); go(cur+1) }
+  else if(k==='ArrowLeft'||k==='PageUp'||k==='ArrowUp'){ e.preventDefault(); go(cur-1) }
+  else if(k==='Home') go(0); else if(k==='End') go(slides.length-1);
+  else if(k==='f'||k==='F'){ document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen() }
+});
+var tx=null;
+addEventListener('touchstart',function(e){ tx=e.touches[0].clientX },{passive:true});
+addEventListener('touchend',function(e){ if(tx===null) return; var dx=e.changedTouches[0].clientX-tx;
+  if(Math.abs(dx)>50) go(cur+(dx<0?1:-1)); tx=null });
+
+/* ── horizontal bars (Day 1) ── */
+function hbars(id,rows,max,ticks,fmt,rh,lw){
+  rh=rh||120;
+  var W=760,L=lw||220,R=110,top=10,bh=Math.round(rh*.55),H=top+rh*rows.length+10, s='';
+  ticks.forEach(function(t){ var x=L+t/max*(W-L-R); s+='<line class="grid" x1="'+x+'" x2="'+x+'" y1="0" y2="'+(top+rh*rows.length)+'"/>' });
+  rows.forEach(function(r,i){
+    var yy=top+i*rh, mid=yy+rh/2, w=r[1]/max*(W-L-R);
+    s+='<text x="'+(L-18)+'" y="'+(mid+9)+'" text-anchor="end" style="fill:#f3f4f6">'+r[0]+'</text>';
+    s+='<rect class="grow" style="--i:'+i+'" x="'+L+'" y="'+(mid-bh/2)+'" width="'+w+'" height="'+bh+'" rx="6" fill="'+r[2]+'"/>';
+    s+='<text x="'+(L+w+14)+'" y="'+(mid+10)+'" style="fill:#f3f4f6;font-weight:600;font-family:JetBrains Mono,monospace">'+fmt(r[1])+'</text>';
+  });
+  var el=document.getElementById(id); el.setAttribute('viewBox','0 0 '+W+' '+H); el.innerHTML=s;
+}
+var f2=function(v){return v.toFixed(2)}, LK=['With the leak','#f87171'], HM=['Honest model','#22d3ee'], RL=["Today's rule",'#94a3b8'], RN=['At random','#64748b'];
+var row=function(e,v){return [e[0],v,e[1]]};
+
+/* ════════════ Day 2 visuals ════════════ */
+var NS=function(tag,attrs,txt){ var a=''; for(var k in attrs) a+=' '+k+'="'+attrs[k]+'"'; return '<'+tag+a+(txt===undefined?'/>':'>'+txt+'</'+tag+'>') };
+var C={cyan:'#22d3ee',theory:'#a5b4fc',green:'#34d399',red:'#f87171',amber:'#fbbf24',grey:'#94a3b8',dim:'#64748b',ink:'#f3f4f6',s2:'#dde4ee',s3:'#b9c4d3'};
+
+/* 50 calls: N of them real leavers, spread evenly (Day 1's picture) */
+document.querySelectorAll('[data-d50]').forEach(function(el){
+  var n=+el.dataset.d50, h='', k=0;
+  for(var i=0;i<50;i++){ var hit=Math.floor((i+1)*n/50)>Math.floor(i*n/50); h+='<div class="dot'+(hit?' hit':'')+'" style="--i:'+(hit?k++:0)+'"></div>' }
+  el.innerHTML=h;
+});
+/* 20 trials with a known result, and 20 accounts with none */
+document.querySelectorAll('[data-trial]').forEach(function(el){
+  var h='', buy=[1,4,8,11,15,18];
+  for(var i=0;i<20;i++) h+=el.dataset.trial==='1'?'<div class="dot '+(buy.indexOf(i)>=0?'buy':'stay')+'"></div>':'<div class="dot unk"></div>';
+  el.innerHTML=h;
+});
+/* the tie at the cut: 5 in the best group, then 29 sharing one chance for 15 places */
+document.querySelectorAll('[data-ties]').forEach(function(el){
+  var h='';
+  for(var i=0;i<5;i++) h+='<div class="dot hit" style="--i:'+i+'"></div>';
+  for(var j=0;j<29;j++) h+='<div class="dot tied'+(j<15?' in':'')+'" style="--i:'+(5+j)+'"></div>';
+  el.innerHTML=h;
+});
+
+var rowc=function(n,v,c){return [n,v,c]};
+
+/* share that bought, by year */
+(function(){
+  var v=[['2024',50],['2025',28],['2026',34]], W=640,H=250,L=40,R=20,T=40,B=50,max=60,bw=(W-L-R)/3,y=function(p){return T+(1-p/max)*(H-T-B)},s='';
+  s+=NS('line',{class:'axis',x1:L,x2:W-R,y1:y(0),y2:y(0)});
+  v.forEach(function(d,i){ var x=L+bw*i+bw*.22,w=bw*.56; s+=NS('rect',{class:'growy',style:'--i:'+i,x:x,y:y(d[1]),width:w,height:y(0)-y(d[1]),rx:6,fill:i?C.cyan:C.theory});
+    s+=NS('text',{x:x+w/2,y:y(d[1])-12,'text-anchor':'middle',style:'fill:'+C.ink+';font-weight:600'},d[1]+'%')+NS('text',{x:x+w/2,y:H-14,'text-anchor':'middle'},d[0]) });
+  document.getElementById('byYear').innerHTML=s;
+})();
+
+/* the four model icons */
+(function(){
+  var lr='', i;
+  [[.8,1],[.5,1],[.3,-1],[.6,1],[.2,-1]].forEach(function(b,k){ var x=20+k*36, h=b[0]*46; lr+=NS('rect',{x:x,y:b[1]>0?60-h:60,width:24,height:h,rx:4,fill:b[1]>0?C.cyan:C.red}) });
+  lr+=NS('line',{x1:10,x2:196,y1:60,y2:60,class:'axis'});
+  document.getElementById('icLR').innerHTML=lr;
+  var tree=function(cx,top,sc,col){ var s='', w=40*sc, h=34*sc;
+    s+=NS('line',{x1:cx,y1:top+8*sc,x2:cx-w,y2:top+h,stroke:col,'stroke-width':4})+NS('line',{x1:cx,y1:top+8*sc,x2:cx+w,y2:top+h,stroke:col,'stroke-width':4});
+    s+=NS('line',{x1:cx-w,y1:top+h,x2:cx-w*1.5,y2:top+h*2,stroke:col,'stroke-width':4})+NS('line',{x1:cx-w,y1:top+h,x2:cx-w*.5,y2:top+h*2,stroke:col,'stroke-width':4});
+    s+=NS('line',{x1:cx+w,y1:top+h,x2:cx+w*.5,y2:top+h*2,stroke:col,'stroke-width':4})+NS('line',{x1:cx+w,y1:top+h,x2:cx+w*1.5,y2:top+h*2,stroke:col,'stroke-width':4});
+    [[cx,top+8*sc],[cx-w,top+h],[cx+w,top+h]].forEach(function(p){ s+=NS('circle',{cx:p[0],cy:p[1],r:7*sc,fill:col}) });
+    [cx-w*1.5,cx-w*.5,cx+w*.5,cx+w*1.5].forEach(function(px){ s+=NS('rect',{x:px-7*sc,y:top+h*2-2,width:14*sc,height:14*sc,rx:3,fill:C.s2}) });
+    return s };
+  document.getElementById('icTree').innerHTML=tree(100,10,1.1,C.cyan);
+  document.getElementById('icForest').innerHTML=tree(40,30,.6,C.cyan)+tree(100,14,.6,C.cyan)+tree(160,30,.6,C.cyan);
+  var xg=tree(30,30,.5,C.dim)+NS('text',{x:62,y:66,style:'fill:'+C.cyan+';font-size:30px'},'→')+tree(100,30,.5,C.theory)+NS('text',{x:132,y:66,style:'fill:'+C.cyan+';font-size:30px'},'→')+tree(170,30,.5,C.cyan);
+  document.getElementById('icXgb').innerHTML=xg;
+  /* the settings: a shallow tree against a deep one; weights held small or let grow; steps small or big */
+  var deep=function(cx,top,col){ var s='';
+    [[0,0,-48,26],[0,0,48,26],[-48,26,-72,52],[-48,26,-24,52],[48,26,24,52],[48,26,72,52],[-72,52,-84,78],[-72,52,-60,78],[-24,52,-36,78],[-24,52,-12,78],[24,52,12,78],[24,52,36,78],[72,52,60,78],[72,52,84,78]].forEach(function(e){
+      s+=NS('line',{x1:cx+e[0]*.6,y1:top+e[1],x2:cx+e[2]*.6,y2:top+e[3],stroke:col,'stroke-width':3}) }); return s };
+  document.getElementById('setTree').innerHTML=tree(36,34,.45,C.cyan)+NS('text',{x:74,y:74,style:'fill:'+C.s2+';font-size:30px'},'→')+deep(148,22,C.theory);
+  var lr2=''; [[.3,.2,-.2,.25],[.9,.6,-.7,.8]].forEach(function(g,j){ g.forEach(function(v,k){ var x=12+j*100+k*20, h=Math.abs(v)*44;
+    lr2+=NS('rect',{x:x,y:v>0?60-h:60,width:14,height:h,rx:3,fill:v>0?C.cyan:C.red}) }) });
+  lr2+=NS('line',{x1:6,x2:194,y1:60,y2:60,class:'axis'})+NS('text',{x:40,y:114,'text-anchor':'middle',style:'fill:'+C.s2+';font-size:34px'},'small')+NS('text',{x:140,y:114,'text-anchor':'middle',style:'fill:'+C.s2+';font-size:34px'},'large');
+  document.getElementById('setLR').innerHTML=lr2;
+  document.getElementById('setForest').innerHTML=tree(40,30,.6,C.cyan)+tree(100,14,.6,C.cyan)+tree(160,30,.6,C.cyan);
+  var st=''; [[10,8],[10,30]].forEach(function(g,j){ var y=30+j*50, x=10; for(var k=0;k<g[1]&&x<170;k++){ var nx=x+(j?32:14); st+=NS('line',{x1:x,y1:y,x2:nx,y2:y,stroke:j?C.theory:C.cyan,'stroke-width':4}); st+=NS('circle',{cx:nx,cy:y,r:4,fill:j?C.theory:C.cyan}); x=nx+6 } });
+  st+=NS('line',{x1:186,x2:186,y1:14,y2:96,stroke:C.green,'stroke-width':4,'stroke-dasharray':'6 6'});
+  document.getElementById('setXgb').innerHTML=st;
+})();
+
+/* logistic regression: the largest weights, plus and minus */
+(function(){
+  var w=[['Analytics level',.72],['Products at Medium or above',.49],['Analytics, 3-month average',-.28],['Segment: Longtail',-.21],['Segment: Enterprise',.21],['Dashboard logins, trend',.19]];
+  var W=860,L=440,mid=640,sc=270,rh=46,s='';
+  s+=NS('line',{class:'axis',x1:mid,x2:mid,y1:0,y2:rh*w.length+6});
+  w.forEach(function(r,i){ var y=8+i*rh, len=Math.abs(r[1])*sc, pos=r[1]>0;
+    s+=NS('text',{x:L-160,y:y+30,'text-anchor':'end',style:'fill:'+C.ink},'');
+    s+=NS('text',{x:mid-(pos?16:len+16),y:y+30,'text-anchor':'end',style:'fill:'+C.ink},r[0]);
+    s+=NS('rect',{class:'grow',style:'--i:'+i+(pos?'':';transform-origin:right center'),x:pos?mid:mid-len,y:y+6,width:len,height:32,rx:5,fill:pos?C.cyan:C.red});
+    s+=NS('text',{x:pos?mid+len+12:mid+12,y:y+31,style:'fill:'+C.ink+';font-weight:600;font-family:JetBrains Mono,monospace'},(pos?'+':'−')+Math.abs(r[1]).toFixed(2)) });
+  var el=document.getElementById('lrWeights'); el.setAttribute('viewBox','0 0 '+W+' '+(rh*w.length+14)); el.innerHTML=s;
+})();
+
+/* the decision tree, as it was learned */
+(function(){
+  var s='', box=function(cx,cy,w,h,lines,col,fill){ var r=NS('rect',{x:cx-w/2,y:cy-h/2,width:w,height:h,rx:16,fill:fill||'#111a2b',stroke:col,'stroke-width':3});
+      lines.forEach(function(t,i){ r+=NS('text',{x:cx,y:cy+(i-(lines.length-1)/2)*36+10,'text-anchor':'middle',style:'fill:'+C.ink+';font-size:28px'+(i===0?';font-weight:600':'')},t) }); return r };
+  var edge=function(x1,y1,x2,y2,lab,d){ return NS('path',{class:'draw',pathLength:1,style:'--d:'+d+'s',d:'M'+x1+' '+y1+' L'+x2+' '+y2,stroke:C.s3,'stroke-width':3,fill:'none'})+
+      NS('text',{x:(x1+x2)/2+(x2<x1?-30:30),y:(y1+y2)/2,'text-anchor':'middle',style:'fill:'+(lab==='yes'?C.cyan:C.s3)+';font-weight:600'},lab) };
+  s+=edge(530,92,270,200,'no',.4)+edge(530,92,790,200,'yes',.4);
+  s+=edge(270,262,135,372,'no',.9)+edge(270,262,400,372,'yes',.9)+edge(790,262,660,372,'no',.9)+edge(790,262,925,372,'yes',.9);
+  s+=box(530,56,520,72,['Analytics above Low?'],C.theory);
+  s+=box(270,231,440,62,['SKAN at High?'],C.theory)+box(790,231,480,62,['3+ products at Medium or above?'],C.theory);
+  [[135,'12%','89 trials',C.s3],[400,'46%','11 trials',C.theory],[660,'47%','199 trials',C.theory],[925,'77%','61 trials',C.cyan]].forEach(function(l){
+    s+=NS('rect',{x:l[0]-122,y:372,width:244,height:120,rx:16,fill:'#111a2b',stroke:l[3],'stroke-width':4});
+    s+=NS('text',{x:l[0],y:432,'text-anchor':'middle',style:'fill:'+l[3]+';font-size:54px;font-weight:700;font-family:Space Grotesk,sans-serif'},l[1]);
+    s+=NS('text',{x:l[0],y:470,'text-anchor':'middle',style:'fill:'+C.s2+';font-size:26px'},'of '+l[2]+' bought') });
+  document.getElementById('treeSvg').innerHTML=s;
+})();
+
+/* memory against skill for the unlimited tree and the small tree */
+hbars('deepTree',[rowc('Unlimited · memory',1.00,C.theory),rowc('Unlimited · skill',.60,C.red),rowc('Small · memory',.72,C.theory),rowc('Small · skill',.74,C.cyan)],1,[.5,1],f2,64,290);
+
+/* the checks inside training: fit on earlier months, check on the next one, 9 times; the test months stay closed */
+(function(){
+  var W=1700,L=200,R=20,T=40,n=32,cw=(W-L-R)/n,rh=29,s='';
+  s+=NS('text',{x:L,y:26,style:'fill:'+C.s3},'Jan 2024')+NS('text',{x:L+cw*18,y:26,style:'fill:'+C.s3},'Jul 2025: the test months start')+NS('text',{x:W-R,y:26,'text-anchor':'end',style:'fill:'+C.s3},'Aug 2026');
+  for(var k=0;k<9;k++){ var y=T+k*rh, check=9+k;
+    s+=NS('text',{x:L-18,y:y+27,'text-anchor':'end',style:'fill:'+C.s2},'Check '+(k+1));
+    s+=NS('rect',{class:'grow',style:'--i:'+k,x:L,y:y+6,width:cw*check-4,height:rh-12,rx:5,fill:C.theory});
+    s+=NS('rect',{class:'grow',style:'--i:'+(k+.5),x:L+cw*check,y:y+6,width:cw-4,height:rh-12,rx:5,fill:C.cyan});
+    s+=NS('rect',{x:L+cw*18,y:y+6,width:cw*14-4,height:rh-12,rx:5,fill:'url(#hatch)'}) }
+  var yl=T+9*rh+24;
+  s+=NS('rect',{x:L,y:yl,width:26,height:26,rx:5,fill:C.theory})+NS('text',{x:L+38,y:yl+22,style:'fill:'+C.ink},'fit on these months');
+  s+=NS('rect',{x:L+360,y:yl,width:26,height:26,rx:5,fill:C.cyan})+NS('text',{x:L+398,y:yl+22,style:'fill:'+C.ink},'check on this month');
+  s+=NS('rect',{x:L+740,y:yl,width:26,height:26,rx:5,fill:'url(#hatch)'})+NS('text',{x:L+778,y:yl+22,style:'fill:'+C.ink},'test months: closed until the end');
+  var el=document.getElementById('cvTime');
+  el.innerHTML='<defs><pattern id="hatch" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="14" height="14" fill="#1e293b"/><rect width="7" height="14" fill="#273449"/></pattern></defs>'+s;
+})();
+
+/* AUC, from a coin flip to perfect */
+hbars('aucBars',[rowc('A coin flip',.50,C.dim),rowc("Today's rule",.54,C.grey),rowc('Best model',.74,C.cyan),rowc('Perfect',1.00,C.theory)],1,[.5,1],f2,90);
+
+/* memory against skill, every model */
+(function(){
+  var d=[['Unlimited tree',1.00,.60],['XGBoost',.89,.71],['Random forest',.83,.72],['Logistic regression',.77,.69],['Small tree',.72,.74]];
+  var W=1700,H=480,L=70,R=20,T=100,B=60,gw=(W-L-R)/d.length,bw=gw*.3,y=function(v){return T+(1-v)*(H-T-B)},s='';
+  [0,.5,1].forEach(function(v){ s+=NS('line',{class:v?'grid':'axis',x1:L,x2:W-R,y1:y(v),y2:y(v)})+NS('text',{x:L-12,y:y(v)+9,'text-anchor':'end'},v.toFixed(1)) });
+  s+=NS('rect',{x:L,y:8,width:26,height:26,rx:5,fill:C.theory})+NS('text',{x:L+38,y:30,style:'fill:'+C.ink},'Memory: the trials it learned from');
+  s+=NS('rect',{x:L+520,y:8,width:26,height:26,rx:5,fill:C.cyan})+NS('text',{x:L+558,y:30,style:'fill:'+C.ink},'Skill: months it never saw');
+  d.forEach(function(m,i){ var gx=L+gw*i+gw/2;
+    [[m[1],C.theory,-1],[m[2],m[1]-m[2]>.1?C.red:C.cyan,1]].forEach(function(b,j){ var x=gx+(b[2]<0?-bw-4:4), yy=y(b[0]);
+      s+=NS('rect',{class:'growy',style:'--i:'+(i*2+j),x:x,y:yy,width:bw,height:y(0)-yy,rx:6,fill:b[1]});
+      s+=NS('text',{x:x+bw/2,y:yy-12,'text-anchor':'middle',style:'fill:'+C.ink+';font-weight:600'},b[0].toFixed(2)) });
+    s+=NS('text',{x:gx,y:H-18,'text-anchor':'middle',style:'fill:'+C.ink},m[0]) });
+  document.getElementById('memSkill').innerHTML=s;
+})();
+
+/* check scores, with the "close to the best" band */
+(function(){
+  var d=[['Random forest',.676,C.theory],['XGBoost',.669,C.theory],['Small tree',.660,C.cyan],['Logistic regression',.628,C.dim]];
+  var W=760,L=250,R=90,lo=.55,hi=.70,rh=58,T=10,x=function(v){return L+(v-lo)/(hi-lo)*(W-L-R)},H=T+rh*d.length+88,s='';
+  s+=NS('rect',{x:x(.656),y:0,width:x(.676)-x(.656),height:T+rh*d.length,fill:'rgba(34,211,238,.12)'});
+  s+=NS('text',{x:(x(.656)+x(.676))/2,y:T+rh*d.length+78,'text-anchor':'middle',style:'fill:'+C.cyan},'within 0.02 of the best');
+  [.55,.60,.65,.70].forEach(function(v){ s+=NS('line',{class:'grid',x1:x(v),x2:x(v),y1:0,y2:T+rh*d.length})+NS('text',{x:x(v),y:T+rh*d.length+36,'text-anchor':'middle',style:'fill:'+C.s3},v.toFixed(2)) });
+  d.forEach(function(r,i){ var mid=T+i*rh+rh/2, w=x(r[1])-L;
+    s+=NS('text',{x:L-18,y:mid+9,'text-anchor':'end',style:'fill:'+C.ink},r[0]);
+    s+=NS('rect',{class:'grow',style:'--i:'+i,x:L,y:mid-22,width:w,height:44,rx:6,fill:r[2]});
+    s+=NS('text',{x:L+w+12,y:mid+10,style:'fill:'+C.ink+';font-weight:600;font-family:JetBrains Mono,monospace'},r[1].toFixed(3)) });
+  var el=document.getElementById('checkBars'); el.setAttribute('viewBox','0 0 '+W+' '+H); el.innerHTML=s;
+})();
+
+/* buyers in each test month's 8 picks: the model (small tree) against today's rule */
+(function(){
+  var m=['Jul','Aug','Sep','Oct','Nov','Dec','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug'],
+      tree=[3,5,4,0,3,4,6,6,6,3,4,4,4,4], rule=[1,3,4,2,1,2,3,3,3,4,2,2,2,3];
+  var W=1120,H=380,L=50,R=10,T=56,B=60,max=8,gw=(W-L-R)/m.length,bw=gw*.36,y=function(v){return T+(1-v/max)*(H-T-B)},s='';
+  [0,4,8].forEach(function(v){ s+=NS('line',{class:v?'grid':'axis',x1:L,x2:W-R,y1:y(v),y2:y(v)})+NS('text',{x:L-10,y:y(v)+9,'text-anchor':'end'},v) });
+  s+=NS('rect',{x:L,y:8,width:24,height:24,rx:5,fill:C.cyan})+NS('text',{x:L+34,y:29,style:'fill:'+C.ink},'The model (small tree)');
+  s+=NS('rect',{x:L+360,y:8,width:24,height:24,rx:5,fill:C.grey})+NS('text',{x:L+394,y:29,style:'fill:'+C.ink},"Today's rule");
+  m.forEach(function(name,i){ var gx=L+gw*i+gw/2;
+    [[tree[i],C.cyan,-1],[rule[i],C.grey,1]].forEach(function(b,j){ var x=gx+(b[2]<0?-bw-2:2), yy=y(b[0]);
+      if(b[0]>0) s+=NS('rect',{class:'growy',style:'--i:'+((i*2+j)/2).toFixed(1),x:x,y:yy,width:bw,height:y(0)-yy,rx:4,fill:b[1]});
+      s+=NS('text',{x:x+bw/2,y:yy-8,'text-anchor':'middle',style:'fill:'+C.ink+';font-size:26px'},b[0]) });
+    s+=NS('text',{x:gx,y:H-30,'text-anchor':'middle',style:'font-size:26px'},name);
+    if(i===0||i===6) s+=NS('text',{x:gx,y:H-4,'text-anchor':'middle',style:'font-size:26px;fill:'+C.s3},i?'2026':'2025') });
+  document.getElementById('byMonth2').innerHTML=s;
+})();
+
+
+var start=parseInt((location.hash||'').slice(1),10);
+go(isNaN(start)?0:start-1);
+})();
+</script>
+</body>
+</html>
