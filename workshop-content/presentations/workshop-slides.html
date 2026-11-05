@@ -292,7 +292,7 @@ table.tb{border-collapse:separate;border-spacing:0;width:100%;font-size:34px}
 .span.sp8{height:140px}
 /* ── Day 2 additions: the same tokens and pieces as Day 1, a few new arrangements ── */
 .agenda.tight{row-gap:0} .agenda.tight>div,.agenda.tight .tm{font-size:28px} .agenda.tight .dur span{height:30px}
-.cmdl{padding:24px 34px;font-family:var(--mono);font-size:26px;line-height:1.5;color:#67e8f9;white-space:pre}
+.cmdl{padding:24px 34px;font-family:var(--mono);font-size:26px;line-height:1.5;color:#67e8f9;white-space:pre-wrap;overflow-wrap:anywhere}
 .ic4{width:100%;height:120px;margin-bottom:4px}
 .tb.cmp{font-size:32px} .tb.cmp td{padding:13px 22px}
 .tb.cmp td.y{color:var(--green)} .tb.cmp td.n{color:var(--red)} .tb.cmp td.m{color:var(--amber)} .tb.cmp td.kd{color:var(--s3)}
@@ -346,19 +346,15 @@ table.tb{border-collapse:separate;border-spacing:0;width:100%;font-size:34px}
   <div class="body">
     <p class="note" data-a>Run these in your home folder. On Windows, use the Ubuntu terminal.</p>
     <div class="term" data-a style="--i:1"><div class="bar"><i></i><i></i><i></i><span class="sn">1 · Set up, once</span></div>
-      <div class="cmdl">curl -fsSL https://github.com/am-consultingai/ds-workshop-setup/archive/refs/heads/main.tar.gz \
-  | tar xz &amp;&amp; cd ds-workshop-setup-main &amp;&amp; ./setup.sh</div></div>
+      <div class="cmdl">curl -fsSL https://github.com/am-consultingai/ds-workshop-setup/archive/refs/heads/main.tar.gz | tar xz &amp;&amp; cd ds-workshop-setup-main &amp;&amp; ./setup.sh</div></div>
     <div class="term" data-a style="--i:2"><div class="bar"><i></i><i></i><i></i><span class="sn">2 · Day 1: churn</span></div>
-      <div class="cmdl">curl -fsSL https://github.com/am-consultingai/ds-for-analysts/archive/refs/heads/main.tar.gz \
-  | tar xz --strip-components=2 ds-for-analysts-main/workshop-content/churn-workshop
+      <div class="cmdl">curl -fsSL https://github.com/am-consultingai/ds-for-analysts/archive/refs/heads/main.tar.gz | tar xz --strip-components=2 ds-for-analysts-main/workshop-content/churn-workshop
 <span class="ink">cd churn-workshop &amp;&amp; ./link-env.sh &amp;&amp; claude</span></div></div>
     <div class="term" data-a style="--i:3"><div class="bar"><i></i><i></i><i></i><span class="sn">3 · Day 2: look-alike</span></div>
-      <div class="cmdl">curl -fsSL https://github.com/am-consultingai/ds-for-analysts/archive/refs/heads/main.tar.gz \
-  | tar xz --strip-components=2 ds-for-analysts-main/workshop-content/lookalike-workshop
+      <div class="cmdl">curl -fsSL https://github.com/am-consultingai/ds-for-analysts/archive/refs/heads/main.tar.gz | tar xz --strip-components=2 ds-for-analysts-main/workshop-content/lookalike-workshop
 <span class="ink">cd lookalike-workshop &amp;&amp; ./link-env.sh &amp;&amp; claude</span></div></div>
     <div class="term" data-a style="--i:4"><div class="bar"><i></i><i></i><i></i><span class="sn">4 · Your own question: the analyst ML kit</span></div>
-      <div class="cmdl">curl -fsSL https://github.com/am-consultingai/ds-for-analysts/archive/refs/heads/main.tar.gz \
-  | tar xz --strip-components=2 ds-for-analysts-main/workshop-content/analyst-ml-kit
+      <div class="cmdl">curl -fsSL https://github.com/am-consultingai/ds-for-analysts/archive/refs/heads/main.tar.gz | tar xz --strip-components=2 ds-for-analysts-main/workshop-content/analyst-ml-kit
 <span class="ink">cd analyst-ml-kit &amp;&amp; ./link-env.sh &amp;&amp; claude</span></div></div>
   </div>
   <footer class="q"><span class="qm">?</span><q>Where did we start?</q></footer>
@@ -1264,8 +1260,7 @@ table.tb{border-collapse:separate;border-spacing:0;width:100%;font-size:34px}
   <h2>Download the look-alike project, then run steps 1 to 5 and today's rule</h2>
   <div class="body" style="gap:26px">
     <div class="term" data-a style="--i:1"><div class="bar"><i></i><i></i><i></i><span class="sn">in your home folder</span></div>
-      <div class="cmdl">curl -fsSL https://github.com/am-consultingai/ds-for-analysts/archive/refs/heads/main.tar.gz \
-  | tar xz --strip-components=2 ds-for-analysts-main/workshop-content/lookalike-workshop
+      <div class="cmdl">curl -fsSL https://github.com/am-consultingai/ds-for-analysts/archive/refs/heads/main.tar.gz | tar xz --strip-components=2 ds-for-analysts-main/workshop-content/lookalike-workshop
 <span class="ink">cd lookalike-workshop &amp;&amp; ./link-env.sh &amp;&amp; claude</span></div></div>
     <div class="rail six" style="grid-template-columns:repeat(6,1fr);gap:18px">
       <div class="step" data-a style="--i:2"><div class="tag">1 · Question</div><code>/frame</code><p class="dq" style="font-size:29px">Will anyone act on it?</p></div>
