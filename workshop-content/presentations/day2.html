@@ -292,7 +292,7 @@ table.tb{border-collapse:separate;border-spacing:0;width:100%;font-size:34px}
 .span.sp8{height:140px}
 /* ── Day 2 additions: the same tokens and pieces as Day 1, a few new arrangements ── */
 .agenda.tight{row-gap:0} .agenda.tight>div,.agenda.tight .tm{font-size:28px} .agenda.tight .dur span{height:30px}
-.cmdl{padding:24px 34px;font-family:var(--mono);font-size:26px;line-height:1.5;color:#67e8f9;white-space:pre-wrap;overflow-wrap:anywhere}
+.cmdl{padding:24px 34px;font-family:var(--mono);font-size:26px;line-height:1.5;color:#67e8f9;white-space:pre-wrap;overflow-wrap:break-word}
 .ic4{width:100%;height:120px;margin-bottom:4px}
 .tb.cmp{font-size:32px} .tb.cmp td{padding:13px 22px}
 .tb.cmp td.y{color:var(--green)} .tb.cmp td.n{color:var(--red)} .tb.cmp td.m{color:var(--amber)} .tb.cmp td.kd{color:var(--s3)}
@@ -314,6 +314,12 @@ table.tb{border-collapse:separate;border-spacing:0;width:100%;font-size:34px}
 .hm .c.best{box-shadow:0 0 0 4px var(--ink)} .hm .c.worst{box-shadow:0 0 0 4px var(--red)}
 .tb.data6{font-size:28px} .tb.data6 td{padding:9px 16px!important} .tb.data6 td small{font-size:26px} .tb.data6 .tk{font-size:26px}
 
+
+/* each command on its own line, with a prompt that copy leaves out */
+.cmdl .cl{padding-left:1.6em;text-indent:-1.6em}
+.cmdl .cl::before{content:"$";display:inline-block;width:1.6em;text-indent:0;color:var(--s4);user-select:none;-webkit-user-select:none}
+.cmdl .cl+.cl{margin-top:.55em}
+.cmdl .nw{white-space:nowrap}
 </style>
 </head>
 <body>
@@ -554,8 +560,7 @@ table.tb{border-collapse:separate;border-spacing:0;width:100%;font-size:34px}
   <h2>Download the look-alike project, then run steps 1 to 5 and today's rule</h2>
   <div class="body" style="gap:26px">
     <div class="term" data-a style="--i:1"><div class="bar"><i></i><i></i><i></i><span class="sn">in your home folder</span></div>
-      <div class="cmdl">curl -fsSL https://github.com/am-consultingai/ds-for-analysts/archive/refs/heads/main.tar.gz | tar xz --strip-components=2 ds-for-analysts-main/workshop-content/lookalike-workshop
-<span class="ink">cd lookalike-workshop &amp;&amp; ./link-env.sh &amp;&amp; claude</span></div></div>
+      <div class="cmdl"><div class="cl">curl <span class="nw">-fsSL</span> <span class="nw">https://github.com/am-consultingai/ds-for-analysts/archive/refs/heads/main.tar.gz</span> | tar xz <span class="nw">--strip-components=2</span> <span class="nw">ds-for-analysts-main/workshop-content/lookalike-workshop</span></div><div class="cl ink">cd <span class="nw">lookalike-workshop</span> &amp;&amp; <span class="nw">./link-env.sh</span> &amp;&amp; claude</div></div></div>
     <div class="rail six" style="grid-template-columns:repeat(6,1fr);gap:18px">
       <div class="step" data-a style="--i:2"><div class="tag">1 · Question</div><code>/frame</code><p class="dq" style="font-size:29px">Will anyone act on it?</p></div>
       <div class="step" data-a style="--i:3"><div class="tag">3 · Data</div><code>/data-audit</code><p class="dq" style="font-size:29px">Go or no-go?</p></div>
